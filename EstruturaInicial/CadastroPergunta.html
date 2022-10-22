@@ -33,12 +33,12 @@
                 </li>
             </ul>
 
-    <!-- Navbar Right Menu -->
-    <ul class="navbar-nav ml-auto">
-       <li class="nav-item">
-        <button class="btn btn-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
-         </li>
-     </ul>
+            <!-- Navbar Right Menu -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </li>
+            </ul>
 
 
         </nav>
@@ -128,7 +128,71 @@
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <section class="content">
-                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col text-center">
+                            <h1>Cadastro de pergunta</h1>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-6  mb-3">
+                            <label for="banca" class="form-label">Bancas</label>
+                            <select class="form-select " name="" id="banca">
+                                <option selected>Selecione uma banca...</option>
+                                <option value="">Enem</option>
+                                <option value="">Fuvest</option>
+                                <option value="">Unicamp</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-6 mb-3">
+                            <label for="materia" class="form-label">Matéria da pergunta</label>
+                            <select class="form-select " name="" id="materia">
+                                <option selected>Selecione uma matéria...</option>
+                                <option value="">Exatas</option>
+                                <option value="">Literatura</option>
+                                <option value="">Gramática</option>
+                                <option value="">Ciências da natureza</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-6 mb-3">
+                            <label for="enunciado" class="form-label">Enunciado da pergunta</label>
+                            <textarea class="form-control" name="" id="enunciado"
+                                placeholder="Insira o enunciado da pergunta ..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center align-items-center g-2">
+                        <div class="col-6">
+                            <h4>Respostas</h4>
+                            <small>Cadastre entre 4 e 6 repostas</small>
+                            <div id="containerRespostas">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="" id="resposta1"
+                                        aria-describedby="helpId" placeholder="Insira a opção de resposta 1">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="" id="resposta2"
+                                        aria-describedby="helpId" placeholder="Insira a opção de resposta 2">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mb-3"> Adicionar resposta</button>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-center g-2">
+                        <div class="col-6">
+                            <button class="btn btn-primary float-end"> Salvar pergunta</button>
+                        </div>
+
+                    </div>
 
                 </section>
                 <!-- /.content -->

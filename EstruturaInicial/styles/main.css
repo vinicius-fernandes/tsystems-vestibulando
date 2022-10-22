@@ -6,5 +6,31 @@ body{
     color:#30BCED;
 }
 .navbarBackgroundDefaultColor{
-    color:#303036 !important;
+    background-color:#303036 !important;
+}
+
+
+.btn-primary {
+    color:white;
+    background-color: #30BCED;
+    border-color: #30bbeda3;
+}
+
+.btn-primary:active{
+    /*formatting goes here*/
+    background-color: #2691b8;
+    border-color: #30bbeda3;
+
+}
+.btn-primary:hover{
+   /*formatting goes here*/
+   background-color: #2691b8;
+   border-color: #30bbeda3;
+
+}
+.btn-primary:focus{
+   /*formatting goes here*/
+   background-color: #2691b8;
+   border-color: #30bbeda3;
+
 }
