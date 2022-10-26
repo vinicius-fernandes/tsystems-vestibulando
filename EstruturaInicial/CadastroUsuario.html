@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Vestibulando</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Inter';
+            background-image: url(./images/bgvestibulando.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: scroll, local;
+        }
+        .imgbg {
+            
+            height: 100%;
+            /* filter: brightness(20%); */
+        }
+        /* .conteudo {
+            /* filter: brightness(500%);
+        } */
+
+        .textoazul {
+            color: #30BCED;
+        }
+
+        #logo {
+            height: 200px;
+        }
+
+        .principal {
+            width: 50%;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .myinput {
+            width: 75%;
+            border-radius: 6px;
+            background-color: #303036;
+            caret-color: #FFFFFF;
+            color: #FFFFFF;
+            padding: 3px 0 8px 3px;
+            margin-bottom: 35px;
+        }
+
+        .myinput::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .mytitle {
+            padding-bottom: 35px;
+            font-size: 4vw;
+            font-weight: 700;
+        }
+
+        .marg-10 {
+            margin-bottom: 10px;
+        }
+
+        .botaoazul {
+            background-color: #30BCED;
+        }
+
+        .botaoazul:hover {
+            filter: brightness(0.8);
+        }
+
+        .botaoazul:active {
+            filter: brightness(0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="imgbg">
+        <div class="conteudo">
+            <header class="">
+                <div class="">
+                    <a href="index.html" class="textoazul text-start"><strong><ins>Voltar</ins></strong></a>
+                </div>
+            </header>
+            
+        </div>
+        <div class="">
+            <div class="text-center">    
+                <img src="./images/logo_azul_sem_fundo.png" alt="Logo Vestibulando" class="" id="logo">
+            </div>
+        </div>
+
+        <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
+            <h3 class="text-center mt-5 mb-0 mytitle"><strong>Cadastro</strong></h3>
+
+            <input type="email" class="myinput" placeholder="E-mail">
+
+            <input type="text" class="myinput" placeholder="Usuário">
+
+            <input type="password" class="myinput" placeholder="Senha">
+
+            <input type="password" class="myinput" placeholder="Confirmar senha">
+
+            <button class="btn botaoazul">Cadastrar</button>
+
+        </div>
+    </div>
+</body>
+</html>
