@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="libs/admin-lte/dist/css/adminlte.css" />
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- CSS only -->
+</head>
+
+<body class="sidebar-mini sidebar-collapse skin-blue">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/Home/Chat" class="nav-link">FAQ</a>
+                </li>
+            </ul>
+
+            <!-- Navbar Right Menu -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4 navbarBackgroundDefaultColor">
+                <!-- Brand Logo -->
+                <a href="/" class="brand-link">
+                    <img src="libs/admin-lte/dist/img/AdminLTELogo.png" alt="Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-bold fontColorBlue">Vestibulando</span>
+                </a>
+
+                <!-- sidebar: style can be found in sidebar.less -->
+                <div class="sidebar ">
+                    <!-- Sidebar user panel (optional) -->
+                    <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="/images/user.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="#" class="d-block">@User.Identity.Name</a>
+                        </div>
+                    </div> -->
+
+                    <!-- /.search form -->
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+
+
+
+
+
+                            <li class="nav-item">
+                                <a href="@menu.URLPath" class="nav-link ">
+                                    <i class="fa-solid fa-gear nav-icon"></i>
+                                    <p>Gerar simulados</p>
+
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@menu.URLPath" class="nav-link ">
+                                    <i class="fa-solid fa-trophy nav-icon"></i>
+                                    <p>Ranking</p>
+
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link ">
+                                    <i class="fa-solid fa-file-lines nav-icon"></i>
+                                    <p>Relatórios <i class="right fa fa-angle-left"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="@subMenu.URLPath" class="nav-link @active">
+                                            <i class="@subMenu.IconClassName nav-icon"></i>
+                                            <p>Visão geral</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@subMenu.URLPath" class="nav-link @active">
+                                            <i class="@subMenu.IconClassName nav-icon"></i>
+                                            <p>
+                                                Visão micro
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <!-- /.sidebar-menu -->
+                    </nav>
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col text-center">
+                            <h1>Gerar simulado</h1>
+                            <br>
+                        </div>
+                    </div>
+
+                    <!-- Estilo de prova -->
+                    <div class="row justify-content-center align-items-center g-2">
+                        <div class="col-6 mb-3">
+                            <h4>Estilo de vestibular</h4>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary">Fuvest</button>
+                                <button type="button" class="btn btn-secondary">Unicamp</button>
+                                <button type="button" class="btn btn-secondary">Enem</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parâmetros de prova -->
+                    <div class="row justify-content-center align-items-end">
+                        <div class="col-6 mb-3">
+                            <div class="row">
+                                <h4>Parâmetros da prova</h4>
+
+                                <!-- Banca de questões -->
+                                <div class="col-md-6" id="containerBanca">
+                                    <label class="form-label">Banca de questões</label>
+                                    <div class="form-check form-control-lg">
+                                        <input class="form-check-input" type="checkbox" value="" id="enemCheck1">
+                                        <label class="form-check-label" for="enemCheck1">
+                                            Enem
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-control-lg">
+                                        <input class="form-check-input" type="checkbox" value="" id="fuvestCheck1">
+                                        <label class="form-check-label" for="fuvestCheck1">
+                                            Fuvest
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-control-lg">
+                                        <input class="form-check-input" type="checkbox" value="" id="unicampCheck1">
+                                        <label class="form-check-label" for="unicampCheck1">
+                                            Unicamp
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-control-lg">
+                                        <input class="form-check-input" type="checkbox" value="" id="unespCheck1">
+                                        <label class="form-check-label" for="unespCheck1">
+                                            Unesp
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Seleção de matérias -->
+                                <div class="col-md-6" id="containerMaterias">
+                                    <label class="form-label">Matérias</label>
+                                    <div class="form-check form-control-lg">
+                                        <input class="form-check-input" type="checkbox" value="" id="matematicaCheck1">
+                                        <label class="form-check-label" for="matematicaCheck1">
+                                            Matemática
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-control-lg">
+                                        <input class="form-check-input" type="checkbox" value="" id="humanasCheck1">
+                                        <label class="form-check-label" for="humanasCheck1">
+                                            Ciências Humanas
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="hitoriaCheck1">
+                                        <label class="form-check-label" for="hitoriaCheck1">
+                                            História
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="geografiaCheck1">
+                                        <label class="form-check-label" for="geografiaCheck1">
+                                            Geografia
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="filosofiaCheck1">
+                                        <label class="form-check-label" for="filosofiaCheck1">
+                                            Filosofia
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="sociologiaCheck1">
+                                        <label class="form-check-label" for="sociologiaCheck1">
+                                            Sociologia
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-control-lg">
+                                        <input class="form-check-input" type="checkbox" value="" id="naturezaCheck1">
+                                        <label class="form-check-label" for="naturezaCheck1">
+                                            Ciências da Natureza
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="fisicaCheck1">
+                                        <label class="form-check-label" for="fisicaCheck1">
+                                            Física
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="quimicaCheck1">
+                                        <label class="form-check-label" for="quimicaCheck1">
+                                            Química
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="biologiaCheck1">
+                                        <label class="form-check-label" for="biologiaCheck1">
+                                            Biologia
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-control-lg">
+                                        <input class="form-check-input" type="checkbox" value="" id="linguagensCheck1">
+                                        <label class="form-check-label" for="linguagensCheck1">
+                                            Linguagens
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="portuguesCheck1">
+                                        <label class="form-check-label" for="portuguesCheck1">
+                                            Português
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="inglesCheck1">
+                                        <label class="form-check-label" for="inglesCheck1">
+                                            Inglês
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="espanholCheck1">
+                                        <label class="form-check-label" for="espanholCheck1">
+                                            Espanhol
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="literaturaCheck1">
+                                        <label class="form-check-label" for="literaturaCheck1">
+                                            Literatura
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Quantida de questões e tempo de prova -->
+                    <div class="row justify-content-center align-items-center g-2">
+                        <div class="col-6">
+                            <label class="form-label">Total de questões</label><br>
+                            <small>Inserir entre 1 e 200 questões</small>
+                            <div id="container">
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" name="" id="quantidade" aria-describedby="helpId" placeholder="Insira quantidade de questões">
+                                </div>
+                            </div>
+                            <label class="form-label">Tempo de prova</label><br>
+                            <div id="container">
+                                <div class="mb-3">
+                                    <input type="time" class="form-control" name="" id="tempo" aria-describedby="helpId">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Botão Gerar -->
+                    <div class="row justify-content-center g-2">
+                        <div class="col-6">
+                            <button class="btn btn-primary float-end">Gerar Simulado</button>
+                        </div>
+                    </div>
+
+                </section>
+                <!-- /.content -->
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right hidden-xs">
+                Seu parceiro no vestibular
+            </div>
+            <!-- Default to the left -->
+            &copy; 2022 - Vestibulando
+        </footer>
+
+    </div>
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="libs/admin-lte/dist/js/adminlte.js" asp-append-version="true"></script>
+
+</body>
+
+</html>
