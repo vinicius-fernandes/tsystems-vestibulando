@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="libs/admin-lte/dist/css/adminlte.css" />
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body class="sidebar-mini sidebar-collapse skin-blue">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/Home/Chat" class="nav-link">FAQ</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+            <aside class="main-sidebar sidebar-dark-primary elevation-4 navbarBackgroundDefaultColor">
+
+                <a href="/" class="brand-link">
+                    <img src="libs/admin-lte/dist/img/AdminLTELogo.png" alt="Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-bold fontColorBlue">Vestibulando</span>
+                </a>
+
+
+                <div class="sidebar ">
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+
+                            <li class="nav-item">
+                                <a href="@menu.URLPath" class="nav-link ">
+                                    <i class="fa-solid fa-gear nav-icon"></i>
+                                    <p>Gerar simulados</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@menu.URLPath" class="nav-link ">
+                                    <i class="fa-solid fa-trophy nav-icon"></i>
+                                    <p>Ranking</p>
+
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item has-treeview ">
+                                <a href="#" class="nav-link ">
+                                    <i class="fa-solid fa-file-lines nav-icon"></i>
+                                    <p>Relatórios <i class="right fa fa-angle-left"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="@subMenu.URLPath" class="nav-link @active">
+                                            <i class="@subMenu.IconClassName nav-icon"></i>
+                                            <p>Visão geral</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@subMenu.URLPath" class="nav-link @active">
+                                            <i class="@subMenu.IconClassName nav-icon"></i>
+                                            <p>
+                                                Visão micro
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                </div>
+
+            </aside>
+        </aside>
+        <div class="row">
+            <div class="content-wrapper col">
+
+                <div class="content row">
+
+                    <section class="col">
+                        <div class="row">
+                            <div class="col text-center">
+                                <h1>Questão 1</h1>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center align-items-center g-1 mb-3">
+                            <div class="col-6">
+                                FUVEST-SP
+                            </div>
+                        </div>
+
+
+                        <div class="row justify-content-center align-items-center g-2 mb-5">
+                            <div class="col-8">
+                                <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam eaque
+                                    atque pariatur
+                                    similique dolorem sapiente unde labore veritatis quidem vel, perferendis quod alias
+                                    eius
+                                    officiis debitis tenetur nostrum, cumque sit.</p>
+                                <p class="m-0"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta aliquam,
+                                    repellendus commodi
+                                    quaerat iure cum error quo, ut blanditiis quos tempore eaque corporis! Ut ab optio
+                                    quasi
+                                    ad non libero.</p>
+                                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eos velit harum
+                                    quasi! Eius repellendus error quasi minima omnis reiciendis, asperiores in sed,
+                                    dolor
+                                    enim quia. Sit numquam culpa veritatis?</p>
+                            </div>
+                            <div class="row col-8">
+                                <div class="">
+                                    <input class="mt-2" type="radio">
+                                </div>
+                                <div>
+                                    <input class="mt-2" type="radio">
+
+                                </div>
+                                <div>
+                                    <input class="mt-2" type="radio">
+                                </div>
+                                <div>
+                                    <input class="mt-2" type="radio">
+                                </div>
+                                <div>
+                                    <input class="mt-2" type="radio">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+                <div class="row col-10 mb-3">
+                    
+                    <div class="col">
+                        <button class="btn btn-primary float-end"> Voltar Questão</button>
+                    </div>
+                    <div class="col ">
+                        <button class="btn btn-primary w-50 float-end"> Marcar Questão</button>
+                    </div>
+
+                    <div class="col">
+                        <button class="btn btn-primary float-end"> Próxima Questão</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 navbarBackgroundDefaultColor" style="color: #FFF;">
+                <div class="col text-center mt-3">
+                    <h3>Questões</h3>
+                </div>
+                
+
+
+
+            </div>
+        </div>
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right hidden-xs">
+                Seu parceiro no vestibular
+            </div>
+            <!-- Default to the left -->
+            &copy; 2022 - Vestibulando
+        </footer>
+
+    </div>
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="libs/admin-lte/dist/js/adminlte.js" asp-append-version="true"></script>
+
+</body>
+
+</html>
