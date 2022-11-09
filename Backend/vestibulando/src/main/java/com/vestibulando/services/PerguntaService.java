@@ -41,10 +41,9 @@ public class PerguntaService {
     }
 
     public Pergunta atualizar(long id,Pergunta pergunta){
-        Pergunta p= obter(id);
+        Pergunta p = obter(id);
 
         p.setCorpo(pergunta.getCorpo());
-        p.setTitulo(pergunta.getTitulo());
 
         return this.salvar(p);
     }
