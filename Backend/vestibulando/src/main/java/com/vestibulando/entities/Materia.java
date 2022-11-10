@@ -1,13 +1,17 @@
 package com.vestibulando.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+
 public class Materia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
     @ManyToMany(mappedBy = "materias")
     private List<Simulado> simulado;
     private String descricao;

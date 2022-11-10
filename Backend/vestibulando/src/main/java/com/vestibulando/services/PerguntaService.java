@@ -30,6 +30,13 @@ public class PerguntaService {
         return perguntaRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("A pergunta desejada não foi encontrada!"));
     }
 
+    public List<Pergunta> findByBancaId(long id){
+        return perguntaRepository.findByBancaId(id);
+    }
+    public List<Pergunta> findByMateriaId(long id){
+        return perguntaRepository.findByMateriaId(id);
+    }
+
 
     public void deletar(long id){
         Pergunta pergunta = this.obter(id);

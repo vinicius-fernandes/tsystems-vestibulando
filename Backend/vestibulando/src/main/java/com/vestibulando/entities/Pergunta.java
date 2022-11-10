@@ -1,10 +1,12 @@
 package com.vestibulando.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-
 public class Pergunta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +18,7 @@ public class Pergunta {
     @ManyToOne
     @JoinColumn(name = "banca_id")
     private Banca banca;
+    @JsonIgnore
     @ManyToMany(mappedBy = "perguntas")
     private List<Simulado> simulado;
 

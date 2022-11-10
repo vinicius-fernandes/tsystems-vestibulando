@@ -1,14 +1,18 @@
 package com.vestibulando.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+
 public class Banca {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String descricao;
+    @JsonIgnore
     @ManyToMany(mappedBy = "bancas")
     private List<Simulado> simulado;
 
