@@ -11,17 +11,7 @@ public class Resposta {
     private Long id;
     private String descricao;
     private Boolean correta;
-    @ManyToOne
-    @JsonIgnore
-    private Pergunta pergunta;
 
-    public Pergunta getPergunta() {
-        return pergunta;
-    }
-
-    public void setPergunta(Pergunta pergunta) {
-        this.pergunta = pergunta;
-    }
 
     public Long getId() {
         return id;
