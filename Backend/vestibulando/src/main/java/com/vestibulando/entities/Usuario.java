@@ -11,6 +11,7 @@ public class Usuario {
     private Long id;
     private String email;
     private String senha;
+    private String nome;
     private EnumsUsuario tipo;
 
     public Long getId() {
@@ -43,5 +44,13 @@ public class Usuario {
 
     public void setTipo(EnumsUsuario tipo) {
         this.tipo = tipo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }
