@@ -12,7 +12,6 @@ public class Resposta {
     private String descricao;
     private Boolean correta;
 
-
     public Long getId() {
         return id;
     }

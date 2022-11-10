@@ -2,7 +2,9 @@ package com.vestibulando.controllers;
 
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
+import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.RespostaRepository;
+import com.vestibulando.services.RespostaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,51 +17,33 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/respostas") //http://localhost:8080/respostas
 public class RespostaController {
-
+    
     @Autowired
-    RespostaRepository respostaRepository;
+    RespostaService respostaService;
 
     @PostMapping("{idpergunta}")
     public ResponseEntity<Resposta> salvar(@Valid @RequestBody Resposta resposta, @PathVariable("idpergunta") Long idpergunta){
-        resposta.setPergunta(new Pergunta());
-        resposta.getPergunta().setId(idpergunta);
-        return ResponseEntity.status(HttpStatus.CREATED).body(respostaRepository.save(resposta));
+        return ResponseEntity.status(HttpStatus.CREATED).body(respostaService.salvar(resposta, idpergunta));
     }
 
     @GetMapping
-    public ResponseEntity<List<Resposta>> consultarRespostas(){
-        return ResponseEntity.status(HttpStatus.OK).body(respostaRepository.findAll());
+    public ResponseEntity<List<Resposta>> consultar(){
+        return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultar());
     }
 
     @GetMapping("/{idresposta}")
     public ResponseEntity<Optional<Resposta>> consultarById(@PathVariable("idresposta") Long idresposta){
-        return ResponseEntity.ok().body(respostaRepository.findById(idresposta));
+        return ResponseEntity.ok().body(respostaService.consultarById(idresposta));
     }
 
     @PutMapping("/{idresposta}")
-    public ResponseEntity<Object> alterar(
-            @PathVariable("idresposta") Long idresposta,
-            @Valid @RequestBody Resposta resposta) {
-        Resposta resp = respostaRepository.findById(idresposta).get();
-        resp.setDescricao(resposta.getDescricao());
-        resp.setCorreta(resposta.getCorreta());
-        resp.setPergunta(resposta.getPergunta());
-
-        return ResponseEntity.status(HttpStatus.OK).body(respostaRepository.save(resp));
+    public ResponseEntity<Object> alterar(@PathVariable("idresposta") Long idresposta, @Valid @RequestBody Resposta resposta) {
+        return ResponseEntity.status(HttpStatus.OK).body(respostaService.alterar(idresposta, resposta));
     }
 
     @DeleteMapping("/{idresposta}")
     public ResponseEntity<String> excluir(@PathVariable("idresposta") Long idresposta){
-        try{
-            Resposta resp = respostaRepository.findById(idresposta).get();
-            if(resp != null){
-                respostaRepository.delete(resp);
-            }
-            return ResponseEntity.ok().body("Resposta excluída com sucesso.");
-        }
-        catch (Exception e) {
-            return ResponseEntity.ok().body("Resposta não existe.");
-        }
+        return respostaService.excluir(idresposta);
     }
 
 }
