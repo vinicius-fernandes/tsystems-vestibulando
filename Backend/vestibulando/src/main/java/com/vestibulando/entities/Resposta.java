@@ -7,12 +7,11 @@ import javax.persistence.*;
 @Entity
 public class Resposta {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descricao;
     private Boolean correta;
     @ManyToOne
-    @JoinColumn(name = "pergunta_id")
     @JsonIgnore
     private Pergunta pergunta;
 
