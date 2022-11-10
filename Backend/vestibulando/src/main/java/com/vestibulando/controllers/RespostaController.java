@@ -1,5 +1,6 @@
 package com.vestibulando.controllers;
 
+import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
 import com.vestibulando.repositories.RespostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,10 @@ public class RespostaController {
     @Autowired
     RespostaRepository respostaRepository;
 
-    @PostMapping
-    public ResponseEntity<Resposta> salvar(@Valid @RequestBody Resposta resposta){
+    @PostMapping("{idpergunta}")
+    public ResponseEntity<Resposta> salvar(@Valid @RequestBody Resposta resposta, @PathVariable("idpergunta") Long idpergunta){
+        resposta.setPergunta(new Pergunta());
+        resposta.getPergunta().setId(idpergunta);
         return ResponseEntity.status(HttpStatus.CREATED).body(respostaRepository.save(resposta));
     }
 
