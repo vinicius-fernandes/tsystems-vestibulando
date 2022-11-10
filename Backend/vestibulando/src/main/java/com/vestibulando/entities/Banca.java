@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+
 public class Banca {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

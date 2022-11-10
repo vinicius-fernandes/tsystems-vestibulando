@@ -27,6 +27,17 @@ public class PerguntasController {
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.obter(id));
     }
 
+    @GetMapping("/banca/{id}")
+    public ResponseEntity<List<Pergunta>> obterPorBanca (@RequestParam("id") long id){
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByBancaId(id));
+    }
+
+    @GetMapping("/materia/{id}")
+    public ResponseEntity<List<Pergunta>> obterPorMateria (@RequestParam("id") long id){
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByMateriaId(id));
+    }
+
+
     @PostMapping
     public ResponseEntity<Pergunta> criar(@RequestBody Pergunta pergunta){
         return ResponseEntity.status(HttpStatus.CREATED).body(perguntaService.salvar(pergunta));
