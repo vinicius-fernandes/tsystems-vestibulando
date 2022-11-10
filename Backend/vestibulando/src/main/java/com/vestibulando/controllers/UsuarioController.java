@@ -5,6 +5,7 @@ import com.vestibulando.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,6 +33,16 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario));
     }
 
-    
+    @PutMapping("/{idUsuario}")
+    public ResponseEntity<Usuario> alterarUsuario(@PathVariable("idUsuario") Long idUsuario,
+                                                  @RequestBody Usuario usuario){
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.alterarUsuario(idUsuario,usuario));
+    }
+
+    @DeleteMapping("/{idUsuario}")
+    public ResponseEntity<Void> apagarUsuario(@PathVariable("idUsuario") long idusuario){
+        usuarioService.apagarUsuario(idusuario);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
 }

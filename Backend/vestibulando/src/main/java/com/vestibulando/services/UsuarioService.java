@@ -22,14 +22,13 @@ public class UsuarioService {
     }
 
     public Usuario consultarById(long idUsuario) {
-        //Após mplementar excessão
-        /*Optional<Usuario> obj = usuarioRepository.findById(idUsuario);
-        Usuario user = obj.orElseThrow(() -> new EntityNotFoundException("Usuário não encontada"));
-        return user;*/
 
-        Optional<Usuario> user = usuarioRepository.findById(idUsuario);
-        return user.get();
+        Optional<Usuario> obj = usuarioRepository.findById(idUsuario);
+        Usuario user = obj.orElseThrow(() -> new EntityNotFoundException("Usuário não encontada"));
+        return user;
+
     }
+
     public Usuario salvarUsuario(Usuario usuario) {
         Usuario user = usuarioRepository.findByEmail(usuario.getEmail());
         if (user != null) {
@@ -38,5 +37,17 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public Usuario alterarUsuario(Long idUsuario, Usuario usuario) {
+        Usuario user = this.consultarById(idUsuario);
+        user.setEmail(usuario.getEmail());
+        user.setNome(usuario.getNome());
+        user.setTipo(usuario.getTipo());
+        user.setSenha(usuario.getSenha());
 
+        return this.salvarUsuario(user);
+    }
+
+    public void apagarUsuario(long idUsuario) {
+        usuarioRepository.delete(this.consultarById(idUsuario));
+    }
 }
