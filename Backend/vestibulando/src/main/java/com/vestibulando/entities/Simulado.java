@@ -1,31 +1,35 @@
 package com.vestibulando.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Simulado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "simulado_materia",
             joinColumns = @JoinColumn(name = "simulado_id"),
             inverseJoinColumns = @JoinColumn(name = "materia_id"))
-    private List<Materia> materias;
-    @ManyToMany
+    private Set<Materia> materias;
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "simulado_banca",
             joinColumns = @JoinColumn(name = "simulado_id"),
             inverseJoinColumns = @JoinColumn(name = "banca_id"))
-    private List<Banca> bancas;
-    @ManyToMany
+    private Set<Banca> bancas;
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "simulado_pergunta",
             joinColumns = @JoinColumn(name = "simulado_id"),
             inverseJoinColumns = @JoinColumn(name = "pergunta_id"))
-    private List<Pergunta> perguntas;
+    private Set<Pergunta> perguntas;
 
     public Long getId() {
         return id;
@@ -35,27 +39,27 @@ public class Simulado {
         this.id = id;
     }
 
-    public List<Materia> getMaterias() {
+    public Set<Materia> getMaterias() {
         return materias;
     }
 
-    public void setMaterias(List<Materia> materias) {
+    public void setMaterias(Set<Materia> materias) {
         this.materias = materias;
     }
 
-    public List<Banca> getBancas() {
+    public Set<Banca> getBancas() {
         return bancas;
     }
 
-    public void setBancas(List<Banca> bancas) {
+    public void setBancas(Set<Banca> bancas) {
         this.bancas = bancas;
     }
 
-    public List<Pergunta> getPerguntas() {
+    public Set<Pergunta> getPerguntas() {
         return perguntas;
     }
 
-    public void setPerguntas(List<Pergunta> perguntas) {
+    public void setPerguntas(Set<Pergunta> perguntas) {
         this.perguntas = perguntas;
     }
 }
