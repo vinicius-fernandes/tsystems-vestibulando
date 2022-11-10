@@ -1,6 +1,8 @@
 package com.vestibulando.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.hibernate.annotations.Fetch;
 
 
 import javax.persistence.*;
@@ -21,6 +23,9 @@ public class Pergunta {
     @JsonIgnore
     @ManyToMany(mappedBy = "perguntas")
     private List<Simulado> simulado;
+
+    @OneToMany(mappedBy = "pergunta", fetch = FetchType.EAGER)
+    private List<Resposta> respostas;
 
     public Banca getBanca() {
         return banca;
@@ -61,5 +66,13 @@ public class Pergunta {
 
     public void setSimulado(List<Simulado> simulado) {
         this.simulado = simulado;
+    }
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
     }
 }

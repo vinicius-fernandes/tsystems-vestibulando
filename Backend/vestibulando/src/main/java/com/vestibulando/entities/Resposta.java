@@ -1,5 +1,7 @@
 package com.vestibulando.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +13,7 @@ public class Resposta {
     private Boolean correta;
     @ManyToOne
     @JoinColumn(name = "pergunta_id")
+    @JsonIgnore
     private Pergunta pergunta;
 
     public Pergunta getPergunta() {
@@ -44,4 +47,5 @@ public class Resposta {
     public void setCorreta(Boolean correta) {
         this.correta = correta;
     }
+
 }
