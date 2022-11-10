@@ -7,10 +7,11 @@ import javax.persistence.*;
 @Entity
 public class Resposta {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descricao;
     private Boolean correta;
+
 
     public Long getId() {
         return id;

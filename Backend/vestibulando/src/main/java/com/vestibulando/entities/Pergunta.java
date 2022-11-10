@@ -24,7 +24,9 @@ public class Pergunta {
     @ManyToMany(mappedBy = "perguntas")
     private List<Simulado> simulado;
 
-    @OneToMany(mappedBy = "pergunta", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER,cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH },orphanRemoval=true)
+    @JoinColumn(name="pergunta_id")
     private List<Resposta> respostas;
 
     public Banca getBanca() {
