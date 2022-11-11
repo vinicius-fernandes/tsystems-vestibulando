@@ -2,11 +2,12 @@ package com.vestibulando.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-import org.hibernate.annotations.Fetch;
+import com.vestibulando.constraints.perguntas.TotalRespostasConstraint;
+import com.vestibulando.constraints.perguntas.TotalRespostasCorretasConstraint;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,9 @@ public class Pergunta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(length=350)
+    @Size(min=4,max=350,message = "O corpo da pergunta deve possuir de 4 a 350 caracteres")
     private String corpo;
     @ManyToOne
     @JoinColumn(name = "materia_id")
@@ -29,8 +33,12 @@ public class Pergunta {
     @OneToMany(
             mappedBy = "pergunta",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
+    @JsonManagedReference
+    @TotalRespostasConstraint
+    @TotalRespostasCorretasConstraint
     private List<Resposta> respostas = new ArrayList<>();
 
     public Banca getBanca() {
@@ -81,5 +89,8 @@ public class Pergunta {
     public void setRespostas(List<Resposta> respostas) {
         this.respostas = respostas;
     }
+
+
+
 
 }
