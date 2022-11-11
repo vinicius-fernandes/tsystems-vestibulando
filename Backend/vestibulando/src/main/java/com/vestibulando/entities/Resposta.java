@@ -1,5 +1,6 @@
 package com.vestibulando.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -7,15 +8,16 @@ import javax.persistence.*;
 @Entity
 public class Resposta {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descricao;
     private Boolean correta;
+
     @ManyToOne
     @JoinColumn(name = "pergunta_id")
-    @JsonIgnore
     private Pergunta pergunta;
 
+    @JsonBackReference
     public Pergunta getPergunta() {
         return pergunta;
     }

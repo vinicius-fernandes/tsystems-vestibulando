@@ -2,6 +2,7 @@ package com.vestibulando.services;
 
 
 import com.vestibulando.entities.Pergunta;
+import com.vestibulando.entities.Resposta;
 import com.vestibulando.repositories.IPerguntaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -40,9 +42,12 @@ public class PerguntaService {
 
     public void deletar(long id){
         Pergunta pergunta = this.obter(id);
+        perguntaRepository.delete(pergunta);
+
     }
 
 
+    @Transactional
     public Pergunta salvar(Pergunta pergunta){
         return perguntaRepository.save(pergunta);
     }
@@ -51,6 +56,9 @@ public class PerguntaService {
         Pergunta p = obter(id);
 
         p.setCorpo(pergunta.getCorpo());
+        p.setRespostas(pergunta.getRespostas());
+        for(Resposta res : p.getRespostas()){
+        }
 
         return this.salvar(p);
     }
