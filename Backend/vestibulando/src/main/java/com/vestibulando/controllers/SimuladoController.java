@@ -52,17 +52,18 @@ public class SimuladoController {
         return ResponseEntity.ok().body(simuladoService.salvar(s));
     }
 
-    @PostMapping("/{idSimulado}/bancas")
+
+    @PutMapping("/{idSimulado}/bancas")
     public ResponseEntity<Simulado> adicionarBanca(@PathVariable("idSimulado") Long idSimulado, @RequestBody Banca b) {
         return ResponseEntity.ok().body(simuladoService.adicionarBanca(idSimulado, b));
     }
 
-    @PostMapping("/{idSimulado}/materias")
+    @PutMapping("/{idSimulado}/materias")
     public ResponseEntity<Simulado> adicionarMateria(@PathVariable("idSimulado") Long idSimulado, @RequestBody Materia m) {
         return ResponseEntity.ok().body(simuladoService.adicionarMateria(idSimulado, m));
     }
 
-    @PostMapping("/{idSimulado}/perguntas")
+    @PutMapping("/{idSimulado}/perguntas")
     public ResponseEntity<Simulado> adicionarPergunta(@PathVariable("idSimulado") Long idSimulado, @RequestBody Pergunta p) {
         return ResponseEntity.ok().body(simuladoService.adicionarPergunta(idSimulado, p));
     }
