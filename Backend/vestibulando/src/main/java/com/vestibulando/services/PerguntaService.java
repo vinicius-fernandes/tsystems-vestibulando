@@ -58,7 +58,6 @@ public class PerguntaService {
         p.setCorpo(pergunta.getCorpo());
         p.setRespostas(pergunta.getRespostas());
         for(Resposta res : p.getRespostas()){
-            res.setPergunta(p);
         }
 
         return this.salvar(p);

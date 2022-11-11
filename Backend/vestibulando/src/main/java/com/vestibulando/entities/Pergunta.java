@@ -1,11 +1,13 @@
 package com.vestibulando.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import org.hibernate.annotations.Fetch;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,10 +26,12 @@ public class Pergunta {
     @ManyToMany(mappedBy = "perguntas")
     private List<Simulado> simulado;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-            CascadeType.REFRESH },orphanRemoval=true)
-    @JoinColumn(name="pergunta_id")
-    private List<Resposta> respostas;
+    @OneToMany(
+            mappedBy = "pergunta",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Resposta> respostas = new ArrayList<>();
 
     public Banca getBanca() {
         return banca;
@@ -44,7 +48,6 @@ public class Pergunta {
     public void setMateria(Materia materia) {
         this.materia = materia;
     }
-
 
     public long getId() {
         return id;
@@ -70,6 +73,7 @@ public class Pergunta {
         this.simulado = simulado;
     }
 
+    @JsonManagedReference
     public List<Resposta> getRespostas() {
         return respostas;
     }
@@ -77,4 +81,5 @@ public class Pergunta {
     public void setRespostas(List<Resposta> respostas) {
         this.respostas = respostas;
     }
+
 }
