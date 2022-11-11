@@ -24,20 +24,20 @@ public class RespostaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(respostaService.salvar(resposta));
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<Resposta>> consultarComoAdmin(){
-//        return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoAdmin());
-//    }
-//
-//    @GetMapping("/{idresposta}")
-//    public ResponseEntity<Optional<Resposta>> consultarByIdComoAdmin(@PathVariable("idresposta") Long idresposta){
-//        return ResponseEntity.ok().body(respostaService.consultarByIdComoAdmin(idresposta));
-//    }
+    @GetMapping("/admin")
+    public ResponseEntity<List<Resposta>> consultarComoAdmin(){
+        return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoAdmin());
+    }
+
+    @GetMapping("/admin/{idresposta}")
+    public ResponseEntity<Optional<Resposta>> consultarByIdComoAdmin(@PathVariable("idresposta") Long idresposta){
+        return ResponseEntity.ok().body(respostaService.consultarByIdComoAdmin(idresposta));
+    }
 
     @GetMapping
     public ResponseEntity<List<RespostaDTO>> consultarComoUser(){
         return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoUser());
-    }
+    }  
 
     @GetMapping("/{idresposta}")
     public ResponseEntity<Optional<RespostaDTO>> consultarByIdComoUser(@PathVariable("idresposta") Long idrespostaDTO){
