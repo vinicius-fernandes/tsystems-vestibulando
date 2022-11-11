@@ -4,8 +4,10 @@ import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Simulado;
-import com.vestibulando.repositories.SimuladoRepository;
+import com.vestibulando.repositories.ISimuladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -16,10 +18,14 @@ import java.util.*;
 public class SimuladoService {
 
     @Autowired
-    SimuladoRepository simuladoRepository;
+    ISimuladoRepository simuladoRepository;
 
     public List<Simulado> consultar() {
         return simuladoRepository.findAll();
+    }
+
+    public Page<Simulado> consultarPaginada(Pageable pageable) {
+        return simuladoRepository.findAll(pageable);
     }
 
     public Simulado consultar(Long id) {
@@ -39,6 +45,7 @@ public class SimuladoService {
     public Set<Materia> consultarMaterias(Long idSimulado) {
         return consultar(idSimulado).getMaterias();
     }
+
 
     @Transactional
     public Simulado salvar(Simulado s) {
@@ -118,5 +125,22 @@ public class SimuladoService {
         }
 
         throw new EntityNotFoundException("Matéria não encontrada ou não cadastrada no simulado.");
+    }
+
+    public Simulado alterarPergunta(Long idSimulado, Long idPergunta, Pergunta p) {
+        Simulado s = consultar(idSimulado);
+        deletarPergunta(idSimulado, idPergunta);
+        return adicionarPergunta(idSimulado, p);
+    }
+
+    public Simulado alterarBanca(Long idSimulado, Long idBanca, Banca b) {
+        Simulado s = consultar(idSimulado);
+        deletarBanca(idSimulado, idBanca);
+        return adicionarBanca(idSimulado, b);
+    }
+
+    public Simulado alterarMateria(Long idSimulado, Long idMateria, Materia m) {
+        deletarMateria(idSimulado, idMateria);
+        return adicionarMateria(idSimulado, m);
     }
 }

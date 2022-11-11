@@ -4,14 +4,12 @@ import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Simulado;
-import com.vestibulando.repositories.SimuladoRepository;
+import com.vestibulando.repositories.ISimuladoRepository;
 import com.vestibulando.services.SimuladoService;
-import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.PreUpdate;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +20,7 @@ public class SimuladoController {
     SimuladoService simuladoService;
 
     @Autowired
-    SimuladoRepository simuladoRepository;
+    ISimuladoRepository simuladoRepository;
 
     @GetMapping
     public ResponseEntity<List<Simulado>> consultar() {
@@ -92,6 +90,21 @@ public class SimuladoController {
     @PutMapping("/{idSimulado}")
     public ResponseEntity<Simulado> alterarSimulado(@PathVariable("idSimulado") Long id, @RequestBody Simulado s) {
         return ResponseEntity.ok().body(simuladoService.alterar(id, s));
+    }
+
+    @PutMapping("/{idSimulado}/perguntas/{idPergunta}")
+    public ResponseEntity<Simulado> alterarPergunta(@PathVariable("idSimulado") Long idSimulado, @PathVariable("idPergunta") Long idPergunta, @RequestBody Pergunta p) {
+        return ResponseEntity.ok().body(simuladoService.alterarPergunta(idSimulado, idPergunta, p));
+    }
+
+    @PutMapping("/{idSimulado}/materias/{idMateria}")
+    public ResponseEntity<Simulado> alterarMateria(@PathVariable("idSimulado") Long idSimulado, @PathVariable("idMateria") Long idMateria, @RequestBody Materia m) {
+        return ResponseEntity.ok().body(simuladoService.alterarMateria(idSimulado, idMateria, m));
+    }
+
+    @PutMapping("/{idSimulado}/bancas/{idBanca}")
+    public ResponseEntity<Simulado> alterarBanca(@PathVariable("idSimulado") Long idSimulado, @PathVariable("idBanca") Long idBanca, @RequestBody Banca b) {
+        return ResponseEntity.ok().body(simuladoService.alterarBanca(idSimulado, idBanca, b));
     }
 
 }
