@@ -5,6 +5,8 @@ import com.vestibulando.entities.Resposta;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IRespostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,10 @@ public class RespostaService {
         return IRespostaRepository.findAll();
     }
 
+    public Page<Resposta> consultarComoAdminPaginado(Pageable page){
+        return IRespostaRepository.findAll(page);
+    }
+
     public Optional<Resposta> consultarByIdComoAdmin(Long idresposta){
         return IRespostaRepository.findById(idresposta);
     }
@@ -38,6 +44,12 @@ public class RespostaService {
         for(Resposta resp : lista){
             listaDTO.add(new RespostaDTO(resp));
         }
+        return listaDTO;
+    }
+
+    public Page<RespostaDTO> consultarComoUserPaginado(Pageable page){
+        Page<Resposta> lista = IRespostaRepository.findAll(page);
+        Page<RespostaDTO> listaDTO = lista.map(resp -> new RespostaDTO(resp));
         return listaDTO;
     }
 

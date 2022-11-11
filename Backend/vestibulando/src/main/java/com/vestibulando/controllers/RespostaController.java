@@ -4,6 +4,8 @@ import com.vestibulando.dtos.RespostaDTO;
 import com.vestibulando.entities.Resposta;
 import com.vestibulando.services.RespostaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,11 @@ public class RespostaController {
         return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoAdmin());
     }
 
+    @GetMapping("/adminPaginado")
+    public ResponseEntity<Page<Resposta>> consultarComoAdmin(Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoAdminPaginado(page));
+    }
+
     @GetMapping("/admin/{idresposta}")
     public ResponseEntity<Optional<Resposta>> consultarByIdComoAdmin(@PathVariable("idresposta") Long idresposta){
         return ResponseEntity.ok().body(respostaService.consultarByIdComoAdmin(idresposta));
@@ -37,7 +44,12 @@ public class RespostaController {
     @GetMapping
     public ResponseEntity<List<RespostaDTO>> consultarComoUser(){
         return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoUser());
-    }  
+    }
+
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<RespostaDTO>> consultarComoUser(Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoUserPaginado(page));
+    }
 
     @GetMapping("/{idresposta}")
     public ResponseEntity<Optional<RespostaDTO>> consultarByIdComoUser(@PathVariable("idresposta") Long idrespostaDTO){
