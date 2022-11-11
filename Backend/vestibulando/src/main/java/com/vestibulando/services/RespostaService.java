@@ -18,7 +18,7 @@ public class RespostaService {
     @Autowired
     IPerguntaRepository perguntaRepository;
 
-    public Resposta salvar(Resposta resposta, Long idpergunta){
+    public Resposta salvar(Resposta resposta){
         return respostaRepository.save(resposta);
     }
 
@@ -34,6 +34,7 @@ public class RespostaService {
         Resposta resp = respostaRepository.findById(idresposta).get();
         resp.setDescricao(resposta.getDescricao());
         resp.setCorreta(resposta.getCorreta());
+        resp.setPergunta(resposta.getPergunta());
         return respostaRepository.save(resp);
     }
 

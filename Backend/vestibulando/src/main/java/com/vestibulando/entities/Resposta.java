@@ -1,5 +1,6 @@
 package com.vestibulando.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,6 +12,19 @@ public class Resposta {
     private Long id;
     private String descricao;
     private Boolean correta;
+
+    @ManyToOne
+    @JoinColumn(name = "pergunta_id")
+    private Pergunta pergunta;
+
+    @JsonBackReference
+    public Pergunta getPergunta() {
+        return pergunta;
+    }
+
+    public void setPergunta(Pergunta pergunta) {
+        this.pergunta = pergunta;
+    }
 
     public Long getId() {
         return id;

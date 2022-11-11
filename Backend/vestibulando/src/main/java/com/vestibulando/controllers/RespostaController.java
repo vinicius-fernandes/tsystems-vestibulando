@@ -22,8 +22,8 @@ public class RespostaController {
     RespostaService respostaService;
 
     @PostMapping("{idpergunta}")
-    public ResponseEntity<Resposta> salvar(@Valid @RequestBody Resposta resposta, @PathVariable("idpergunta") Long idpergunta){
-        return ResponseEntity.status(HttpStatus.CREATED).body(respostaService.salvar(resposta, idpergunta));
+    public ResponseEntity<Resposta> salvar(@Valid @RequestBody Resposta resposta){
+        return ResponseEntity.status(HttpStatus.CREATED).body(respostaService.salvar(resposta));
     }
 
     @GetMapping
