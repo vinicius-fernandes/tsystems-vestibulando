@@ -3,6 +3,11 @@ package com.vestibulando.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +19,26 @@ public class Materia {
     @JsonIgnore
     @ManyToMany(mappedBy = "materias")
     private List<Simulado> simulado;
-    private String descricao;
+
+
+    @Column(unique = true)
+    @Size(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100", min = 2, max = 100)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    private String nome;
+
+    @OneToMany(
+            mappedBy = "materia",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    private List<Pergunta> perguntas = new ArrayList<>();
+
+    public String getNome() {
+        return nome;
+    }
 
     public Long getId() {
         return id;
@@ -24,12 +48,8 @@ public class Materia {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public List<Simulado> getSimulado() {

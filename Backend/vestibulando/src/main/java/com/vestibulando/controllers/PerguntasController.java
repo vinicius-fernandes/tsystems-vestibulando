@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,23 +29,33 @@ public class PerguntasController {
     }
 
     @GetMapping("/banca/{id}")
-    public ResponseEntity<List<Pergunta>> obterPorBanca (@RequestParam("id") long id){
-        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByBancaId(id));
+    public ResponseEntity<Page<Pergunta>> obterPorBanca (@RequestParam("id") long id, Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByBanca(id,page));
     }
 
     @GetMapping("/materia/{id}")
-    public ResponseEntity<List<Pergunta>> obterPorMateria (@RequestParam("id") long id){
-        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByMateriaId(id));
+    public ResponseEntity<Page<Pergunta>> obterPorMateria (@RequestParam("id") long id, Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByMateria(id,page));
+    }
+
+    @GetMapping("/simulado/{id}")
+    public ResponseEntity<Page<Pergunta>> obterPorSimulado(@RequestParam("id") long id, Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findBySimulado(id,page));
+    }
+
+    @GetMapping("/pesquisar/{corpo}")
+    public ResponseEntity<Page<Pergunta>> obterPorCorpo(@RequestParam("corpo") String corpo, Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpo(corpo,page));
     }
 
 
     @PostMapping
-    public ResponseEntity<Pergunta> criar(@RequestBody Pergunta pergunta){
+    public ResponseEntity<Pergunta> criar(@Valid @RequestBody Pergunta pergunta){
         return ResponseEntity.status(HttpStatus.CREATED).body(perguntaService.salvar(pergunta));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Pergunta> editar(@RequestParam("id") long id,@RequestBody Pergunta pergunta){
+    public ResponseEntity<Pergunta> editar(@RequestParam("id") long id,@Valid @RequestBody Pergunta pergunta){
         return ResponseEntity.status(HttpStatus.CREATED).body(perguntaService.atualizar(id,pergunta));
     }
 
