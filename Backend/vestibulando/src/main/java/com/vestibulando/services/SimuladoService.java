@@ -1,7 +1,7 @@
 package com.vestibulando.services;
 
 import com.vestibulando.entities.Simulado;
-import com.vestibulando.repositories.SimuladoRepository;
+import com.vestibulando.repositories.ISimuladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +14,14 @@ import java.util.Optional;
 public class SimuladoService {
 
     @Autowired
-    SimuladoRepository simuladoRepository;
+    ISimuladoRepository ISimuladoRepository;
 
     public List<Simulado> consultar() {
-        return simuladoRepository.findAll();
+        return ISimuladoRepository.findAll();
     }
 
     public Simulado consultar(Long id) {
-        Optional<Simulado> s = simuladoRepository.findById(id);
+        Optional<Simulado> s = ISimuladoRepository.findById(id);
 
         return s.orElseThrow(()-> new EntityNotFoundException("Simulado não encontrado."));
     }
@@ -29,6 +29,6 @@ public class SimuladoService {
     @Transactional
     public Simulado salvar(Simulado s) {
 
-        return simuladoRepository.save(s);
+        return ISimuladoRepository.save(s);
     }
 }

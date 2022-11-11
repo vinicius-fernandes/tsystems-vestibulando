@@ -1,9 +1,6 @@
 package com.vestibulando.controllers;
 
-import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
-import com.vestibulando.repositories.IPerguntaRepository;
-import com.vestibulando.repositories.RespostaRepository;
 import com.vestibulando.services.RespostaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
