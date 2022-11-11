@@ -1,6 +1,8 @@
 package com.vestibulando.services;
 
+import com.vestibulando.controllers.RespostaController;
 import com.vestibulando.dtos.RespostaDTO;
+import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IRespostaRepository;
@@ -20,9 +22,21 @@ public class RespostaService {
     IRespostaRepository IRespostaRepository;
 
     @Autowired
-    IPerguntaRepository perguntaRepository;
+    PerguntaService perguntaService;
 
     public Resposta salvar(Resposta resposta){
+        Pergunta perg = perguntaService.obter(resposta.getPergunta().getId());
+        List<Resposta> listaRespostas = perg.getRespostas();
+        if(resposta.getCorreta()) {
+            for (Resposta resp : listaRespostas) {
+                if (resp.getCorreta()) {
+                    throw new IllegalStateException("Pergunta já possui uma alternativa correta.");
+                }
+            }
+        }
+        if((listaRespostas.size()) == 5) {
+            throw new IllegalStateException("Pergunta já possui 5 alternativas.");
+        }
         return IRespostaRepository.save(resposta);
     }
 
@@ -65,7 +79,7 @@ public class RespostaService {
         resp.setDescricao(resposta.getDescricao());
         resp.setCorreta(resposta.getCorreta());
         resp.setPergunta(resposta.getPergunta());
-        return IRespostaRepository.save(resp);
+        return salvar(resp);
     }
 
     public <String> ResponseEntity<java.lang.String> excluir(Long idresposta){
