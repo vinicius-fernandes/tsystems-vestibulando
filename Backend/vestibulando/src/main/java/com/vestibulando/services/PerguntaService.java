@@ -62,7 +62,6 @@ public class PerguntaService {
 
     }
 
-
     @Transactional
     public Pergunta salvar(Pergunta pergunta){
 
