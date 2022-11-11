@@ -1,12 +1,18 @@
 package com.vestibulando.services;
 
+import com.vestibulando.controllers.RespostaController;
+import com.vestibulando.dtos.RespostaDTO;
+import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IRespostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,18 +22,56 @@ public class RespostaService {
     IRespostaRepository IRespostaRepository;
 
     @Autowired
-    IPerguntaRepository perguntaRepository;
+    PerguntaService perguntaService;
 
     public Resposta salvar(Resposta resposta){
+        Pergunta perg = perguntaService.obter(resposta.getPergunta().getId());
+        List<Resposta> listaRespostas = perg.getRespostas();
+        if(resposta.getCorreta()) {
+            for (Resposta resp : listaRespostas) {
+                if (resp.getCorreta()) {
+                    throw new IllegalStateException("Pergunta já possui uma alternativa correta.");
+                }
+            }
+        }
+        if((listaRespostas.size()) == 5) {
+            throw new IllegalStateException("Pergunta já possui 5 alternativas.");
+        }
         return IRespostaRepository.save(resposta);
     }
 
-    public List<Resposta> consultar(){
+    public List<Resposta> consultarComoAdmin(){
         return IRespostaRepository.findAll();
     }
 
-    public Optional<Resposta> consultarById(Long idresposta){
+    public Page<Resposta> consultarComoAdminPaginado(Pageable page){
+        return IRespostaRepository.findAll(page);
+    }
+
+    public Optional<Resposta> consultarByIdComoAdmin(Long idresposta){
         return IRespostaRepository.findById(idresposta);
+    }
+
+    public List<RespostaDTO> consultarComoUser(){
+        List<Resposta> lista = IRespostaRepository.findAll();
+        List<RespostaDTO> listaDTO = new ArrayList<>();
+        for(Resposta resp : lista){
+            listaDTO.add(new RespostaDTO(resp));
+        }
+        return listaDTO;
+    }
+
+    public Page<RespostaDTO> consultarComoUserPaginado(Pageable page){
+        Page<Resposta> lista = IRespostaRepository.findAll(page);
+        Page<RespostaDTO> listaDTO = lista.map(resp -> new RespostaDTO(resp));
+        return listaDTO;
+    }
+
+    public Optional<RespostaDTO> consultarByIdComoUser(Long idrespostaDTO){
+        Optional<Resposta> resposta = IRespostaRepository.findById(idrespostaDTO);
+
+        RespostaDTO respostaDTO = new RespostaDTO(resposta.get());
+        return Optional.of(respostaDTO);
     }
 
     public Resposta alterar(Long idresposta, Resposta resposta) {
@@ -35,7 +79,7 @@ public class RespostaService {
         resp.setDescricao(resposta.getDescricao());
         resp.setCorreta(resposta.getCorreta());
         resp.setPergunta(resposta.getPergunta());
-        return IRespostaRepository.save(resp);
+        return salvar(resp);
     }
 
     public <String> ResponseEntity<java.lang.String> excluir(Long idresposta){
