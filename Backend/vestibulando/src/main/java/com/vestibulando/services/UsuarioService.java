@@ -1,8 +1,7 @@
 package com.vestibulando.services;
 
 import com.vestibulando.entities.Usuario;
-import com.vestibulando.repositories.UsuarioRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
+import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,23 +14,21 @@ import java.util.Optional;
 public class UsuarioService {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    IUsuarioRepository usuarioRepository;
 
     public List<Usuario> consultarUsuario() {
         return usuarioRepository.findAll();
     }
 
     public Usuario consultarById(long idUsuario) {
-
         Optional<Usuario> obj = usuarioRepository.findById(idUsuario);
         Usuario user = obj.orElseThrow(() -> new EntityNotFoundException("Usuário não encontada"));
         return user;
-
     }
 
     public Usuario salvarUsuario(Usuario usuario) {
         Usuario user = usuarioRepository.findByEmail(usuario.getEmail());
-        if (user != null) {
+        if (user != null && (usuario.getId() == null || usuario.getId() != user.getId())) {
             throw new EntityExistsException("Email já cadastrado");
         }
         return usuarioRepository.save(usuario);
