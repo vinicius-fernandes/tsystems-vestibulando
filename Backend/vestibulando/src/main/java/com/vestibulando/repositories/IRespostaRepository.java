@@ -1,10 +1,9 @@
 package com.vestibulando.repositories;
 
-import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.Resposta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SimuladoRepository extends JpaRepository<Simulado, Long> {
-
+public interface IRespostaRepository extends JpaRepository<Resposta, Long> {
 }
