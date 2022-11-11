@@ -1,5 +1,6 @@
 package com.vestibulando.controllers;
 
+import com.vestibulando.dtos.RespostaDTO;
 import com.vestibulando.entities.Resposta;
 import com.vestibulando.services.RespostaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +19,29 @@ public class RespostaController {
     @Autowired
     RespostaService respostaService;
 
-    @PostMapping("{idpergunta}")
+    @PostMapping
     public ResponseEntity<Resposta> salvar(@Valid @RequestBody Resposta resposta){
         return ResponseEntity.status(HttpStatus.CREATED).body(respostaService.salvar(resposta));
     }
 
+//    @GetMapping
+//    public ResponseEntity<List<Resposta>> consultarComoAdmin(){
+//        return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoAdmin());
+//    }
+//
+//    @GetMapping("/{idresposta}")
+//    public ResponseEntity<Optional<Resposta>> consultarByIdComoAdmin(@PathVariable("idresposta") Long idresposta){
+//        return ResponseEntity.ok().body(respostaService.consultarByIdComoAdmin(idresposta));
+//    }
+
     @GetMapping
-    public ResponseEntity<List<Resposta>> consultar(){
-        return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultar());
+    public ResponseEntity<List<RespostaDTO>> consultarComoUser(){
+        return ResponseEntity.status(HttpStatus.OK).body(respostaService.consultarComoUser());
     }
 
     @GetMapping("/{idresposta}")
-    public ResponseEntity<Optional<Resposta>> consultarById(@PathVariable("idresposta") Long idresposta){
-        return ResponseEntity.ok().body(respostaService.consultarById(idresposta));
+    public ResponseEntity<Optional<RespostaDTO>> consultarByIdComoUser(@PathVariable("idresposta") Long idrespostaDTO){
+        return ResponseEntity.ok().body(respostaService.consultarByIdComoUser(idrespostaDTO));
     }
 
     @PutMapping("/{idresposta}")
