@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
@@ -30,6 +31,28 @@ public class Simulado {
             joinColumns = @JoinColumn(name = "simulado_id"),
             inverseJoinColumns = @JoinColumn(name = "pergunta_id"))
     private Set<Pergunta> perguntas;
+
+    private Instant createdAt;
+
+    private Instant updatedAt;
+
+    @PrePersist
+    private void prePersist() {
+        this.createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    private void preUpdate() {
+        this.updatedAt = Instant.now();
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
 
     public Long getId() {
         return id;

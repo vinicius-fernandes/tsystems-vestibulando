@@ -52,6 +52,7 @@ public class SimuladoService {
         return simuladoRepository.save(s);
     }
 
+
     @Transactional
     public String deletarSimulado(Long id) {
         consultar(id);
@@ -61,10 +62,12 @@ public class SimuladoService {
 
     @Transactional
     public Simulado alterar(Long id, Simulado s) {
-        consultar(id);
-        s.setId(id);
+        Simulado s_antigo = consultar(id);
+        s_antigo.setBancas(s.getBancas());
+        s_antigo.setMaterias(s.getMaterias());
+        s_antigo.setPerguntas(s.getPerguntas());
 
-        return simuladoRepository.save(s);
+        return salvar(s_antigo);
     }
 
     public Simulado adicionarBanca(Long idSimulado, Banca b) {
