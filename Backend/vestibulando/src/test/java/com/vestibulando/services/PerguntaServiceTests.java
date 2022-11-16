@@ -41,16 +41,23 @@ public class PerguntaServiceTests {
     public void beforeEach(){
         pergunta= new Pergunta();
         Mockito.when(perguntaRepository.save(Mockito.any(Pergunta.class))).thenReturn(pergunta);
+
         Mockito.when(perguntaRepository.findAll()).thenReturn(new ArrayList<Pergunta>());
+
         Mockito.when(perguntaRepository.findAll(page)).thenReturn(pagePergunta);
+
         Mockito.doNothing().when(perguntaRepository).delete(Mockito.any(Pergunta.class));
+
         Mockito.when(perguntaRepository.findById(idExistente)).thenReturn(Optional.of(pergunta));
+
         Mockito.when(perguntaRepository.findById(idInexistente)).thenReturn(Optional.empty());
     }
 
     @Test
     public void RetornaPerguntaAposCriar(){
+
         Assertions.assertNotNull(perguntaService.salvar(pergunta));
+
     }
 
     @Test

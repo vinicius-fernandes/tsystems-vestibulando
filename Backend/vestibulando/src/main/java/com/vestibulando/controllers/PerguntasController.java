@@ -24,27 +24,27 @@ public class PerguntasController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pergunta> obter (@RequestParam("id") long id){
+    public ResponseEntity<Pergunta> obter (@PathVariable("id") long id){
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.obter(id));
     }
 
     @GetMapping("/banca/{id}")
-    public ResponseEntity<Page<Pergunta>> obterPorBanca (@RequestParam("id") long id, Pageable page){
+    public ResponseEntity<Page<Pergunta>> obterPorBanca (@PathVariable("id") long id, Pageable page){
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByBanca(id,page));
     }
 
     @GetMapping("/materia/{id}")
-    public ResponseEntity<Page<Pergunta>> obterPorMateria (@RequestParam("id") long id, Pageable page){
+    public ResponseEntity<Page<Pergunta>> obterPorMateria (@PathVariable("id") long id, Pageable page){
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByMateria(id,page));
     }
 
     @GetMapping("/simulado/{id}")
-    public ResponseEntity<Page<Pergunta>> obterPorSimulado(@RequestParam("id") long id, Pageable page){
+    public ResponseEntity<Page<Pergunta>> obterPorSimulado(@PathVariable("id") long id, Pageable page){
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findBySimulado(id,page));
     }
 
     @GetMapping("/pesquisar/{corpo}")
-    public ResponseEntity<Page<Pergunta>> obterPorCorpo(@RequestParam("corpo") String corpo, Pageable page){
+    public ResponseEntity<Page<Pergunta>> obterPorCorpo(@PathVariable("corpo") String corpo, Pageable page){
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpo(corpo,page));
     }
 
@@ -55,12 +55,12 @@ public class PerguntasController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Pergunta> editar(@RequestParam("id") long id,@Valid @RequestBody Pergunta pergunta){
+    public ResponseEntity<Pergunta> editar(@PathVariable("id") long id,@Valid @RequestBody Pergunta pergunta){
         return ResponseEntity.status(HttpStatus.CREATED).body(perguntaService.atualizar(id,pergunta));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deletar(@RequestParam("id") long id){
+    public ResponseEntity<String> deletar(@PathVariable("id") long id){
         perguntaService.deletar(id);
         return ResponseEntity.status(HttpStatus.OK).body("Pergunta removida com sucesso!");
     }
