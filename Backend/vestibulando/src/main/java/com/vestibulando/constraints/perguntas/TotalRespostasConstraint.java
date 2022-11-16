@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 @Constraint(validatedBy = TotalRespostasValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TotalRespostasConstraint {
-    String message() default "A pergunta deve possuir entre 4 e 6 alternativas";
+    String message() default "A pergunta deve possuir entre 4 e 5 alternativas";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
