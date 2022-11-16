@@ -1,6 +1,7 @@
 package com.vestibulando.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vestibulando.entities.Resposta;
 import com.vestibulando.services.RespostaService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,32 @@ public class RespostaControllerTests {
     ObjectMapper objectMapper;
 
     @Test
-    public void retornaOKAoConsultarCategorias() throws Exception {
-        ResultActions result = mockMvc.perform(get("/respostas")
+    public void retornaCreatedAoPostarResposta() throws Exception {
+        Resposta resposta = new Resposta();
+        resposta.setDescricao("Sed commodo porttitor mi, auctor lacinia velit interdum hendrerit");
+        resposta.setCorreta(false);
+
+        String respostaString = objectMapper.writeValueAsString(resposta);
+
+        ResultActions result = mockMvc.perform(post("/respostas")
+                .content(respostaString)
+                .contentType(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isCreated());
+    }
+
+    @Test
+    public void retornaOKAoConsultarRespostasAdmin() throws Exception {
+        ResultActions result = mockMvc.perform(get("/respostas/admin")
                 .accept(MediaType.APPLICATION_JSON));
         result.andExpect(status().isOk());
+    }
+
+    @Test
+    public void naoRetornaNadaQuandoExcluirCategoria() throws Exception {
+        ResultActions result =
+                mockMvc.perform(delete("/categorias/{idcategoria}",1L)
+                        .accept(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isNoContent());
     }
 
 
