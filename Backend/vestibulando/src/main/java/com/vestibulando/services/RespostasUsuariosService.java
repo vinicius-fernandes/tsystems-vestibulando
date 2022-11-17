@@ -1,5 +1,6 @@
 package com.vestibulando.services;
 
+import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
@@ -45,6 +46,10 @@ public class RespostasUsuariosService {
         respUsuario.setRespostas(respostasUsuarios.getRespostas());
         return this.salvar(respUsuario);
 
+    }
+
+    public List<RankingSimuladoDTO> getRankingSimulado(Long idSimulado){
+        return respostasUsuariosRepository.getRankingSimulado(idSimulado) ;
     }
 
     public void deletar(long id){

@@ -1,5 +1,6 @@
 package com.vestibulando.controllers;
 
+import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.services.RespostasUsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,12 @@ public class RespostasUsuariosController {
     public ResponseEntity<List<RespostasUsuarios>> listarSimulado(@PathVariable("idsimulado") long idSimulado){
         return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.listar(idSimulado));
     }
+
+    @GetMapping("/rankingSimulado/{idsimulado}")
+    public ResponseEntity<List<RankingSimuladoDTO>> listarRankingSimulado(@PathVariable("idsimulado") long idSimulado){
+        return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.getRankingSimulado(idSimulado));
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<RespostasUsuarios> listar(@PathVariable("id") long id){
