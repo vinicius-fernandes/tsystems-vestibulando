@@ -4,15 +4,15 @@ INSERT INTO banca(nome, sigla) VALUES ('Fundação Universitária para o Vestibu
 INSERT INTO banca(nome, sigla) VALUES ('Exame Nacional do Ensino Médio', 'Enem');
 INSERT INTO banca(nome, sigla) VALUES ('Universidade Estadual Paulista', 'Unesp');
 
-INSERT INTO pergunta( corpo, banca_id, materia_id) VALUES ( ' Sed commodo porttitor mi, auctor lacinia velit interdum hendrerit', 1, 1);
-INSERT INTO pergunta( corpo, banca_id, materia_id) VALUES ( ' Cras semper, mauris in vulputate scelerisque, augue arcu auctor quam, vitae ultrices ex odio sed turpis', 1, 1);
-INSERT INTO pergunta( corpo, banca_id, materia_id) VALUES ( ' Phasellus vitae nisl volutpat, rutrum est in, laoreet sapien', 1, 1);
-INSERT INTO pergunta( corpo, banca_id, materia_id) VALUES ( ' Ut quis porttitor nunc', 1, 2);
-INSERT INTO pergunta( corpo, banca_id, materia_id) VALUES ( ' Pellentesque faucibus tristique augue et pretium', 1, 2);
+INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Sed commodo porttitor mi, auctor lacinia velit interdum hendrerit', 1, 1);
+INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Cras semper, mauris in vulputate scelerisque, augue arcu auctor quam, vitae ultrices ex odio sed turpis', 1, 1);
+INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Phasellus vitae nisl volutpat, rutrum est in, laoreet sapien', 1, 1);
+INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Ut quis porttitor nunc', 1, 2);
+INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Pellentesque faucibus tristique augue et pretium', 1, 2);
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Mauris quis sodales justo', 2, 2);
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Donec condimentum pharetra quam eu mattis', 2, 3);
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Proin eu justo id leo pharetra lacinia', 2, 3);
-INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES (' Fusce et aliquet elit', 2, 3);
+INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Fusce et aliquet elit', 2, 3);
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Maecenas egestas sapien augue, eu tincidunt ex dignissim sed', 3, 4);
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Phasellus diam erat, lobortis quis condimentum ut, euismod eget tortor', 3, 4);
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ( ' Sed iaculis orci nec nulla faucibus venenatis', 3, 4);
