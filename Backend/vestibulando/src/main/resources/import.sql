@@ -3,6 +3,7 @@ INSERT INTO materia (nome) VALUES ('Português'), ('Matemática'), ('Geografia')
 INSERT INTO banca(nome, sigla) VALUES ('Fundação Universitária para o Vestibular', 'FUVEST');
 INSERT INTO banca(nome, sigla) VALUES ('Exame Nacional do Ensino Médio', 'Enem');
 INSERT INTO banca(nome, sigla) VALUES ('Universidade Estadual Paulista', 'Unesp');
+INSERT INTO banca(nome, sigla) VALUES ('Universidade Federal de Santa Catarina', 'UFSC');
 
 INSERT INTO pergunta( corpo, banca_id, materia_id) VALUES ( ' Sed commodo porttitor mi, auctor lacinia velit interdum hendrerit', 1, 1);
 INSERT INTO pergunta( corpo, banca_id, materia_id) VALUES ( ' Cras semper, mauris in vulputate scelerisque, augue arcu auctor quam, vitae ultrices ex odio sed turpis', 1, 1);
