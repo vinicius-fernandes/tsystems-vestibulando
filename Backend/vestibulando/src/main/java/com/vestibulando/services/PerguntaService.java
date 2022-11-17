@@ -65,7 +65,6 @@ public class PerguntaService {
     @Transactional
     public Pergunta salvar(Pergunta pergunta){
 
-
         return perguntaRepository.save(pergunta);
     }
 

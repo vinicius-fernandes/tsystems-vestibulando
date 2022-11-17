@@ -1,5 +1,6 @@
 package com.vestibulando.services;
 
+import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;

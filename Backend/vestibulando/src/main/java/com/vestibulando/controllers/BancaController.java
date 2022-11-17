@@ -31,12 +31,12 @@ public class BancaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(bancaService.salvar(banca));
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Banca> editar(@RequestParam("id") long id, @RequestBody Banca banca) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(bancaService.atualizar(id, banca));
+    @PutMapping("/{id}")
+    public ResponseEntity<Banca> editar(@PathVariable("id") long id, @RequestBody Banca banca) {
+        return ResponseEntity.status(HttpStatus.OK).body(bancaService.atualizar(id, banca));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable("id") long id) {
         bancaService.deletar(id);
         return ResponseEntity.status(HttpStatus.OK).body("Banca removida com sucesso!");

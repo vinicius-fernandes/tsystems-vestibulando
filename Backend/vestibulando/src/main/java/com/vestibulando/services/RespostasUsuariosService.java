@@ -1,5 +1,7 @@
 package com.vestibulando.services;
 
+import com.vestibulando.dtos.NotaSimuladoUsuarioDTO;
+import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
@@ -46,6 +48,19 @@ public class RespostasUsuariosService {
         return this.salvar(respUsuario);
 
     }
+
+    public List<RankingSimuladoDTO> getRankingSimulado(Long idSimulado){
+        return respostasUsuariosRepository.getRankingSimulado(idSimulado) ;
+    }
+
+    public NotaSimuladoUsuarioDTO getNotaSimuladoUsuario(long idUsuario,long idSimulado){
+        return respostasUsuariosRepository.getNotaSimuladoUsuario(idSimulado,idUsuario).orElseThrow(()-> new EntityNotFoundException("Não foi possível encontrar respostas para o usuário e simulados especificados!"));
+    }
+
+    public List<NotaSimuladoUsuarioDTO> getNotasSimuladosUsuario(long idUsuario){
+        return respostasUsuariosRepository.getNotasSimuladosUsuario(idUsuario);
+    }
+
 
     public void deletar(long id){
         RespostasUsuarios respUsuarios = this.obter(id);
