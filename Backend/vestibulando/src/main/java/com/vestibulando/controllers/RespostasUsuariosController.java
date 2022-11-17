@@ -1,5 +1,6 @@
 package com.vestibulando.controllers;
 
+import com.vestibulando.dtos.NotaSimuladoUsuarioDTO;
 import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.services.RespostasUsuariosService;
@@ -32,6 +33,15 @@ public class RespostasUsuariosController {
     @GetMapping("/rankingSimulado/{idsimulado}")
     public ResponseEntity<List<RankingSimuladoDTO>> listarRankingSimulado(@PathVariable("idsimulado") long idSimulado){
         return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.getRankingSimulado(idSimulado));
+    }
+    @GetMapping("/notaSimuladoUsuario/{idusuario}/{idsimulado}")
+    public ResponseEntity<NotaSimuladoUsuarioDTO> notaSimuladoUsuario(@PathVariable("idsimulado") long idSimulado, @PathVariable("idusuario") long idUsuario){
+        return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.getNotaSimuladoUsuario(idUsuario,idSimulado));
+    }
+
+    @GetMapping("/notasSimuladosUsuario/{idusuario}")
+    public ResponseEntity<List<NotaSimuladoUsuarioDTO>> notasSimuladosUsuario(@PathVariable("idusuario") long idUsuario){
+        return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.getNotasSimuladosUsuario(idUsuario));
     }
 
 

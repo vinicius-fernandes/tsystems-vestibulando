@@ -1,5 +1,6 @@
 package com.vestibulando.repositories;
 
+import com.vestibulando.dtos.NotaSimuladoUsuarioDTO;
 import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
@@ -30,4 +31,25 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
     )
     List<RankingSimuladoDTO> getRankingSimulado(long idSimulado);
 
+    @Query("select new com.vestibulando.dtos.NotaSimuladoUsuarioDTO("+
+            "ru.simulado.id ,"+
+            "count(*)"+
+            ")"+
+            " from RespostasUsuarios ru " +
+            " join ru.respostas respsU "+
+            " where ru.simulado.id = ?1 and ru.usuario.id= ?2 and respsU.correta = true "+
+            " group by ru.simulado.id "
+    )
+    Optional<NotaSimuladoUsuarioDTO> getNotaSimuladoUsuario( long idSimulado,long idUsuario);
+
+    @Query("select new com.vestibulando.dtos.NotaSimuladoUsuarioDTO("+
+            "ru.simulado.id ,"+
+            "count(*)"+
+            ")"+
+            " from RespostasUsuarios ru " +
+            " join ru.respostas respsU "+
+            " where ru.usuario.id= ?1 and respsU.correta = true "+
+            " group by ru.simulado.id "
+    )
+    List<NotaSimuladoUsuarioDTO> getNotasSimuladosUsuario( long idUsuario);
 }

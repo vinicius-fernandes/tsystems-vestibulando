@@ -65,6 +65,30 @@ public class RespostasUsuariosControllerTests {
     }
 
     @Test
+    public void ObterNotasSimuladosUsuarioRetornaOk() throws Exception {
+        mockMvc.perform(get("/respostasUsuarios/notasSimuladosUsuario/{id}",1L)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void ObterNotaSimuladoUsuarioRetornaOk() throws Exception {
+        mockMvc.perform(get("/respostasUsuarios/notaSimuladoUsuario/{idusuario}/{idsimulado}",1L,1L)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void ObterRankingSimuladoRetornaOk() throws Exception {
+        mockMvc.perform(get("/respostasUsuarios/rankingSimulado/{idsimulado}",1L)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void ListarPaginadoRetornaOk() throws Exception {
         mockMvc.perform(get("/respostasUsuarios")
                         .accept(MediaType.APPLICATION_JSON)

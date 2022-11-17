@@ -1,5 +1,7 @@
 package com.vestibulando.services;
 
+import com.vestibulando.dtos.NotaSimuladoUsuarioDTO;
+import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
@@ -53,6 +55,12 @@ public class RespostasUsuariosServiceTests {
 
         Mockito.when(respostasUsuariosRepository.findBySimulado(Mockito.any(Simulado.class))).thenReturn(respostasUsuariosList);
 
+        Mockito.when(respostasUsuariosRepository.getRankingSimulado(Mockito.any(Long.class))).thenReturn(new ArrayList<RankingSimuladoDTO>());
+
+        Mockito.when(respostasUsuariosRepository.getNotasSimuladosUsuario(Mockito.any(Long.class))).thenReturn(new ArrayList<NotaSimuladoUsuarioDTO>());
+        Mockito.when(respostasUsuariosRepository.getNotaSimuladoUsuario(idExistente,idExistente)).thenReturn(Optional.of(new NotaSimuladoUsuarioDTO()));
+        Mockito.when(respostasUsuariosRepository.getNotaSimuladoUsuario(idInexistente,idInexistente)).thenReturn(Optional.empty());
+
         Mockito.when(respostasUsuariosRepository.findById(idExistente)).thenReturn(Optional.of(respostasUsuarios));
 
         Mockito.when(respostasUsuariosRepository.findById(idInexistente)).thenReturn(Optional.empty());
@@ -74,10 +82,35 @@ public class RespostasUsuariosServiceTests {
     }
 
     @Test
+    public void RetornaNotaSimuladoUsuarioAoConsultar(){
+        NotaSimuladoUsuarioDTO notaRes = respostasUsuariosService.getNotaSimuladoUsuario(idExistente,idExistente);
+        Assertions.assertNotNull(notaRes);
+        Assertions.assertInstanceOf(NotaSimuladoUsuarioDTO.class,notaRes);
+    }
+
+    @Test
     public void RetornaListaDeRespostaUsuarioAoConsultarPorSimulado(){
         List<RespostasUsuarios> resConsulta = respostasUsuariosService.listar(1L);
         Assertions.assertNotNull(resConsulta);
         Assertions.assertInstanceOf(ArrayList.class,resConsulta);
+    }
+    @Test
+    public void ConsultarRespostaUsuarioInexistenteLancaExcecao(){
+        Assertions.assertThrows(EntityNotFoundException.class,()->respostasUsuariosService.getNotaSimuladoUsuario(idInexistente,idInexistente));
+    }
+
+    @Test
+    public void RetornaListaRankingDeNotasAoConsultar(){
+        List<RankingSimuladoDTO> rankingConsulta = respostasUsuariosService.getRankingSimulado(idExistente);
+        Assertions.assertNotNull(rankingConsulta);
+        Assertions.assertInstanceOf(ArrayList.class,rankingConsulta);
+    }
+
+    @Test
+    public void RetornaListNotasSimuladoUsuarioAoConsultar(){
+        List<NotaSimuladoUsuarioDTO> notasUsuario = respostasUsuariosService.getNotasSimuladosUsuario(idExistente);
+        Assertions.assertNotNull(notasUsuario);
+        Assertions.assertInstanceOf(ArrayList.class,notasUsuario);
     }
 
     @Test
