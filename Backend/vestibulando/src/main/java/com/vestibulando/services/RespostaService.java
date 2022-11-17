@@ -87,12 +87,14 @@ public class RespostaService {
         try{
             Resposta resp = IRespostaRepository.findById(idresposta).get();
             if(resp != null){
+                resp.setPergunta(null);
+                IRespostaRepository.save(resp);
                 IRespostaRepository.delete(resp);
             }
             return ResponseEntity.ok().body("Resposta excluída com sucesso.");
         }
         catch (Exception e) {
-            return ResponseEntity.ok().body("Resposta não existe.");
+            throw new RuntimeException("Não foi possível identificar a resposta a ser deletada");
         }
     }
 

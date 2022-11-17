@@ -1,13 +1,16 @@
 package com.vestibulando.services;
 
+import com.vestibulando.dtos.GerarSimuladoDTO;
 import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Simulado;
+import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.ISimuladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,9 @@ public class SimuladoService {
     @Autowired
     ISimuladoRepository simuladoRepository;
 
+    @Autowired
+    IPerguntaRepository perguntaRepository;
+
     public List<Simulado> consultar() {
         return simuladoRepository.findAll();
     }
@@ -33,6 +39,25 @@ public class SimuladoService {
         Optional<Simulado> s = simuladoRepository.findById(id);
 
         return s.orElseThrow(()-> new EntityNotFoundException("Simulado não encontrado."));
+    }
+
+
+    public Simulado gerarSimulado(GerarSimuladoDTO gerarSimuladoDTO){
+        List<Long> idMaterias = gerarSimuladoDTO.getMaterias().stream().map(Materia::getId).toList();
+        List<Long> idBancas = gerarSimuladoDTO.getBancas().stream().map(Banca::getId).toList();
+
+        List<Pergunta> perguntasParaOSimulado = perguntaRepository.getPerguntasParaGerarSimulado(idMaterias,idBancas, PageRequest.of(0,gerarSimuladoDTO.getNumeroPerguntas()));
+
+        if(perguntasParaOSimulado.size()<gerarSimuladoDTO.getNumeroPerguntas()){
+            throw new RuntimeException("Não foi possível obter o número de perguntas desejados para o simulado com base nos filtros inseridos");
+        }
+
+        Simulado simulado = new Simulado();
+
+        simulado.setMaterias(gerarSimuladoDTO.getMaterias());
+        simulado.setBancas(gerarSimuladoDTO.getBancas());
+        simulado.setPerguntas(new HashSet<>(perguntasParaOSimulado));
+        return this.salvar(simulado);
     }
 
     public Set<Pergunta> consultarPerguntas(Long idSimulado) {
