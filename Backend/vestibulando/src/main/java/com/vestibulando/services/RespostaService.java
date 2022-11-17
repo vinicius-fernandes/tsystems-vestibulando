@@ -27,6 +27,7 @@ public class RespostaService {
     public Resposta salvar(Resposta resposta){
         Pergunta perg = perguntaService.obter(resposta.getPergunta().getId());
         List<Resposta> listaRespostas = perg.getRespostas();
+        Boolean novaResposta = (resposta.getId() == null);
         if(resposta.getCorreta()) {
             for (Resposta resp : listaRespostas) {
                 if (resp.getCorreta()) {
@@ -34,7 +35,7 @@ public class RespostaService {
                 }
             }
         }
-        if((listaRespostas.size()) == 5) {
+        if((listaRespostas.size()) == 5 && novaResposta) {
             throw new IllegalStateException("Pergunta já possui 5 alternativas.");
         }
         return IRespostaRepository.save(resposta);

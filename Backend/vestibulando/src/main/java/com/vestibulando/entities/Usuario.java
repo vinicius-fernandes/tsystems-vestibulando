@@ -15,7 +15,7 @@ import java.time.ZoneId;
 @Entity
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Email
     @NotBlank
@@ -42,7 +42,7 @@ public class Usuario {
     }
 
     public LocalDateTime getCreatedAt() {
-        return createdAt.atZone(ZoneId.systemDefault().normalized()).toLocalDateTime();
+        return (createdAt!=null)? createdAt.atZone(ZoneId.systemDefault().normalized()).toLocalDateTime():null;
 
     }
 
