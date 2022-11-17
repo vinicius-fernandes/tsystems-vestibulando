@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,7 +31,7 @@ public class RespostaControllerTests {
     ObjectMapper objectMapper;
 
     @Test
-    public void retornaCreatedAoPostarResposta() throws Exception {
+    public void PostarRespostaRetornaCreated() throws Exception {
         Resposta resposta = new Resposta();
         resposta.setDescricao("Sed commodo porttitor mi, auctor lacinia velit interdum hendrerit");
         resposta.setCorreta(false);
@@ -44,18 +45,67 @@ public class RespostaControllerTests {
     }
 
     @Test
-    public void retornaOKAoConsultarRespostasAdmin() throws Exception {
+    public void ConsultarRespostasAdminRetornaOK() throws Exception {
         ResultActions result = mockMvc.perform(get("/respostas/admin")
                 .accept(MediaType.APPLICATION_JSON));
         result.andExpect(status().isOk());
     }
 
     @Test
-    public void naoRetornaNadaQuandoExcluirCategoria() throws Exception {
+    public void ConsultarRespostasAdminPaginadoRetornaOK() throws Exception {
+        ResultActions result = mockMvc.perform(get("/respostas/adminPaginado")
+                .accept(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isOk());
+    }
+
+    @Test
+    public void ConsultarRespostasAdminByIdRetornaOK() throws Exception {
+        ResultActions result = mockMvc.perform(get("/respostas/admin/{idresposta}", 1)
+                .accept(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isOk());
+    }
+
+    @Test
+    public void ConsultarRespostasRetornaOK() throws Exception {
+        ResultActions result = mockMvc.perform(get("/respostas")
+                .accept(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isOk());
+    }
+
+    @Test
+    public void ConsultarRespostasPaginadoRetornaOK() throws Exception {
+        ResultActions result = mockMvc.perform(get("/respostas/paginado")
+                .accept(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isOk());
+    }
+
+    @Test
+    public void ConsultarRespostasByIdRetornaOK() throws Exception {
+        ResultActions result = mockMvc.perform(get("/respostas/{idresposta}", 1)
+                .accept(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isOk());
+    }
+
+    @Test
+    public void AlterarRespostasRetornaOK() throws Exception {
+        Resposta resposta = new Resposta();
+        resposta.setDescricao("Sed commodo porttitor mi, auctor lacinia velit interdum hendrerit");
+        resposta.setCorreta(false);
+
+        String respostaString = objectMapper.writeValueAsString(resposta);
+
+        ResultActions result = mockMvc.perform(put("/respostas/{idresposta}", 1)
+                .content(respostaString)
+                .contentType(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isOk());
+    }
+
+    @Test
+    public void ExcluirRespostaRetornaOK() throws Exception {
         ResultActions result =
-                mockMvc.perform(delete("/categorias/{idcategoria}",1L)
+                mockMvc.perform(delete("/respostas/{idresposta}",1L)
                         .accept(MediaType.APPLICATION_JSON));
-        result.andExpect(status().isNoContent());
+        result.andExpect(status().isOk());
     }
 
 

@@ -25,6 +25,18 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<StandardError> erroGenerico(RuntimeException e,
+                                                               HttpServletRequest req){
+        StandardError err = new StandardError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.NOT_FOUND.value());
+        err.setError("Recurso não encontrado");
+        err.setMessage(e.getMessage());
+        err.setPath(req.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<StandardError> argumentoInvalidoException(MethodArgumentNotValidException e,
                                                                     HttpServletRequest req){
