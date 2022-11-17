@@ -37,6 +37,7 @@ public class UsuarioControllerTests {
     ObjectMapper objectMapper;
 
     private String usuarioString;
+    private String usuario2String;
 
     @BeforeEach
     public void beforeEach() throws JsonProcessingException {
@@ -45,8 +46,14 @@ public class UsuarioControllerTests {
         usuario.setEmail("maria@email.com");
         usuario.setSenha("123456");
         usuario.setId(1l);
-
         usuarioString = objectMapper.writeValueAsString(usuario);
+
+        Usuario usuario2 = new Usuario();
+        usuario2.setNome("Joana");
+        usuario2.setEmail("joao@email.com");
+        usuario2.setSenha("123456");
+        usuario2.setId(2l);
+        usuario2String = objectMapper.writeValueAsString(usuario2);
 
     }
 
@@ -91,5 +98,21 @@ public class UsuarioControllerTests {
                         .accept(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void Retorna400QuandoCamposObrigatoriosNaoAtendemParamentros() throws Exception {
+        ResultActions result = mockMvc.perform(post("/usuarios")
+                .content(usuario2String)
+                .contentType(MediaType.APPLICATION_JSON));
+        result.andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void Retorna500QuandoEmailDuplicado() throws Exception {
+        ResultActions result = mockMvc.perform(post("/usuarios")
+                .content(usuario2String)
+                .contentType(MediaType.APPLICATION_JSON));
+        result.andExpect(status().is5xxServerError());
     }
 }

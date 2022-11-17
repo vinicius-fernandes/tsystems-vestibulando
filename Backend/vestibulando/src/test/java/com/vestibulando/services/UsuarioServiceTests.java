@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -26,6 +27,9 @@ public class UsuarioServiceTests {
 
     @Mock
     IUsuarioRepository usuarioRepository;
+
+    private long idExistente = 1L;
+    private long idInexistente = 2L;
 
     @Test
     public void SalvarUsuarioRetornaUsuarioDTO(){
@@ -43,37 +47,25 @@ public class UsuarioServiceTests {
     @Test
     public void ListarUsuarios(){
         Mockito.when(usuarioRepository.findAll()).thenReturn(new ArrayList<>());
-
         Assertions.assertNotNull(usuarioService.consultarUsuario(null));
 
     }
-
     @Test
     public void ApagarUsuarioRetornaNada(){
         Usuario usuario = new Usuario();
-        usuario.setNome("Maria");
-        usuario.setEmail("maria@email.com");
-        usuario.setSenha("123456");
-        usuario.setId(1l);
 
-        Mockito.when(usuarioRepository.findById(usuario.getId())).thenReturn(Optional.of(usuario));
+        Mockito.when(usuarioRepository.findById(idExistente)).thenReturn(Optional.of(usuario));
 
         Mockito.doNothing().when(usuarioRepository).delete(usuario);
 
-        Assertions.assertDoesNotThrow(()-> usuarioService.apagarUsuario(usuario.getId()));
+        Assertions.assertDoesNotThrow(()-> usuarioService.apagarUsuario(idExistente));
     }
+
     @Test
-    public void LancaExcecaoQuandoSenhaEmBranco(){
-        Usuario usuario = new Usuario();
-        usuario.setNome("Maria");
-        usuario.setEmail("maria@email.com");
-        usuario.setSenha("");
-        usuario.setId(1l);
-
-        Mockito.when(usuarioRepository.save(usuario)).thenReturn(usuario);
-
-        Assertions.assertThrows(MethodArgumentNotValidException.class,()-> usuarioService.salvarUsuario(usuario));
-        //Assertions.assertDoesNotThrow(()-> usuarioService.salvarUsuario(usuario));
+    public void LancaExecesaoQuandoConsultaUsuarioNaoExistente(){
+        Mockito.when(usuarioRepository.findById(idInexistente)).thenReturn(Optional.empty());
+        Assertions.assertThrows(EntityNotFoundException.class,()->usuarioService.consultarById(idInexistente));
     }
+
 
 }
