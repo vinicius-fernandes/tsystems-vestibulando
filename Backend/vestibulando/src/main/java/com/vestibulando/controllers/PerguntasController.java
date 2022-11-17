@@ -56,7 +56,7 @@ public class PerguntasController {
 
     @PutMapping("{id}")
     public ResponseEntity<Pergunta> editar(@PathVariable("id") long id,@Valid @RequestBody Pergunta pergunta){
-        return ResponseEntity.status(HttpStatus.CREATED).body(perguntaService.atualizar(id,pergunta));
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.atualizar(id,pergunta));
     }
 
     @DeleteMapping("{id}")
