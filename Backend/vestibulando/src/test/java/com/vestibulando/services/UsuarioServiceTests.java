@@ -16,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -62,10 +63,23 @@ public class UsuarioServiceTests {
     }
 
     @Test
-    public void LancaExecesaoQuandoConsultaUsuarioNaoExistente(){
+    public void LancaExecessaoQuandoConsultaUsuarioNaoExistente(){
         Mockito.when(usuarioRepository.findById(idInexistente)).thenReturn(Optional.empty());
         Assertions.assertThrows(EntityNotFoundException.class,()->usuarioService.consultarById(idInexistente));
     }
 
+    @Test
+    public void lancaExecessaoQuandoEmailDiplicado(){
+        Usuario usuario = new Usuario();
+        usuario.setNome("Maria");
+        usuario.setEmail("maria@email.com");
+        usuario.setSenha("123456");
+        usuario.setId(1l);
+
+
+        Assertions.assertNotNull(usuarioService.salvarUsuario(usuario));
+        Assertions.assertDoesNotThrow(()->usuarioService.salvarUsuario(usuario));
+
+    }
 
 }

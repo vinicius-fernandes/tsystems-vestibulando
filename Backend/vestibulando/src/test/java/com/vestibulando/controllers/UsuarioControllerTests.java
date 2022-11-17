@@ -50,8 +50,8 @@ public class UsuarioControllerTests {
 
         Usuario usuario2 = new Usuario();
         usuario2.setNome("Joana");
-        usuario2.setEmail("joao@email.com");
-        usuario2.setSenha("123456");
+        usuario2.setEmail("");
+        usuario2.setSenha("");
         usuario2.setId(2l);
         usuario2String = objectMapper.writeValueAsString(usuario2);
 
@@ -113,6 +113,7 @@ public class UsuarioControllerTests {
         ResultActions result = mockMvc.perform(post("/usuarios")
                 .content(usuario2String)
                 .contentType(MediaType.APPLICATION_JSON));
+
         result.andExpect(status().is5xxServerError());
     }
 }
