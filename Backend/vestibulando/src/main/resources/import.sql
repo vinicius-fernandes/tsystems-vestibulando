@@ -1,4 +1,4 @@
-INSERT INTO materia VALUES (1,'Português'), (2,'Matemática'), (3,'Geografia'), (4,'História'), (5,'Filosofia');
+INSERT INTO materia (nome) VALUES ('Português'), ('Matemática'), ('Geografia'), ('História'), ('Filosofia');
 
 INSERT INTO banca(nome, sigla) VALUES ('Fundação Universitária para o Vestibular', 'FUVEST');
 INSERT INTO banca(nome, sigla) VALUES ('Exame Nacional do Ensino Médio', 'Enem');

@@ -14,7 +14,9 @@ public class MateriaService {
     @Autowired
     IMateriaRepository materiaRepository;
 
-    public List<Materia> listar() { return materiaRepository.findAll(); }
+    public List<Materia> listar() {
+        return materiaRepository.findAll();
+    }
 
     public Materia obter(long id) {
         if (materiaRepository.findById(id).isPresent()) {

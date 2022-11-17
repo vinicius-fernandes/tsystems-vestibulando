@@ -32,9 +32,9 @@ public class MateriaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(materiaService.salvar(materia));
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Materia> editar(@RequestParam("id") long id, @RequestBody Materia materia){
-        return ResponseEntity.status(HttpStatus.CREATED).body(materiaService.atualizar(id, materia));
+    @PutMapping("/{id}")
+    public ResponseEntity<Materia> editar(@PathVariable("id") long id, @RequestBody Materia materia){
+        return ResponseEntity.status(HttpStatus.OK).body(materiaService.atualizar(id, materia));
     }
 
     @DeleteMapping("{id}")
