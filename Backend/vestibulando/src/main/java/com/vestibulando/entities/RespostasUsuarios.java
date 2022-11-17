@@ -1,6 +1,7 @@
 package com.vestibulando.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Type;
 import java.time.Instant;
 import java.util.List;
@@ -22,14 +23,17 @@ public class RespostasUsuarios {
             name = "Respostas_has_resultadosSimulados",
             joinColumns = @JoinColumn(name = "resultadossimulados_id"),
             inverseJoinColumns = @JoinColumn(name = "resposta_id"))
+    @NotNull(message="A resposta do usuario deve conter as respostas marcadas pelo usuário")
     private List<Resposta> respostas;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id",nullable = false)
+    @NotNull(message = "A resposta do usuario deve estar associada a um usuário")
     private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "simulado_id",nullable = false)
+    @NotNull(message = "A resposta do usuario deve estar associada a um simulado")
     private Simulado simulado;
 
     @PrePersist
@@ -68,5 +72,21 @@ public class RespostasUsuarios {
 
     public void setSimulado(Simulado simulado) {
         this.simulado = simulado;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Instant getCreated_at() {
+        return created_at;
+    }
+
+    public Instant getUpdated_at() {
+        return updated_at;
     }
 }
