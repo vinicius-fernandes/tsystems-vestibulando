@@ -46,13 +46,13 @@ public class BancaServiceTest {
     }
 
     @Test
-    public void RetornarMateriaAposCriar(){
+    public void RetornarBancaAposCriar(){
 
         Assertions.assertNotNull(bancaService.salvar(banca));
     }
 
     @Test
-    public void RetornarMateriaAposAtualizar(){
+    public void RetornarBancaAposAtualizar(){
 
         Assertions.assertNotNull(bancaService.atualizar(1L, banca));
     }
