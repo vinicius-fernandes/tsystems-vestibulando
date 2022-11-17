@@ -1,5 +1,6 @@
 package com.vestibulando.controllers;
 
+import com.vestibulando.dtos.GerarSimuladoDTO;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -91,6 +93,15 @@ public class SimuladoController {
     @PutMapping("/{idSimulado}")
     public ResponseEntity<Simulado> alterarSimulado(@PathVariable("idSimulado") Long id, @RequestBody Simulado s) {
         return ResponseEntity.ok().body(simuladoService.alterar(id, s));
+    }
+
+    @PostMapping("/gerar")
+    public ResponseEntity<Simulado> gerarSimulado(@Valid @RequestBody GerarSimuladoDTO gerarSimuladoDTO){
+
+
+
+        return ResponseEntity.ok().body(simuladoService.gerarSimulado(gerarSimuladoDTO));
+
     }
 
     @PutMapping("/{idSimulado}/perguntas/{idPergunta}")
