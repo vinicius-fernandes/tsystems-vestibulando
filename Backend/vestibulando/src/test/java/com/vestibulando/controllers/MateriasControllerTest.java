@@ -64,7 +64,7 @@ public class MateriasControllerTest {
 
     @Test
     public void DeletarMateriaRetornaOk() throws Exception{
-        mockMvc.perform(delete("/materia/{id}", 3L)
+        mockMvc.perform(delete("/materia/{id}", 5L)
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
