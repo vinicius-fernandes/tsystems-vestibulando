@@ -68,18 +68,4 @@ public class UsuarioServiceTests {
         Assertions.assertThrows(EntityNotFoundException.class,()->usuarioService.consultarById(idInexistente));
     }
 
-    @Test
-    public void lancaExecessaoQuandoEmailDiplicado(){
-        Usuario usuario = new Usuario();
-        usuario.setNome("Maria");
-        usuario.setEmail("maria@email.com");
-        usuario.setSenha("123456");
-        usuario.setId(1l);
-
-
-        Assertions.assertNotNull(usuarioService.salvarUsuario(usuario));
-        Assertions.assertDoesNotThrow(()->usuarioService.salvarUsuario(usuario));
-
-    }
-
 }

@@ -108,12 +108,4 @@ public class UsuarioControllerTests {
         result.andExpect(status().is4xxClientError());
     }
 
-    @Test
-    public void Retorna500QuandoEmailDuplicado() throws Exception {
-        ResultActions result = mockMvc.perform(post("/usuarios")
-                .content(usuario2String)
-                .contentType(MediaType.APPLICATION_JSON));
-
-        result.andExpect(status().is5xxServerError());
-    }
 }
