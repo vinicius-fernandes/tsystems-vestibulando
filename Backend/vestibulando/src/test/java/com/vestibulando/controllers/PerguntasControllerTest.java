@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
 import com.vestibulando.services.PerguntaService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -34,6 +35,34 @@ public class PerguntasControllerTest {
 
     @Autowired
     ObjectMapper objectMapper;
+
+    Pergunta pergunta;
+
+    @BeforeEach
+    public void beforeEach(){
+        pergunta = new Pergunta();
+        pergunta.setCorpo("Pergunta teste 12345436");
+        Resposta resp1 = new Resposta();
+        Resposta resp2 = new Resposta();
+        Resposta resp3 = new Resposta();
+        Resposta resp4 = new Resposta();
+        resp1.setId(1L);
+        resp2.setId(2L);
+        resp3.setId(3L);
+        resp4.setId(4L);
+
+
+        resp1.setCorreta(true);
+        resp2.setCorreta(false);
+        resp3.setCorreta(false);
+        resp4.setCorreta(false);
+        List<Resposta> respostasPergunta = new ArrayList<>();
+        respostasPergunta.add(resp1);
+        respostasPergunta.add(resp2);
+        respostasPergunta.add(resp3);
+        respostasPergunta.add(resp4);
+        pergunta.setRespostas(respostasPergunta);
+    }
 
     @Test
     public void ListarPerguntasRetornaOk() throws Exception {
@@ -83,28 +112,7 @@ public class PerguntasControllerTest {
 
     @Test
     public void CriarPerguntaRetornaCreated() throws Exception {
-        Pergunta pergunta = new Pergunta();
-        pergunta.setCorpo("Pergunta teste 12345436");
-        Resposta resp1 = new Resposta();
-        Resposta resp2 = new Resposta();
-        Resposta resp3 = new Resposta();
-        Resposta resp4 = new Resposta();
-        resp1.setId(1L);
-        resp2.setId(2L);
-        resp3.setId(3L);
-        resp4.setId(4L);
 
-
-        resp1.setCorreta(true);
-        resp2.setCorreta(false);
-        resp3.setCorreta(false);
-        resp4.setCorreta(false);
-        List<Resposta> respostasPergunta = new ArrayList<>();
-        respostasPergunta.add(resp1);
-        respostasPergunta.add(resp2);
-        respostasPergunta.add(resp3);
-        respostasPergunta.add(resp4);
-        pergunta.setRespostas(respostasPergunta);
         ResultActions ra = mockMvc.perform(post("/perguntas")
                 .content(objectMapper.writeValueAsString(pergunta))
                 .contentType(MediaType.APPLICATION_JSON));
@@ -113,28 +121,7 @@ public class PerguntasControllerTest {
     }
     @Test
     public void EditarPerguntaRetornaOk() throws Exception {
-        Pergunta pergunta = new Pergunta();
-        pergunta.setCorpo("Pergunta teste 12345436");
-        Resposta resp1 = new Resposta();
-        Resposta resp2 = new Resposta();
-        Resposta resp3 = new Resposta();
-        Resposta resp4 = new Resposta();
-        resp1.setId(1L);
-        resp2.setId(2L);
-        resp3.setId(3L);
-        resp4.setId(4L);
 
-
-        resp1.setCorreta(true);
-        resp2.setCorreta(false);
-        resp3.setCorreta(false);
-        resp4.setCorreta(false);
-        List<Resposta> respostasPergunta = new ArrayList<>();
-        respostasPergunta.add(resp1);
-        respostasPergunta.add(resp2);
-        respostasPergunta.add(resp3);
-        respostasPergunta.add(resp4);
-        pergunta.setRespostas(respostasPergunta);
         ResultActions ra = mockMvc.perform(put("/perguntas/{id}",1L)
                 .content(objectMapper.writeValueAsString(pergunta))
                 .contentType(MediaType.APPLICATION_JSON));
@@ -144,8 +131,7 @@ public class PerguntasControllerTest {
 
     @Test
     public void CriarPerguntaRetorna400QuandoMaisDeUmaRespostaECorreta() throws Exception {
-        Pergunta pergunta = new Pergunta();
-        pergunta.setCorpo("Pergunta teste 12345436");
+
         Resposta resp1 = new Resposta();
         Resposta resp2 = new Resposta();
         Resposta resp3 = new Resposta();
@@ -154,7 +140,6 @@ public class PerguntasControllerTest {
         resp2.setId(2L);
         resp3.setId(3L);
         resp4.setId(4L);
-
 
         resp1.setCorreta(true);
         resp2.setCorreta(true);
@@ -183,13 +168,10 @@ public class PerguntasControllerTest {
 
     @Test
     public void CriarPerguntaRetorna4XXQuandoTemMenosDe4Respostas() throws Exception {
-        Pergunta pergunta = new Pergunta();
-        pergunta.setCorpo("Pergunta teste 12345436");
+
         Resposta resp1 = new Resposta();
         Resposta resp2 = new Resposta();
         Resposta resp3 = new Resposta();
-
-
 
 
 
@@ -213,8 +195,7 @@ public class PerguntasControllerTest {
 
     @Test
     public void CriarPerguntaRetorna4XXQuandoTemMaisDe5Respostas() throws Exception {
-        Pergunta pergunta = new Pergunta();
-        pergunta.setCorpo("Pergunta teste 12345436");
+
         Resposta resp1 = new Resposta();
         Resposta resp2 = new Resposta();
         Resposta resp3 = new Resposta();

@@ -42,7 +42,7 @@ public class Usuario {
     }
 
     public LocalDateTime getCreatedAt() {
-        return createdAt.atZone(ZoneId.systemDefault().normalized()).toLocalDateTime();
+        return (createdAt!=null)? createdAt.atZone(ZoneId.systemDefault().normalized()).toLocalDateTime():null;
 
     }
 
