@@ -40,12 +40,12 @@ public class RespostasUsuariosController {
 
     @PutMapping("/{id}")
     public ResponseEntity<RespostasUsuarios> editar(@PathVariable("id") long id,@RequestBody RespostasUsuarios respostasUsuarios){
-        return ResponseEntity.status(HttpStatus.CREATED).body(respostasUsuariosService.editar(id,respostasUsuarios));
+        return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.editar(id,respostasUsuarios));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable("id") long id){
         respostasUsuariosService.deletar(id);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Deletado com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso");
     }
 }
