@@ -59,8 +59,8 @@ public class BancaControllerTest {
         Banca banca = new Banca();
 
         banca.setId(1L);
-        banca.setNome("Universidade Federal de Santa Catarina");
-        banca.setSigla("UFSC");
+        banca.setNome("Fundação Universidade Regional de Blumenau");
+        banca.setSigla("FURB");
 
         ResultActions ra = mockMvc.perform(put("/banca/1")
                 .content(objectMapper.writeValueAsString(banca))
