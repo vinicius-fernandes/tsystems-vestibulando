@@ -2,6 +2,7 @@ package com.vestibulando.services;
 
 import com.vestibulando.entities.Materia;
 import com.vestibulando.repositories.IMateriaRepository;
+import com.vestibulando.services.MateriaService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

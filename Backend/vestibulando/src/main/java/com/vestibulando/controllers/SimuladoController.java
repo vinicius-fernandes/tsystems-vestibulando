@@ -1,6 +1,7 @@
 package com.vestibulando.controllers;
 
 import com.vestibulando.dtos.GerarSimuladoDTO;
+import com.vestibulando.dtos.SimuladoDTO;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;
@@ -32,6 +33,11 @@ public class SimuladoController {
     @GetMapping("/{idSimulado}")
     public ResponseEntity<Simulado> consultar(@PathVariable("idSimulado") Long id) {
         return ResponseEntity.ok().body(simuladoService.consultar(id));
+    }
+
+    @GetMapping("realizar/{idSimulado}")
+    public ResponseEntity<SimuladoDTO> realizar(@PathVariable("idSimulado") Long id) {
+        return ResponseEntity.ok().body(simuladoService.realizar(id));
     }
 
     @GetMapping("/{idSimulado}/perguntas")
@@ -96,7 +102,7 @@ public class SimuladoController {
     }
 
     @PostMapping("/gerar")
-    public ResponseEntity<Simulado> gerarSimulado(@Valid @RequestBody GerarSimuladoDTO gerarSimuladoDTO){
+    public ResponseEntity<SimuladoDTO> gerarSimulado(@Valid @RequestBody GerarSimuladoDTO gerarSimuladoDTO){
 
 
 

@@ -5,6 +5,7 @@ import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Usuario;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IUsuarioRepository;
+import com.vestibulando.services.UsuarioService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

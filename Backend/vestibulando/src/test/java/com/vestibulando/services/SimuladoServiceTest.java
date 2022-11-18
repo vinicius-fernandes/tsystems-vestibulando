@@ -5,6 +5,7 @@ import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Simulado;
 import com.vestibulando.repositories.ISimuladoRepository;
+import com.vestibulando.services.SimuladoService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

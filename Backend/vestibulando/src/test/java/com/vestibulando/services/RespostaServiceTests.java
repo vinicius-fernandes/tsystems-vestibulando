@@ -3,6 +3,8 @@ package com.vestibulando.services;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
 import com.vestibulando.repositories.IRespostaRepository;
+import com.vestibulando.services.PerguntaService;
+import com.vestibulando.services.RespostaService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

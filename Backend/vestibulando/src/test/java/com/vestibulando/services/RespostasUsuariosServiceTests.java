@@ -6,6 +6,7 @@ import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
+import com.vestibulando.services.RespostasUsuariosService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ import java.util.Optional;
 public class RespostasUsuariosServiceTests {
 
     @InjectMocks
-    RespostasUsuariosService    respostasUsuariosService;
+    RespostasUsuariosService respostasUsuariosService;
 
     @Mock
     IRespostasUsuariosRepository respostasUsuariosRepository;

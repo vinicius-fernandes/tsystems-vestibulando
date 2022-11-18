@@ -2,6 +2,7 @@ package com.vestibulando.services;
 
 import com.vestibulando.dtos.GerarSimuladoDTO;
 import com.vestibulando.dtos.RankingSimuladoDTO;
+import com.vestibulando.dtos.SimuladoDTO;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;
@@ -41,8 +42,12 @@ public class SimuladoService {
         return s.orElseThrow(()-> new EntityNotFoundException("Simulado não encontrado."));
     }
 
+    public SimuladoDTO realizar(Long id){
+        Simulado simulado = this.consultar(id);
+        return new SimuladoDTO(simulado);
+    }
 
-    public Simulado gerarSimulado(GerarSimuladoDTO gerarSimuladoDTO){
+    public SimuladoDTO gerarSimulado(GerarSimuladoDTO gerarSimuladoDTO){
         List<Long> idMaterias = gerarSimuladoDTO.getMaterias().stream().map(Materia::getId).toList();
         List<Long> idBancas = gerarSimuladoDTO.getBancas().stream().map(Banca::getId).toList();
 
@@ -57,7 +62,8 @@ public class SimuladoService {
         simulado.setMaterias(gerarSimuladoDTO.getMaterias());
         simulado.setBancas(gerarSimuladoDTO.getBancas());
         simulado.setPerguntas(new HashSet<>(perguntasParaOSimulado));
-        return this.salvar(simulado);
+        Simulado simuladoGerado = this.salvar(simulado);
+        return new SimuladoDTO(simuladoGerado);
     }
 
     public Set<Pergunta> consultarPerguntas(Long idSimulado) {

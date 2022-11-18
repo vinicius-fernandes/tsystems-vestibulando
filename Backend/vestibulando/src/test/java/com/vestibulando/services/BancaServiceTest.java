@@ -3,6 +3,7 @@ package com.vestibulando.services;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.repositories.IBancaRepository;
+import com.vestibulando.services.BancaService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
