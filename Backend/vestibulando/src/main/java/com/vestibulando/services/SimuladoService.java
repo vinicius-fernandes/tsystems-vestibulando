@@ -7,6 +7,7 @@ import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Simulado;
+import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.ISimuladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,8 +89,13 @@ public class SimuladoService {
     @Transactional
     public String deletarSimulado(Long id) {
         consultar(id);
-        simuladoRepository.deleteById(id);
-        return "Simulado deletado com sucesso.";
+        try {
+            simuladoRepository.deleteById(id);
+            return "Simulado deletado com sucesso.";
+        }
+        catch (Exception e){
+            throw  new DeleteComAssociacoes("Não é possível deletar o usuário pois há itens associados com ele");
+        }
     }
 
     @Transactional

@@ -4,6 +4,7 @@ import com.vestibulando.dtos.NotaSimuladoUsuarioDTO;
 import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
+import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -64,6 +65,11 @@ public class RespostasUsuariosService {
 
     public void deletar(long id){
         RespostasUsuarios respUsuarios = this.obter(id);
-        respostasUsuariosRepository.delete(respUsuarios);
+        try {
+            respostasUsuariosRepository.delete(respUsuarios);
+        }
+        catch (Exception e){
+            throw new DeleteComAssociacoes("Não é possível deletar a resposta usuário pois há itens associados a ela");
+        }
     }
 }

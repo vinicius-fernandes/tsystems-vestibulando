@@ -2,6 +2,7 @@ package com.vestibulando.services;
 
 import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Usuario;
+import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,7 +66,14 @@ public class UsuarioService {
     }
 
     public void apagarUsuario(long idUsuario) {
-        usuarioRepository.delete(this.consultar(idUsuario));
+        Usuario usuario = this.consultar(idUsuario);
+
+        try {
+            usuarioRepository.delete(usuario);
+        }
+        catch (Exception e){
+            throw  new DeleteComAssociacoes("Não é possível deletar o usuário pois há itens associados a ele");
+        }
     }
 
 }

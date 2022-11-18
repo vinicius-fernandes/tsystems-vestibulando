@@ -1511,6 +1511,7 @@ INSERT INTO resposta(descricao, correta, pergunta_id) VALUES ('Nunc vel sodales 
 
 
 INSERT INTO simulado (created_at) values ('2022-11-17T14:02:01.077Z');
+INSERT INTO simulado (created_at) values ('2022-11-17T14:02:01.077Z');
 
 INSERT INTO simulado_pergunta (simulado_id,pergunta_id) values (1,1);
 INSERT INTO simulado_pergunta (simulado_id,pergunta_id) values (1,2);
@@ -1523,8 +1524,12 @@ INSERT INTO simulado_pergunta (simulado_id,pergunta_id) values (1,8);
 INSERT INTO simulado_pergunta (simulado_id,pergunta_id) values (1,9);
 INSERT INTO simulado_pergunta (simulado_id,pergunta_id) values (1,10);
 
+INSERT INTO simulado_banca (simulado_id,banca_id) values (1,1);
+INSERT INTO simulado_materia (simulado_id,materia_id) values (1,1);
+
 INSERT INTO usuario(email, senha, nome, tipo) VALUES ('joao@email.com', '123456', 'João da Silva', 0);
 INSERT INTO usuario(email, senha, nome, tipo) VALUES ('ana@email.com', '123456', 'Ana da Silva', 1);
+INSERT INTO usuario(email, senha, nome, tipo) VALUES ('duda@email.com', '123456', 'Duda da Silva', 1);
 
 INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,1);
 INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,2);

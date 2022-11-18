@@ -1,6 +1,7 @@
 package com.vestibulando.services;
 
 import com.vestibulando.entities.Materia;
+import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IMateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,12 @@ public class MateriaService {
 
     public void deletar(long id) {
         Materia materia = this.obter(id);
-        materiaRepository.delete(materia);
+        try {
+            materiaRepository.delete(materia);
+        }
+        catch (Exception e){
+            throw new DeleteComAssociacoes("Não é possível deletar a matéria pois há itens associadas com ela!");
+        }
     }
 
     public Materia salvar(Materia materia){

@@ -67,13 +67,6 @@ public class RespostaServiceTests {
         Assertions.assertNotNull(respostaService.consultarByIdComoAdmin(1L));
     }
 
-//    @Test
-//    public void RetornaRespostaAposAlterar(){
-//        Mockito.when(respostaRepository.findById(Mockito.any(Long.class)).get()).thenReturn(resposta);
-//        Mockito.when(respostaService.salvar(Mockito.any(Resposta.class))).thenReturn(respostaAlterada);
-//        Assertions.assertNotNull(respostaService.alterar(1L,respostaAlterada));
-//    }
-
     @Test
     public void RetornaOkAposExcluir(){
         Mockito.when(respostaRepository.findById(resposta.getId())).thenReturn(Optional.of(resposta));

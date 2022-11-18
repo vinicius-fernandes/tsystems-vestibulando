@@ -1,6 +1,7 @@
 package com.vestibulando.services;
 
 import com.vestibulando.entities.Banca;
+import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IBancaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,12 @@ public class BancaService {
 
     public void deletar(long id) {
         Banca banca = this.obter(id);
-        bancaRepository.delete(banca);
+        try {
+            bancaRepository.delete(banca);
+        }
+        catch (Exception e){
+            throw new DeleteComAssociacoes("Não é possível deletar a banca pois há itens associados com ela");
+        }
     }
 
     @Transactional
