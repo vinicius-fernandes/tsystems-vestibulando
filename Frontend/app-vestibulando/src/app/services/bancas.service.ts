@@ -12,4 +12,8 @@ export class BancasService {
   consultar(){
     return this.http.get<[IBanca]>(`${this.baseUrl}/banca`);
   }
+
+  excluir(id: number) {
+    return this.http.delete(`${this.baseUrl}/banca/${id}`);
+  }
 }

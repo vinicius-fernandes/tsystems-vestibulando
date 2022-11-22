@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import IBanca from 'src/app/interfaces/IBanca';
+import { BancasService } from 'src/app/services/bancas.service';
 
 @Component({
   selector: 'app-gerencia-bancas',
@@ -7,4 +9,18 @@ import { Component } from '@angular/core';
 })
 export class GerenciaBancasComponent {
 
+  constructor(private serviceBanca: BancasService) {
+
+  }
+
+  bancas: IBanca[] = []
+
+  ngOnInit(): void {
+    this.serviceBanca.consultar().subscribe(data => this.bancas = data)
+  }
+
+  excluirBanca(id: number) {
+    this.serviceBanca.excluir(id)
+    window.location.reload()
+  }
 }
