@@ -4,7 +4,7 @@ import { ListarComponent } from './componentes/perguntas/listar/listar.component
 
 
 const routes: Routes = [
- {path:'/perguntas',component:ListarComponent}
+ {path:'perguntas',component:ListarComponent}
 ];
 
 @NgModule({

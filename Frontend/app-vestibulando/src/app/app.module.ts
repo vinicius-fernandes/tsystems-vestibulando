@@ -7,6 +7,7 @@ import { SidebarComponent } from './componentes/layout/sidebar/sidebar.component
 import { FooterComponent } from './componentes/layout/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListarComponent } from './componentes/perguntas/listar/listar.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,8 @@ import { ListarComponent } from './componentes/perguntas/listar/listar.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
