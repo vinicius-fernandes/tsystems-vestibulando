@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/materia")
+@CrossOrigin(origins = "*")
 public class MateriaController {
 
     @Autowired

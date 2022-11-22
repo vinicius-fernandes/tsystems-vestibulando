@@ -18,6 +18,8 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/simulados")
+@CrossOrigin(origins = "*")
+
 public class SimuladoController {
     @Autowired
     SimuladoService simuladoService;
