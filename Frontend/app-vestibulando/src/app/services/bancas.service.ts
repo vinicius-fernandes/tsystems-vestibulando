@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import IMateria from '../interfaces/IMateria';
+import IBanca from '../interfaces/IBanca';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PerguntasService {
+export class BancasService {
 
   constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
 
   consultar(){
-    return this.http.get<[IMateria]>(`${this.baseUrl}/materia`);
+    return this.http.get<[IBanca]>(`${this.baseUrl}/banca`);
   }
 }

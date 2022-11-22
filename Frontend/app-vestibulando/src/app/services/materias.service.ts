@@ -5,7 +5,7 @@ import IMateria from '../interfaces/IMateria';
 @Injectable({
   providedIn: 'root'
 })
-export class PerguntasService {
+export class MateriasService {
 
   constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
 

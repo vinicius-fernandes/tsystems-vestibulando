@@ -8,6 +8,7 @@ import { FooterComponent } from './componentes/layout/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListarComponent } from './componentes/perguntas/listar/listar.component';
 import {HttpClientModule} from '@angular/common/http';
+import { environment } from 'src/environment';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
