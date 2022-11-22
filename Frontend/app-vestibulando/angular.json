@@ -27,11 +27,14 @@
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/admin-lte/dist/css/adminlte.min.css"
+              "node_modules/admin-lte/dist/css/adminlte.min.css",
+              "node_modules/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/admin-lte/dist/js/adminlte.min.js"
+              "node_modules/admin-lte/dist/js/adminlte.min.js",
+              "node_modules/fontawesome-free/js/all.min.js"
             ]
           },
           "configurations": {
@@ -99,5 +102,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "89b950a6-0089-44a9-9ef7-e7ea6e2e32cc"
   }
 }

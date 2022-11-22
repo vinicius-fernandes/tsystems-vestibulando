@@ -1,0 +1,81 @@
+ <!-- Left side column. contains the logo and sidebar -->
+ <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 navbarBackgroundDefaultColor">
+      <!-- Brand Logo -->
+      <a href="/" class="brand-link">
+          <img src="../../../../assets/images/logo-vestibulando-livro.png" alt="Logo"
+              class="brand-image " style="opacity: .8">
+          <span class="brand-text font-weight-bold fontColorBlue">Vestibulando</span>
+      </a>
+
+      <!-- sidebar: style can be found in sidebar.less -->
+      <div class="sidebar ">
+          <!-- Sidebar user panel (optional) -->
+          <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+              <div class="image">
+                  <img src="/images/user.png" class="img-circle elevation-2" alt="User Image">
+              </div>
+              <div class="info">
+                  <a href="#" class="d-block">@User.Identity.Name</a>
+              </div>
+          </div> -->
+
+          <!-- /.search form -->
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                  data-accordion="false">
+
+
+
+
+
+                  <li class="nav-item">
+                      <a href="@menu.URLPath" class="nav-link ">
+                          <i class="fas fa-cog nav-icon"></i>
+                          <p>Gerar simulados</p>
+
+                      </a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a href="@menu.URLPath" class="nav-link ">
+                          <i class="fas fa-trophy nav-icon"></i>
+                          <p>Ranking</p>
+
+                      </a>
+                  </li>
+
+
+                  <li class="nav-item has-treeview ">
+                      <a href="#" class="nav-link ">
+                          <i class="fas fa-paste nav-icon"></i>
+                          <p>Relatórios <i class="right fa fa-angle-left"></i></p>
+                      </a>
+                      <ul class="nav nav-treeview">
+
+                          <li class="nav-item">
+                              <a href="@subMenu.URLPath" class="nav-link @active">
+                                  <i class="@subMenu.IconClassName nav-icon"></i>
+                                  <p>Visão geral</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="@subMenu.URLPath" class="nav-link @active">
+                                  <i class="@subMenu.IconClassName nav-icon"></i>
+                                  <p>
+                                      Visão micro
+                                  </p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+
+              </ul>
+              <!-- /.sidebar-menu -->
+          </nav>
+      </div>
+      <!-- /.sidebar -->
+  </aside>
+</aside>
