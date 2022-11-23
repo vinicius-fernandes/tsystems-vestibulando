@@ -14,6 +14,9 @@ import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
 import { RespostasComponent } from './componentes/respostas/respostas.component';
+import { ListarPerguntasComponent } from './componentes/listar-perguntas/listar-perguntas.component';
+import { EditarRespostasComponent } from './componentes/editar-respostas/editar-respostas.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,12 +29,15 @@ import { RespostasComponent } from './componentes/respostas/respostas.component'
     TelaComponent,
     LayoutPadraoComponent,
     PerguntasComponent,
-    RespostasComponent
+    RespostasComponent,
+    ListarPerguntasComponent,
+    EditarRespostasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

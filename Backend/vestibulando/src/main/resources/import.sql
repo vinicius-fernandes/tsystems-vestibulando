@@ -257,6 +257,7 @@ INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ('Aliquam non tortor si
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ('Suspendisse et ornare mi', 2, 3);
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ('Sed consectetur libero in ipsum bibendum luctus', 2, 3);
 INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ('Nullam porta leo in vestibulum rutrum', 3, 4);
+INSERT INTO pergunta(corpo, banca_id, materia_id) VALUES ('Pergunta de teste sem respostas', 3, 4);
 
 INSERT INTO resposta(descricao, correta, pergunta_id) VALUES ('Sed commodo porttitor mi, auctor lacinia velit interdum hendrerit', 1, 1);
 INSERT INTO resposta(descricao, correta, pergunta_id) VALUES ('Cras semper, mauris in vulputate scelerisque, augue arcu auctor quam, vitae ultrices ex odio sed turpis', 0, 1);
