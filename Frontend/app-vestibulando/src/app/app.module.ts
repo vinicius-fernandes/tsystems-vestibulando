@@ -9,6 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { ListarComponent } from './componentes/perguntas/listar/listar.component';
 import {HttpClientModule} from '@angular/common/http';
 import { environment } from 'src/environment';
+import { LoginComponent } from './componentes/inicio/login/login.component';
+import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
+import { TelaComponent } from './componentes/inicio/tela/tela.component';
+import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { environment } from 'src/environment';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    ListarComponent
+    ListarComponent,
+    LoginComponent,
+    CadastroComponent,
+    TelaComponent,
+    LayoutPadraoComponent
   ],
   imports: [
     BrowserModule,
