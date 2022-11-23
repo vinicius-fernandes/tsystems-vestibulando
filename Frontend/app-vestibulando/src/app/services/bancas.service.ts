@@ -24,4 +24,8 @@ export class BancasService {
   salvar(dados: IBanca) {
     return this.http.post<IBanca>(`${this.baseUrl}/banca`, dados)
   }
+
+  editar(dados: IBanca) {
+    return this.http.put<IBanca>(`${this.baseUrl}/banca/${dados.id}`, dados)
+  }
 }
