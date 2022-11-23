@@ -1,0 +1,56 @@
+body, html{
+    background-color: #303036;
+}
+
+
+
+.textoazul {
+    color: #30BCED;
+}
+
+#logo {
+    height: 200px;
+}
+
+.principal {
+    width: 50%;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.myinput {
+    width: 75%;
+    border-radius: 6px;
+    background-color: #303036;
+    caret-color: #FFFFFF;
+    color: #FFFFFF;
+    padding: 3px 0 8px 3px;
+    margin-bottom: 35px;
+}
+
+.myinput::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.mytitle {
+    padding-bottom: 35px;
+    font-size: 4vw;
+    font-weight: 700;
+}
+
+.marg-10 {
+    margin-bottom: 10px;
+}
+
+.botaoazul {
+    background-color: #30BCED;
+}
+
+.botaoazul:hover {
+    filter: brightness(0.8);
+}
+
+.botaoazul:active {
+    filter: brightness(0.7);
+}

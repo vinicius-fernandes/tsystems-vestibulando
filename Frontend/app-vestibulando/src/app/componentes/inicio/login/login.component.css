@@ -2,20 +2,11 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: 'Inter';
-    background-image: url(../../../../assets/images/bgvestibulando.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: scroll, local;
 }
-.imgbg {
-    
-    height: 100%;
-    /* filter: brightness(20%); */
+
+.imgbg{
+    background-color: #303036;
 }
-/* .conteudo {
-    /* filter: brightness(500%);
-} */
 
 .textoazul {
     color: #30BCED;
