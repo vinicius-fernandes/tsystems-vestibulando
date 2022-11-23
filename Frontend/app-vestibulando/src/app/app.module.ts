@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ListarComponent } from './componentes/perguntas/listar/listar.component';
 import {HttpClientModule} from '@angular/common/http';
 import { environment } from 'src/environment';
+import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
+import { RespostasComponent } from './componentes/respostas/respostas.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { environment } from 'src/environment';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    ListarComponent
+    ListarComponent,
+    PerguntasComponent,
+    RespostasComponent
   ],
   imports: [
     BrowserModule,

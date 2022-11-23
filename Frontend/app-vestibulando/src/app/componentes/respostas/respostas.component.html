@@ -1,0 +1,18 @@
+<p>respostas works!</p>
+<h1 class="text-center mt-2">Lista de respostas</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Descrição</td>
+      <td>Correta</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let resp of respostas">
+      <td>{{ resp.id }}</td>
+      <td>{{ resp.descricao }}</td>
+      <td>{{ resp.correta }}</td>
+    </tr>
+  </tbody>
+</table>
