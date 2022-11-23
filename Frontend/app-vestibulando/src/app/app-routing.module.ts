@@ -7,7 +7,6 @@ import { GerenciaMateriasComponent } from './componentes/layout/gerencia-materia
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { LoginComponent } from './componentes/inicio/login/login.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
-import { ListarComponent } from './componentes/perguntas/listar/listar.component';
 import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
 
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
@@ -16,7 +15,6 @@ import { RespostasComponent } from './componentes/respostas/respostas.component'
 import {PerguntasComponent} from "./componentes/perguntas/perguntas.component";
 
 const routes: Routes = [
- {path:'perguntas',component:ListarComponent},
  {
   path: 'modbancas', component: GerenciaBancasComponent
  },
@@ -34,7 +32,6 @@ const routes: Routes = [
     path: 'app',
     component: LayoutPadraoComponent,
     children: [
-      {path:'perguntas',component:ListarComponent},
       {path:'gerarSimulado',component:GerarSimuladoComponent},
       {path:'perguntas',component:PerguntasComponent},
       {path: 'respostas', component: RespostasComponent},

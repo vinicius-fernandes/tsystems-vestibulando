@@ -36,7 +36,6 @@ import { RespostasComponent } from './componentes/respostas/respostas.component'
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    ListarComponent,
     GerenciaBancasComponent,
     GerenciaMateriasComponent,
     AdicionaBancaComponent,
