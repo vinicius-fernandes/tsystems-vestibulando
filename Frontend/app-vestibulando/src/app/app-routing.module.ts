@@ -25,7 +25,7 @@ const routes: Routes = [
  },
  {
   path: 'modmaterias', component: GerenciaMateriasComponent
- }
+ },
 
   {
     path: 'app',
