@@ -20,15 +20,14 @@ a {
 }
 
 
+
 .banner {
     height: 80vh;
     width: 100vw;
     min-height: 500px;
     max-width: 100%;
-    background: linear-gradient(
-            rgba(var(--preto), .8),
-            rgba(var(--escuro), .8)
-    ),url("https://uniandrade.br/wp-content/uploads/2020/07/simulado-tem-varias-questoes-vestibular-57d9a8d50b0b0.jpg");
+    background-image:linear-gradient(to bottom, rgba(255,0,0,0), rgb(1, 1, 1)),
+    url(https://uniandrade.br/wp-content/uploads/2020/07/simulado-tem-varias-questoes-vestibular-57d9a8d50b0b0.jpg);    
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -69,13 +68,14 @@ nav a:nth-child(2) img {
 .banner section h1 {
     max-width: 90vw;
     font-size: clamp(16px, 4vw, 30px);
+    color: white;
 }
 
-.banner section button {
+.btn {
     padding: .5rem 1rem;
     border-radius: 15px;
-    background-color: rgb(var(--primario));
-    color: rgb(var(--branco));
+    background-color: #30BCED;
+    color: #30BCED;
     border: none;
     outline: none;
     font-size: clamp(14px, 3vw, 16px);
@@ -84,9 +84,8 @@ nav a:nth-child(2) img {
     transition: .3s;
 }
 
-.banner section button:hover {
-    background-color: rgb(var(--branco));
-    color: rgb(var(--primario));
+Strong{
+    color: white;
 }
 
 footer {
@@ -95,7 +94,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(var(--escuro));
+    background-color: black;
     padding: 2em 0;
     text-align: center;
 }
@@ -113,10 +112,11 @@ footer {
 footer .colunas {
     width: 100vw;
     max-width: 100%;
-    color: rgb(var(--branco));
+    color: white;
     display: grid;
     margin-top: 2rem;
     grid-template-columns: 1fr 1fr 1fr;
+
 }
 
 
@@ -140,6 +140,7 @@ footer .colunas ul li:first-child {
     line-height: 3em;
     font-size: clamp(16px, 3vw, 30px);
     letter-spacing: 3px;
+    color: white;
 }
 
 footer .colunas ul li a{
@@ -147,7 +148,7 @@ footer .colunas ul li a{
 }
 
 footer .colunas ul li a:hover{
-    color: rgb(var(--primario));
+    color: white;;
 }
 
 
