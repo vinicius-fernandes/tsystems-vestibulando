@@ -1,1 +1,14 @@
-<p>lista-simulados works!</p>
+<h1>Lista Simulados Carrega</h1>
+<h2>{{simulados}}</h2>
+<div class="card" *ngFor="let simulado of simulados">
+  <p>Código: {{simulado.id}}</p>
+  <p> {{simulado.perguntas.length}} perguntas </p>
+  <p>Bancas:</p>
+  <ul>
+    <li *ngFor="let banca of simulado.bancas">{{banca.sigla}}</li>
+  </ul>
+  <p>Matérias:</p>
+  <ul>
+    <li *ngFor="let materia of simulado.materias">{{materia.nome}}</li>
+  </ul>
+</div>

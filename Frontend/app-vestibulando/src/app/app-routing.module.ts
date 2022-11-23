@@ -12,12 +12,15 @@ import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/ge
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import {RankingSimuladoComponent} from "./componentes/ranking-simulado/ranking-simulado.component";
 import { RespostasComponent } from './componentes/respostas/respostas.component';
+import {ListaSimuladosComponent} from "./componentes/lista-simulados/lista-simulados.component";
 const routes: Routes = [
   {
     path: 'app',
     component: LayoutPadraoComponent,
     children: [
-      {path:'gerarSimulado',component:GerarSimuladoComponent},
+      {
+        path:'gerarSimulado',component:GerarSimuladoComponent
+      },
       {
         path: 'modbancas', component: GerenciaBancasComponent
        },
@@ -35,12 +38,21 @@ const routes: Routes = [
       },
       {
         path: 'rankingSimulado/:id', component:RankingSimuladoComponent
+      },
+      {
+        path: 'listaSimulados', component: ListaSimuladosComponent
       }
     ]
   },
- {path:'', component:TelaComponent},
- {path:'login', component:LoginComponent},
- {path:'cadastro', component:CadastroComponent},
+ {
+   path:'', component:TelaComponent
+ },
+ {
+   path:'login', component:LoginComponent
+ },
+ {
+   path:'cadastro', component:CadastroComponent
+ },
 ];
 
 @NgModule({
