@@ -12,12 +12,9 @@ import { LoginComponent } from './componentes/inicio/login/login.component';
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
-<<<<<<< HEAD
 import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
-=======
 import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
 import { RespostasComponent } from './componentes/respostas/respostas.component';
->>>>>>> f361ab4f25796876dc26eb6ed06f71019ed6d05a
 
 @NgModule({
   declarations: [
@@ -29,12 +26,9 @@ import { RespostasComponent } from './componentes/respostas/respostas.component'
     CadastroComponent,
     TelaComponent,
     LayoutPadraoComponent,
-<<<<<<< HEAD
-    RankingSimuladoComponent
-=======
+    RankingSimuladoComponent,
     PerguntasComponent,
     RespostasComponent
->>>>>>> f361ab4f25796876dc26eb6ed06f71019ed6d05a
   ],
   imports: [
     BrowserModule,

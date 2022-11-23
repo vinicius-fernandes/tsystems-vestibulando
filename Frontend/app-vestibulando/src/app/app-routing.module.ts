@@ -6,15 +6,16 @@ import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import {RankingSimuladoComponent} from "./componentes/ranking-simulado/ranking-simulado.component";
 import { RespostasComponent } from './componentes/respostas/respostas.component';
+import {PerguntasComponent} from "./componentes/perguntas/perguntas.component";
 
 const routes: Routes = [
   {
     path: 'app',
     component: LayoutPadraoComponent,
     children: [
-      {path:'perguntas',component:ListarComponent},
+      {path:'perguntas',component:PerguntasComponent},
       {path: 'respostas', component: RespostasComponent},
-      {path: 'rankingSimulado', component:RankingSimuladoComponent}
+      {path: 'rankingSimulado/:id', component:RankingSimuladoComponent}
     ]
   },
  {path:'', component:TelaComponent},
