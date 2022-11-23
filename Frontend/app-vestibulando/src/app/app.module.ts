@@ -13,6 +13,7 @@ import { LoginComponent } from './componentes/inicio/login/login.component';
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
+import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.compo
     LoginComponent,
     CadastroComponent,
     TelaComponent,
-    LayoutPadraoComponent
+    LayoutPadraoComponent,
+    RankingSimuladoComponent
   ],
   imports: [
     BrowserModule,
