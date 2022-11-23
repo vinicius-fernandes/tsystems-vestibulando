@@ -30,7 +30,6 @@ const routes: Routes = [
        {
         path: 'modmaterias', component: GerenciaMateriasComponent
        },
-      {path:'perguntas',component:PerguntasComponent},
       {path: 'respostas', component: RespostasComponent},
       {path: 'rankingSimulado/:id', component:RankingSimuladoComponent}
     ]
