@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
 import { SidebarComponent } from './componentes/layout/sidebar/sidebar.component';
@@ -20,6 +21,14 @@ import { GerenciaMateriasComponent } from './componentes/layout/gerencia-materia
 import { GerenciaBancasComponent } from './componentes/layout/gerencia-bancas/gerencia-bancas.component';
 import { AdicionaBancaComponent } from './componentes/layout/adiciona-banca/adiciona-banca.component';
 import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banca.component';
+import { LoginComponent } from './componentes/inicio/login/login.component';
+import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
+import { TelaComponent } from './componentes/inicio/tela/tela.component';
+import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
+import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +41,11 @@ import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banc
     GerenciaMateriasComponent,
     AdicionaBancaComponent,
     EditaBancaComponent
+    LoginComponent,
+    CadastroComponent,
+    TelaComponent,
+    LayoutPadraoComponent,
+    GerarSimuladoComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +59,14 @@ import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banc
     ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+    ],
   providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl }],
   bootstrap: [AppComponent]
 })
