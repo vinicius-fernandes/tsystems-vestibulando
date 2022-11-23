@@ -6,39 +6,37 @@
     background-size: cover; 
 }
 
-.textoazul {
-    color: #30BCED;
+.tituloCadastro{
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-size: clamp(40px, 3vw, 16px);
 }
 
-#logo {
-    height: 200px;
+.logo {
+    height: 150px;
 }
 
 .principal {
-    width: 50%;
+    width: 30%;
     justify-content: center;
     padding: 20px;
     border-radius: 8px;
 }
 
 .myinput {
-    width: 75%;
+    width: 80%;
     border-radius: 6px;
     background-color: #303036;
-    caret-color: #FFFFFF;
-    color: #FFFFFF;
     padding: 3px 0 8px 3px;
     margin-bottom: 35px;
+    text-align: center;
+    color: white;
 }
 
 .myinput::placeholder {
     color: rgba(255, 255, 255, 0.8);
-}
-
-.mytitle {
-    padding-bottom: 35px;
-    font-size: 4vw;
-    font-weight: 700;
+    font-style: clamp;
 }
 
 .marg-10 {
@@ -47,6 +45,8 @@
 
 .botaoazul {
     background-color: #30BCED;
+    margin-bottom: 30px;
+    font-style: clamp;
 }
 
 .botaoazul:hover {

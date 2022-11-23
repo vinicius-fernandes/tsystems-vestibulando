@@ -14,7 +14,7 @@
 }
 
 .logo {
-    height: 100px;
+    height: 150px;
 }
 
 .principal {
@@ -28,11 +28,10 @@
     width: 80%;
     border-radius: 6px;
     background-color: #303036;
-    caret-color: #FFFFFF;
-    color: #FFFFFF;
     padding: 3px 0 8px 3px;
     margin-bottom: 35px;
     text-align: center;
+    color: white;
 }
 
 .botoesLogin{
@@ -51,7 +50,7 @@
 
 .botaoazul {
     background-color: #30BCED;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .botaoazul:hover {
