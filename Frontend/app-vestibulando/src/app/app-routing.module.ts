@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdicionaBancaComponent } from './componentes/layout/adiciona-banca/adiciona-banca.component';
+import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banca.component';
+import { GerenciaBancasComponent } from './componentes/layout/gerencia-bancas/gerencia-bancas.component';
+import { GerenciaMateriasComponent } from './componentes/layout/gerencia-materias/gerencia-materias.component';
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { LoginComponent } from './componentes/inicio/login/login.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
@@ -9,6 +13,19 @@ import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.compo
 
 
 const routes: Routes = [
+ {path:'perguntas',component:ListarComponent},
+ {
+  path: 'modbancas', component: GerenciaBancasComponent
+ },
+ {
+  path: 'modbancas/addbanca', component: AdicionaBancaComponent
+ },
+ {
+  path: 'modbancas/editbanca/:id', component: EditaBancaComponent
+ },
+ {
+  path: 'modmaterias', component: GerenciaMateriasComponent
+ }
 
   {
     path: 'app',
