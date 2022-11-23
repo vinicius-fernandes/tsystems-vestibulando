@@ -1,7 +1,6 @@
 package com.vestibulando.services;
 
 import com.vestibulando.dtos.GerarSimuladoDTO;
-import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.dtos.SimuladoDTO;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
@@ -78,6 +77,7 @@ public class SimuladoService {
     public Set<Materia> consultarMaterias(Long idSimulado) {
         return consultar(idSimulado).getMaterias();
     }
+
 
 
     @Transactional

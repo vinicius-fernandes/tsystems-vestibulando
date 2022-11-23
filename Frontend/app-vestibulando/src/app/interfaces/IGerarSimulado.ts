@@ -3,7 +3,7 @@ import IMateria from "./IMateria";
 
 export default interface IGerarSimulado
 {
-  numeroPaginas: number,
+  numeroPerguntas: number,
   materias: IMateria[],
   bancas:IBanca[]
 }
