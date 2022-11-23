@@ -32,7 +32,7 @@
 
 
                   <li class="nav-item">
-                      <a href="@menu.URLPath" class="nav-link ">
+                      <a routerLink="gerarSimulados" class="nav-link ">
                           <i class="fas fa-cog nav-icon"></i>
                           <p>Gerar simulados</p>
 
@@ -71,6 +71,40 @@
                           </li>
                       </ul>
                   </li>
+
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-cogs nav-icon"></i>
+                        <p>Gerenciar <i class="right fa fa-angle-left"></i></p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a routerLink="modbancas" class="nav-link @active">
+                                <i class="fa fa-university" style="margin-left: 20px;"></i>
+                                <p>Bancas</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a routerLink="modmaterias" class="nav-link @active">
+                                <i class="fa fa-book" style="margin-left: 20px;"></i>
+                                <p>Matérias</p>
+                            </a>
+                        </li>
+                    </ul>
+                  </li>
+
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a routerLink="modbancasmaterias" class="nav-link">
+                            <i class="fa fa-cogs nav-icon"></i>
+                            <p>
+                                Gerenciar
+                            </p>
+                        </a>
+                      </li>
+                  </ul>
 
               </ul>
               <!-- /.sidebar-menu -->
