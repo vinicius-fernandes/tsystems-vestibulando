@@ -1,0 +1,22 @@
+<p class="mb-5"><a routerLink="../.."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a></p>
+
+<h1 class="text-center">Editar Banca</h1>
+
+<div class="text-center">
+    <mat-form-field appearance="fill" color="primary" class="comp-75">
+        <mat-label>ID da Banca</mat-label>
+        <input [(ngModel)]="banca.id" matInput placeholder="Informe o ID da banca" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary" class="comp-75">
+        <mat-label>Nome da Banca</mat-label>
+        <input [(ngModel)]="banca.nome" matInput placeholder="Informe o nome da banca">
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary" class="comp-75">
+        <mat-label>Sigla</mat-label>
+        <input [(ngModel)]="banca.sigla" matInput placeholder="Informe a sigla da banca">
+    </mat-form-field>
+</div>
+
+<div class="text-start mleft-125">
+    <button mat-raised-button color="primary" (click)="editarBanca()">Salvar</button>
+</div>

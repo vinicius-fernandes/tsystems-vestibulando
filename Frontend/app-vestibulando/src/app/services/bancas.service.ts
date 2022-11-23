@@ -12,4 +12,20 @@ export class BancasService {
   consultar(){
     return this.http.get<[IBanca]>(`${this.baseUrl}/banca`);
   }
+
+  consultarPorId(id: number) {
+    return this.http.get<IBanca>(`${this.baseUrl}/banca/${id}`);
+  }
+
+  excluir(id: number) {
+    return this.http.delete(`${this.baseUrl}/banca/${id}`, {responseType: 'arraybuffer'});
+  }
+
+  salvar(dados: IBanca) {
+    return this.http.post<IBanca>(`${this.baseUrl}/banca`, dados)
+  }
+
+  editar(dados: IBanca) {
+    return this.http.put<IBanca>(`${this.baseUrl}/banca/${dados.id}`, dados)
+  }
 }

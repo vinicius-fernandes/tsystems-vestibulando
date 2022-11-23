@@ -1,0 +1,23 @@
+<h1 class="text-center">Gerenciar Bancas</h1>
+
+<p class="text-end mt-3 mr-3"><a routerLink="addbanca"><button mat-raised-button color="primary"><i class="fa fa-plus"></i> Adicionar Banca</button></a></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nome</th>
+            <th>Sigla</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let b of bancas">
+            <th>{{ b.id }}</th>
+            <td>{{ b.nome }}</td>
+            <td>{{ b.sigla }}</td>
+            <td><button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluirBanca(b.id || 0)"><i class="fa fa-trash"></i></button> <a [routerLink]="['editbanca', b.id]"><button mat-raised-button color="primary"><i class="fas fa-edit"></i></button></a></td>
+        </tr>
+    </tbody>
+</table>

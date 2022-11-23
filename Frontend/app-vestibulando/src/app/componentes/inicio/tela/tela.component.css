@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --primario: 48, 188, 237;
+    --secundario: 52, 81, 48;
+    --escuro: 48, 48, 54;
+    --branco: 255, 250, 255;
+    --preto: 5, 4, 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+
+
+.banner {
+    height: 80vh;
+    width: 100vw;
+    min-height: 500px;
+    max-width: 100%;
+    background-image:linear-gradient(to bottom, rgba(1,0,0,0.5), rgb(1, 1, 1)),
+    url(https://uniandrade.br/wp-content/uploads/2020/07/simulado-tem-varias-questoes-vestibular-57d9a8d50b0b0.jpg);    
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    vertical-align: top;
+    padding: 2rem;
+}
+
+nav a:hover{
+    filter: brightness(0) invert(1);
+}
+
+nav a:first-child img {
+    height: 50px;
+}
+
+nav a:nth-child(2) img {
+    height: 30px;
+}
+
+.banner section {
+    color: rgb(var(--branco));
+}
+
+.banner section h1 {
+    max-width: 90vw;
+    font-size: clamp(16px, 4vw, 30px);
+    color: white;
+}
+
+.btn {
+    padding: .5rem 1rem;
+    border-radius: 15px;
+    background-color: #30BCED;
+    color: #30BCED;
+    border: none;
+    outline: none;
+    font-size: clamp(14px, 3vw, 16px);
+    margin-top: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+b{
+    color: white;
+}
+
+footer {
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    padding: 2em 0;
+    text-align: center;
+}
+
+footer img{
+    height: 10vh;
+    filter: brightness(0) invert(1);
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .colunas {
+    width: 100vw;
+    max-width: 100%;
+    color: white;
+    display: grid;
+    margin-top: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+
+footer .colunas ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer .colunas ul:not(:first-child) {
+    border-left: 1px solid rgb(var(--branco));
+}
+
+footer .colunas ul li {
+    line-height: 2.5em;
+    font-size: clamp(16px, .5vw, 30px);
+
+}
+
+footer .colunas ul li:first-child {
+    font-weight: bolder;
+    line-height: 3em;
+    font-size: clamp(16px, 3vw, 30px);
+    letter-spacing: 3px;
+    color: white;
+}
+
+footer .colunas ul li a{
+    transition: .3s;
+}
+
+footer .colunas ul li a:hover{
+    color: white;;
+}
+
+
+@media (max-width: 850px) {
+    section {
+        flex-direction: column;
+    }
+}
+@media (max-width: 560px) {
+    footer .colunas {
+        grid-template-columns: auto;
+    }
+
+    footer .colunas ul:not(:first-child){
+        border-left: none;
+    }
+    footer .colunas ul li:first-child{
+        font-size: 1.5em;
+    }
+
+}

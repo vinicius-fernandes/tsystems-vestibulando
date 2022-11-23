@@ -1,5 +1,6 @@
 export default interface IBanca{
   id?:number,
   nome:string,
-  sigla:string
+  sigla:string,
+  selecionado?:boolean
 }

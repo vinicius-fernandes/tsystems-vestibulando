@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import IGerarSimulado from '../interfaces/IGerarSimulado';
 
 @Injectable({
   providedIn: 'root'
@@ -11,4 +12,10 @@ export class SimuladoService {
 
 
    }
+
+
+   gerar(simulado:IGerarSimulado){
+    return this.http.post(`${this.baseUrl}/simulados/gerar`,simulado)
+   }
+
 }
