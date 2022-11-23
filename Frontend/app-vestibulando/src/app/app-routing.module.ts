@@ -14,25 +14,24 @@ import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.compo
 
 const routes: Routes = [
  {path:'perguntas',component:ListarComponent},
- {
-  path: 'modbancas', component: GerenciaBancasComponent
- },
- {
-  path: 'modbancas/addbanca', component: AdicionaBancaComponent
- },
- {
-  path: 'modbancas/editbanca/:id', component: EditaBancaComponent
- },
- {
-  path: 'modmaterias', component: GerenciaMateriasComponent
- }
 
   {
     path: 'app',
     component: LayoutPadraoComponent,
     children: [
       {path:'perguntas',component:ListarComponent},
-      {path:'gerarSimulado',component:GerarSimuladoComponent}
+      {path:'gerarSimulado',component:GerarSimuladoComponent},{
+        path: 'modbancas', component: GerenciaBancasComponent
+       },
+       {
+        path: 'modbancas/addbanca', component: AdicionaBancaComponent
+       },
+       {
+        path: 'modbancas/editbanca/:id', component: EditaBancaComponent
+       },
+       {
+        path: 'modmaterias', component: GerenciaMateriasComponent
+       },
     ]
   },
  {path:'', component:TelaComponent},

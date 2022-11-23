@@ -26,7 +26,6 @@ import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.compon
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
@@ -40,7 +39,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     GerenciaBancasComponent,
     GerenciaMateriasComponent,
     AdicionaBancaComponent,
-    EditaBancaComponent
+    EditaBancaComponent,
     LoginComponent,
     CadastroComponent,
     TelaComponent,
@@ -57,8 +56,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
-  ],
+    ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
