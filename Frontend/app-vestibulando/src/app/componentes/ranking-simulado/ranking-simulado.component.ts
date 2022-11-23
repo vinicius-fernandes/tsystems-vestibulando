@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import IRankingSimulado from "../../interfaces/IRankingSimulado";
 import {RankingSimuladoService} from "../../services/rankingSimulado.service";
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-ranking-simulado',
@@ -12,7 +12,7 @@ export class RankingSimuladoComponent implements OnInit{
 
   ranking:IRankingSimulado[] = []
 
-  id:number=0
+  id:number = 0
 
   constructor(private service: RankingSimuladoService, private route: ActivatedRoute) { }
 

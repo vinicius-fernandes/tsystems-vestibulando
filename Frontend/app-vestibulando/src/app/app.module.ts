@@ -30,6 +30,7 @@ import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking
 import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
 import { RespostasComponent } from './componentes/respostas/respostas.component';
 import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simulado/realizar-simulado.component';
+import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simul
     RankingSimuladoComponent,
     PerguntasComponent,
     RespostasComponent,
-    RealizarSimuladoComponent
+    RealizarSimuladoComponent,
+    ListaSimuladosComponent
   ],
   imports: [
     BrowserModule,
