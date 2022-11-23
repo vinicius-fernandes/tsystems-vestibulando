@@ -81,8 +81,16 @@ export class GerarSimuladoComponent implements OnInit {
   }
 
   enviar():void{
-    console.log(this.getBancasSelecionadas())
-    console.log(this.getMateriasSelecionadas())
+
+
+    this.simuladoService.gerar({numeroPerguntas:this.form.value.numPerguntas,materias:this.getMateriasSelecionadas(),bancas:this.getBancasSelecionadas()})
+                        .subscribe(
+                          {
+                            next: (gerado)=>console.log(gerado),
+                            error: (erro)=>console.log(erro)
+                          }
+                        )
+
   }
 
 
