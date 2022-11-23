@@ -10,6 +10,6 @@ export class UsuarioService {
   constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl:String) { }
 
   consultar(){
-    return this.http.get<[IUsuario]>(`${this.baseUrl}/usuario`);
+    return this.http.get<[IUsuario]>(`${this.baseUrl}/usuario`,{responseType:'json'});
   }
 }
