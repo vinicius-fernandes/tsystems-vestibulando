@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import IBanca from 'src/app/interfaces/IBanca';
 import { BancasService } from 'src/app/services/bancas.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-gerencia-bancas',
@@ -9,18 +10,23 @@ import { BancasService } from 'src/app/services/bancas.service';
 })
 export class GerenciaBancasComponent {
 
-  constructor(private serviceBanca: BancasService) {
+  constructor(private serviceBanca: BancasService, private toastr: ToastrService) {
 
   }
 
   bancas: IBanca[] = []
 
   ngOnInit(): void {
+    
     this.serviceBanca.consultar().subscribe(data => this.bancas = data)
   }
 
   excluirBanca(id: number) {
-    this.serviceBanca.excluir(id)
-    window.location.reload()
+    this.serviceBanca.excluir(id).subscribe({next: () => {
+      this.bancas = this.bancas.filter(b => b.id != id)
+      this.toastr.success('Banca excluída com sucesso!', 'Sucesso')
+    }, error: (erro) => {
+    this.toastr.error('Esta banca não pode ser excluída, há objetos ligados a ela.', 'Erro')
+    }})
   }
 }
