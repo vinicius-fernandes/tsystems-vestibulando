@@ -12,28 +12,24 @@ import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/ge
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import {RankingSimuladoComponent} from "./componentes/ranking-simulado/ranking-simulado.component";
 import { RespostasComponent } from './componentes/respostas/respostas.component';
-import {PerguntasComponent} from "./componentes/perguntas/perguntas.component";
-
 const routes: Routes = [
- {
-  path: 'modbancas', component: GerenciaBancasComponent
- },
- {
-  path: 'modbancas/addbanca', component: AdicionaBancaComponent
- },
- {
-  path: 'modbancas/editbanca/:id', component: EditaBancaComponent
- },
- {
-  path: 'modmaterias', component: GerenciaMateriasComponent
- },
-
   {
     path: 'app',
     component: LayoutPadraoComponent,
     children: [
       {path:'gerarSimulado',component:GerarSimuladoComponent},
-      {path:'perguntas',component:PerguntasComponent},
+      {
+        path: 'modbancas', component: GerenciaBancasComponent
+       },
+       {
+        path: 'modbancas/addbanca', component: AdicionaBancaComponent
+       },
+       {
+        path: 'modbancas/editbanca/:id', component: EditaBancaComponent
+       },
+       {
+        path: 'modmaterias', component: GerenciaMateriasComponent
+       },
       {path: 'respostas', component: RespostasComponent},
       {path: 'rankingSimulado/:id', component:RankingSimuladoComponent}
     ]

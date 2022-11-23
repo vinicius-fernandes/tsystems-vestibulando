@@ -41,6 +41,10 @@ export class AdicionaBancaComponent {
       next: () => {
         this.toastr.success('Banca adicionada com sucesso!', 'Sucesso')
         window.history.back()
+      },
+      error: () => {
+        this.toastr.error('Não foi possível adicionar a banca.', 'Erro')
+        window.history.back()
       }
     })
   }
