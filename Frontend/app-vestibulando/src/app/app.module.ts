@@ -13,7 +13,6 @@ import { HeaderComponent } from './componentes/layout/header/header.component';
 import { SidebarComponent } from './componentes/layout/sidebar/sidebar.component';
 import { FooterComponent } from './componentes/layout/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ListarComponent } from './componentes/perguntas/listar/listar.component';
 import {HttpClientModule} from '@angular/common/http';
 import { environment } from 'src/environment';
 import { GerenciaMateriasComponent } from './componentes/layout/gerencia-materias/gerencia-materias.component';
@@ -27,6 +26,9 @@ import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.compo
 import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
+import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
+import { RespostasComponent } from './componentes/respostas/respostas.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CadastroComponent,
     TelaComponent,
     LayoutPadraoComponent,
-    GerarSimuladoComponent
+    GerarSimuladoComponent,
+    RankingSimuladoComponent,
+    PerguntasComponent,
+    RespostasComponent
   ],
   imports: [
     BrowserModule,
