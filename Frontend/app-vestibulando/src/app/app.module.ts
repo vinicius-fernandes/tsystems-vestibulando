@@ -29,6 +29,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
 import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
 import { RespostasComponent } from './componentes/respostas/respostas.component';
+import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { RespostasComponent } from './componentes/respostas/respostas.component'
     GerarSimuladoComponent,
     RankingSimuladoComponent,
     PerguntasComponent,
-    RespostasComponent
+    RespostasComponent,
+    ListaSimuladosComponent
   ],
   imports: [
     BrowserModule,
