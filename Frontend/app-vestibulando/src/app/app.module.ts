@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -13,6 +14,13 @@ import { LoginComponent } from './componentes/inicio/login/login.component';
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
+import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule   } from '@angular/material/form-field';
+import { MatInputModule   } from '@angular/material/input';
+import { MatButtonModule   } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -24,13 +32,21 @@ import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.compo
     LoginComponent,
     CadastroComponent,
     TelaComponent,
-    LayoutPadraoComponent
+    LayoutPadraoComponent,
+    GerarSimuladoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+    ],
   providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl }],
   bootstrap: [AppComponent]
 })
