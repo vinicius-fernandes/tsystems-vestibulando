@@ -10,4 +10,3 @@ export default interface IPergunta {
     bancas: IBanca,
     respostas?: IResposta[]
 }
-  

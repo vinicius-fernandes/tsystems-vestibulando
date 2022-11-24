@@ -4,6 +4,7 @@ import com.vestibulando.dtos.NotaSimuladoUsuarioDTO;
 import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.Usuario;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RespostasUsuariosService {
@@ -32,6 +35,10 @@ public class RespostasUsuariosService {
     }
 
     public RespostasUsuarios salvar(RespostasUsuarios respostaUsuario){
+        Optional<RespostasUsuarios> respUser = respostasUsuariosRepository.getBySimuladoAndUsuario(respostaUsuario.getSimulado().getId(),respostaUsuario.getUsuario().getId());
+        respUser.ifPresent(respostasUsuarios -> this.deletar(respostasUsuarios.getId()));
+
+
         return respostasUsuariosRepository.save(respostaUsuario);
     }
 
@@ -51,11 +58,30 @@ public class RespostasUsuariosService {
     }
 
     public List<RankingSimuladoDTO> getRankingSimulado(Long idSimulado){
-        return respostasUsuariosRepository.getRankingSimulado(idSimulado) ;
+        Set<Usuario> usuariosSimulado = respostasUsuariosRepository.getUsuariosSimulado(idSimulado);
+
+        List<RankingSimuladoDTO> ranking = respostasUsuariosRepository.getRankingSimulado(idSimulado);
+        for(Usuario user : usuariosSimulado){
+            if(ranking.stream().anyMatch(c->c.getIdUsuario()==user.getId())){
+                continue;
+            }
+            RankingSimuladoDTO rankingUser0 = new RankingSimuladoDTO(user.getId(), user.getEmail(), 0);
+            ranking.add(rankingUser0);
+        }
+        return  ranking;
     }
 
     public NotaSimuladoUsuarioDTO getNotaSimuladoUsuario(long idUsuario,long idSimulado){
-        return respostasUsuariosRepository.getNotaSimuladoUsuario(idSimulado,idUsuario).orElseThrow(()-> new EntityNotFoundException("Não foi possível encontrar respostas para o usuário e simulados especificados!"));
+
+        Optional<NotaSimuladoUsuarioDTO> notaSimulado = respostasUsuariosRepository.getNotaSimuladoUsuario(idSimulado,idUsuario);
+        if(notaSimulado.isEmpty()){
+            Optional<RespostasUsuarios> respUser = respostasUsuariosRepository.getBySimuladoAndUsuario(idSimulado,idUsuario);
+            if(respUser.isEmpty()){
+                throw new EntityNotFoundException("Não foi possível encontrar respostas para o usuário e simulados especificados!");
+            }
+            return new NotaSimuladoUsuarioDTO(idSimulado,0);
+        }
+        return notaSimulado.get();
     }
 
     public List<NotaSimuladoUsuarioDTO> getNotasSimuladosUsuario(long idUsuario){

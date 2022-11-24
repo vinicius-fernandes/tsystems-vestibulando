@@ -17,9 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.mockito.ArgumentMatchers.eq;
 
@@ -76,7 +74,7 @@ public class PerguntaServiceTests {
         Resposta resp1 = new Resposta();
         Resposta resp2 = new Resposta();
         Resposta resp3 = new Resposta();
-        List<Resposta> respostasPergunta = new ArrayList<>();
+        Set<Resposta> respostasPergunta = new LinkedHashSet<>();
         respostasPergunta.add(resp1);
         respostasPergunta.add(resp2);
         respostasPergunta.add(resp3);

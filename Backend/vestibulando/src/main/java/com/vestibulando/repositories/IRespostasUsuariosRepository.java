@@ -4,12 +4,14 @@ import com.vestibulando.dtos.NotaSimuladoUsuarioDTO;
 import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsuarios,Long> {
@@ -41,6 +43,13 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
             " group by ru.simulado.id "
     )
     Optional<NotaSimuladoUsuarioDTO> getNotaSimuladoUsuario( long idSimulado,long idUsuario);
+
+
+    @Query("select u from RespostasUsuarios ru join ru.usuario u where ru.simulado.id=?1 ")
+    Set<Usuario> getUsuariosSimulado(long idSimulado);
+
+    @Query("select ru from RespostasUsuarios ru where ru.simulado.id=?1 and ru.usuario.id= ?2 ")
+    Optional<RespostasUsuarios> getBySimuladoAndUsuario(long idSimulado,long idUsuario);
 
     @Query("select new com.vestibulando.dtos.NotaSimuladoUsuarioDTO("+
             "ru.simulado.id ,"+

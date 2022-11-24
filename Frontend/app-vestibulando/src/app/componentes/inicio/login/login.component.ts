@@ -14,6 +14,6 @@ export class LoginComponent {
   }
 
   redirecionarGerarSimulado() {
-    this._router.navigateByUrl('/app/gerarSimulado')
+    this._router.navigateByUrl('/app/simulados/gerarSimulado')
   }
 }
