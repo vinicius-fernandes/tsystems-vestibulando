@@ -32,7 +32,7 @@
               *Selecione ao menos uma matéria
             </div>
             <div>
-              <div formArrayName="materias">
+              <div formArrayName="materias" class="materias">
                 <mat-checkbox
                   *ngFor="let mat of materiasFormArray.controls; let i = index"
                   [formControlName]="i"
