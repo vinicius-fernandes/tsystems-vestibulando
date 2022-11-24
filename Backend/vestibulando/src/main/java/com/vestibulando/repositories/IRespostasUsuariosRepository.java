@@ -42,6 +42,9 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
     )
     Optional<NotaSimuladoUsuarioDTO> getNotaSimuladoUsuario( long idSimulado,long idUsuario);
 
+    @Query("select ru from RespostasUsuarios ru where ru.simulado.id=?1 and ru.usuario.id= ?2 ")
+    Optional<RespostasUsuarios> getBySimuladoAndUsuario(long idSimulado,long idUsuario);
+
     @Query("select new com.vestibulando.dtos.NotaSimuladoUsuarioDTO("+
             "ru.simulado.id ,"+
             "count(*)"+

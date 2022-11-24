@@ -1,5 +1,7 @@
 package com.vestibulando.dtos;
 
+import com.vestibulando.entities.Materia;
+
 public class MateriaDTO {
     private long id;
     private String nome;
@@ -7,6 +9,10 @@ public class MateriaDTO {
     public MateriaDTO(long id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+    public MateriaDTO(Materia mat){
+        this.id=mat.getId();
+        this.nome=mat.getNome();
     }
 
     public long getId() {

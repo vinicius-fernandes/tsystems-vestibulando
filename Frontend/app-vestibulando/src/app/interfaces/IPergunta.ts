@@ -7,6 +7,5 @@ export default interface IPergunta {
     corpo: string,
     materias: IMateria,
     bancas: IBanca,
-    simulado: IGerarSimulado[]
 }
   
