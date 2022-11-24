@@ -2,12 +2,12 @@
     <header>
         <a routerLink="">
             <div class="fa-2x" >
-                <i class="fas fa-sign-out-alt" style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
+                <i class="fas fa-arrow-left" style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
             </div>
         </a>
-    </header> 
+    </header>
     <div>
-        <div class="text-center">    
+        <div class="text-center">
             <img src="../../../../assets/images/logo_azul_sem_fundo.png" alt="Logo Vestibulando" class="logo" id="logo">
         </div>
     </div>
@@ -15,23 +15,25 @@
     <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
         <h3 class="tituloCadastro"><b>Cadastro</b></h3>
         <form [formGroup]="form">
-            <input formControlName="nome" type="text" class="myinput" placeholder="Nome Completo"required>    
+          <div>
+            <input formControlName="nome" type="text" class="myinput" placeholder="Nome Completo" required>
+            <p *ngIf="form.controls['nome'].hasError('minlength')">Favor informar nome e sobrenome</p>
             <p *ngIf="form.controls['nome'].hasError('required')">O nome completo é obrigatório</p>
-            <p *ngIf="form.controls['nome'].hasError('minLength')">Favor informar nome e sobrenome</p>
-
+          </div>
+          <div>
             <input formControlName="email" type="email" class="myinput" placeholder="E-mail" required>
             <p *ngIf="form.controls['email'].hasError('required')">O preenchimento do e-mail é obrigatório</p>
             <p *ngIf="form.controls['email'].hasError('email')">O e-mail não é válido</p>
-
-            <input formControlName="senha" type="password" class="myinput" placeholder="Senha"required>
+          </div>
+          <div>
+            <input formControlName="senha" type="password" class="myinput" placeholder="Senha" required>
             <p *ngIf="form.controls['senha'].hasError('required')">O preenchimento da senha é obrigatório</p>
-            <p *ngIf="form.controls['senha'].hasError('minLength')">A senha deve possuir no mínimo 6 caracteres</p>
-            <p *ngIf="form.controls['senha'].hasError('maxLength')">A senha deve possuir no máximo 20 caracteres</p>
-            <p *ngIf="form.controls['senha'].hasError('min')">A senha deve possuir ao menos 1 número em sua composição</p>
-
-            <div class="botao">
-                <button class="btn botaoazul" (click)="cadastrar()" [disabled]="!form.valid">Cadastrar</button>
-            </div>
+            <p *ngIf="form.controls['senha'].hasError('minlength')">A senha deve possuir no mínimo 6 caracteres</p>
+            <p *ngIf="form.controls['senha'].hasError('maxlength')">A senha deve possuir no máximo 20 caracteres</p>
+          </div>
+          <div class="botao">
+              <button class="btn botaoazul" (click)="cadastrar()" [disabled]="!form.valid">Cadastrar</button>
+          </div>
         </form>
     </div>
 </div>
