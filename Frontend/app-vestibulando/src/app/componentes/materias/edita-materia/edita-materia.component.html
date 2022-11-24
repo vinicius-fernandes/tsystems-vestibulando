@@ -1,0 +1,18 @@
+<p class=""><a routerLink="../.."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a></p>
+
+<h1 class="text-center">Editar Matéria</h1>
+
+<div class="text-center">
+    <mat-form-field appearance="fill" color="primary" class="comp-75">
+        <mat-label>ID da Matéria</mat-label>
+        <input [(ngModel)]="materia.id" matInput placeholder="Informe o ID da banca" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary" class="comp-75">
+        <mat-label>Nome da Matéria</mat-label>
+        <input [(ngModel)]="materia.nome" matInput placeholder="Informe o nome da banca">
+    </mat-form-field>
+</div>
+
+<div class="text-start mleft-125">
+    <button mat-raised-button color="primary" (click)="editarMateria()">Salvar</button>
+</div>

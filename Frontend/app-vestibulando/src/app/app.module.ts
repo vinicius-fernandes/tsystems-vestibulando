@@ -15,10 +15,10 @@ import { SidebarComponent } from './componentes/layout/sidebar/sidebar.component
 import { FooterComponent } from './componentes/layout/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environment';
-import { GerenciaMateriasComponent } from './componentes/layout/gerencia-materias/gerencia-materias.component';
-import { GerenciaBancasComponent } from './componentes/layout/gerencia-bancas/gerencia-bancas.component';
-import { AdicionaBancaComponent } from './componentes/layout/adiciona-banca/adiciona-banca.component';
-import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banca.component';
+import { GerenciaMateriasComponent } from './componentes/materias/gerencia-materias/gerencia-materias.component';
+import { GerenciaBancasComponent } from './componentes/bancas/gerencia-bancas/gerencia-bancas.component';
+import { AdicionaBancaComponent } from './componentes/bancas/adiciona-banca/adiciona-banca.component';
+import { EditaBancaComponent } from './componentes/bancas/edita-banca/edita-banca.component';
 import { LoginComponent } from './componentes/inicio/login/login.component';
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
@@ -33,6 +33,8 @@ import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simul
 import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
+import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materia/adiciona-materia.component';
+import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario
     RealizarSimuladoComponent,
     ListaSimuladosComponent,
     UsuariosComponent,
-    EditaUsuarioComponent
+    EditaUsuarioComponent,
+    AdicionaMateriaComponent,
+    EditaMateriaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdicionaBancaComponent } from './componentes/layout/adiciona-banca/adiciona-banca.component';
-import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banca.component';
-import { GerenciaBancasComponent } from './componentes/layout/gerencia-bancas/gerencia-bancas.component';
-import { GerenciaMateriasComponent } from './componentes/layout/gerencia-materias/gerencia-materias.component';
+import { AdicionaBancaComponent } from './componentes/bancas/adiciona-banca/adiciona-banca.component';
+import { EditaBancaComponent } from './componentes/bancas/edita-banca/edita-banca.component';
+import { GerenciaBancasComponent } from './componentes/bancas/gerencia-bancas/gerencia-bancas.component';
+import { GerenciaMateriasComponent } from './componentes/materias/gerencia-materias/gerencia-materias.component';
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { LoginComponent } from './componentes/inicio/login/login.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
@@ -17,6 +17,8 @@ import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
 
+import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materia/adiciona-materia.component';
+import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
 const routes: Routes = [
   {
     path: 'app',
@@ -31,12 +33,13 @@ const routes: Routes = [
       { path: 'modbancas/addbanca', component: AdicionaBancaComponent },
       { path: 'modbancas/editbanca/:id', component: EditaBancaComponent },
       { path: 'modmaterias', component: GerenciaMateriasComponent },
+      { path: 'modmaterias/addmateria', component: AdicionaMateriaComponent},
+      { path: 'modmaterias/editmateria/:id', component: EditaMateriaComponent},
       { path: 'respostas', component: RespostasComponent },
-      { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
       { path: 'usuarios', component: UsuariosComponent },
-      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent }
-
-    ],
+      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent },
+      { path: 'rankingSimulado/:id', component:RankingSimuladoComponent}
+    ]
   },
   { path: '', component: TelaComponent },
   { path: 'login', component: LoginComponent },
