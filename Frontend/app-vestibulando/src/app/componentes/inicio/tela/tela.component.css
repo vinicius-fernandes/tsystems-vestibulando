@@ -19,15 +19,13 @@ a {
     text-decoration: inherit;
 }
 
-
-
 .banner {
     height: 80vh;
     width: 100vw;
     min-height: 500px;
     max-width: 100%;
     background-image:linear-gradient(to bottom, rgba(1,0,0,0.5), rgb(1, 1, 1)),
-    url(https://uniandrade.br/wp-content/uploads/2020/07/simulado-tem-varias-questoes-vestibular-57d9a8d50b0b0.jpg);    
+    url(https://uniandrade.br/wp-content/uploads/2020/07/simulado-tem-varias-questoes-vestibular-57d9a8d50b0b0.jpg);
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -72,7 +70,7 @@ nav a:nth-child(2) img {
 }
 
 .btn {
-    padding: .5rem 1rem;
+    padding: .8rem 1.2rem;
     border-radius: 15px;
     background-color: #30BCED;
     color: #30BCED;
@@ -126,7 +124,7 @@ footer .colunas ul {
 }
 
 footer .colunas ul:not(:first-child) {
-    border-left: 1px solid rgb(var(--branco));
+    border-left: 1px solid rgb(255, 250, 255);
 }
 
 footer .colunas ul li {
@@ -162,8 +160,9 @@ footer .colunas ul li a:hover{
         grid-template-columns: auto;
     }
 
-    footer .colunas ul:not(:first-child){
-        border-left: none;
+    footer .colunas ul:not(:first-child) {
+      border-top: 1px solid rgb(255, 250, 255);
+      margin-top: 10px;
     }
     footer .colunas ul li:first-child{
         font-size: 1.5em;
