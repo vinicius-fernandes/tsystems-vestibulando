@@ -1,7 +1,7 @@
-export default interface IBanca{
+export default interface IUsuario{
     id?:number,
-    nome:string,
     email:string,
-    senha: string,
-    tipo : number
-  }
+    senha?:string,
+    nome:string
+    tipo: string
+}

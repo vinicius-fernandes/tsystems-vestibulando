@@ -7,52 +7,43 @@ import { GerenciaMateriasComponent } from './componentes/layout/gerencia-materia
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { LoginComponent } from './componentes/inicio/login/login.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
-import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
-
-import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
-import {RankingSimuladoComponent} from "./componentes/ranking-simulado/ranking-simulado.component";
 import { RespostasComponent } from './componentes/respostas/respostas.component';
+
 import {ListaSimuladosComponent} from "./componentes/lista-simulados/lista-simulados.component";
+import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
+import { ListarPerguntasComponent } from './componentes/listar-perguntas/listar-perguntas.component';
+import { EditarRespostasComponent } from './componentes/editar-respostas/editar-respostas.component';
+import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
+import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
+import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
+import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
+
+
 const routes: Routes = [
   {
     path: 'app',
     component: LayoutPadraoComponent,
     children: [
-      {
-        path:'gerarSimulado',component:GerarSimuladoComponent
-      },
-      {
-        path: 'modbancas', component: GerenciaBancasComponent
-       },
-       {
-        path: 'modbancas/addbanca', component: AdicionaBancaComponent
-       },
-       {
-        path: 'modbancas/editbanca/:id', component: EditaBancaComponent
-       },
-       {
-        path: 'modmaterias', component: GerenciaMateriasComponent
-       },
-      {
-        path: 'respostas', component: RespostasComponent
-      },
-      {
-        path: 'rankingSimulado/:id', component:RankingSimuladoComponent
-      },
-      {
-        path: 'listaSimulados', component: ListaSimuladosComponent
-      }
-    ]
+      { path: 'respostas', component: RespostasComponent },
+      { path: 'perguntas', component: PerguntasComponent },
+      { path: 'listarPerguntas', component: ListarPerguntasComponent },
+      { path: 'editarRespostas', component: EditarRespostasComponent },
+      { path: 'gerarSimulado', component: GerarSimuladoComponent },
+      { path: 'modbancas', component: GerenciaBancasComponent },
+      { path: 'modbancas/addbanca', component: AdicionaBancaComponent },
+      { path: 'modbancas/editbanca/:id', component: EditaBancaComponent },
+      { path: 'modmaterias', component: GerenciaMateriasComponent },
+      { path: 'respostas', component: RespostasComponent },
+      { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
+      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent },
+      { path: 'listaSimulados', component: ListaSimuladosComponent }
+    ],
   },
- {
-   path:'', component:TelaComponent
- },
- {
-   path:'login', component:LoginComponent
- },
- {
-   path:'cadastro', component:CadastroComponent
- },
+  { path: '', component: TelaComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'cadastro', component: CadastroComponent },
 ];
 
 @NgModule({

@@ -1,1 +1,200 @@
-<p>perguntas works!</p>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="min-height: 1183px">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <section class="content">
+      <div class="row">
+        <div class="col text-center">
+          <h1>Cadastro de pergunta</h1>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-6 mb-3">
+          <label for="banca" class="form-label">Bancas</label>
+          <select class="form-select" name="" id="banca">
+            <option selected="">Selecione uma banca...</option>
+            <option value="">Enem</option>
+            <option value="">Fuvest</option>
+            <option value="">Unicamp</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-6 mb-3">
+          <label for="materia" class="form-label">Matéria da pergunta</label>
+          <select class="form-select" name="" id="materia">
+            <option selected="">Selecione uma matéria...</option>
+            <option value="">Exatas</option>
+            <option value="">Literatura</option>
+            <option value="">Gramática</option>
+            <option value="">Ciências da natureza</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-6 mb-3">
+          <label for="enunciado" class="form-label"
+            >Enunciado da pergunta</label
+          >
+          <textarea
+            class="form-control"
+            name=""
+            id="enunciado"
+            placeholder="Insira o enunciado da pergunta ..."
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="row justify-content-center align-items-center g-2">
+        <div class="col-6">
+          <h4>Respostas</h4>
+          <div class="row">
+            <div class="col-7">
+              <p>Texto resposta</p>
+              <small>Cadastre 5 repostas</small>
+            </div>
+            <div class="col-3 ml-1"><p>Resposta correta?</p></div>
+          </div>
+          <div id="containerRespostas">
+
+            <div class="row">
+              <div class="col-7">
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    name=""
+                    id="resposta1"
+                    aria-describedby="helpId"
+                    placeholder="Insira a primeira resposta"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col ml-1">
+                <div class="mb-3 form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="respostaCorreta"
+                    value="resposta1"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-7">
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    name=""
+                    id="resposta2"
+                    aria-describedby="helpId"
+                    placeholder="Insira a segunda resposta"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col ml-1">
+                <div class="mb-3 form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="respostaCorreta"
+                    value="resposta2"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-7">
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    name=""
+                    id="resposta3"
+                    aria-describedby="helpId"
+                    placeholder="Insira a terceira resposta"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col ml-1">
+                <div class="mb-3 form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="respostaCorreta"
+                    value="resposta3"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-7">
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    name=""
+                    id="resposta4"
+                    aria-describedby="helpId"
+                    placeholder="Insira a quarta resposta"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col ml-1">
+                <div class="mb-3 form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="respostaCorreta"
+                    value="resposta4"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-7">
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    name=""
+                    id="resposta5"
+                    aria-describedby="helpId"
+                    placeholder="Insira a quinta resposta"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col ml-1">
+                <div class="mb-3 form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="respostaCorreta"
+                    value="resposta5"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center g-1">
+        <div class="col-1">
+          <button class="btn btn-primary float-end">Salvar pergunta</button>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+</div>

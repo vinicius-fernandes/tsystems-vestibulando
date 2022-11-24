@@ -1,0 +1,19 @@
+<h1 class="text-center mt-2">Lista de perguntas</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Corpo</td>
+      <td>Ações</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let perg of perguntas">
+      <td>{{ perg.id }}</td>
+      <td>{{ perg.corpo }}</td>
+      <td>
+        <!-- <a [routerLink]="['/editar', ct.id]">Editar</a> -->
+      </td>
+    </tr>
+  </tbody>
+</table>

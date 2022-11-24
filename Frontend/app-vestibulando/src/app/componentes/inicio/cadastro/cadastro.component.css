@@ -24,12 +24,17 @@
     border-radius: 8px;
 }
 
+p{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .myinput {
-    width: 80%;
+    width: 350px;
     border-radius: 6px;
     background-color: #303036;
     padding: 3px 0 8px 3px;
-    margin-bottom: 35px;
+    margin-bottom: 1px;
     text-align: center;
     color: white;
 }
@@ -37,16 +42,22 @@
 .myinput::placeholder {
     color: rgba(255, 255, 255, 0.8);
     font-style: clamp;
+    text-align: center;
 }
 
 .marg-10 {
     margin-bottom: 10px;
 }
 
+.botao{
+    text-align: center;
+}
+
 .botaoazul {
     background-color: #30BCED;
     margin-bottom: 30px;
     font-style: clamp;
+    align-items: center;
 }
 
 .botaoazul:hover {
