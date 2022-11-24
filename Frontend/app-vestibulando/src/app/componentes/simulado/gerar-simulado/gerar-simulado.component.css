@@ -1,0 +1,9 @@
+.materias {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media screen and (max-width: 768px) {
+  .materias {
+    grid-template-columns: 1fr;
+  }
+}

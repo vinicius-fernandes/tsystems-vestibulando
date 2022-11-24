@@ -17,8 +17,8 @@
         <input type="text" class="myinput" placeholder="E-mail" required>
         <input type="password" class="myinput" placeholder="Senha" required>
         <div class="botoesLogin">
-            <a routerLink="/app/gerarSimulado"><button class="btn botaoazul">Login</button></a>
-            <a routerLink="../cadastro"><button class="btn botaoazul">Cadastro</button></a>
+            <button class="btn botaoazul" (click)="redirecionarGerarSimulado()">Login</button>
+            <button class="btn botaoazul" (click)="redirecionarCadastro()">Cadastro</button>
         </div>
     </div>
 </div>
