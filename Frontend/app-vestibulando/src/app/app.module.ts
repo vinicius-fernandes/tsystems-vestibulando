@@ -33,6 +33,8 @@ import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simul
 import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
+import { AddusuarioComponent } from './componentes/addusuario/addusuario.component';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario
     RealizarSimuladoComponent,
     ListaSimuladosComponent,
     UsuariosComponent,
-    EditaUsuarioComponent
+    EditaUsuarioComponent,
+    AddusuarioComponent
   ],
   imports: [
     BrowserModule,

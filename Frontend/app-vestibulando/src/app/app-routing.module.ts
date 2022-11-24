@@ -16,6 +16,7 @@ import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.compo
 import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
+import { AddusuarioComponent } from './componentes/addusuario/addusuario.component';
 
 const routes: Routes = [
   {
@@ -34,7 +35,8 @@ const routes: Routes = [
       { path: 'respostas', component: RespostasComponent },
       { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
       { path: 'usuarios', component: UsuariosComponent },
-      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent }
+      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent },
+      { path: 'usuarios/adduser', component: AddusuarioComponent }
 
     ],
   },

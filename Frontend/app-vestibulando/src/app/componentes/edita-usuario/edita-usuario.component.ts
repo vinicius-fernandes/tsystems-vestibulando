@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import IUsuario from 'src/app/interfaces/IUsuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -10,18 +11,46 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class EditaUsuarioComponent implements OnInit {
 
-  usuario: IUsuario ={nome:"", email: "", tipo: "", senha:"" }
+  usuario: IUsuario = { nome: "", email: "", tipo: "", senha: "" }
 
-  constructor(private route: ActivatedRoute, private service:UsuarioService){ }
-  
+  constructor(private route: ActivatedRoute, private service: UsuarioService, private toastr: ToastrService, private router: Router) { }
+
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap
     let iduser = parseInt(routeParams.get('idusuario') || '')
     this.service.consultarbyId(iduser).subscribe(data => this.usuario = data)
   }
 
-  alterar(){
-    this.service.alterar(this.usuario).subscribe((data: any) => console.log(data))
+  alterar() {
+
+    let teveErro = false;
+
+    if ( this.usuario.nome.length < 3 || this.usuario.nome.indexOf(" ") == -1) {
+      teveErro = true
+      this.toastr.error('Insira o nome completo', 'Erro')
+    }
+
+    if ( this.usuario.senha != null && (this.usuario.senha.length < 5 || this.usuario.senha.indexOf(" ") != -1)) {
+      teveErro = true
+      this.toastr.error('A senha deve conter no mínimo 6 caracteres e não pode conter espaços', 'Erro')
+    }
+
+    if (this.usuario.email.indexOf("@") == -1 || this.usuario.email.indexOf(".com") == -1) {
+      teveErro = true
+      this.toastr.error('Email Invalido', 'Erro')
+    }
+
+    if ( teveErro ) {
+      return
+    }
+    this.service.alterar(this.usuario).subscribe({
+      next: () => {
+        this.toastr.success('Usuario alteardo com sucesso!', 'Sucesso')
+        this.router.navigate(['/app/usuarios'])
+      }, error: (erro) => {
+        this.toastr.error('Este usuário não pode ser alterado, verifique todos os campos', 'Erro')
+      }
+    })
   }
 
 }
