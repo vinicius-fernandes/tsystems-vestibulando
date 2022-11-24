@@ -15,10 +15,10 @@ import { FooterComponent } from './componentes/layout/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { environment } from 'src/environment';
-import { GerenciaMateriasComponent } from './componentes/layout/gerencia-materias/gerencia-materias.component';
-import { GerenciaBancasComponent } from './componentes/layout/gerencia-bancas/gerencia-bancas.component';
-import { AdicionaBancaComponent } from './componentes/layout/adiciona-banca/adiciona-banca.component';
-import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banca.component';
+import { GerenciaMateriasComponent } from './componentes/materias/gerencia-materias/gerencia-materias.component';
+import { GerenciaBancasComponent } from './componentes/bancas/gerencia-bancas/gerencia-bancas.component';
+import { AdicionaBancaComponent } from './componentes/bancas/adiciona-banca/adiciona-banca.component';
+import { EditaBancaComponent } from './componentes/bancas/edita-banca/edita-banca.component';
 import { LoginComponent } from './componentes/inicio/login/login.component';
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
@@ -29,6 +29,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
 import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
 import { RespostasComponent } from './componentes/respostas/respostas.component';
+import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materia/adiciona-materia.component';
+import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { RespostasComponent } from './componentes/respostas/respostas.component'
     GerarSimuladoComponent,
     RankingSimuladoComponent,
     PerguntasComponent,
-    RespostasComponent
+    RespostasComponent,
+    AdicionaMateriaComponent,
+    EditaMateriaComponent
   ],
   imports: [
     BrowserModule,

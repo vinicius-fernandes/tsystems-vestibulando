@@ -12,4 +12,20 @@ export class MateriasService {
   consultar(){
     return this.http.get<[IMateria]>(`${this.baseUrl}/materia`);
   }
+
+  consultarPorId(id: number) {
+    return this.http.get<IMateria>(`${this.baseUrl}/materia/${id}`)
+  }
+
+  excluir(id: number) {
+    return this.http.delete(`${this.baseUrl}/materia/${id}`, {responseType: "arraybuffer"})
+  }
+
+  salvar(dados: IMateria) {
+    return this.http.post<IMateria>(`${this.baseUrl}/materia`, dados)
+  }
+
+  editar(dados: IMateria) {
+    return this.http.put<IMateria>(`${this.baseUrl}/materia/${dados.id}`, dados)
+  }
 }

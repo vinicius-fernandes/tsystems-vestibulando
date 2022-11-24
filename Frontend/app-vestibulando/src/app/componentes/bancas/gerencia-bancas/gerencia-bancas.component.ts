@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import IBanca from 'src/app/interfaces/IBanca';
 import { BancasService } from 'src/app/services/bancas.service';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './gerencia-bancas.component.html',
   styleUrls: ['./gerencia-bancas.component.css']
 })
-export class GerenciaBancasComponent {
+export class GerenciaBancasComponent implements OnInit {
 
   constructor(private serviceBanca: BancasService, private toastr: ToastrService) {
 
@@ -17,7 +17,6 @@ export class GerenciaBancasComponent {
   bancas: IBanca[] = []
 
   ngOnInit(): void {
-    
     this.serviceBanca.consultar().subscribe(data => this.bancas = data)
   }
 
@@ -26,7 +25,8 @@ export class GerenciaBancasComponent {
       this.bancas = this.bancas.filter(b => b.id != id)
       this.toastr.success('Banca excluída com sucesso!', 'Sucesso')
     }, error: (erro) => {
-    this.toastr.error('Esta banca não pode ser excluída, há objetos ligados a ela.', 'Erro')
+      this.toastr.error('Esta banca não pode ser excluída, há objetos ligados a ela.', 'Erro')
+      console.log(erro)
     }})
   }
 }
