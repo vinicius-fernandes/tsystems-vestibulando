@@ -8,6 +8,8 @@ import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.compon
 import { LoginComponent } from './componentes/inicio/login/login.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { RespostasComponent } from './componentes/respostas/respostas.component';
+
+import {ListaSimuladosComponent} from "./componentes/lista-simulados/lista-simulados.component";
 import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
 import { ListarPerguntasComponent } from './componentes/listar-perguntas/listar-perguntas.component';
 import { EditarRespostasComponent } from './componentes/editar-respostas/editar-respostas.component';
@@ -17,6 +19,7 @@ import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
 import { AddusuarioComponent } from './componentes/addusuario/addusuario.component';
+
 
 const routes: Routes = [
   {
@@ -36,8 +39,8 @@ const routes: Routes = [
       { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent },
-      { path: 'usuarios/adduser', component: AddusuarioComponent }
-
+      { path: 'usuarios/adduser', component: AddusuarioComponent },
+      { path: 'listaSimulados', component: ListaSimuladosComponent }
     ],
   },
   { path: '', component: TelaComponent },

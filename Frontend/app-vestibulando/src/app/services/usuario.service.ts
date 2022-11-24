@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import IUsuario from '../interfaces/IUsuario';
+import IUsuarioDTO from '../interfaces/IUsuarioDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,9 @@ export class UsuarioService {
 
   salvar(usuario: IUsuario){
     return this.http.post<IUsuario>(`${this.baseUrl}/usuarios/`,usuario)
+  }
+  cadastrar(usuario: IUsuarioDTO|IUsuario){
+    return this.http.post<IUsuario>(`${this.baseUrl}/usuarios`, usuario)
   }
 }
 

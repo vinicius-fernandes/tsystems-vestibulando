@@ -2,6 +2,7 @@ package com.vestibulando.services;
 
 import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Usuario;
+import com.vestibulando.enums.EnumsUsuario;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,9 @@ public class UsuarioService {
     }
 
     public UsuarioDTO salvarUsuario(Usuario usuario) {
+        if(usuario.getTipo()==null){
+            usuario.setTipo(EnumsUsuario.CLIENTE);
+        }
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRepository.save(usuario));
         return usuarioDTO;
     }

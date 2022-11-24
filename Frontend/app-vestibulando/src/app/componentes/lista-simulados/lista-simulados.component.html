@@ -1,1 +1,35 @@
-<p>lista-simulados works!</p>
+<h1>Lista de Simulados</h1>
+<div class="grid">
+  <div class="card" *ngFor="let simulado of simulados">
+    <p> {{simulado.perguntas.length}} perguntas </p>
+    <div *ngIf="simulado.bancas.length>0">
+      <p>Bancas:</p>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let banca of simulado.bancas">{{banca.sigla}}</li>
+      </ul>
+    </div>
+    <div *ngIf="simulado.materias.length > 0">
+      <p >Matérias:</p>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let materia of simulado.materias">{{materia.nome}}</li>
+      </ul>
+    </div>
+
+    <p>Criado em: <br> {{converterData(simulado.createdAt)}}</p>
+    <div *ngIf="simulado.updatedAt != null">
+      <p> Editado em: <br> {{converterData(simulado.updatedAt)}}</p>
+    </div>
+    <div class="botoes">
+      <button
+        class="btn btn-outline-dark"
+        (click)="redirecionarSimulado(simulado.id)">
+        Resolver Simulado
+      </button>
+      <button
+        class="btn btn-outline-dark"
+        (click)="redirecionarRanking(simulado.id)">
+        Acessar Ranking
+      </button>
+    </div>
+  </div>
+</div>
