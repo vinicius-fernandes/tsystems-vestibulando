@@ -27,9 +27,10 @@ export class GerenciaQuestoesComponent {
       next: () => {
         this.toastr.success('Pergunta excluida com sucesso!', 'Sucesso');
       },
-      error: () => {
+      error: (err) => {
+        console.log(err);
         this.toastr.error('Não foi possível excluir a pergunta.', 'Erro');
-      }
+      },
     });
   }
 }

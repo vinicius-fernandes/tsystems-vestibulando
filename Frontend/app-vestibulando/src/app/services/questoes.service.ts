@@ -23,6 +23,10 @@ export class QuestoesService {
     return this.http.get<IPergunta>(`${this.baseUrl}/perguntas/${id}`);
   }
 
+  editar(dados: IPergunta) {
+    return this.http.put<IPergunta>(`${this.baseUrl}/perguntas/${dados.id}`, dados)
+  }
+
   excluir(id: number) {
     return this.http.delete(`${this.baseUrl}/perguntas/${id}`);
   }

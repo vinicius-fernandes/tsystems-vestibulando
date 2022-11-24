@@ -32,40 +32,37 @@ export class AdicionaQuestoesComponent {
   }
 
   salvarQuestao() {
-    let respostas: IResposta[] = []
+    let respostas: IResposta[] = [];
     respostas.push({
       descricao: this.form.value.resposta1,
       correta: false,
-    })
+    });
     respostas.push({
       descricao: this.form.value.resposta2,
       correta: false,
-    })
+    });
     respostas.push({
       descricao: this.form.value.resposta3,
       correta: false,
-    })
+    });
     respostas.push({
       descricao: this.form.value.resposta4,
       correta: false,
-    })
+    });
     respostas.push({
       descricao: this.form.value.resposta5,
       correta: false,
-    })
+    });
 
-    respostas[this.form.value.respostaCorreta].correta=true
-    console.log(respostas)
-    
+    respostas[this.form.value.respostaCorreta].correta = true;
+
     let dados: IPergunta = {
       corpo: this.form.value.enunciado,
       banca: { id: this.form.value.idBanca, nome: '', sigla: '' },
       materia: { id: this.form.value.idMateria, nome: '' },
-      respostas: respostas,
+      respostas: respostas
     };
 
-    console.log(`Enunciado: ${dados}`)
-    
     this.serviceQuestoes.salvar(dados).subscribe({
       next: () => {
         this.toastr.success('Pergunta adicionada com sucesso!', 'Sucesso');
@@ -74,8 +71,7 @@ export class AdicionaQuestoesComponent {
       error: () => {
         this.toastr.error('Não foi possível adicionar a pergunta.', 'Erro');
         window.history.back();
-      }
+      },
     });
-
   }
 }
