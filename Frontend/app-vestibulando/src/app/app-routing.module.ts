@@ -14,6 +14,8 @@ import { EditarRespostasComponent } from './componentes/editar-respostas/editar-
 import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
+import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
 
 const routes: Routes = [
   {
@@ -30,7 +32,10 @@ const routes: Routes = [
       { path: 'modbancas/editbanca/:id', component: EditaBancaComponent },
       { path: 'modmaterias', component: GerenciaMateriasComponent },
       { path: 'respostas', component: RespostasComponent },
-      { path: 'rankingSimulado/:id', component: RankingSimuladoComponent }
+      { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
+      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent }
+
     ],
   },
   { path: '', component: TelaComponent },

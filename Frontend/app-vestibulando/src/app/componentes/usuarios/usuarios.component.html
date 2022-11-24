@@ -1,1 +1,21 @@
-<p>usuarios works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-3" *ngFor="let u of users">
+            <div class="card" style="width: 17rem;">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <i class="fas fa-user col-2" *ngIf = "user(u.tipo)"></i>
+                        <i class="fas fa-user-cog col-2" *ngIf = "adm(u.tipo)"></i>
+                        <div class="col">
+                            <h5 class="card-title">{{u.nome}}</h5>
+                            <p class="card-text">{{u.email}}</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                   <a [routerLink]="['/app/usuarios/edita',u.id]"><button class="btn btn-outline-primary mr-2">Editar</button></a>
+                    <button (click)="excluir(u.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

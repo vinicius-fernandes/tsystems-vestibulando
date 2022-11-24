@@ -31,6 +31,8 @@ import { ListarPerguntasComponent } from './componentes/listar-perguntas/listar-
 import { EditarRespostasComponent } from './componentes/editar-respostas/editar-respostas.component';
 import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simulado/realizar-simulado.component';
 import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
+import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-sim
     ListarPerguntasComponent,
     EditarRespostasComponent,
     RealizarSimuladoComponent,
-    ListaSimuladosComponent
+    ListaSimuladosComponent,
+    UsuariosComponent,
+    EditaUsuarioComponent
   ],
   imports: [
     BrowserModule,
