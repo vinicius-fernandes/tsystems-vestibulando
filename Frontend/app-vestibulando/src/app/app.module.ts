@@ -34,6 +34,8 @@ import { RespostasComponent } from './componentes/respostas/respostas.component'
 import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simulado/realizar-simulado.component';
 import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
 import { PerguntaSimuladoComponent } from './componentes/simulado/pergunta-simulado/pergunta-simulado.component';
+import { SumarioSimuladoComponent } from './componentes/simulado/sumario-simulado/sumario-simulado.component';
+import { ResultadoSimuladoComponent } from './componentes/simulado/resultado-simulado/resultado-simulado.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { PerguntaSimuladoComponent } from './componentes/simulado/pergunta-simul
     RespostasComponent,
     RealizarSimuladoComponent,
     ListaSimuladosComponent,
-    PerguntaSimuladoComponent
+    PerguntaSimuladoComponent,
+    SumarioSimuladoComponent,
+    ResultadoSimuladoComponent
   ],
   imports: [
     BrowserModule,

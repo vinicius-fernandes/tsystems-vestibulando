@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RespostasUsuariosService {
@@ -32,6 +33,10 @@ public class RespostasUsuariosService {
     }
 
     public RespostasUsuarios salvar(RespostasUsuarios respostaUsuario){
+        Optional<RespostasUsuarios> respUser = respostasUsuariosRepository.getBySimuladoAndUsuario(respostaUsuario.getSimulado().getId(),respostaUsuario.getUsuario().getId());
+        respUser.ifPresent(respostasUsuarios -> this.deletar(respostasUsuarios.getId()));
+
+
         return respostasUsuariosRepository.save(respostaUsuario);
     }
 
@@ -55,7 +60,16 @@ public class RespostasUsuariosService {
     }
 
     public NotaSimuladoUsuarioDTO getNotaSimuladoUsuario(long idUsuario,long idSimulado){
-        return respostasUsuariosRepository.getNotaSimuladoUsuario(idSimulado,idUsuario).orElseThrow(()-> new EntityNotFoundException("Não foi possível encontrar respostas para o usuário e simulados especificados!"));
+
+        Optional<NotaSimuladoUsuarioDTO> notaSimulado = respostasUsuariosRepository.getNotaSimuladoUsuario(idSimulado,idUsuario);
+        if(notaSimulado.isEmpty()){
+            Optional<RespostasUsuarios> respUser = respostasUsuariosRepository.getBySimuladoAndUsuario(idSimulado,idUsuario);
+            if(respUser.isEmpty()){
+                throw new EntityNotFoundException("Não foi possível encontrar respostas para o usuário e simulados especificados!");
+            }
+            return new NotaSimuladoUsuarioDTO(idSimulado,0);
+        }
+        return notaSimulado.get();
     }
 
     public List<NotaSimuladoUsuarioDTO> getNotasSimuladosUsuario(long idUsuario){

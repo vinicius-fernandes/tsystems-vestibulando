@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray,FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IBanca from 'src/app/interfaces/IBanca';
 import IMateria from 'src/app/interfaces/IMateria';
@@ -27,7 +28,7 @@ export class GerarSimuladoComponent implements OnInit {
     return this.form.controls['materias'] as FormArray;
   }
 
-  constructor(private bancaService: BancasService,private materiaService:MateriasService,private simuladoService:SimuladoService,private formBuilder:FormBuilder, private toastr: ToastrService){
+  constructor(private bancaService: BancasService,private materiaService:MateriasService,private simuladoService:SimuladoService,private formBuilder:FormBuilder, private toastr: ToastrService,private router:Router){
     this.form = this.formBuilder.group(
       {
         bancas:new FormArray([],[ minSelectedCheckboxes(1)]),
@@ -89,7 +90,7 @@ export class GerarSimuladoComponent implements OnInit {
                           {
                             next: (gerado)=>{
                               this.toastr.success("Simulado gerado com sucesso!")
-
+                              this.router.navigate(['app','simulados','realizar',gerado.id])
                             }
                           ,
                             error: (erro)=>{

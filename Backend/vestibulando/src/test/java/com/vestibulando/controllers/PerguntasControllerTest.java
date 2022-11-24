@@ -18,7 +18,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -56,7 +58,7 @@ public class PerguntasControllerTest {
         resp2.setCorreta(false);
         resp3.setCorreta(false);
         resp4.setCorreta(false);
-        List<Resposta> respostasPergunta = new ArrayList<>();
+        Set<Resposta> respostasPergunta = new LinkedHashSet<>();
         respostasPergunta.add(resp1);
         respostasPergunta.add(resp2);
         respostasPergunta.add(resp3);
@@ -145,7 +147,7 @@ public class PerguntasControllerTest {
         resp2.setCorreta(true);
         resp3.setCorreta(false);
         resp4.setCorreta(false);
-        List<Resposta> respostasPergunta = new ArrayList<>();
+        Set<Resposta> respostasPergunta = new LinkedHashSet<>();
         respostasPergunta.add(resp1);
         respostasPergunta.add(resp2);
         respostasPergunta.add(resp3);
@@ -179,7 +181,7 @@ public class PerguntasControllerTest {
         resp2.setCorreta(false);
         resp3.setCorreta(false);
 
-        List<Resposta> respostasPergunta = new ArrayList<>();
+        Set<Resposta> respostasPergunta = new LinkedHashSet<>();
         respostasPergunta.add(resp1);
         respostasPergunta.add(resp2);
         respostasPergunta.add(resp3);
@@ -211,7 +213,7 @@ public class PerguntasControllerTest {
         resp4.setCorreta(false);
         resp5.setCorreta(false);
         resp6.setCorreta(false);
-        List<Resposta> respostasPergunta = new ArrayList<>();
+        Set<Resposta> respostasPergunta = new LinkedHashSet<>();
         respostasPergunta.add(resp1);
         respostasPergunta.add(resp2);
         respostasPergunta.add(resp3);
