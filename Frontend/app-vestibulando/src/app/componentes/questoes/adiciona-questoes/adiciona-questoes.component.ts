@@ -31,25 +31,6 @@ export class AdicionaQuestoesComponent {
     });
   }
 
-  
-
-  /* salvarQuestao() {
-    this.dados.corpo = this.enunciado.value;
-    this.dados.materia.id = this.idMateria.value;
-    this.dados.banca.id = this.idBanca.value;
-
-    this.serviceQuestoes.salvar(this.dados).subscribe({
-      next: () => {
-        this.toastr.success('Pergunta adicionada com sucesso!', 'Sucesso');
-        window.history.back();
-      },
-      error: () => {
-        this.toastr.error('Não foi possível adicionar a pergunta.', 'Erro');
-        window.history.back();
-      },
-    });
-  } */
-
   salvarQuestao() {
     let respostas: IResposta[] = []
     respostas.push({
@@ -93,7 +74,7 @@ export class AdicionaQuestoesComponent {
       error: () => {
         this.toastr.error('Não foi possível adicionar a pergunta.', 'Erro');
         window.history.back();
-      },
+      }
     });
 
   }

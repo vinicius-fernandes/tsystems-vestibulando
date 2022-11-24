@@ -26,10 +26,6 @@ import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
 import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
-import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
-import { RespostasComponent } from './componentes/respostas/respostas.component';
-import { ListarPerguntasComponent } from './componentes/listar-perguntas/listar-perguntas.component';
-import { EditarRespostasComponent } from './componentes/editar-respostas/editar-respostas.component';
 import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simulado/realizar-simulado.component';
 import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
@@ -54,10 +50,6 @@ import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-quest
     LayoutPadraoComponent,
     GerarSimuladoComponent,
     RankingSimuladoComponent,
-    PerguntasComponent,
-    RespostasComponent,
-    ListarPerguntasComponent,
-    EditarRespostasComponent,
     RealizarSimuladoComponent,
     ListaSimuladosComponent,
     UsuariosComponent,

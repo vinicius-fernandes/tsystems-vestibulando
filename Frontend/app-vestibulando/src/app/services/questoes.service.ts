@@ -22,4 +22,9 @@ export class QuestoesService {
   consultarPorId(id: number) {
     return this.http.get<IPergunta>(`${this.baseUrl}/perguntas/${id}`);
   }
+
+  excluir(id: number) {
+    return this.http.delete(`${this.baseUrl}/perguntas/${id}`);
+  }
+
 }

@@ -21,4 +21,15 @@ export class GerenciaQuestoesComponent {
       .consultar()
       .subscribe((data) => (this.pergunta = data));
   }
+
+  excluir(id: number) {
+    this.serviceQuestoes.excluir(id).subscribe({
+      next: () => {
+        this.toastr.success('Pergunta excluida com sucesso!', 'Sucesso');
+      },
+      error: () => {
+        this.toastr.error('Não foi possível excluir a pergunta.', 'Erro');
+      }
+    });
+  }
 }

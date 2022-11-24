@@ -1,6 +1,14 @@
 <div class="container">
   <h1 class="text-center">Gerenciar Questões</h1>
 
+  <p class="text-end mt-3 mr-3">
+    <a routerLink="adiciona"
+      ><button mat-raised-button color="primary">
+        <i class="fa fa-plus"></i> Adicionar Questão
+      </button></a
+    >
+  </p>
+
   <table class="table">
     <thead>
       <tr>
@@ -8,6 +16,7 @@
         <th>Enunciado</th>
         <th>Disciplina</th>
         <th>Banca</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -17,6 +26,13 @@
         <th>{{ perg.corpo }}</th>
         <th>{{ perg.materia.nome }}</th>
         <th>{{ perg.banca.sigla }}</th>
+        <td>
+          <button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluir(perg.id || 0)"><i class="fa fa-trash"></i></button>
+          <a [routerLink]="['edita', perg.id]"
+            ><button mat-raised-button color="primary">
+              <i class="fas fa-edit"></i></button
+          ></a>
+        </td>
       </tr>
     </tbody>
   </table>
