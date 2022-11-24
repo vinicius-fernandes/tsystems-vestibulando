@@ -59,7 +59,7 @@ export class GerarSimuladoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+
     this.bancaService.consultar().subscribe(
       {
       next:(bancas)=>{
