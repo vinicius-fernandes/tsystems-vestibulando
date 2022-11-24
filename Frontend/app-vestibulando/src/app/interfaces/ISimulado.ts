@@ -6,5 +6,7 @@ export default interface ISimulado {
   id:number,
   materias:IMateria[],
   bancas:IBanca[],
-  perguntas:IPergunta[]
+  perguntas:IPergunta[],
+  createdAt:number,
+  updatedAt:number | null
 }

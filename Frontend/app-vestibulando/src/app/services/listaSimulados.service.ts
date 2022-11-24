@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import ISimulado from "../interfaces/ISimulado";
-import * as http from "http";
 
 @Injectable({
   providedIn: "root"
@@ -14,4 +13,10 @@ export class ListaSimuladosService{
      return this.http.get<ISimulado[]>(`${this.baseUrl}/simulados`)
   }
 
+  converterData(timestamp:number):string {
+    let date = new Date(timestamp * 1000)
+
+    return date.toLocaleDateString('pt-BR')
+      + ' às ' + date.toLocaleTimeString('pt-BR')
+  }
 }
