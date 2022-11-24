@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AdicionaBancaComponent } from './componentes/bancas/adiciona-banca/adiciona-banca.component';
 import { EditaBancaComponent } from './componentes/bancas/edita-banca/edita-banca.component';
 import { GerenciaBancasComponent } from './componentes/bancas/gerencia-bancas/gerencia-bancas.component';
@@ -7,12 +8,10 @@ import { GerenciaMateriasComponent } from './componentes/materias/gerencia-mater
 import { CadastroComponent } from './componentes/inicio/cadastro/cadastro.component';
 import { LoginComponent } from './componentes/inicio/login/login.component';
 import { TelaComponent } from './componentes/inicio/tela/tela.component';
-import { RespostasComponent } from './componentes/respostas/respostas.component';
-
-import {ListaSimuladosComponent} from "./componentes/lista-simulados/lista-simulados.component";
-import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
-import { ListarPerguntasComponent } from './componentes/listar-perguntas/listar-perguntas.component';
-import { EditarRespostasComponent } from './componentes/editar-respostas/editar-respostas.component';
+import { ListaSimuladosComponent } from "./componentes/lista-simulados/lista-simulados.component";
+import { GerenciaQuestoesComponent } from './componentes/questoes/gerencia-questoes/gerencia-questoes.component';
+import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
+import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/edita-questoes.component';
 import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simulado/realizar-simulado.component';
@@ -30,34 +29,26 @@ const routes: Routes = [
     path: 'app',
     component: LayoutPadraoComponent,
     children: [
-      {path:'simulados/gerarSimulado',component:GerarSimuladoComponent},
-      {path:'simulados/realizar/:id',component:RealizarSimuladoComponent},
-      {path:'simulados/resultado/:idSimulado/:idUser',component:ResultadoSimuladoComponent},
+      { path: 'simulados/gerarSimulado',component:GerarSimuladoComponent },
+      { path: 'simulados/realizar/:id',component:RealizarSimuladoComponent },
+      { path: 'simulados/resultado/:idSimulado/:idUser',component:ResultadoSimuladoComponent },
       { path: 'simulados', component: ListaSimuladosComponent },
-      { path: 'simulados/rankingSimulado/:id', component:RankingSimuladoComponent},
-
-      {
-        path: 'modbancas', component: GerenciaBancasComponent
-       },
-       {
-        path: 'modbancas/addbanca', component: AdicionaBancaComponent
-       },
-       {
-        path: 'modbancas/editbanca/:id', component: EditaBancaComponent
-       },
-       {
-        path: 'modmaterias', component: GerenciaMateriasComponent
-       },
-
-
-
-      { path: 'respostas', component: RespostasComponent },
-      { path: 'perguntas', component: PerguntasComponent },
-      { path: 'listarPerguntas', component: ListarPerguntasComponent },
-      { path: 'editarRespostas', component: EditarRespostasComponent },
+      { path: 'simulados/rankingSimulado/:id', component:RankingSimuladoComponent },
+      { path: 'modbancas', component: GerenciaBancasComponent },
+      { path: 'modbancas/addbanca', component: AdicionaBancaComponent },
+      { path: 'modbancas/editbanca/:id', component: EditaBancaComponent},
+      { path: 'modmaterias', component: GerenciaMateriasComponent },
       { path: 'modmaterias/addmateria', component: AdicionaMateriaComponent},
       { path: 'modmaterias/editmateria/:id', component: EditaMateriaComponent},
-      { path: 'respostas', component: RespostasComponent },
+      { path: 'questoes', component: GerenciaQuestoesComponent },
+      { path: 'questoes/adiciona', component: AdicionaQuestoesComponent },
+      { path: 'questoes/edita/:id', component: EditaQuestoesComponent },
+      { path: 'gerarSimulado', component: GerarSimuladoComponent },
+      { path: 'modbancas', component: GerenciaBancasComponent },
+      { path: 'modbancas/addbanca', component: AdicionaBancaComponent },
+      { path: 'modbancas/editbanca/:id', component: EditaBancaComponent },
+      { path: 'modmaterias', component: GerenciaMateriasComponent },
+      { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent },
       { path: 'usuarios/adduser', component: AddusuarioComponent },

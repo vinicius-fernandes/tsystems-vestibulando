@@ -22,7 +22,7 @@ public class PerguntaService {
     IPerguntaRepository perguntaRepository;
 
 
-    public List<Pergunta> listar(){
+    public List<Pergunta> listarTodas(){
         return perguntaRepository.findAll();
     }
 
