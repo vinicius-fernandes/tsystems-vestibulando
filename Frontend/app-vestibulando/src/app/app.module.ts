@@ -35,6 +35,8 @@ import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
 import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materia/adiciona-materia.component';
 import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
+import { AddusuarioComponent } from './componentes/addusuario/addusuario.component';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { EditaMateriaComponent } from './componentes/materias/edita-materia/edit
     UsuariosComponent,
     EditaUsuarioComponent,
     AdicionaMateriaComponent,
-    EditaMateriaComponent
+    EditaMateriaComponent,
+    AddusuarioComponent
   ],
   imports: [
     BrowserModule,

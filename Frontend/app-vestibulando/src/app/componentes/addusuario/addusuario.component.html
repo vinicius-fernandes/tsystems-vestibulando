@@ -16,18 +16,18 @@
             <label for="senha">Password</label>
         </div>
         <div class="form-floating mb-3">
-            <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+            <select class="form-select" id="tipo" aria-label="Floating label select example"
                 [(ngModel)]="usuario.tipo" name="tipo">
                 <option selected value="">Selecione o privilégio do usuário</option>
                 <option value="CLIENTE">Cliente</option>
                 <option value="ADMINISTRADOR">Administrador</option>
             </select>
-            <label for="floatingSelect">Regra Usuario</label>
+            <label for="tipo">Regra Usuario</label>
         </div>
         
         <p class="mb-5">
-            <button class="btn btn-primary mr-3" (click)="alterar()">Salvar</button>   
-            <a routerLink="../..">                 
+            <button class="btn btn-primary mr-3" (click)="salvar()">Salvar</button>
+            <a routerLink="../">                 
                 <button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
             </a>
         </p>

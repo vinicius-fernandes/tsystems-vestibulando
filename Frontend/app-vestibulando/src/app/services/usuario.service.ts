@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import IUsuario from '../interfaces/IUsuario';
+import IUsuarioDTO from '../interfaces/IUsuarioDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +23,15 @@ export class UsuarioService {
   }
   
   alterar(usuario: IUsuario){
-    console.log(usuario)
     return this.http.put<IUsuario>(`${this.baseUrl}/usuarios/${usuario.id}`,usuario)
 
+  }
+
+  salvar(usuario: IUsuario){
+    return this.http.post<IUsuario>(`${this.baseUrl}/usuarios/`,usuario)
+  }
+  cadastrar(usuario: IUsuarioDTO|IUsuario){
+    return this.http.post<IUsuario>(`${this.baseUrl}/usuarios`, usuario)
   }
 }
 
