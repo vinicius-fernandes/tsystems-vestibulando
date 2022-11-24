@@ -54,7 +54,9 @@ public class UsuarioService {
         user.setEmail(usuario.getEmail());
         user.setNome(usuario.getNome());
         user.setTipo(usuario.getTipo());
-        user.setSenha(usuario.getSenha());
+        if (usuario.getSenha() != null && !usuario.getSenha().isBlank() && !usuario.getSenha().equals(user.getSenha())) {
+            user.setSenha(usuario.getSenha());
+        }
 
         return this.salvarUsuario(user);
     }
