@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { GerenciaQuestoesComponent } from './componentes/questoes/gerencia-questoes/gerencia-questoes.component';
 import { AdicionaBancaComponent } from './componentes/layout/adiciona-banca/adiciona-banca.component';
 import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banca.component';
 import { GerenciaBancasComponent } from './componentes/layout/gerencia-bancas/gerencia-bancas.component';
@@ -22,6 +24,7 @@ const routes: Routes = [
     path: 'app',
     component: LayoutPadraoComponent,
     children: [
+      { path: 'questoes', component: GerenciaQuestoesComponent },
       { path: 'respostas', component: RespostasComponent },
       { path: 'perguntas', component: PerguntasComponent },
       { path: 'listarPerguntas', component: ListarPerguntasComponent },
@@ -31,7 +34,6 @@ const routes: Routes = [
       { path: 'modbancas/addbanca', component: AdicionaBancaComponent },
       { path: 'modbancas/editbanca/:id', component: EditaBancaComponent },
       { path: 'modmaterias', component: GerenciaMateriasComponent },
-      { path: 'respostas', component: RespostasComponent },
       { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent }

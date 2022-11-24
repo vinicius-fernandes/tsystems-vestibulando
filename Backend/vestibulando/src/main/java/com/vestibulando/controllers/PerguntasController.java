@@ -20,6 +20,11 @@ public class PerguntasController {
     @Autowired
     PerguntaService perguntaService ;
 
+    @GetMapping("/todas")
+    public ResponseEntity<List<Pergunta>> listarTodas(){
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.listarTodas());
+    }
+
     @GetMapping
     public ResponseEntity<Page<Pergunta>> listar(Pageable page){
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.listar(page));

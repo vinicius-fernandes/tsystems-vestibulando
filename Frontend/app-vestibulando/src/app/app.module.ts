@@ -33,6 +33,9 @@ import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simul
 import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
+import { GerenciaQuestoesComponent } from './componentes/questoes/gerencia-questoes/gerencia-questoes.component';
+import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/edita-questoes.component';
+import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario
     RealizarSimuladoComponent,
     ListaSimuladosComponent,
     UsuariosComponent,
-    EditaUsuarioComponent
+    EditaUsuarioComponent,
+    GerenciaQuestoesComponent,
+    EditaQuestoesComponent,
+    AdicionaQuestoesComponent
   ],
   imports: [
     BrowserModule,

@@ -5,13 +5,12 @@ import IPergunta from '../interfaces/IPergunta';
 @Injectable({
   providedIn: 'root'
 })
-export class ListarPerguntasService {
-  constructor(
-    private http: HttpClient,
-    @Inject('BASE_API_URL') private baseUrl: string
-  ) {}
+export class QuestoesService {
 
-  listar() {
+  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
+
+  listarTodas(){
     return this.http.get<[IPergunta]>(`${this.baseUrl}/perguntas/todas`);
   }
+
 }

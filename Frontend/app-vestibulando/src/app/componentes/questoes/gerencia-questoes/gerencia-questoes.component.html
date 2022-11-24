@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="text-center">Gerenciar Questões</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Enunciado</th>
+        <th>Disciplina</th>
+        <th>Banca</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let perg of pergunta">
+        <th>{{ perg.id }}</th>
+        <th>{{ perg.corpo }}</th>
+        <th>{{ perg.materia.nome }}</th>
+        <th>{{ perg.banca.sigla }}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>

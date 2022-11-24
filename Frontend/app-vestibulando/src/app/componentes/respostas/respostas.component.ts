@@ -26,8 +26,8 @@ export class RespostasComponent {
     this.resp.pergunta = {
       id: dados.pergunta,
       corpo: '',
-      bancas: { nome: '', sigla: '' },
-      materias: { nome: '' },
+      banca: { nome: '', sigla: '' },
+      materia: { nome: '' },
     };
     this.service.salvar(this.resp).subscribe((data) => {
       this.msg = 'Resposta salva!';
