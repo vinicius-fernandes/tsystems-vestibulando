@@ -26,7 +26,6 @@ export class UsuarioService {
     return this.http.put<IUsuario>(`${this.baseUrl}/usuarios/${usuario.id}`,usuario)
 
   }
-
   salvar(usuario: IUsuario){
     return this.http.post<IUsuario>(`${this.baseUrl}/usuarios/`,usuario)
   }

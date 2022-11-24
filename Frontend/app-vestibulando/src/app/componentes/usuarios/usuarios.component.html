@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                   <a [routerLink]="['/app/usuarios/edita',u.id]"><button class="btn btn-outline-primary mr-2">Editar</button></a>
+                   <a [routerLink]="['/app/usuarios/edita',u.id]"><button mat-raised-button class="mr-2" color="primary"><i class="fas fa-edit"></i></button></a>
                     <button (click)="excluir(u.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     </div>
                 </div>
