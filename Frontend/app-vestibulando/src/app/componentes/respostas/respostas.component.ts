@@ -10,10 +10,10 @@ import IResposta from 'src/app/interfaces/IResposta';
 export class RespostasComponent {
   msg: string = '';
   respostas: IResposta[] = [];
-  teste: IResposta;
+  resp: IResposta;
 
   constructor(private service: RespostasService) {
-    this.teste = {
+    this.resp = {
       descricao: '',
       correta: false,
     };
@@ -21,15 +21,15 @@ export class RespostasComponent {
   }
 
   salvar(dados: any) {
-    this.teste.correta = dados.correta;
-    this.teste.descricao = dados.descricao;
-    this.teste.pergunta = {
+    this.resp.correta = dados.correta;
+    this.resp.descricao = dados.descricao;
+    this.resp.pergunta = {
       id: dados.pergunta,
       corpo: '',
       bancas: { nome: '', sigla: '' },
       materias: { nome: '' },
     };
-    this.service.salvar(this.teste).subscribe((data) => {
+    this.service.salvar(this.resp).subscribe((data) => {
       this.msg = 'Resposta salva!';
       this.respostas = [...this.respostas, data];
     });
