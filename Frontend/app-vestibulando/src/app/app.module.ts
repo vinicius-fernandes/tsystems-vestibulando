@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -83,7 +84,8 @@ import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-quest
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRadioModule
     ],
   providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

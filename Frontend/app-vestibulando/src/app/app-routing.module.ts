@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { GerenciaQuestoesComponent } from './componentes/questoes/gerencia-questoes/gerencia-questoes.component';
+import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
+import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/edita-questoes.component';
 import { AdicionaBancaComponent } from './componentes/layout/adiciona-banca/adiciona-banca.component';
 import { EditaBancaComponent } from './componentes/layout/edita-banca/edita-banca.component';
 import { GerenciaBancasComponent } from './componentes/layout/gerencia-bancas/gerencia-bancas.component';
@@ -25,6 +27,8 @@ const routes: Routes = [
     component: LayoutPadraoComponent,
     children: [
       { path: 'questoes', component: GerenciaQuestoesComponent },
+      { path: 'questoes/adiciona', component: AdicionaQuestoesComponent },
+      { path: 'questoes/edita/:id', component: EditaQuestoesComponent },
       { path: 'respostas', component: RespostasComponent },
       { path: 'perguntas', component: PerguntasComponent },
       { path: 'listarPerguntas', component: ListarPerguntasComponent },
