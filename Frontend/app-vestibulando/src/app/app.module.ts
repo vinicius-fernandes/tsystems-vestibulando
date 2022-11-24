@@ -25,12 +25,15 @@ import { TelaComponent } from './componentes/inicio/tela/tela.component';
 import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.component';
 import { GerarSimuladoComponent } from './componentes/simulado/gerar-simulado/gerar-simulado.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
 import { PerguntasComponent } from './componentes/perguntas/perguntas.component';
 import { RespostasComponent } from './componentes/respostas/respostas.component';
 import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simulado/realizar-simulado.component';
 import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-simulados.component';
+import { PerguntaSimuladoComponent } from './componentes/simulado/pergunta-simulado/pergunta-simulado.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-sim
     PerguntasComponent,
     RespostasComponent,
     RealizarSimuladoComponent,
-    ListaSimuladosComponent
+    ListaSimuladosComponent,
+    PerguntaSimuladoComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,9 @@ import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-sim
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRadioModule,
+    MatChipsModule
     ],
   providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

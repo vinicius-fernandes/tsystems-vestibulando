@@ -1,1 +1,5 @@
-<p>realizar-simulado works!</p>
+<div class="container">
+<div *ngFor="let pergunta of simulado.perguntas;let i = index">
+  <app-pergunta-simulado [pergunta]="pergunta" [numQuestao]="i"></app-pergunta-simulado>
+</div>
+</div>

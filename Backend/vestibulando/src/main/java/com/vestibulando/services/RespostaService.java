@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RespostaService {
@@ -26,7 +27,7 @@ public class RespostaService {
 
     public Resposta salvar(Resposta resposta){
         Pergunta perg = perguntaService.obter(resposta.getPergunta().getId());
-        List<Resposta> listaRespostas = perg.getRespostas();
+        Set<Resposta> listaRespostas = perg.getRespostas();
         Boolean novaResposta = (resposta.getId() == null);
         if(resposta.getCorreta()) {
             for (Resposta resp : listaRespostas) {

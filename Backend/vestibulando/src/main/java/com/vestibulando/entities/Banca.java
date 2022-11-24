@@ -7,7 +7,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 
@@ -28,7 +30,7 @@ public class Banca {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "bancas")
-    private List<Simulado> simulado;
+    private Set<Simulado> simulado;
 
     @JsonIgnore
     @OneToMany(
@@ -36,7 +38,7 @@ public class Banca {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Pergunta> perguntas = new ArrayList<>();
+    private Set<Pergunta> perguntas = new LinkedHashSet<>();
 
     public Long getId() {
         return id;
@@ -62,19 +64,19 @@ public class Banca {
         this.nome = nome;
     }
 
-    public List<Simulado> getSimulado() {
+    public Set<Simulado> getSimulado() {
         return simulado;
     }
 
-    public void setSimulado(List<Simulado> simulado) {
+    public void setSimulado(Set<Simulado> simulado) {
         this.simulado = simulado;
     }
 
-    public List<Pergunta> getPerguntas() {
+    public Set<Pergunta> getPerguntas() {
         return perguntas;
     }
 
-    public void setPerguntas(List<Pergunta> perguntas) {
+    public void setPerguntas(Set<Pergunta> perguntas) {
         this.perguntas = perguntas;
     }
 }
