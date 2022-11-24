@@ -4,6 +4,7 @@ import com.vestibulando.dtos.NotaSimuladoUsuarioDTO;
 import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.Usuario;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RespostasUsuariosService {
@@ -56,7 +58,17 @@ public class RespostasUsuariosService {
     }
 
     public List<RankingSimuladoDTO> getRankingSimulado(Long idSimulado){
-        return respostasUsuariosRepository.getRankingSimulado(idSimulado) ;
+        Set<Usuario> usuariosSimulado = respostasUsuariosRepository.getUsuariosSimulado(idSimulado);
+
+        List<RankingSimuladoDTO> ranking = respostasUsuariosRepository.getRankingSimulado(idSimulado);
+        for(Usuario user : usuariosSimulado){
+            if(ranking.stream().anyMatch(c->c.getIdUsuario()==user.getId())){
+                continue;
+            }
+            RankingSimuladoDTO rankingUser0 = new RankingSimuladoDTO(user.getId(), user.getEmail(), 0);
+            ranking.add(rankingUser0);
+        }
+        return  ranking;
     }
 
     public NotaSimuladoUsuarioDTO getNotaSimuladoUsuario(long idUsuario,long idSimulado){

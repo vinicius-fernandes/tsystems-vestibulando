@@ -33,10 +33,10 @@ export class ListaSimuladosComponent implements OnInit{
   }
 
   redirecionarSimulado(id:number):void {
-    this._router.navigate(['app/simulado',id])
+    this._router.navigate(['app/simulados/realizar',id])
   }
 
   redirecionarRanking(id:number):void {
-    this._router.navigate(['app/rankingSimulado',id])
+    this._router.navigate(['app/simulados/rankingSimulado',id])
   }
 }

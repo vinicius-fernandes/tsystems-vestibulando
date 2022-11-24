@@ -33,6 +33,9 @@ const routes: Routes = [
       {path:'simulados/gerarSimulado',component:GerarSimuladoComponent},
       {path:'simulados/realizar/:id',component:RealizarSimuladoComponent},
       {path:'simulados/resultado/:idSimulado/:idUser',component:ResultadoSimuladoComponent},
+      { path: 'simulados', component: ListaSimuladosComponent },
+      { path: 'simulados/rankingSimulado/:id', component:RankingSimuladoComponent},
+
       {
         path: 'modbancas', component: GerenciaBancasComponent
        },
@@ -46,9 +49,7 @@ const routes: Routes = [
         path: 'modmaterias', component: GerenciaMateriasComponent
        },
 
-      {
-        path: 'rankingSimulado/:id', component:RankingSimuladoComponent
-      },
+
 
       { path: 'respostas', component: RespostasComponent },
       { path: 'perguntas', component: PerguntasComponent },
@@ -59,9 +60,7 @@ const routes: Routes = [
       { path: 'respostas', component: RespostasComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent },
-      { path: 'rankingSimulado/:id', component:RankingSimuladoComponent},
       { path: 'usuarios/adduser', component: AddusuarioComponent },
-      { path: 'listaSimulados', component: ListaSimuladosComponent }
     ],
   },
   { path: '', component: TelaComponent },
