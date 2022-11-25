@@ -40,6 +40,7 @@ import { AddusuarioComponent } from './componentes/addusuario/addusuario.compone
 import { GerenciaQuestoesComponent } from './componentes/questoes/gerencia-questoes/gerencia-questoes.component';
 import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/edita-questoes.component';
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-quest
     AddusuarioComponent,
     GerenciaQuestoesComponent,
     EditaQuestoesComponent,
-    AdicionaQuestoesComponent
+    AdicionaQuestoesComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

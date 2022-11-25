@@ -94,7 +94,7 @@ public class SimuladoService {
             return "Simulado deletado com sucesso.";
         }
         catch (Exception e){
-            throw  new DeleteComAssociacoes("Não é possível deletar o usuário pois há itens associados com ele");
+            throw  new DeleteComAssociacoes("Não é possível deletar o simulado pois há itens associados com ele");
         }
     }
 

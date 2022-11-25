@@ -26,9 +26,17 @@ h1 {
   gap: 10px;
 }
 
+.botoes button[mat-raised-button] {
+  height: auto;
+  padding: 10px 15px;
+}
+
 @media only screen and (max-width: 715px) {
   .grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .botoes button[mat-raised-button] {
+    height: auto;
   }
 }
 @media only screen and (max-width: 475px) {
