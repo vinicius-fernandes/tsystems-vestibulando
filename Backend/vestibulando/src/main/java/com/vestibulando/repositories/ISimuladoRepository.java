@@ -10,7 +10,6 @@ import java.util.Optional;
 @Repository
 public interface ISimuladoRepository extends JpaRepository<Simulado, Long> {
 
-    @Query("select s from Simulado s where s.id = ?1")
-    Optional<Simulado> findById(long id);
+
 
 }

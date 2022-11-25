@@ -67,7 +67,7 @@ public class PerguntasController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deletar(@PathVariable("id") long id){
+    public ResponseEntity<Object> deletar(@PathVariable("id") long id){
         perguntaService.deletar(id);
         return ResponseEntity.status(HttpStatus.OK).body("Pergunta removida com sucesso!");
     }
