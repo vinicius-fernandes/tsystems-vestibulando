@@ -1556,3 +1556,11 @@ INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_
 INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (2,38);
 INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (2,41);
 INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (2,49);
+
+insert into role(authority)values('ROLE_USUARIO');
+insert into role(authority)values('ROLE_ADMIN');
+insert into role(authority)values('ROLE_OPERADOR');
+
+insert into usuario_role(usuario_id,role_id)values(1,1);
+insert into usuario_role(usuario_id,role_id)values(2,2);
+insert into usuario_role(usuario_id,role_id)values(3,2);
