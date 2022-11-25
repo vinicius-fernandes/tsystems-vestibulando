@@ -1,0 +1,24 @@
+<div class="imgbg">
+    <header>
+            <a routerLink="">
+                <div class="fa-2x" >
+                    <i class="fas fa-arrow-left" style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
+                </div>
+            </a>
+    </header>
+    <div>
+        <div class="text-center">
+            <img src="../../../../assets/images/logo_azul_sem_fundo.png" alt="Logo Vestibulando" class="logo" id="logo">
+        </div>
+    </div>
+
+    <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
+        <h3 class="tituloLogin"><b>Login</b></h3>
+        <input type="text" class="myinput" placeholder="E-mail" required>
+        <input type="password" class="myinput" placeholder="Senha" required>
+        <div class="botoesLogin">
+            <a href="/app/home"><button class="btn botaoazul">Login</button></a>
+            <button class="btn botaoazul" (click)="redirecionarCadastro()">Cadastro</button>
+        </div>
+    </div>
+</div>

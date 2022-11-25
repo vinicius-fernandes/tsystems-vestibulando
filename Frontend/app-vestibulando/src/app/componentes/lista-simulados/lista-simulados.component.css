@@ -1,0 +1,46 @@
+h1 {
+  line-height: 3em;
+  text-align: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.card {
+  padding: 2em;
+}
+.card ul {
+  margin-bottom: 20px;
+  max-height: 110px;
+  overflow-y: auto;
+}
+.card>p:first-child {
+  font-weight: 600;
+}
+
+.botoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.botoes button[mat-raised-button] {
+  height: auto;
+  padding: 10px 15px;
+}
+
+@media only screen and (max-width: 715px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .botoes button[mat-raised-button] {
+    height: auto;
+  }
+}
+@media only screen and (max-width: 475px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

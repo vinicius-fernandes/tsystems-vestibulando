@@ -6,10 +6,11 @@ import com.vestibulando.entities.Resposta;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
+import java.util.Set;
 
-public class TotalRespostasCorretasValidator implements ConstraintValidator<TotalRespostasCorretasConstraint, List<Resposta>> {
+public class TotalRespostasCorretasValidator implements ConstraintValidator<TotalRespostasCorretasConstraint, Set<Resposta>> {
     @Override
-    public boolean isValid(List<Resposta> respostas, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Set<Resposta> respostas, ConstraintValidatorContext constraintValidatorContext) {
         return respostas.stream().filter(Resposta::getCorreta).count() == 1;
     }
 }

@@ -1,0 +1,5 @@
+<div *ngFor="let resp of respostasMarcadas" class="sumarioItem">
+
+  <button mat-raised-button color="{{resp.idRespostaMarcada==null?'basic':'primary'}}" (click)="changePergunta(resp.numeroPergunta)" class="m-1">{{resp.numeroPergunta + 1}}</button>
+
+</div>

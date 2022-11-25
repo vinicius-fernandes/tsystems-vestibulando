@@ -14,9 +14,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/perguntas")
+@CrossOrigin(origins = "*")
+
 public class PerguntasController {
     @Autowired
     PerguntaService perguntaService ;
+
+    @GetMapping("/todas")
+    public ResponseEntity<List<Pergunta>> listarTodas(){
+        return ResponseEntity.status(HttpStatus.OK).body(perguntaService.listarTodas());
+    }
 
     @GetMapping
     public ResponseEntity<Page<Pergunta>> listar(Pageable page){
@@ -60,7 +67,7 @@ public class PerguntasController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deletar(@PathVariable("id") long id){
+    public ResponseEntity<Object> deletar(@PathVariable("id") long id){
         perguntaService.deletar(id);
         return ResponseEntity.status(HttpStatus.OK).body("Pergunta removida com sucesso!");
     }

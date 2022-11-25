@@ -9,7 +9,9 @@ import com.vestibulando.constraints.perguntas.TotalRespostasCorretasConstraint;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Pergunta {
@@ -28,7 +30,7 @@ public class Pergunta {
     private Banca banca;
     @JsonIgnore
     @ManyToMany(mappedBy = "perguntas")
-    private List<Simulado> simulado;
+    private Set<Simulado> simulado;
 
     @OneToMany(
             mappedBy = "pergunta",
@@ -39,7 +41,7 @@ public class Pergunta {
     @JsonManagedReference
     @TotalRespostasConstraint
     @TotalRespostasCorretasConstraint
-    private List<Resposta> respostas = new ArrayList<>();
+    private Set<Resposta> respostas = new LinkedHashSet<>();
 
     public Banca getBanca() {
         return banca;
@@ -73,20 +75,20 @@ public class Pergunta {
         this.corpo = corpo;
     }
 
-    public List<Simulado> getSimulado() {
+    public Set<Simulado> getSimulado() {
         return simulado;
     }
 
-    public void setSimulado(List<Simulado> simulado) {
+    public void setSimulado(Set<Simulado> simulado) {
         this.simulado = simulado;
     }
 
     @JsonManagedReference
-    public List<Resposta> getRespostas() {
+    public Set<Resposta> getRespostas() {
         return respostas;
     }
 
-    public void setRespostas(List<Resposta> respostas) {
+    public void setRespostas(Set<Resposta> respostas) {
         this.respostas = respostas;
     }
 

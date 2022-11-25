@@ -16,7 +16,7 @@ public class MateriaService {
     IMateriaRepository materiaRepository;
 
     public List<Materia> listar() {
-        return materiaRepository.findAll();
+        return materiaRepository.findAllByOrderByIdAsc();
     }
 
     public Materia obter(long id) {

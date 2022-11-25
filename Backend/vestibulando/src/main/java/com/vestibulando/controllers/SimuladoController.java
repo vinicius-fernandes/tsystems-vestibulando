@@ -2,13 +2,12 @@ package com.vestibulando.controllers;
 
 import com.vestibulando.dtos.GerarSimuladoDTO;
 import com.vestibulando.dtos.SimuladoDTO;
-import com.vestibulando.entities.Banca;
-import com.vestibulando.entities.Materia;
-import com.vestibulando.entities.Pergunta;
-import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.*;
 import com.vestibulando.repositories.ISimuladoRepository;
 import com.vestibulando.services.SimuladoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +17,18 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/simulados")
+@CrossOrigin(origins = "*")
+
 public class SimuladoController {
     @Autowired
     SimuladoService simuladoService;
 
     @Autowired
     ISimuladoRepository simuladoRepository;
+
+
+
+
 
     @GetMapping
     public ResponseEntity<List<Simulado>> consultar() {

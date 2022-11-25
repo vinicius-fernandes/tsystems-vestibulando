@@ -16,6 +16,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/respostas") //http://localhost:8080/respostas
+@CrossOrigin(origins = "*")
+
 public class RespostaController {
     
     @Autowired

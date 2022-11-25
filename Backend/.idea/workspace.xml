@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3807a162-d958-4de8-a5e7-a70649268550" name="Changes" comment="" />
+    <list default="true" id="3807a162-d958-4de8-a5e7-a70649268550" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend - Copia/app-vestibulando/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/app-vestibulando/src/app/componentes/inicio/cadastro/cadastro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/app-vestibulando/src/app/componentes/inicio/cadastro/cadastro.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/app-vestibulando/src/app/componentes/inicio/cadastro/cadastro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/app-vestibulando/src/app/componentes/inicio/cadastro/cadastro.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend/app-vestibulando/src/app/services/usuario.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/app-vestibulando/src/app/services/usuario.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tsystems-vestibulando" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,13 +69,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/f0fp1433/Desktop/Vestibulando/tsystems-vestibulando/Backend/vestibulando",
+    "last_opened_file_path": "C:/Users/f0fp1433/Desktop/Projeto/Backend/vestibulando/pom.xml",
     "spring.configuration.checksum": "d8f40ffd19926ca44d406d3ac7f19786"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="VestibulandoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="vestibulando" />
+      <option name="ACTIVE_PROFILES" />
+      <module name="Backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.vestibulando.VestibulandoApplication" />
       <extension name="coverage">
         <pattern>
@@ -84,6 +104,9 @@
       <updated>1668598341003</updated>
       <workItem from="1668598342178" duration="714000" />
       <workItem from="1668600171189" duration="332000" />
+      <workItem from="1669207418755" duration="35000" />
+      <workItem from="1669289283959" duration="1504000" />
+      <workItem from="1669291332580" duration="46000" />
     </task>
     <servers />
   </component>

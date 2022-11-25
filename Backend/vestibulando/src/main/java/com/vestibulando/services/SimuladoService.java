@@ -1,7 +1,6 @@
 package com.vestibulando.services;
 
 import com.vestibulando.dtos.GerarSimuladoDTO;
-import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.dtos.SimuladoDTO;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
@@ -80,6 +79,7 @@ public class SimuladoService {
     }
 
 
+
     @Transactional
     public Simulado salvar(Simulado s) {
         return simuladoRepository.save(s);
@@ -94,7 +94,7 @@ public class SimuladoService {
             return "Simulado deletado com sucesso.";
         }
         catch (Exception e){
-            throw  new DeleteComAssociacoes("Não é possível deletar o usuário pois há itens associados com ele");
+            throw  new DeleteComAssociacoes("Não é possível deletar o simulado pois há itens associados com ele");
         }
     }
 

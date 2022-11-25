@@ -9,13 +9,10 @@ import javax.validation.constraints.Size;
 
 public class UsuarioDTO {
     private Long id;
-
     private String email;
-
     private String nome;
-
     private Usuario usuario;
-
+    private EnumsUsuario tipo;
     public UsuarioDTO() {
     }
 
@@ -23,6 +20,7 @@ public class UsuarioDTO {
         this.id = usuario.getId();
         this.email = usuario.getEmail();
         this.nome = usuario.getNome();
+        this.tipo = usuario.getTipo();
     }
 
     public Long getId() {
@@ -52,5 +50,12 @@ public class UsuarioDTO {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+    public EnumsUsuario getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(EnumsUsuario tipo) {
+        this.tipo = tipo;
     }
 }

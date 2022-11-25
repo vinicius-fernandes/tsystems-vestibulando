@@ -1,0 +1,21 @@
+<h1 class="text-center">Gerenciar Matérias</h1>
+
+<p class="text-end mt-3 mr-3"><a routerLink="addmateria"><button mat-raised-button color="primary"><i class="fa fa-plus"></i> Adicionar Matéria</button></a></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let m of materias">
+            <th>{{ m.id }}</th>
+            <td>{{ m.nome }}</td>
+            <td class="text-end"><button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluirMateria(m.id || 0)"><i class="fa fa-trash"></i></button> <a [routerLink]="['editmateria', m.id]"><button mat-raised-button color="primary"><i class="fas fa-edit"></i></button></a></td>
+        </tr>
+    </tbody>
+</table>

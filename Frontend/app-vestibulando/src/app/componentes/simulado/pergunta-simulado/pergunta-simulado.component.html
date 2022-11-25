@@ -1,0 +1,24 @@
+
+<div class="bg-white p-2 border rounded my-2">
+  <h1>Questão {{numQuestao +1}}</h1>
+
+<mat-chip-listbox>
+  <mat-chip>
+    {{pergunta.banca?.sigla}}
+  </mat-chip>
+  <mat-chip>
+    {{pergunta.materia?.nome}}
+  </mat-chip>
+</mat-chip-listbox>
+
+<h3 class="mt-3 ">{{pergunta.corpo}}</h3>
+
+
+<label >Selecione uma resposta</label>
+<mat-radio-group [(ngModel)]="resposta" class="radio-group">
+  <mat-radio-button  *ngFor="let resposta of pergunta.respostas" [value]="resposta.id" (change)="changeResposta($event)">
+    {{resposta.descricao}}
+  </mat-radio-button>
+
+</mat-radio-group>
+</div>
