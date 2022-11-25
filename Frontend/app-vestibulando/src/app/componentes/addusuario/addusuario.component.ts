@@ -37,19 +37,18 @@ export class AddusuarioComponent {
       return
     }
 
-    this.service.salvar(this.usuario).subscribe(
-      {next: () => {
-      this.toastr.success('Usuario adicionado com sucesso!', 'Sucesso')
-      this.router.navigate(['/app/usuarios'])
-    }, error: (erro) => {
-      this.toastr.error('Este usuário não pode ser adicionado, verifique todos os campos', 'Erro')
-    }
-  }
-
-
+    this.service.cadastrar(this.usuario).subscribe(
+      {
+        next: () => {
+          this.toastr.success('Usuario adicionado com sucesso!', 'Sucesso')
+          this.router.navigate(['/app/usuarios'])
+        }, error: (erro) => {
+          this.toastr.error('Este usuário não pode ser adicionado, verifique todos os campos', 'Erro')
+        }
+      }
 
     )
 
-}
+  }
 
 }
