@@ -17,7 +17,13 @@ export class GerenciaBancasComponent implements OnInit {
   bancas: IBanca[] = []
 
   ngOnInit(): void {
-    this.serviceBanca.consultar().subscribe(data => this.bancas = data)
+    this.serviceBanca.consultar().subscribe({
+      next: data => this.bancas = data,
+      error: erro => {
+        console.log(erro)
+        this.toastr.error("Não foi possível consultar as bancas.", "Erro")
+      }
+    })
   }
 
   excluirBanca(id: number) {
