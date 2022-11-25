@@ -7,5 +7,5 @@ export default interface IPergunta {
     corpo: string,
     materia: IMateria,
     banca: IBanca,
-    respostas?: IResposta[]
+    respostas: IResposta[]
 }

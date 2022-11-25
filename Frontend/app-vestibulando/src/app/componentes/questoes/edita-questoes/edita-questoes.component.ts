@@ -58,7 +58,7 @@ export class EditaQuestoesComponent implements OnInit {
   }
 
   alterarQuestao() {
-    console.log(this.questao.corpo)
+    console.log(this.questao)
     /* let respostas: IResposta[] = [];
     respostas.push({
       descricao: this.form.value.resposta1,

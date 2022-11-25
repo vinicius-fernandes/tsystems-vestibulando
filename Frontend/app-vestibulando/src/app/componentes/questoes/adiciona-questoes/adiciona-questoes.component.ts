@@ -4,6 +4,7 @@ import { QuestoesService } from 'src/app/services/questoes.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import IResposta from 'src/app/interfaces/IResposta';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adiciona-questoes',
@@ -16,7 +17,8 @@ export class AdicionaQuestoesComponent {
   constructor(
     private serviceQuestoes: QuestoesService,
     private toastr: ToastrService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router:Router
   ) {
     this.form = this.formBuilder.group({
       enunciado: new FormControl(''),
@@ -66,11 +68,12 @@ export class AdicionaQuestoesComponent {
     this.serviceQuestoes.salvar(dados).subscribe({
       next: () => {
         this.toastr.success('Pergunta adicionada com sucesso!', 'Sucesso');
-        window.history.back();
+        this.router.navigateByUrl('app/questoes')
       },
       error: () => {
+        console.log()
         this.toastr.error('Não foi possível adicionar a pergunta.', 'Erro');
-        window.history.back();
+        this.router.navigateByUrl('app/questoes')
       },
     });
   }
