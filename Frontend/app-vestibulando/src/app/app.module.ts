@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -91,7 +92,8 @@ import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-quest
     MatInputModule,
     MatButtonModule,
     MatRadioModule,
-    MatChipsModule
+    MatChipsModule,
+    MatPaginatorModule
     ],
   providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl }],
   bootstrap: [AppComponent]

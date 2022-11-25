@@ -21,8 +21,7 @@ import java.util.Set;
 public interface IPerguntaRepository extends JpaRepository<Pergunta, Long> {
 
 
-    @Query("select p from Pergunta p where p.id = ?1")
-    Optional<Pergunta> findById(long id);
+
     @Query("select p from Pergunta p where p.banca.id = ?1")
     List<Pergunta> findByBancaId (long id);
 

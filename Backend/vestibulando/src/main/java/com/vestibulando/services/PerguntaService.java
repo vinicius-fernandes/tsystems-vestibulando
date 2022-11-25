@@ -58,6 +58,7 @@ public class PerguntaService {
     @Transactional
     public void deletar(long id){
         Pergunta pergunta = this.obter(id);
+
         perguntaRepository.delete(pergunta);
 
     }

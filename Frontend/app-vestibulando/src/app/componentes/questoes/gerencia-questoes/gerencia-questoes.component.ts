@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import IPergunta from 'src/app/interfaces/IPergunta';
 import { QuestoesService } from 'src/app/services/questoes.service';
 import { ToastrService } from 'ngx-toastr';
+import { PageEvent } from '@angular/material/paginator';
+import { ContentObserver } from '@angular/cdk/observers';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-gerencia-questoes',
@@ -15,11 +18,25 @@ export class GerenciaQuestoesComponent {
   ) {}
 
   pergunta: IPergunta[] = [];
+  totalElements: number = 0;
+
 
   ngOnInit(): void {
-    this.serviceQuestoes
-      .consultar()
-      .subscribe((data) => (this.pergunta = data));
+
+      this.obterPerguntas({page:'0',size:'10'})
+  }
+
+  obterPerguntas(params:any){
+    this.serviceQuestoes.consultaPaginada(params).subscribe({
+      next:(data)=>{
+        this.pergunta = <IPergunta[]>data.content
+        this.totalElements = data['totalElements']
+      },
+      error:(erro)=>{        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
+    }
+    })
+
+
   }
 
   excluir(id: number) {
