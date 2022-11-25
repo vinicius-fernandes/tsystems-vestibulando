@@ -3,6 +3,7 @@ package com.vestibulando.services;
 
 import com.vestibulando.entities.*;
 import com.vestibulando.repositories.IPerguntaRepository;
+import com.vestibulando.repositories.IRespostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.naming.directory.InvalidAttributesException;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 @Service
@@ -21,7 +23,8 @@ public class PerguntaService {
     @Autowired
     IPerguntaRepository perguntaRepository;
 
-
+    @Autowired
+    IRespostaRepository respostaRepository;
     public List<Pergunta> listarTodas(){
         return perguntaRepository.findAll();
     }
@@ -58,7 +61,27 @@ public class PerguntaService {
     @Transactional
     public void deletar(long id){
         Pergunta pergunta = this.obter(id);
-        perguntaRepository.delete(pergunta);
+
+        List<Resposta> resposta = this.respostaRepository.findByPergunta(pergunta);
+
+        List<Long> idRespostas = resposta.stream().map(Resposta::getId).toList();
+
+//        if(resposta.size()>0){
+//            this.respostaRepository.deleteAll(resposta);
+//        }
+
+
+
+//        pergunta.setRespostas(new LinkedHashSet<>());
+//        this.salvar(pergunta);
+        try {
+            respostaRepository.deleteFromRespostas(idRespostas);
+            perguntaRepository.deleteRespostasPergunta(id);
+            perguntaRepository.deletePerguntaCustomizado(id);
+        }
+        catch (Exception e){
+           throw new RuntimeException(e.getMessage());
+        }
 
     }
 
