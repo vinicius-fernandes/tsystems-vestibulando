@@ -13,7 +13,7 @@ h1 {
 .card ul {
   margin-bottom: 20px;
   max-height: 110px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .card>p:first-child {
   font-weight: 600;
