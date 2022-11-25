@@ -17,7 +17,13 @@ export class GerenciaMateriasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.serviceMateria.consultar().subscribe(data => this.materias = data)
+    this.serviceMateria.consultar().subscribe({
+      next: data => this.materias = data,
+      error: erro => {
+        console.log(erro)
+        this.toastr.error("Não foi possível consultar as matérias.", "Erro")
+      }
+    })
   }
 
   excluirMateria(id: number) {
