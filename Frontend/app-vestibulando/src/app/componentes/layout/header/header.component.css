@@ -1,9 +1,0 @@
-a[ data-widget="pushmenu" ] {
-  display: none;
-}
-
-@media screen and (max-width: 992px) {
-  a[ data-widget="pushmenu" ] {
-    display: block;
-  }
-}
