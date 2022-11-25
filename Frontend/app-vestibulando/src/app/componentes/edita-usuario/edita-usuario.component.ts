@@ -18,7 +18,14 @@ export class EditaUsuarioComponent implements OnInit {
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap
     let iduser = parseInt(routeParams.get('idusuario') || '')
-    this.service.consultarbyId(iduser).subscribe(data => this.usuario = data)
+    this.service.consultarbyId(iduser).subscribe({
+      next: data => this.usuario = data,
+      error: erro => {
+        console.log(erro)
+        this.toastr.error("Não foi possível consultar este usuário.", "Erro")
+        this.router.navigate(['/app/usuarios'])
+      }
+    })
   }
 
   alterar() {

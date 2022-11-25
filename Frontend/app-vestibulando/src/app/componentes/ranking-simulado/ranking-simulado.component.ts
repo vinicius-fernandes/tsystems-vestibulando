@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import IRankingSimulado from "../../interfaces/IRankingSimulado";
 import {RankingSimuladoService} from "../../services/rankingSimulado.service";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -15,7 +15,7 @@ export class RankingSimuladoComponent implements OnInit{
 
   id:number = 0
 
-  constructor(private service: RankingSimuladoService, private route: ActivatedRoute, private toastr: ToastrService) { }
+  constructor(private service: RankingSimuladoService, private route: ActivatedRoute, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => this.id = params['id'])
@@ -34,6 +34,7 @@ export class RankingSimuladoComponent implements OnInit{
         error: erro => {
           console.log(erro)
           this.toastr.error("Não foi possível consultar o ranking deste simulado.", "Erro")
+          this.router.navigate(['app', 'home'])
         }
     })
   }
