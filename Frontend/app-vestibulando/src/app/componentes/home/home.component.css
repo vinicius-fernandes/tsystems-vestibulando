@@ -3,12 +3,14 @@
 }
 
 img {
-    width: 50%;
+    width: 35%;
     margin: auto;
     display: block;
 }
 
-h1{
+h1, h2{
     color: #30bced;
     font: clamp;
+    margin-top: 2px;
+    margin-bottom: 10px;
 }
