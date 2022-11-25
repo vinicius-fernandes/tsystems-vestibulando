@@ -1,0 +1,14 @@
+.home{
+    text-align: center;
+}
+
+img {
+    width: 50%;
+    margin: auto;
+    display: block;
+}
+
+h1{
+    color: #30bced;
+    font: clamp;
+}

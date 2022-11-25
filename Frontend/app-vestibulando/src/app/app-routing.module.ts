@@ -24,6 +24,7 @@ import { AddusuarioComponent } from './componentes/addusuario/addusuario.compone
 
 import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materia/adiciona-materia.component';
 import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
+import { HomeComponent } from './componentes/home/home.component';
 const routes: Routes = [
   {
     path: 'app',
@@ -52,6 +53,7 @@ const routes: Routes = [
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent },
       { path: 'usuarios/adduser', component: AddusuarioComponent },
+      { path: 'home', component: HomeComponent },
     ],
   },
   { path: '', component: TelaComponent },
