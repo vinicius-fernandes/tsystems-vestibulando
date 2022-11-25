@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BancasService } from 'src/app/services/bancas.service';
 import IBanca from '../../../interfaces/IBanca';
@@ -11,7 +12,7 @@ import IBanca from '../../../interfaces/IBanca';
 })
 export class AdicionaBancaComponent {
 
-  constructor(private toastr: ToastrService, private serviceBanca: BancasService) { }
+  constructor(private toastr: ToastrService, private serviceBanca: BancasService, private router: Router) { }
 
   nomeBanca = new FormControl()
   siglaBanca = new FormControl()
@@ -40,11 +41,11 @@ export class AdicionaBancaComponent {
     this.serviceBanca.salvar(this.dados).subscribe({
       next: () => {
         this.toastr.success('Banca adicionada com sucesso!', 'Sucesso')
-        window.history.back()
+        this.router.navigate(['app', 'modbancas'])
       },
       error: () => {
         this.toastr.error('Não foi possível adicionar a banca.', 'Erro')
-        window.history.back()
+        this.router.navigate(['app', 'modbancas'])
       }
     })
   }

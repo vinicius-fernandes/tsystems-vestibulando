@@ -12,26 +12,27 @@ import { Router } from '@angular/router';
 })
 export class CadastroComponent {
 
-  form:FormGroup
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder:FormBuilder, private service: UsuarioService, private router:Router) {
+  form: FormGroup
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder: FormBuilder, private service: UsuarioService, private router: Router) {
     this.form = this.formBuilder.group(
       {
         nome: new FormControl("", [Validators.minLength(5), Validators.required]),
-        email:new FormControl("", [Validators.email, Validators.required]),
-        senha:new FormControl("",[Validators.minLength(6),Validators.maxLength(20),Validators.required])
+        email: new FormControl("", [Validators.email, Validators.required]),
+        senha: new FormControl("", [Validators.minLength(6), Validators.maxLength(20), Validators.required])
       }
     )
-   }
+  }
 
   cadastrar() {
-    let dados:IUsuarioDTO = {email:this.form.value.email,nome:this.form.value.nome, senha:this.form.value.senha}
+    let dados: IUsuarioDTO = { email: this.form.value.email, nome: this.form.value.nome, senha: this.form.value.senha }
     this.service.cadastrar(dados).subscribe({
-      next:(
+      next: (
 
-      )=>{this.router.navigate(["login"])},
-      error:( erro
+      ) => { this.router.navigate(["login"]) },
+      error: (erro
 
-      )=>{console.log(erro)
+      ) => {
+        console.log(erro)
       }
     })
   }

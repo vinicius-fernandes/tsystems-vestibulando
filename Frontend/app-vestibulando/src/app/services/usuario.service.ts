@@ -24,11 +24,8 @@ export class UsuarioService {
   
   alterar(usuario: IUsuario){
     return this.http.put<IUsuario>(`${this.baseUrl}/usuarios/${usuario.id}`,usuario)
-
   }
-  salvar(usuario: IUsuario){
-    return this.http.post<IUsuario>(`${this.baseUrl}/usuarios/`,usuario)
-  }
+  
   cadastrar(usuario: IUsuarioDTO|IUsuario){
     return this.http.post<IUsuario>(`${this.baseUrl}/usuarios`, usuario)
   }

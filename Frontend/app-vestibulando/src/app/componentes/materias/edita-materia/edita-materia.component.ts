@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IMateria from 'src/app/interfaces/IMateria';
 import { MateriasService } from 'src/app/services/materias.service';
@@ -13,7 +13,7 @@ export class EditaMateriaComponent implements OnInit {
 
   materia: IMateria = {id: 0, nome: ""}
 
-  constructor(private serviceMateria: MateriasService, private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private serviceMateria: MateriasService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
       var routeParams = this.route.snapshot.paramMap
@@ -22,7 +22,7 @@ export class EditaMateriaComponent implements OnInit {
         next: data => this.materia = data,
         error: erro => {
           this.toastr.error('Matéria não encontrada.', 'Erro')
-          window.history.back()
+          this.router.navigate(['app', 'modmaterias'])
           console.log(erro)
         }
       })
@@ -38,10 +38,10 @@ export class EditaMateriaComponent implements OnInit {
     this.serviceMateria.editar(this.materia).subscribe({
       next: () => {
         this.toastr.success('Matéria alterada com sucesso!', 'Sucesso')
-        window.history.back()
+        this.router.navigate(['app', 'modmaterias'])
       }, error: erro => {
         this.toastr.error('Não foi possível alterar a matéria.', 'Erro')
-        window.history.back()
+        this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }
     })
