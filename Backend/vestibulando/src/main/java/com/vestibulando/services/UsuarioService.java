@@ -1,6 +1,7 @@
 package com.vestibulando.services;
 
 import com.vestibulando.dtos.UsuarioDTO;
+import com.vestibulando.entities.Role;
 import com.vestibulando.entities.Usuario;
 import com.vestibulando.enums.EnumsUsuario;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
@@ -15,9 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UsuarioService implements UserDetailsService {
@@ -53,6 +52,13 @@ public class UsuarioService implements UserDetailsService {
     public UsuarioDTO salvarUsuario(Usuario usuario) {
         if(usuario.getTipo()==null){
             usuario.setTipo(EnumsUsuario.CLIENTE);
+        }
+        if(usuario.getRoles().isEmpty()){
+            Role rl = new Role();
+            rl.setId(1L);
+            Set<Role> rlList= new LinkedHashSet<>();
+            rlList.add(rl);
+            usuario.setRoles(rlList);
         }
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRepository.save(usuario));
