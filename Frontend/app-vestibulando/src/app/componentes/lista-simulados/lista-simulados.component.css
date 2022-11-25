@@ -2,6 +2,7 @@ h1 {
   line-height: 3em;
   text-align: center;
 }
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -9,7 +10,15 @@ h1 {
 }
 .card {
   padding: 2em;
+  position: relative;
 }
+
+.card>button:first-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .card ul {
   margin-bottom: 20px;
   max-height: 110px;
