@@ -17,7 +17,7 @@ export class ListaSimuladosComponent implements OnInit {
     return this.service.converterData(timestamp)
   }
 
-  constructor(private _router: Router, private service: ListaSimuladosService, private toastr: ToastrService) {
+  constructor(private _router: Router, private service: ListaSimuladosService, private toastr: ToastrService, private router: Router) {
   }
 
   ngOnInit() {
@@ -34,6 +34,7 @@ export class ListaSimuladosComponent implements OnInit {
         error: erro => {
           console.log(erro)
           this.toastr.error("Não foi possível consultar os simulados.", "Erro")
+          this.router.navigate(['app', 'home'])
         }
     })
   }
