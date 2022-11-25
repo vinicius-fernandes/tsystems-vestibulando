@@ -42,6 +42,7 @@ header a div:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    color: #30BCED;
 }
 
 .myinput::placeholder {
