@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IMateria from 'src/app/interfaces/IMateria';
 import { MateriasService } from 'src/app/services/materias.service';
@@ -12,7 +13,7 @@ export class GerenciaMateriasComponent implements OnInit {
 
   materias: IMateria[] = []
 
-  constructor(private serviceMateria: MateriasService, private toastr: ToastrService) {
+  constructor(private serviceMateria: MateriasService, private toastr: ToastrService, private router: Router) {
 
   }
 
@@ -22,6 +23,7 @@ export class GerenciaMateriasComponent implements OnInit {
       error: erro => {
         console.log(erro)
         this.toastr.error("Não foi possível consultar as matérias.", "Erro")
+        this.router.navigate(['app', 'home'])
       }
     })
   }
