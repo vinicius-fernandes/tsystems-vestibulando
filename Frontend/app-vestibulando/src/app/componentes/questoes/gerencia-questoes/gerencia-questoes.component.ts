@@ -12,6 +12,9 @@ import { ThisReceiver } from '@angular/compiler';
   styleUrls: ['./gerencia-questoes.component.css'],
 })
 export class GerenciaQuestoesComponent {
+
+
+
   constructor(
     private serviceQuestoes: QuestoesService,
     private toastr: ToastrService
@@ -23,7 +26,7 @@ export class GerenciaQuestoesComponent {
 
   ngOnInit(): void {
 
-      this.obterPerguntas({page:'0',size:'10'})
+      this.obterPerguntas({page:'0',size:'5'})
   }
 
   obterPerguntas(params:any){
@@ -38,6 +41,13 @@ export class GerenciaQuestoesComponent {
 
 
   }
+
+  nextPage(event: PageEvent) {
+    const request = {page:event.pageIndex.toString(),size:event.pageSize.toString()};
+
+    this.obterPerguntas(request);
+}
+
 
   excluir(id: number) {
     this.serviceQuestoes.excluir(id).subscribe({

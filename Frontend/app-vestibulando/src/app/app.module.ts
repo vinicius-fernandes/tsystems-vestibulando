@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -41,6 +41,7 @@ import { AddusuarioComponent } from './componentes/addusuario/addusuario.compone
 import { GerenciaQuestoesComponent } from './componentes/questoes/gerencia-questoes/gerencia-questoes.component';
 import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/edita-questoes.component';
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
+import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,7 @@ import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-quest
     MatChipsModule,
     MatPaginatorModule
     ],
-  providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl }],
+  providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl },{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
