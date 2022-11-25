@@ -14,7 +14,7 @@
 
     <tbody>
         <tr *ngFor="let b of bancas">
-            <th>{{ b.id }}</th>
+            <td>{{ b.id }}</td>
             <td>{{ b.nome }}</td>
             <td>{{ b.sigla }}</td>
             <td class="text-end"><button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluirBanca(b.id || 0)"><i class="fa fa-trash"></i></button> <a [routerLink]="['editbanca', b.id]"><button mat-raised-button color="primary"><i class="fas fa-edit"></i></button></a></td>
