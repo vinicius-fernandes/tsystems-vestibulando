@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IMateria from 'src/app/interfaces/IMateria';
 import { MateriasService } from 'src/app/services/materias.service';
@@ -11,7 +12,7 @@ import { MateriasService } from 'src/app/services/materias.service';
 })
 export class AdicionaMateriaComponent {
 
-  constructor(private toastr: ToastrService, private serviceMateria: MateriasService) { }
+  constructor(private toastr: ToastrService, private serviceMateria: MateriasService, private router: Router) { }
 
   nomeMateria = new FormControl()
   dados: IMateria = {nome: ''}
@@ -28,10 +29,10 @@ export class AdicionaMateriaComponent {
     this.serviceMateria.salvar(this.dados).subscribe({
       next: () => {
         this.toastr.success('Matéria adicionada com sucesso!', 'Sucesso')
-        window.history.back()
+        this.router.navigate(['app', 'modmaterias'])
       }, error: erro => {
         this.toastr.error('Não foi possível adicionar a matéria.', 'Erro')
-        window.history.back()
+        this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }
     })

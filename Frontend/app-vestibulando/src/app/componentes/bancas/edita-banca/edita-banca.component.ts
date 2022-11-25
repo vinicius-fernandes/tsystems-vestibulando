@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IBanca from 'src/app/interfaces/IBanca';
 import { BancasService } from 'src/app/services/bancas.service';
@@ -13,7 +13,7 @@ export class EditaBancaComponent implements OnInit {
 
   banca: IBanca = {nome: '', sigla: '', id: 0}
 
-  constructor(private serviceBanca: BancasService, private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private serviceBanca: BancasService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     var routeParams = this.route.snapshot.paramMap
@@ -22,7 +22,7 @@ export class EditaBancaComponent implements OnInit {
       next: data => this.banca = data,
       error: () => {
         this.toastr.error('Banca não encontrada.', 'Erro')
-        window.history.back()
+        this.router.navigate(['app', 'modbancas'])
       }
     })
   }
@@ -47,11 +47,11 @@ export class EditaBancaComponent implements OnInit {
     this.serviceBanca.editar(this.banca).subscribe({
       next: () => {
         this.toastr.success('Banca alterada com sucesso!', 'Sucesso')
-        window.history.back()
+        this.router.navigate(['app', 'modbancas'])
       },
       error: () => {
         this.toastr.error('Não foi possível alterar a banca.', 'Erro')
-        window.history.back()
+        this.router.navigate(['app', 'modbancas'])
       }
     })
   }
