@@ -28,7 +28,7 @@ export class QuestoesService {
   }
 
   excluir(id: number) {
-    return this.http.delete(`${this.baseUrl}/perguntas/${id}`);
+    return this.http.delete(`${this.baseUrl}/perguntas/${id}`, {responseType: 'arraybuffer'});
   }
 
 }

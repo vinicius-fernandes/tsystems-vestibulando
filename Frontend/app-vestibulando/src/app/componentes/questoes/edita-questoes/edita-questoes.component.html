@@ -10,146 +10,129 @@
   <h1 class="text-center">Adicionar Questão</h1>
   <h2 class="text">Pergunta</h2>
 
-  <form>
-    <div class="text-center">
-      <mat-form-field appearance="fill" color="primary" class="comp-75">
-        <mat-label>ID da matéria</mat-label>
-        <input matInput placeholder="Informe o ID da matéria" />
-      </mat-form-field>
-      <mat-form-field appearance="fill" color="primary" class="comp-75">
-        <mat-label>ID da banca</mat-label>
-        <input matInput placeholder="Informe o ID da banca" />
-      </mat-form-field>
+  <div class="text-center">
+    <mat-form-field appearance="fill" color="primary" class="comp-75">
+      <mat-label>ID da matéria</mat-label>
+      <input [(ngModel)]="questao.materia.id" matInput placeholder="Informe o ID da matéria" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="primary" class="comp-75">
+      <mat-label>ID da banca</mat-label>
+      <input [(ngModel)]="questao.banca.id" matInput placeholder="Informe o ID da banca" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Enunciado</mat-label>
+      <textarea
+        [(ngModel)]="questao.corpo"
+        placeholder="Informe o enunciado da questão"
+        matInput
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <div class="col-9">
+      <h2 class="text">Respostas</h2>
+    </div>
+    <div class="col-3">
+      <h2 class="text">Selecionar a correta</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9">
       <mat-form-field class="example-full-width">
-        <mat-label>Enunciado</mat-label>
-        <textarea
-          [(ngModel)]="questao.corpo"
-          placeholder="Informe o enunciado da questão"
-          matInput
-        ></textarea>
+        <mat-label>Primeira resposta</mat-label>
+        <textarea [(ngModel)]="questao.respostas[0].descricao" placeholder="Informe a primeira resposta" matInput></textarea>
       </mat-form-field>
     </div>
-
-    <div class="row">
-      <div class="col-9">
-        <h2 class="text">Respostas</h2>
-      </div>
-      <div class="col-3">
-        <h2 class="text">Selecionar a correta</h2>
-      </div>
+    <div class="col-3">
+      <mat-radio-group aria-label="Select an option" name="correta">
+        <mat-radio-button
+          class="example-margin"
+          value="0"
+          id="idcorreta1"
+        ></mat-radio-button>
+      </mat-radio-group>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-9">
-        <mat-form-field class="example-full-width">
-          <mat-label>Primeira resposta</mat-label>
-          <textarea
-            placeholder="Informe a primeira resposta"
-            matInput
-          ></textarea>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-radio-group aria-label="Select an option" name="correta">
-          <mat-radio-button
-            class="example-margin"
-            value="0"
-            id="idcorreta1"
-          ></mat-radio-button>
-        </mat-radio-group>
-      </div>
+  <div class="row">
+    <div class="col-9">
+      <mat-form-field class="example-full-width">
+        <mat-label>Segunda resposta</mat-label>
+        <textarea [(ngModel)]="questao.respostas[1].descricao" placeholder="Informe a primeira resposta" matInput></textarea>
+      </mat-form-field>
     </div>
+    <div class="col-3">
+      <mat-radio-group aria-label="Select an option" name="correta">
+        <mat-radio-button
+          class="example-margin"
+          value="1"
+          id="idcorreta2"
+        ></mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
 
-    <div class="row">
-      <div class="col-9">
-        <mat-form-field class="example-full-width">
-          <mat-label>Segunda resposta</mat-label>
-          <textarea
-            placeholder="Informe a primeira resposta"
-            matInput
-          ></textarea>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-radio-group aria-label="Select an option" name="correta">
-          <mat-radio-button
-            class="example-margin"
-            value="1"
-            id="idcorreta2"
-          ></mat-radio-button>
-        </mat-radio-group>
-      </div>
+  <div class="row">
+    <div class="col-9">
+      <mat-form-field class="example-full-width">
+        <mat-label>Terceira resposta</mat-label>
+        <textarea [(ngModel)]="questao.respostas[2].descricao" placeholder="Informe a primeira resposta" matInput></textarea>
+      </mat-form-field>
     </div>
+    <div class="col-3">
+      <mat-radio-group aria-label="Select an option" name="correta">
+        <mat-radio-button
+          class="example-margin"
+          value="2"
+          id="idcorreta3"
+        ></mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
 
-    <div class="row">
-      <div class="col-9">
-        <mat-form-field class="example-full-width">
-          <mat-label>Terceira resposta</mat-label>
-          <textarea
-            placeholder="Informe a primeira resposta"
-            matInput
-          ></textarea>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-radio-group aria-label="Select an option" name="correta">
-          <mat-radio-button
-            class="example-margin"
-            value="2"
-            id="idcorreta3"
-          ></mat-radio-button>
-        </mat-radio-group>
-      </div>
+  <div class="row">
+    <div class="col-9">
+      <mat-form-field class="example-full-width">
+        <mat-label>Quarta resposta</mat-label>
+        <textarea [(ngModel)]="questao.respostas[3].descricao" placeholder="Informe a primeira resposta" matInput></textarea>
+      </mat-form-field>
     </div>
+    <div class="col-3">
+      <mat-radio-group aria-label="Select an option" name="correta">
+        <mat-radio-button
+          class="example-margin"
+          value="3"
+          id="idcorreta4"
+        ></mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
 
-    <div class="row">
-      <div class="col-9">
-        <mat-form-field class="example-full-width">
-          <mat-label>Quarta resposta</mat-label>
-          <textarea
-            placeholder="Informe a primeira resposta"
-            matInput
-          ></textarea>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-radio-group aria-label="Select an option" name="correta">
-          <mat-radio-button
-            class="example-margin"
-            value="3"
-            id="idcorreta4"
-          ></mat-radio-button>
-        </mat-radio-group>
-      </div>
+  <div class="row">
+    <div class="col-9">
+      <mat-form-field class="example-full-width">
+        <mat-label>Quinta resposta</mat-label>
+        <textarea [(ngModel)]="questao.respostas[4].descricao" placeholder="Informe a primeira resposta" matInput></textarea>
+      </mat-form-field>
     </div>
+    <div class="col-3">
+      <mat-radio-group aria-label="Select an option" name="correta">
+        <mat-radio-button
+          class="example-margin"
+          value="4"
+          id="idcorreta5"
+        ></mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
 
-    <div class="row">
-      <div class="col-9">
-        <mat-form-field class="example-full-width">
-          <mat-label>Quinta resposta</mat-label>
-          <textarea
-            placeholder="Informe a primeira resposta"
-            matInput
-          ></textarea>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-radio-group aria-label="Select an option" name="correta">
-          <mat-radio-button
-            class="example-margin"
-            value="4"
-            id="idcorreta5"
-          ></mat-radio-button>
-        </mat-radio-group>
-      </div>
-    </div>
-
-    <div class="text-start">
-      <button mat-raised-button color="primary" (click)="alterarQuestao()">
-        Salvar
-      </button>
-    </div>
-  </form>
+  <div class="text-start">
+    <button mat-raised-button color="primary" (click)="alterarQuestao()">
+      Salvar
+    </button>
+  </div>
 </div>
 
 <!-- <div class="container">
