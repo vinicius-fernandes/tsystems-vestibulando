@@ -13,7 +13,7 @@
 
     <tbody>
         <tr *ngFor="let m of materias">
-            <th>{{ m.id }}</th>
+            <td>{{ m.id }}</td>
             <td>{{ m.nome }}</td>
             <td class="text-end"><button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluirMateria(m.id || 0)"><i class="fa fa-trash"></i></button> <a [routerLink]="['editmateria', m.id]"><button mat-raised-button color="primary"><i class="fas fa-edit"></i></button></a></td>
         </tr>

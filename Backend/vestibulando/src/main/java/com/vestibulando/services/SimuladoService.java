@@ -2,12 +2,10 @@ package com.vestibulando.services;
 
 import com.vestibulando.dtos.GerarSimuladoDTO;
 import com.vestibulando.dtos.SimuladoDTO;
-import com.vestibulando.entities.Banca;
-import com.vestibulando.entities.Materia;
-import com.vestibulando.entities.Pergunta;
-import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.*;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IPerguntaRepository;
+import com.vestibulando.repositories.IRespostasUsuariosRepository;
 import com.vestibulando.repositories.ISimuladoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +25,9 @@ public class SimuladoService {
 
     @Autowired
     IPerguntaRepository perguntaRepository;
+
+    @Autowired
+    IRespostasUsuariosRepository respostasUsuariosRepository;
 
     public List<Simulado> consultar() {
         return simuladoRepository.findAll();
@@ -89,12 +90,18 @@ public class SimuladoService {
     @Transactional
     public String deletarSimulado(Long id) {
         consultar(id);
+        Simulado simulado = this.consultar(id);
+
+        List<RespostasUsuarios> respostasUsuarios = this.respostasUsuariosRepository.findBySimulado(simulado);
+
+        List<Long> idsRespostasUsuarios = respostasUsuarios.stream().map(RespostasUsuarios::getId).toList();
+
         try {
+            respostasUsuariosRepository.deleteAllById(idsRespostasUsuarios);
             simuladoRepository.deleteById(id);
-            return "Simulado deletado com sucesso.";
-        }
-        catch (Exception e){
-            throw  new DeleteComAssociacoes("Não é possível deletar o simulado pois há itens associados com ele");
+            return "Simulado excluido com sucesso!";
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 

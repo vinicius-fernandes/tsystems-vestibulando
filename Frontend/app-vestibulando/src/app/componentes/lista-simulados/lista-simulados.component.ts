@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListaSimuladosService } from "../../services/listaSimulados.service";
 import ISimulado from "../../interfaces/ISimulado";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-lista-simulados',
@@ -16,8 +17,7 @@ export class ListaSimuladosComponent implements OnInit{
     return this.service.converterData(timestamp)
   }
 
-  constructor(private _router: Router, private service: ListaSimuladosService) {
-  }
+  constructor(private _router: Router, private service: ListaSimuladosService,  private toastr: ToastrService) { }
 
   ngOnInit() {
     this.criarLista()
@@ -30,6 +30,16 @@ export class ListaSimuladosComponent implements OnInit{
           return b.createdAt - a.createdAt
         })
       )
+  }
+
+  excluirSimulado(id:number) {
+    this.service.excluir(id).subscribe({next: () => {
+        this.simulados = this.simulados.filter(b => b.id != id)
+        this.toastr.success('Simulado excluído com sucesso!', 'Sucesso')
+      }, error: (erro) => {
+        this.toastr.error('Este simulado não pode ser excluído.', 'Erro')
+        console.log(erro)
+      }})
   }
 
   redirecionarSimulado(id:number):void {
