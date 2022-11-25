@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ListaSimuladosService } from "../../services/listaSimulados.service";
 import ISimulado from "../../interfaces/ISimulado";
 import {Router} from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-simulados',
   templateUrl: './lista-simulados.component.html',
   styleUrls: ['./lista-simulados.component.css']
 })
-export class ListaSimuladosComponent implements OnInit{
+export class ListaSimuladosComponent implements OnInit {
 
   simulados:ISimulado[] = []
 
@@ -16,7 +17,7 @@ export class ListaSimuladosComponent implements OnInit{
     return this.service.converterData(timestamp)
   }
 
-  constructor(private _router: Router, private service: ListaSimuladosService) {
+  constructor(private _router: Router, private service: ListaSimuladosService, private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -25,11 +26,16 @@ export class ListaSimuladosComponent implements OnInit{
 
   criarLista() {
     this.service.listar()
-      .subscribe(dados => this.simulados = dados.sort(
+      .subscribe({
+        next: dados => this.simulados = dados.sort(
         (a,b) => {
           return b.createdAt - a.createdAt
-        })
-      )
+        }),
+        error: erro => {
+          console.log(erro)
+          this.toastr.error("Não foi possível consultar os simulados.", "Erro")
+        }
+    })
   }
 
   redirecionarSimulado(id:number):void {
