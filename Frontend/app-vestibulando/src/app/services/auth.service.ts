@@ -13,6 +13,7 @@ export class AuthService {
   HTTP_OPTIONS = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
+      
       Authorization: 'Basic ' + btoa(this.auth_client + ':' + this.auth_secret)
     })
   };
@@ -51,7 +52,7 @@ export class AuthService {
       const body = new HttpParams()
         .set('refresh_token', refreshData.refresh_token)
         .set('grant_type', 'refresh_token');
-      return this.http.post<any>(this.baseUrl + 'oauth/token', body, this.HTTP_OPTIONS)
+      return this.http.post<any>(this.baseUrl + '/oauth/token', body, this.HTTP_OPTIONS)
 
     }
 

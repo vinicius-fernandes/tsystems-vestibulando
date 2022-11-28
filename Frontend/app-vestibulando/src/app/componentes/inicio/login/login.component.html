@@ -14,9 +14,9 @@
 
     <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
         <h3 class="tituloLogin"><b>Login</b></h3>
-        <form>
-        <input type="text" class="myinput" placeholder="E-mail" required>
-        <input type="password" class="myinput" placeholder="Senha" required>
+        <form [formGroup]="form">
+        <input type="text" class="myinput" placeholder="E-mail" formControlName="username" required>
+        <input type="password" formControlName="password" class="myinput" placeholder="Senha" required>
         <div class="botoesLogin">
            <button class="btn botaoazul" (click)="login()" >Login</button>
             <button class="btn botaoazul" (click)="login()">Cadastro</button>
