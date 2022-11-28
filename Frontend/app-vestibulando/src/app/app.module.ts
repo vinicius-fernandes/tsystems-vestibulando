@@ -43,7 +43,7 @@ import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/ed
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
 import { HomeComponent } from './componentes/home/home.component';
 import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
-
+import {AuthInterceptor} from './auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,6 +102,11 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
     { provide: "BASE_API_URL", useValue: environment.apiUrl },
     { provide: "OAUTH_CLIENT", useValue: environment.OAUTH_CLIENT },
     { provide: "OAUTH_SECRET", useValue: environment.OAUTH_SECRET },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
 
   { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr}
 ],
