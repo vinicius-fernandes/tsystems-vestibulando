@@ -18,8 +18,9 @@
         <input type="text" class="myinput" placeholder="E-mail" formControlName="username" required>
         <input type="password" formControlName="password" class="myinput" placeholder="Senha" required>
         <div class="botoesLogin">
-           <button class="btn botaoazul" (click)="login()" >Login</button>
-            <button class="btn botaoazul" (click)="redirecionarCadastro()">Cadastro</button>
+           <button mat-flat-button color="primary" (click)="login()" >Login</button>
+            <button mat-flat-button color="primary" (click)="redirecionarCadastro()">Cadastro</button>
+
         </div>
       </form>
     </div>

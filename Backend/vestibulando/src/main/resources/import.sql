@@ -1512,7 +1512,6 @@ INSERT INTO resposta(descricao, correta, pergunta_id) VALUES ('Nunc vel sodales 
 
 
 INSERT INTO simulado (created_at) values ('2022-11-17T14:02:01.077Z');
-INSERT INTO simulado (created_at) values ('2022-11-17T14:02:01.077Z');
 
 INSERT INTO simulado_pergunta (simulado_id,pergunta_id) values (1,1);
 INSERT INTO simulado_pergunta (simulado_id,pergunta_id) values (1,2);

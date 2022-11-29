@@ -2,14 +2,31 @@ h1 {
   line-height: 3em;
   text-align: center;
 }
+
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
 }
 .card {
   padding: 2em;
+  position: relative;
+  margin: auto;
 }
+
+.card:nth-child(2) {
+  grid-column: 2;
+}
+
+.card:nth-child(3) {
+  grid-column: 3;
+}
+
+.card>button:first-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .card ul {
   margin-bottom: 20px;
   max-height: 110px;
@@ -32,15 +49,21 @@ h1 {
 }
 
 @media only screen and (max-width: 715px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
+  .card:nth-child(2) {
+    grid-column: 2;
+  }
+  .card:nth-child(3) {
+    grid-column: 1;
   }
   .botoes button[mat-raised-button] {
     height: auto;
   }
 }
-@media only screen and (max-width: 475px) {
-  .grid {
-    grid-template-columns: 1fr;
+@media only screen and (max-width: 530px) {
+  .card:nth-child(2) {
+    grid-column: 1;
+  }
+  .card:nth-child(3) {
+    grid-column: 1;
   }
 }
