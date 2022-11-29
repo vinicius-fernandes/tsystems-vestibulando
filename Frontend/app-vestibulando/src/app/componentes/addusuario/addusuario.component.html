@@ -24,13 +24,11 @@
             </select>
             <label for="tipo">Regra Usuario</label>
         </div>
-        
-        <p class="mb-5">
-            <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
-            <a routerLink="../">                 
-                <button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
-            </a>
-        </p>
+
+        <div class="botoes">
+            <a routerLink=".."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a>
+            <button mat-raised-button color="primary" class="mr-3" (click)="salvar()"><i class="fas fa-save"></i> Salvar</button>   
+        </div>
 
     </form>
 </div>
