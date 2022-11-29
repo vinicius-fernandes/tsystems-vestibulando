@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IPergunta from 'src/app/interfaces/IPergunta';
 import IResposta from 'src/app/interfaces/IResposta';
@@ -12,7 +12,6 @@ import { QuestoesService } from 'src/app/services/questoes.service';
   styleUrls: ['./edita-questoes.component.css'],
 })
 export class EditaQuestoesComponent implements OnInit {
-
   respostas: IResposta[] = [];
 
   form: FormGroup;
@@ -29,10 +28,11 @@ export class EditaQuestoesComponent implements OnInit {
     private serviceQuestoes: QuestoesService,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.form = this.formBuilder.group({
-      respostaCorreta: new FormControl('')
+      respostaCorreta: new FormControl(''),
     });
   }
 
@@ -43,31 +43,30 @@ export class EditaQuestoesComponent implements OnInit {
       next: (data) => (this.questao = data),
       error: () => {
         this.toastr.error('Questão não encontrada.', 'Erro');
-        window.history.back();
+        this.router.navigateByUrl('app/questoes');
       },
     });
   }
 
   alterarQuestao() {
     if (this.form.value.respostaCorreta != '') {
-      this.questao.respostas[0].correta = false
-      this.questao.respostas[1].correta = false
-      this.questao.respostas[2].correta = false
-      this.questao.respostas[3].correta = false
-      this.questao.respostas[4].correta = false
+      this.questao.respostas[0].correta = false;
+      this.questao.respostas[1].correta = false;
+      this.questao.respostas[2].correta = false;
+      this.questao.respostas[3].correta = false;
+      this.questao.respostas[4].correta = false;
       this.questao.respostas[this.form.value.respostaCorreta].correta = true;
-    } 
+    }
 
     this.serviceQuestoes.editar(this.questao).subscribe({
       next: () => {
         this.toastr.success('Questão editada com sucesso!', 'Sucesso');
-        window.history.back();
+        this.router.navigateByUrl('app/questoes');
       },
       error: () => {
         this.toastr.error('Não foi possível editar a questão.', 'Erro');
-        window.history.back();
+        this.router.navigateByUrl('app/questoes');
       },
     });
   }
-
 }

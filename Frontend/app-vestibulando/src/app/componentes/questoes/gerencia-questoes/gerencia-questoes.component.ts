@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PageEvent } from '@angular/material/paginator';
 import { ContentObserver } from '@angular/cdk/observers';
 import { ThisReceiver } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gerencia-questoes',
@@ -12,9 +13,6 @@ import { ThisReceiver } from '@angular/compiler';
   styleUrls: ['./gerencia-questoes.component.css'],
 })
 export class GerenciaQuestoesComponent {
-
-
-
   constructor(
     private serviceQuestoes: QuestoesService,
     private toastr: ToastrService
@@ -23,40 +21,40 @@ export class GerenciaQuestoesComponent {
   pergunta: IPergunta[] = [];
   totalElements: number = 0;
 
-
   ngOnInit(): void {
-
-      this.obterPerguntas({page:'0',size:'5'})
+    this.obterPerguntas({ page: '0', size: '5' });
   }
 
-  obterPerguntas(params:any){
+  obterPerguntas(params: any) {
     this.serviceQuestoes.consultaPaginada(params).subscribe({
-      next:(data)=>{
-        this.pergunta = <IPergunta[]>data.content
-        this.totalElements = data['totalElements']
+      next: (data) => {
+        this.pergunta = <IPergunta[]>data.content;
+        this.totalElements = data['totalElements'];
       },
-      error:(erro)=>{        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
-    }
-    })
-
-
+      error: () => {
+        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
+      },
+    });
   }
 
   nextPage(event: PageEvent) {
-    const request = {page:event.pageIndex.toString(),size:event.pageSize.toString()};
+    const request = {
+      page: event.pageIndex.toString(),
+      size: event.pageSize.toString(),
+    };
 
     this.obterPerguntas(request);
-}
-
+  }
 
   excluir(id: number) {
     this.serviceQuestoes.excluir(id).subscribe({
       next: () => {
         this.toastr.success('Pergunta excluida com sucesso!', 'Sucesso');
+        window.location.reload();
       },
-      error: (err) => {
-        console.log(err);
+      error: () => {
         this.toastr.error('Não foi possível excluir a pergunta.', 'Erro');
+        window.location.reload();
       },
     });
   }
