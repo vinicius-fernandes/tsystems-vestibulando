@@ -1,10 +1,7 @@
-.example-card {
-    width: 17rem;
-    margin-bottom: 20px;
-    padding: 10px;
-  }
-  
-  
+.cardwrap{
+  display: flex;
+  flex-wrap: wrap;
+} 
 .mt-2{
     text-align: center;
 }

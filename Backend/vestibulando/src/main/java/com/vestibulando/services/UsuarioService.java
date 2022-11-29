@@ -64,7 +64,6 @@ public class UsuarioService implements UserDetailsService {
             rlList.add(rl);
             usuario.setRoles(rlList);
         }
-                
 
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRepository.save(usuario));
@@ -99,7 +98,6 @@ public class UsuarioService implements UserDetailsService {
             throw  new DeleteComAssociacoes("Não é possível deletar o usuário pois há itens associados a ele");
         }
     }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(username);

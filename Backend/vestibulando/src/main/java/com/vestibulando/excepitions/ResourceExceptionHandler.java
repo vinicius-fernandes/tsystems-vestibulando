@@ -1,6 +1,6 @@
 package com.vestibulando.excepitions;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
-import java.util.zip.DataFormatException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
@@ -27,7 +26,6 @@ public class ResourceExceptionHandler {
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
-
     @ExceptionHandler(DeleteComAssociacoes.class)
     public ResponseEntity<StandardError> deleteComAssociacoes(DeleteComAssociacoes e,
                                                                HttpServletRequest req){
@@ -39,7 +37,17 @@ public class ResourceExceptionHandler {
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
-
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<StandardError> emailDuplicado(DataIntegrityViolationException e,
+                                                        HttpServletRequest req){
+        StandardError err = new StandardError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("Email já existe");
+        err.setMessage("E-mail já cadastrado");
+        err.setPath(req.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<StandardError> erroGenerico(RuntimeException e,
                                                       HttpServletRequest req){
@@ -51,17 +59,8 @@ public class ResourceExceptionHandler {
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<StandardError> emailDuplicado(DataIntegrityViolationException e,
-                                                      HttpServletRequest req){
-        StandardError err = new StandardError();
-        err.setTimeStamp(Instant.now());
-        err.setStatus(HttpStatus.BAD_REQUEST.value());
-        err.setError("Email já existe");
-        err.setMessage("E-mail já cadastrado");
-        err.setPath(req.getRequestURI());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
-    }
+
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<StandardError> argumentoInvalidoException(MethodArgumentNotValidException e,
                                                                     HttpServletRequest req){
