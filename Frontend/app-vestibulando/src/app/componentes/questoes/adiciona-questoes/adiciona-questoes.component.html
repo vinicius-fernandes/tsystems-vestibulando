@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <h1 class="text-center">Adicionar Questão</h1>
   <h2 class="text">Pergunta</h2>
 
@@ -32,11 +32,9 @@
     </div>
 
     <div class="row">
-      <div class="col-9">
+      <div class="col-12">
         <h2 class="text">Respostas</h2>
-      </div>
-      <div class="col-3">
-        <h2 class="text">Selecionar a correta</h2>
+        <p>Escreva a alternativa e selecione a correta no menu à direita</p>
       </div>
     </div>
 
@@ -45,7 +43,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Primeira resposta</mat-label>
           <textarea
-            placeholder="Informe a primeira resposta"
             formControlName="resposta1"
             matInput
           ></textarea>
@@ -71,7 +68,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Segunda resposta</mat-label>
           <textarea
-            placeholder="Informe a segunda resposta"
             formControlName="resposta2"
             matInput
           ></textarea>
@@ -97,7 +93,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Terceira resposta</mat-label>
           <textarea
-            placeholder="Informe a terceira resposta"
             formControlName="resposta3"
             matInput
           ></textarea>
@@ -123,7 +118,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Quarta resposta</mat-label>
           <textarea
-            placeholder="Informe a quarta resposta"
             formControlName="resposta4"
             matInput
           ></textarea>
@@ -149,7 +143,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Quinta resposta</mat-label>
           <textarea
-            placeholder="Informe a quinta resposta"
             formControlName="resposta5"
             matInput
           ></textarea>
@@ -170,7 +163,7 @@
       </div>
     </div>
 
-    <div class="text-start">
+    <div class="text-start botoes">
       <a routerLink=".."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a>
       <button mat-raised-button color="primary"><i class="fas fa-save"></i> Salvar</button>
     </div>

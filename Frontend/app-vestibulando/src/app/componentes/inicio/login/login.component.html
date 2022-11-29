@@ -1,10 +1,11 @@
 <div class="imgbg">
     <header>
-            <a routerLink="">
-                <div class="fa-2x" >
-                    <i class="fas fa-arrow-left" style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
-                </div>
-            </a>
+        <a routerLink="">
+            <div class="fa-2x">
+                <i class="fas fa-arrow-left"
+                    style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
+            </div>
+        </a>
     </header>
     <div>
         <div class="text-center">
@@ -13,15 +14,26 @@
     </div>
 
     <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
-        <h3 class="tituloLogin"><b>Login</b></h3>
-        <form [formGroup]="form">
-        <input type="text" class="myinput" placeholder="E-mail" formControlName="username" required>
-        <input type="password" formControlName="password" class="myinput" placeholder="Senha" required>
-        <div class="botoesLogin">
-           <button mat-flat-button color="primary" (click)="login()" >Login</button>
-            <button mat-flat-button color="primary" (click)="redirecionarCadastro()">Cadastro</button>
 
+        <h3 class="tituloLogin"><b>Login</b></h3>
+
+        <div>
+            <form [formGroup]="form">
+                <div class="input">
+                    <mat-form-field appearance="fill" color="primary" >
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="username" type="text" placeholder="E-mail" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="primary">
+                        <mat-label>Senha</mat-label>
+                        <input matInput type="password" formControlName="password" placeholder="Senha" required>
+                    </mat-form-field>
+                </div>
+                <div class="botoesLogin">
+                    <button mat-flat-button color="primary" (click)="login()">Login</button>
+                    <button mat-flat-button color="primary" (click)="redirecionarCadastro()">Cadastro</button>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
 </div>

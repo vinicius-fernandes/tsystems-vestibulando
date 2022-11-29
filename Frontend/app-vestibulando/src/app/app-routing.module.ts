@@ -54,7 +54,8 @@ const routes: Routes = [
       { path: 'usuarios/adduser', component: AddusuarioComponent, canActivate:[AdmGuard] },
       { path: 'home', component: HomeComponent },
       {path:'info/:mensagem',component:InfoComponent},
-      {path:'ranking',component:RankingGeralComponent}
+      {path:'ranking',component:RankingGeralComponent},
+      { path: '', component: HomeComponent },
     ],
   },
   { path: '', component: TelaComponent },
