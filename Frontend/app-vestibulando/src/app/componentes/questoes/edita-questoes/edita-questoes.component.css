@@ -16,20 +16,20 @@
   width: 100%;
 }
 
-button{
-  margin-left: 15px;
-  margin-right: 100px;
-  height: 48px;
-  width: 112.83px;
-}
-
 .botoes{
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
-<<<<<<< HEAD
-=======
+
+button{
+  height: 48px;
+  width: 113px;
+}
 
 mat-label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 350;
 }
->>>>>>> 6ad4fed23be0198b2810fee1411260c017d8ad70
