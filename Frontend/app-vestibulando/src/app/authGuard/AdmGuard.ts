@@ -14,7 +14,7 @@ export class AdmGuard implements CanActivate
 
     let user = this.jwtTokenService.getTokenDecoded()
 
-    if(user == null){
+    if(user == null && !this.jwtTokenService.getIsRefreshing()){
       this.router.navigate(['login'])
     }
     //let tokenDecoded = JSON.stringify(jwt(token))

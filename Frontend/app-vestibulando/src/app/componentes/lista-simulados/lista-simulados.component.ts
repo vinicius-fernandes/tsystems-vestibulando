@@ -34,8 +34,11 @@ export class ListaSimuladosComponent implements OnInit {
         }),
         error: erro => {
           console.log(erro)
+          if(erro.status!=401){
+
           this.toastr.error("Não foi possível consultar os simulados.", "Erro")
           this.router.navigate(['app', 'home'])
+          }
         }
     })
   }
