@@ -13,6 +13,10 @@ export class ListaSimuladosService{
      return this.http.get<ISimulado[]>(`${this.baseUrl}/simulados`)
   }
 
+  excluir(id:number) {
+    return this.http.delete(`${this.baseUrl}/simulados/${id}`,{responseType: 'arraybuffer'})
+  }
+
   converterData(timestamp:number):string {
     let date = new Date(timestamp * 1000)
 

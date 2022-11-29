@@ -1,8 +1,7 @@
-<p class="mb-5"><a routerLink=".."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a></p>
 
-<h1 class="text-center">Adicionar Banca</h1>
 
 <div class="text-center">
+    <h1>Adicionar Banca</h1>
     <mat-form-field appearance="fill" color="primary" class="comp-75">
         <mat-label>Nome da Banca</mat-label>
         <input [formControl]="nomeBanca" matInput placeholder="Informe o nome da banca">
@@ -13,7 +12,8 @@
     </mat-form-field>
 </div>
 
-<div class="text-start mleft-125">
-    <button mat-raised-button color="primary" (click)="adicionarBanca()">Salvar</button>
+<div class="botoes">
+    <a routerLink=".."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a>
+    <button mat-raised-button color="primary" (click)="adicionarBanca()"><i class="fas fa-save"></i> Salvar</button>
 </div>
 

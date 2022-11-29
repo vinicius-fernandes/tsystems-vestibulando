@@ -1,0 +1,21 @@
+.comp-75 {
+    width: 75%;
+}
+
+.botoes{
+    text-align: center;
+}
+
+button{
+    margin-right: 100px;
+    height: 48px;
+    width: 112.83px;
+}
+
+mat-label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 350;
+}
+
+.form-floating mb-3{
+    text-align: center;
+}

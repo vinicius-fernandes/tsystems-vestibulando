@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import IUsuarioDTO from 'src/app/interfaces/IUsuarioDTO';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class CadastroComponent {
 
   form: FormGroup
-  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder: FormBuilder, private service: UsuarioService, private router: Router) {
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder: FormBuilder, private service: UsuarioService, private router: Router, private toastr: ToastrService) {
     this.form = this.formBuilder.group(
       {
         nome: new FormControl("", [Validators.minLength(5), Validators.required]),
@@ -26,13 +27,10 @@ export class CadastroComponent {
   cadastrar() {
     let dados: IUsuarioDTO = { email: this.form.value.email, nome: this.form.value.nome, senha: this.form.value.senha }
     this.service.cadastrar(dados).subscribe({
-      next: (
-
-      ) => { this.router.navigate(["login"]) },
-      error: (erro
-
-      ) => {
+      next: () => { this.router.navigate(["login"]) },
+      error: erro => {
         console.log(erro)
+        this.toastr.error("Não foi possível realizar o cadastro.", "Erro")
       }
     })
   }

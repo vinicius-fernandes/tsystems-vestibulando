@@ -15,3 +15,18 @@
 .example-full-width {
   width: 100%;
 }
+
+button{
+  margin-left: 15px;
+  margin-right: 100px;
+  height: 48px;
+  width: 112.83px;
+}
+
+.botoes{
+  text-align: center;
+}
+
+mat-label:not(.form-check-label):not(.custom-file-label) {
+  font-weight: 350;
+}

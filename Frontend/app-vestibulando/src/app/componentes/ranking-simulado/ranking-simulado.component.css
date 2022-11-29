@@ -8,6 +8,10 @@ h1 {
   line-height: 1.5em;
   color: black;
 }
+h2  {
+  text-align: center;
+  line-height: 1.5em;
+}
 table {
   width: clamp(110px, 70%, 1500px);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.53);

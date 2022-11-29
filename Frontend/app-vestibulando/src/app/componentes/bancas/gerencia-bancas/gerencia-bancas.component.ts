@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import IBanca from 'src/app/interfaces/IBanca';
 import { BancasService } from 'src/app/services/bancas.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gerencia-bancas',
@@ -10,14 +11,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class GerenciaBancasComponent implements OnInit {
 
-  constructor(private serviceBanca: BancasService, private toastr: ToastrService) {
+  constructor(private serviceBanca: BancasService, private toastr: ToastrService, private router: Router) {
 
   }
 
   bancas: IBanca[] = []
 
   ngOnInit(): void {
-    this.serviceBanca.consultar().subscribe(data => this.bancas = data)
+    this.serviceBanca.consultar().subscribe({
+      next: data => this.bancas = data,
+      error: erro => {
+        console.log(erro)
+        this.toastr.error("Não foi possível consultar as bancas.", "Erro")
+        this.router.navigate(['app', 'home'])
+      }
+    })
   }
 
   excluirBanca(id: number) {

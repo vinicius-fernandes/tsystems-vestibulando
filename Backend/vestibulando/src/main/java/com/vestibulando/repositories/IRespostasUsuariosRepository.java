@@ -61,4 +61,5 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
             " group by ru.simulado.id "
     )
     List<NotaSimuladoUsuarioDTO> getNotasSimuladosUsuario( long idUsuario);
+
 }

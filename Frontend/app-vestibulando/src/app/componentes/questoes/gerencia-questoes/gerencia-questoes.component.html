@@ -22,10 +22,10 @@
 
     <tbody>
       <tr *ngFor="let perg of pergunta">
-        <th>{{ perg.id }}</th>
-        <th>{{ perg.corpo }}</th>
-        <th>{{ perg.materia.nome }}</th>
-        <th>{{ perg.banca.sigla }}</th>
+        <td>{{ perg.id }}</td>
+        <td>{{ perg.corpo }}</td>
+        <td>{{ perg.materia.nome }}</td>
+        <td>{{ perg.banca.sigla }}</td>
         <td class="d-inline-flex">
           <button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluir(perg.id || 0)"><i class="fa fa-trash"></i></button>
           <a [routerLink]="['edita', perg.id]"

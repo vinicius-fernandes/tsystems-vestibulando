@@ -7,17 +7,16 @@
             <div class="card" style="width: 17rem;">
                 <div class="card-body">
                     <div class="row align-items-center">
-                        <i class="fas fa-user col-2" *ngIf="user(u.tipo)"></i>
-                        <i class="fas fa-user-cog col-2" *ngIf="adm(u.tipo)"></i>
+                        <i class="fas fa-user col-2" *ngIf="checkRole(u.roles!,'ROLE_USUARIO')"></i>
+                        <i class="fas fa-user-cog col-2" *ngIf="checkRole(u.roles!,'ROLE_ADMIN')"></i>
                         <div class="col">
                             <h5 class="card-title">{{u.nome}}</h5>
                             <p class="card-text">{{u.email}}</p>
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a [routerLink]="['/app/usuarios/edita',u.id]"><button mat-raised-button class="mr-2"
-                                color="primary"><i class="fas fa-edit"></i></button></a>
-                        <button (click)="excluir(u.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                   <a [routerLink]="['/app/usuarios/edita',u.id]"><button mat-raised-button class="mr-2" color="primary"><i class="fas fa-edit"></i></button></a>
+                    <button mat-raised-button class="mr-2" color="warn" (click)="excluir(u.id)"><i class="fa fa-trash"></i></button>
                     </div>
                 </div>
             </div>
@@ -29,8 +28,8 @@
             <div class="col" *ngFor="let u of users">
                 <mat-card class="example-card">
                     <mat-card-header class="row align-items-center">
-                        <i class="fas fa-user col-2" *ngIf="user(u.tipo)"></i>
-                        <i class="fas fa-user-cog col-2" *ngIf="adm(u.tipo)"></i>
+                        <i class="fas fa-user col-2" *ngIf="checkRole(u.roles!,'ROLE_USUARIO')"></i>
+                        <i class="fas fa-user-cog col-2" *ngIf="checkRole(u.roles!,'ROLE_ADMIN')"></i>
                         <div class="col">
                             <mat-card-title>{{u.nome}}</mat-card-title>
                             <mat-card-subtitle>{{u.email}}</mat-card-subtitle>

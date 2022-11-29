@@ -63,21 +63,27 @@ export class GerarSimuladoComponent implements OnInit {
 
     this.bancaService.consultar().subscribe(
       {
-      next:(bancas)=>{
+      next: bancas =>{
         this.bancasData=bancas
         this.addCheckboxesBanca()
 
       },
-      error:(error)=>console.log(error)
+      error: error => {
+        console.log(error)
+        this.toastr.error("Não foi possível consultar as bancas.", "Erro")
+        this.router.navigate(['app', 'home'])
       }
-    )
+    })
     this.materiaService.consultar().subscribe({
-      next:(materias)=>{
+      next: materias =>{
         this.materiasData=materias
         this.addCheckboxesMateria()
-
       },
-      error:(error)=>console.log(error)
+      error: error => {
+        console.log(error)
+        this.toastr.error("Não foi possível consultar as matérias.", "Erro")
+        this.router.navigate(['app', 'home'])
+      }
     })
   }
 

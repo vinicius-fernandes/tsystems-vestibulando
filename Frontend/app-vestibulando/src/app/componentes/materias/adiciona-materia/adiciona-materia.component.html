@@ -1,14 +1,14 @@
-<p class=""><a routerLink=".."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a></p>
 
 <h1 class="text-center">Adicionar Matéria</h1>
 
 <div class="text-center">
     <mat-form-field appearance="fill" color="primary" class="comp-75">
-        <mat-label>Nome da Banca</mat-label>
-        <input [formControl]="nomeMateria" matInput placeholder="Informe o nome da banca">
+        <mat-label>Nome da Matéria</mat-label>
+        <input [formControl]="nomeMateria" matInput placeholder="Informe o nome da matéria">
     </mat-form-field>
 </div>
 
-<div class="text-start mleft-125">
-    <button mat-raised-button color="primary" (click)="adicionarMateria()">Salvar</button>
+<div class="botoes">
+    <a routerLink=".."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a>
+    <button mat-raised-button color="primary" (click)="adicionarMateria()"><i class="fas fa-save"></i> Salvar</button>
 </div>
