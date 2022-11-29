@@ -27,6 +27,7 @@ import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materi
 import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { InfoComponent } from './componentes/info/info.component';
+import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
 const routes: Routes = [
   {
     path: 'app',
@@ -52,7 +53,8 @@ const routes: Routes = [
       { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent , canActivate:[AdmGuard]},
       { path: 'usuarios/adduser', component: AddusuarioComponent, canActivate:[AdmGuard] },
       { path: 'home', component: HomeComponent },
-      {path:'info/:mensagem',component:InfoComponent}
+      {path:'info/:mensagem',component:InfoComponent},
+      {path:'ranking',component:RankingGeralComponent}
     ],
   },
   { path: '', component: TelaComponent },

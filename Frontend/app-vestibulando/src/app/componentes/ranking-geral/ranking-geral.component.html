@@ -1,0 +1,30 @@
+<div class="container">
+  <h1 class="text-center">Ranking geral</h1>
+
+
+  <div  *ngIf="ranking && ranking.length > 0; else rankingVazio">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>Usuário</th>
+          <th>Pontos</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let r of ranking">
+          <td> {{r.emailUsuario}} </td>
+          <td>{{ r.acertosUsuario}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="25" [length]="totalElements" (page)="nextPage($event)" class="mt-3"> </mat-paginator>
+
+  </div>
+<ng-template #rankingVazio>
+  <p>Ooops parece que ninguém respondeu um simulado ainda</p>
+</ng-template>
+
+</div>

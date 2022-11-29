@@ -20,4 +20,7 @@ export class RespostasUsuariosService {
     return this.http.get<IResultadoSimuladoUser>(`${this.baseUrl}/respostasUsuarios/notaSimuladoUsuario/${idUser}/${idSimulado}`)
    }
 
+
+   
+
 }

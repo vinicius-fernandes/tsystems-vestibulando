@@ -32,6 +32,12 @@ public class RespostasUsuariosController {
         return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.listar(idSimulado));
     }
 
+
+    @GetMapping("/rankingGlobal")
+    public ResponseEntity<Page<RankingSimuladoDTO>> rankingGlobal(Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.getRankingGlobal(page));
+    }
+
     @GetMapping("/rankingSimulado/{idsimulado}")
     public ResponseEntity<List<RankingSimuladoDTO>> listarRankingSimulado(@PathVariable("idsimulado") long idSimulado){
         return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.getRankingSimulado(idSimulado));

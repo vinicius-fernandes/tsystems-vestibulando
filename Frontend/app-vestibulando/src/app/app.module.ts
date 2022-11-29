@@ -49,6 +49,7 @@ import {AuthInterceptor} from './auth.interceptor';
 import { InfoComponent } from './componentes/info/info.component';
 import { ValidUserGuard } from './authGuard/ValidUserGuard';
 import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
+import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dia
     AdicionaQuestoesComponent,
     HomeComponent,
     InfoComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    RankingGeralComponent
   ],
   imports: [
     BrowserModule,
