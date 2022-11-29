@@ -22,7 +22,7 @@ export class GerenciaQuestoesComponent {
   totalElements: number = 0;
 
   ngOnInit(): void {
-    this.obterPerguntas({ page: '0', size: '5' });
+    this.obterPerguntas({ page: '0', size: '25' });
   }
 
   obterPerguntas(params: any) {
