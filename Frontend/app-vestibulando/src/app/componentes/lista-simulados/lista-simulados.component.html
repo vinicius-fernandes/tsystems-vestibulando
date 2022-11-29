@@ -1,12 +1,12 @@
 
 <div class="container">
-  <h1 *ngIf="simulados.length > 0; else simuladoVazio" >Lista de Simulados</h1>
+  <h1 *ngIf="simulados.length > 0; else simuladoVazio" >Lista de Simulados </h1>
   <ng-template #simuladoVazio>
     <h1>Nenhum simulado encontrado</h1>
   </ng-template>
   <div class="grid">
     <div class="card" *ngFor="let simulado of simulados">
-      <button
+      <button *ngIf="isAdmin"
         mat-raised-button color="warn"
         (click)="excluirSimulado(this.simulado.id)">
         <i class="fa fa-trash"></i>

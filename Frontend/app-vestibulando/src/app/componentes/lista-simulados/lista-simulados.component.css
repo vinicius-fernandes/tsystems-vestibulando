@@ -6,11 +6,13 @@ h1 {
 .grid {
   display: grid;
   gap: 20px;
+  grid-auto-rows: max-content;
 }
 .card {
   padding: 2em;
   position: relative;
   margin: auto;
+  height: 100%;
 }
 
 .card:nth-child(2) {
@@ -48,7 +50,7 @@ h1 {
   padding: 10px 15px;
 }
 
-@media only screen and (max-width: 715px) {
+@media only screen and (max-width: 1000px) {
   .card:nth-child(2) {
     grid-column: 2;
   }

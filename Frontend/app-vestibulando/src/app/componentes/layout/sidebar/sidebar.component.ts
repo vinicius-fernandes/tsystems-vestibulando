@@ -9,9 +9,7 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
 export class SidebarComponent implements OnInit{
 
   isAdmin:boolean=false;
-  constructor(private jwtService:JwtTokenService){
-
-  }
+  constructor(private jwtService:JwtTokenService){ }
   ngOnInit(): void {
     this.isAdmin = this.jwtService.checkAuthoritie('ROLE_ADMIN')
   }
