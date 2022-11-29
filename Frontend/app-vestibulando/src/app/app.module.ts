@@ -47,6 +47,7 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
 import {AuthInterceptor} from './auth.interceptor';
 import { InfoComponent } from './componentes/info/info.component';
 import { ValidUserGuard } from './authGuard/ValidUserGuard';
+import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { ValidUserGuard } from './authGuard/ValidUserGuard';
     EditaQuestoesComponent,
     AdicionaQuestoesComponent,
     HomeComponent,
-    InfoComponent
+    InfoComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +119,7 @@ import { ValidUserGuard } from './authGuard/ValidUserGuard';
   { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr},
   ValidUserGuard
 ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmDialogComponent] 
 })
 export class AppModule { }
