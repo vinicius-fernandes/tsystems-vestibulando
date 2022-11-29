@@ -1530,9 +1530,28 @@ INSERT INTO simulado_materia (simulado_id,materia_id) values (1,1);
 INSERT INTO usuario(email, senha, nome) VALUES ('joao@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'João da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('ana@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Ana da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('duda@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Duda da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('carla@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Carla da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('lucas@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Lucas da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('vinicius@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Vinicius da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('thomas@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Thomas da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('isa@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Isa da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('brena@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Brena da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('rafa@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Rafa da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('gustavo@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Gustavo da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('teshi@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Teshi da Silva');
 
 INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,1);
 INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,2);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,3);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,4);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,5);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,6);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,7);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,8);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,9);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,10);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,11);
+INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,12);
 
 INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (1,3);
 INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (1,6);
@@ -1556,9 +1575,29 @@ INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_
 INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (2,41);
 INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (2,49);
 
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (3,49);
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (4,1);
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (6,47);
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (7,48);
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (8,48);
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (9,49);
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (10,46);
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (11,46);
+INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_id) values (12,46);
+
+
 insert into role(authority)values('ROLE_USUARIO');
 insert into role(authority)values('ROLE_ADMIN');
 
 insert into usuario_role(usuario_id,role_id)values(1,1);
 insert into usuario_role(usuario_id,role_id)values(2,2);
 insert into usuario_role(usuario_id,role_id)values(3,1);
+insert into usuario_role(usuario_id,role_id)values(4,1);
+insert into usuario_role(usuario_id,role_id)values(5,1);
+insert into usuario_role(usuario_id,role_id)values(6,1);
+insert into usuario_role(usuario_id,role_id)values(7,1);
+insert into usuario_role(usuario_id,role_id)values(8,1);
+insert into usuario_role(usuario_id,role_id)values(9,1);
+insert into usuario_role(usuario_id,role_id)values(10,1);
+insert into usuario_role(usuario_id,role_id)values(11,1);
+insert into usuario_role(usuario_id,role_id)values(12,1);

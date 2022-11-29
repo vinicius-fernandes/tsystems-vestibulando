@@ -5,6 +5,8 @@ import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
 import com.vestibulando.entities.Usuario;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -32,6 +34,18 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
             " group by u.id "
     )
     List<RankingSimuladoDTO> getRankingSimulado(long idSimulado);
+
+    @Query("select new com.vestibulando.dtos.RankingSimuladoDTO("+
+            "u.id ,"+
+            "u.email," +
+            "sum(CASE  WHEN (respsU.correta = true) then 1 ELSE 0 END) as nota" +
+            ")"+
+            " from RespostasUsuarios ru " +
+            " join Usuario u on u.id = ru.usuario.id"+
+            " join ru.respostas respsU  "+
+            " group by u.id order by nota desc "
+    )
+    Page<RankingSimuladoDTO> getRankingGlobal(Pageable pageable);
 
     @Query("select new com.vestibulando.dtos.NotaSimuladoUsuarioDTO("+
             "ru.simulado.id ,"+
