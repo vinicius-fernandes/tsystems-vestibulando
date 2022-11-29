@@ -105,7 +105,7 @@ import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dia
     MatRadioModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
     MatSelectModule
     ],
   providers: [
