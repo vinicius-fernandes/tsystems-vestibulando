@@ -20,12 +20,12 @@
 
         <mat-form-field appearance="fill" color="primary" class="comp-75">
             <mat-label>Regra Usuário</mat-label>
-            <mat-select [(ngModel)]="usuario.tipo" id="tipo" matNativeControl required>
+            <mat-select [(ngModel)]="usuario.roles" id="roles" matNativeControl required>
                 <mat-option value="CLIENTE">Cliente</mat-option>
                 <mat-option value="ADMINISTRADOR">Administrador</mat-option>
             </mat-select>
         </mat-form-field>
-        
+
         <div class="botoes">
             <a routerLink=".."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a>
             <button mat-raised-button color="primary" class="mr-3" (click)="salvar()"><i class="fas fa-save"></i> Salvar</button>   
