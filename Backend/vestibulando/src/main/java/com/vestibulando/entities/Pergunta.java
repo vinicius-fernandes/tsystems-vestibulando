@@ -19,8 +19,8 @@ public class Pergunta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(length=350)
-    @Size(min=4,max=350,message = "O corpo da pergunta deve possuir de 4 a 350 caracteres")
+    @Column(length=3500)
+    @Size(min=4,max=3500,message = "O corpo da pergunta deve possuir de 4 a 3500 caracteres")
     private String corpo;
     @ManyToOne
     @JoinColumn(name = "materia_id")

@@ -93,72 +93,72 @@ export class EditaQuestoesComponent implements OnInit {
 
     if (
       this.questao.corpo == null ||
-      this.questao.corpo.length > 350 ||
+      this.questao.corpo.length > 3500 ||
       this.questao.corpo.length < 4
     ) {
       teveErro = true;
       this.toastr.error(
-        'O enunciado da questão deve conter de 4 a 350 caracteres.',
+        'O enunciado da questão deve conter de 4 a 3500 caracteres.',
         'Erro'
       );
     }
 
     if (
       this.questao.respostas[0].descricao == null ||
-      this.questao.respostas[0].descricao.length > 350 ||
-      this.questao.respostas[0].descricao.length < 4
+      this.questao.respostas[0].descricao.length > 2500 ||
+      this.questao.respostas[0].descricao.length < 1
     ) {
       teveErro = true;
       this.toastr.error(
-        'Todas questões devem conter de 4 a 350 caracteres.',
+        'Todas questões devem conter de 1 a 2500 caracteres.',
         'Erro'
       );
     }
 
     if (
       this.questao.respostas[1].descricao == null ||
-      this.questao.respostas[1].descricao.length > 350 ||
-      this.questao.respostas[1].descricao.length < 4
+      this.questao.respostas[1].descricao.length > 2500 ||
+      this.questao.respostas[1].descricao.length < 1
     ) {
       teveErro = true;
       this.toastr.error(
-        'Todas questões devem conter de 4 a 350 caracteres.',
+        'Todas questões devem conter de 1 a 2500 caracteres.',
         'Erro'
       );
     }
 
     if (
       this.questao.respostas[2].descricao == null ||
-      this.questao.respostas[2].descricao.length > 350 ||
-      this.questao.respostas[2].descricao.length < 4
+      this.questao.respostas[2].descricao.length > 2500 ||
+      this.questao.respostas[2].descricao.length < 1
     ) {
       teveErro = true;
       this.toastr.error(
-        'Todas questões devem conter de 4 a 350 caracteres.',
+        'Todas questões devem conter de 1 a 2500 caracteres.',
         'Erro'
       );
     }
 
     if (
       this.questao.respostas[3].descricao == null ||
-      this.questao.respostas[3].descricao.length > 350 ||
-      this.questao.respostas[3].descricao.length < 4
+      this.questao.respostas[3].descricao.length > 2500 ||
+      this.questao.respostas[3].descricao.length < 1
     ) {
       teveErro = true;
       this.toastr.error(
-        'Todas questões devem conter de 4 a 350 caracteres.',
+        'Todas questões devem conter de 1 a 2500 caracteres.',
         'Erro'
       );
     }
 
     if (
       this.questao.respostas[4].descricao == null ||
-      this.questao.respostas[4].descricao.length > 350 ||
-      this.questao.respostas[4].descricao.length < 4
+      this.questao.respostas[4].descricao.length > 2500 ||
+      this.questao.respostas[4].descricao.length < 1
     ) {
       teveErro = true;
       this.toastr.error(
-        'Todas questões devem conter de 4 a 350 caracteres.',
+        'Todas questões devem conter de 1 a 2500 caracteres.',
         'Erro'
       );
     }
