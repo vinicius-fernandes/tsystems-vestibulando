@@ -4,6 +4,8 @@ import ISimulado from "../../interfaces/ISimulado";
 import {Router} from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import JwtTokenService from "../../services/jwt-token.service";
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -21,7 +23,8 @@ export class ListaSimuladosComponent implements OnInit {
               private service: ListaSimuladosService,
               private toastr: ToastrService,
               private router: Router,
-              private jwtService:JwtTokenService) {
+              private jwtService:JwtTokenService,
+              private dialog: MatDialog) {
   }
 
   converterData(timestamp:number):string {
@@ -45,6 +48,20 @@ export class ListaSimuladosComponent implements OnInit {
           this.toastr.error("Não foi possível consultar os simulados.", "Erro")
           this.router.navigate(['app', 'home'])
         }
+    })
+  }
+
+  confirmarExclusaoSimulado(id: number) {
+    const dialogData = new ConfirmDialogModel("Confirmar exclusão", "Tem certeza de que deseja excluir este simulado?")
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    })
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if ( dialogResult == true ) {
+        this.excluirSimulado(id)
+      }
     })
   }
 

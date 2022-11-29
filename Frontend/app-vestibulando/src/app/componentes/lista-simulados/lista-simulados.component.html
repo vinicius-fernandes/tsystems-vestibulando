@@ -8,7 +8,7 @@
     <div class="card" *ngFor="let simulado of simulados">
       <button *ngIf="isAdmin"
         mat-raised-button color="warn"
-        (click)="excluirSimulado(this.simulado.id)">
+        (click)="confirmarExclusaoSimulado(this.simulado.id)">
         <i class="fa fa-trash"></i>
       </button>
       <p> {{simulado.perguntas.length}} perguntas </p>
