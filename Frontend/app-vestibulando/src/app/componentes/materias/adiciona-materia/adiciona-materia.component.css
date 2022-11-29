@@ -11,3 +11,7 @@ button{
     height: 48px;
     width: 112.83px;
 }
+
+mat-label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 350;
+}

@@ -27,7 +27,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String[] PUBLIC_GET = {"/oauth/token","/h2-console/**","/swagger-ui.html"};
     private static final String[] USUARIO_GET= {"/simulados","/respostasUsuarios","/materia","/banca"};
-    private static final String[] USUARIO= {"/respostasUsuarios"};
+    private static final String[] USUARIO_POST= {"/respostasUsuarios"};
+    private static final String[] USUARIO= {"/respostasUsuarios/notaSimuladoUsuario/*/*","/simulados/gerar","/simulados/realizar/*","/respostasUsuarios/rankingSimulado/*"};
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -43,8 +44,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(PUBLIC).permitAll()
                 .antMatchers(HttpMethod.POST,PUBLIC_POST).permitAll()
                 .antMatchers(HttpMethod.GET,PUBLIC_GET).permitAll()
-                .antMatchers(HttpMethod.GET,USUARIO_GET).hasAnyRole("USER","ADMIN")
-                .antMatchers(USUARIO).hasAnyRole("USER","ADMIN")
+                .antMatchers(HttpMethod.GET,USUARIO_GET).hasAnyRole("USUARIO","ADMIN")
+                .antMatchers(HttpMethod.POST,USUARIO_POST).hasAnyRole("USUARIO","ADMIN")
+                .antMatchers(USUARIO).hasAnyRole("USUARIO","ADMIN")
                 .anyRequest().hasRole("ADMIN");
     }
 }

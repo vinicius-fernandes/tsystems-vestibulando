@@ -61,7 +61,7 @@ export class AdicionaQuestoesComponent {
     let dados: IPergunta = {
       corpo: this.form.value.enunciado,
       banca: { id: this.form.value.idBanca, nome: '', sigla: '' },
-      materia: { id: this.form.value.idMateria, nome: '' },
+      materia: { id: this.form.value.idMateria, nome: '' }, 
       respostas: respostas
     };
 
