@@ -11,6 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -43,6 +44,7 @@ import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/ed
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
 import { HomeComponent } from './componentes/home/home.component';
 import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
+
 
 @NgModule({
   declarations: [
@@ -96,7 +98,9 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
     MatButtonModule,
     MatRadioModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule
+    
     ],
   providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl },{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr}],
   bootstrap: [AppComponent]

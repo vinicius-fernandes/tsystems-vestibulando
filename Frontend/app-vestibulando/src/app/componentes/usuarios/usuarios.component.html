@@ -1,4 +1,5 @@
-<p class="text-end mt-3 mr-3"><a routerLink="/app/usuarios/adduser"><button mat-raised-button color="primary"><i class="fa fa-plus"></i> Adicionar Usuario</button></a></p>
+<p class="text-end mt-3 mr-3"><a routerLink="/app/usuarios/adduser"><button mat-raised-button color="primary"><i
+                class="fa fa-plus"></i> Adicionar Usuario</button></a></p>
 
 <div class="container">
     <div class="row">
@@ -6,18 +7,41 @@
             <div class="card" style="width: 17rem;">
                 <div class="card-body">
                     <div class="row align-items-center">
-                        <i class="fas fa-user col-2" *ngIf = "user(u.tipo)"></i>
-                        <i class="fas fa-user-cog col-2" *ngIf = "adm(u.tipo)"></i>
+                        <i class="fas fa-user col-2" *ngIf="user(u.tipo)"></i>
+                        <i class="fas fa-user-cog col-2" *ngIf="adm(u.tipo)"></i>
                         <div class="col">
                             <h5 class="card-title">{{u.nome}}</h5>
                             <p class="card-text">{{u.email}}</p>
                         </div>
                     </div>
                     <div class="mt-2">
-                   <a [routerLink]="['/app/usuarios/edita',u.id]"><button mat-raised-button class="mr-2" color="primary"><i class="fas fa-edit"></i></button></a>
-                    <button (click)="excluir(u.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                        <a [routerLink]="['/app/usuarios/edita',u.id]"><button mat-raised-button class="mr-2"
+                                color="primary"><i class="fas fa-edit"></i></button></a>
+                        <button (click)="excluir(u.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col" *ngFor="let u of users">
+                <mat-card class="example-card">
+                    <mat-card-header class="row align-items-center">
+                        <i class="fas fa-user col-2" *ngIf="user(u.tipo)"></i>
+                        <i class="fas fa-user-cog col-2" *ngIf="adm(u.tipo)"></i>
+                        <div class="col">
+                            <mat-card-title>{{u.nome}}</mat-card-title>
+                            <mat-card-subtitle>{{u.email}}</mat-card-subtitle>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-actions>
+                        <a [routerLink]="['/app/usuarios/edita',u.id]"><button mat-raised-button class="mr-2"
+                                color="primary"><i class="fas fa-edit"></i></button></a>
+                        <button (click)="excluir(u.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </mat-card-actions>
+                </mat-card>
             </div>
         </div>
     </div>

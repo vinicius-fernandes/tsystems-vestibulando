@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import IUsuario from 'src/app/interfaces/IUsuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-usuarios',

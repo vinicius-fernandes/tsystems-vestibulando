@@ -1,5 +1,6 @@
 package com.vestibulando.services;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Usuario;
 import com.vestibulando.enums.EnumsUsuario;
@@ -7,6 +8,7 @@ import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
@@ -14,6 +16,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.zip.DataFormatException;
 
 @Service
 public class UsuarioService {
@@ -49,6 +52,8 @@ public class UsuarioService {
         if(usuario.getTipo()==null){
             usuario.setTipo(EnumsUsuario.CLIENTE);
         }
+                
+
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRepository.save(usuario));
         return usuarioDTO;
     }
