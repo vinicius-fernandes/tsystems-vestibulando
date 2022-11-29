@@ -2,6 +2,12 @@
     width: 75%;
 }
 
-.mleft-125 {
-    margin-left: 12.5%;
+.botoes{
+    text-align: center;
+}
+
+button{
+    margin-right: 100px;
+    height: 48px;
+    width: 112.83px;
 }
