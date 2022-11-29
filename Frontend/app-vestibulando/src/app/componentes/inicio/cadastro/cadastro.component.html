@@ -1,6 +1,6 @@
 <div class="imgbg">
     <header>
-        <a routerLink="">
+        <a routerLink="/login">
             <div class="fa-2x" >
                 <i class="fas fa-arrow-left" style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
             </div>
@@ -14,23 +14,33 @@
 
     <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
         <h3 class="tituloCadastro"><b>Cadastro</b></h3>
+        
         <form [formGroup]="form">
           <div>
-            <input formControlName="nome" type="text" class="myinput" placeholder="Nome Completo" required>
+            <mat-form-field appearance="fill" color="primary" class="input">
+              <mat-label>Nome Completo</mat-label>
+              <input matInput formControlName="nome" type="text" placeholder="Nome Completo" required>
+            </mat-form-field>
             <p *ngIf="form.controls['nome'].hasError('minlength')">Favor informar nome e sobrenome</p>
             <p *ngIf="form.controls['nome'].hasError('required')">O nome completo é obrigatório</p>
           </div>
           <div>
-            <input formControlName="email" type="email" class="myinput" placeholder="E-mail" required>
+            <mat-form-field appearance="fill" color="primary" class="input">
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="E-mail" required>
+            </mat-form-field>
             <p *ngIf="form.controls['email'].hasError('required')">O preenchimento do e-mail é obrigatório</p>
             <p *ngIf="form.controls['email'].hasError('email')">O e-mail não é válido</p>
           </div>
           <div>
-            <input formControlName="senha" type="password" class="myinput" placeholder="Senha" required>
+            <mat-form-field appearance="fill" color="primary" class="input">
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="senha" type="password" placeholder="Senha" required>
+            </mat-form-field>
             <p *ngIf="form.controls['senha'].hasError('required')">O preenchimento da senha é obrigatório</p>
             <p *ngIf="form.controls['senha'].hasError('minlength')">A senha deve possuir no mínimo 6 caracteres</p>
             <p *ngIf="form.controls['senha'].hasError('maxlength')">A senha deve possuir no máximo 20 caracteres</p>
-          </div>
+        </div> 
           <div class="botao">
               <button mat-flat-button color="primary" (click)="cadastrar()" [disabled]="!form.valid">Cadastrar</button>
           </div>

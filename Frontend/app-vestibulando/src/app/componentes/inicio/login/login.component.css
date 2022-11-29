@@ -22,21 +22,26 @@ header a div:hover {
     height: 150px;
 }
 
-.principal {
-    width: 30%;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 8px;
+form {
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 35px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
-.myinput {
-    width: 80%;
-    border-radius: 6px;
-    background-color: #303036;
-    padding: 3px 0 8px 3px;
-    margin-bottom: 35px;
-    text-align: center;
-    color: white;
+.principal {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.input{
+  width: 100%;
 }
 
 .botoesLogin{
@@ -47,13 +52,8 @@ header a div:hover {
     color: #30BCED;
 }
 
-.myinput::placeholder {
-    color: rgba(255, 255, 255, 0.8);
-    font-style: clamp;
-}
-
 .marg-10 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .botaoazul {
@@ -88,7 +88,7 @@ header a div:hover {
   form>div>p {
     font-size: 12px;
   }
-  .myinput {
+  .input {
     width: 90%;
   }
 }
