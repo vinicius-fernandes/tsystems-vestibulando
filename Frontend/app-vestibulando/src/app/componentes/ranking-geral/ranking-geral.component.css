@@ -20,20 +20,25 @@ table {
   max-height: 10px;
   overflow-y: scroll;
 }
+.paginator{
+  width: clamp(110px, 70%, 1500px);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.53);
+  border-radius: 5px;
+  margin: 20px auto auto;
+}
 h1, th, td {
   text-align: center;
 }
-tr:first-child{
-  background-color: #FFFAFF;
-}
-tr:nth-child(2) {
+tbody > tr:first-child{
   background-color: gold;
 }
-tr:nth-child(3) {
+tbody>tr:nth-child(2) {
   background-color: silver;
 }
-tr:nth-child(4) {
+tbody>tr:nth-child(3) {
   background-color: #CD7F32;
 }
+
+
 
 

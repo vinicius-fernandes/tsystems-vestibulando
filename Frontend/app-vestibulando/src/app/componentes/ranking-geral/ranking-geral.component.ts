@@ -12,13 +12,15 @@ import { RankingSimuladoService } from 'src/app/services/rankingSimulado.service
 export class RankingGeralComponent implements OnInit {
   ranking: IRankingSimulado[] = [];
   totalElements: number = 0;
+  page:number=0;
+  size:number=0;
 
   constructor(private rankingService:RankingSimuladoService,    private toastr: ToastrService,
     ){
 
   }
   ngOnInit(): void {
-    this.obterRanking({ page: '0', size: '25' })
+    this.obterRanking({ page: '0', size: '10' })
   }
 
   obterRanking(params:any){
@@ -27,6 +29,8 @@ export class RankingGeralComponent implements OnInit {
         next:(data)=>{
           this.ranking = <IRankingSimulado[]> data.content
           this.totalElements = data['totalElements']
+          this.page = data['number']
+          this.size = data['size']
         },
         error:(erro)=>{
           console.log(erro)
