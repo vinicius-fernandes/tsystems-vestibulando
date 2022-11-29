@@ -13,7 +13,7 @@ public class Resposta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Informe descrição")
-    @Size(message = "O campo deve ter entre 3 e 10 caracteres", max = 2500, min = 3)
+    @Size(message = "O campo deve ter entre 3 e 2500 caracteres", max = 2500, min = 3)
     private String descricao;
     private Boolean correta;
 
