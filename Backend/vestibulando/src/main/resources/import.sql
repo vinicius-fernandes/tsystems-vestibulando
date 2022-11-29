@@ -1528,9 +1528,9 @@ INSERT INTO simulado_pergunta (simulado_id,pergunta_id) values (1,10);
 INSERT INTO simulado_banca (simulado_id,banca_id) values (1,1);
 INSERT INTO simulado_materia (simulado_id,materia_id) values (1,1);
 
-INSERT INTO usuario(email, senha, nome, tipo) VALUES ('joao@email.com', '123456', 'João da Silva', 0);
-INSERT INTO usuario(email, senha, nome, tipo) VALUES ('ana@email.com', '123456', 'Ana da Silva', 1);
-INSERT INTO usuario(email, senha, nome, tipo) VALUES ('duda@email.com', '123456', 'Duda da Silva', 1);
+INSERT INTO usuario(email, senha, nome) VALUES ('joao@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'João da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('ana@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Ana da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('duda@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Duda da Silva');
 
 INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,1);
 INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,2);
@@ -1559,8 +1559,7 @@ INSERT INTO respostas_has_resultados_simulados (resultadossimulados_id,resposta_
 
 insert into role(authority)values('ROLE_USUARIO');
 insert into role(authority)values('ROLE_ADMIN');
-insert into role(authority)values('ROLE_OPERADOR');
 
 insert into usuario_role(usuario_id,role_id)values(1,1);
 insert into usuario_role(usuario_id,role_id)values(2,2);
-insert into usuario_role(usuario_id,role_id)values(3,2);
+insert into usuario_role(usuario_id,role_id)values(3,1);

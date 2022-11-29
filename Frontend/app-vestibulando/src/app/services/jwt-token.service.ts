@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import ITokenDecoded from '../interfaces/ITokenDecoded';
+import jwt from 'jwt-decode';
 const ACCESS_TOKEN:string = 'access_token';
 const REFRESH_TOKEN:string = 'refresh_token';
 @Injectable({
@@ -32,4 +34,23 @@ export default class JwtTokenService {
     localStorage.removeItem(REFRESH_TOKEN);
   }
 
+  getTokenDecoded():ITokenDecoded | null {
+    let token = this.getToken()
+    if(token !=null){
+      return jwt(token)
+    }
+    return token
+  }
+
+  checkAuthoritie(authoritie : string): boolean{
+    let user = this.getTokenDecoded()
+    if(user == null){
+      return false
+    }
+    if(user?.authorities.includes(authoritie)){
+      return true
+    }
+
+    return false
+  }
 }

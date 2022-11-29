@@ -10,14 +10,15 @@ import  JwtTokenService  from './jwt-token.service';
 
 
 export class AuthService {
+  public redirectUrl: string | null = null;
+
   HTTP_OPTIONS = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
-      
+
       Authorization: 'Basic ' + btoa(this.auth_client + ':' + this.auth_secret)
     })
   };
-  redirectUrl = '';
 
 
   constructor( @Inject('BASE_API_URL') private baseUrl:String,

@@ -22,9 +22,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     JwtTokenStore jwtTokenStore;
 
-    private static final String[] PUBLIC = {"/oauth/token","/h2-console/**","/usuarios","/swagger-ui.html","/materia","/banca"};
-    private static final String[] ADMIN = {"/produtos"};
-    private static final String[] USUARIO= {"/produtos"};
+    private static final String[] PUBLIC = {"/oauth/token"};
+    private static final String[] PUBLIC_POST = {"/usuarios"};
+
+    private static final String[] PUBLIC_GET = {"/oauth/token","/h2-console/**","/swagger-ui.html"};
+    private static final String[] USUARIO_GET= {"/simulados","/respostasUsuarios","/materia","/banca"};
+    private static final String[] USUARIO= {"/respostasUsuarios"};
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -38,8 +41,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         }
         http.cors().and().authorizeRequests()
                 .antMatchers(PUBLIC).permitAll()
-                .antMatchers(HttpMethod.GET,USUARIO).permitAll()
-                .antMatchers(USUARIO).hasRole("USUARIO")
-                .anyRequest().authenticated();
+                .antMatchers(HttpMethod.POST,PUBLIC_POST).permitAll()
+                .antMatchers(HttpMethod.GET,PUBLIC_GET).permitAll()
+                .antMatchers(HttpMethod.GET,USUARIO_GET).hasAnyRole("USER","ADMIN")
+                .antMatchers(USUARIO).hasAnyRole("USER","ADMIN")
+                .anyRequest().hasRole("ADMIN");
     }
 }

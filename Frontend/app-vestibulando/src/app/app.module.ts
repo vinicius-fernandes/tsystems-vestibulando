@@ -44,6 +44,9 @@ import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-quest
 import { HomeComponent } from './componentes/home/home.component';
 import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
 import {AuthInterceptor} from './auth.interceptor';
+import { InfoComponent } from './componentes/info/info.component';
+import { ValidUserGuard } from './authGuard/ValidUserGuard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +76,8 @@ import {AuthInterceptor} from './auth.interceptor';
     GerenciaQuestoesComponent,
     EditaQuestoesComponent,
     AdicionaQuestoesComponent,
-    HomeComponent
+    HomeComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +112,8 @@ import {AuthInterceptor} from './auth.interceptor';
       multi: true
     },
 
-  { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr}
+  { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr},
+  ValidUserGuard
 ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { ThisReceiver } from '@angular/compiler';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import JwtTokenService from 'src/app/services/jwt-token.service';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +10,15 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  logado:boolean=false
+  constructor(private tokenService: JwtTokenService,private router: Router){
+    this.logado=this.tokenService.getToken() != null
+  }
+
+
+  logout(){
+    this.tokenService.removeToken();
+    this.tokenService.removeRefreshToken();
+    this.router.navigateByUrl("/login");
+  }
 }

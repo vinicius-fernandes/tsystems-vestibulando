@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import JwtTokenService from 'src/app/services/jwt-token.service';
 
@@ -12,7 +13,7 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
 export class LoginComponent {
   form: FormGroup
 
-  constructor(private _router: Router, private formBuilder: FormBuilder,private authService:AuthService,private jwtTokenService:JwtTokenService) {
+  constructor(private _router: Router, private formBuilder: FormBuilder,private authService:AuthService,private jwtTokenService:JwtTokenService,private toastr: ToastrService) {
     this.form = this.formBuilder.group(
       {
         username: new FormControl("", [Validators.email, Validators.required]),
@@ -29,10 +30,21 @@ export class LoginComponent {
         this.jwtTokenService.saveToken(value.access_token)
         this.jwtTokenService.saveRefreshToken(value.refresh_token)
         console.log(value.access_token)
+        if(this.authService.redirectUrl==null){
         this.redirecionarGerarSimulado()
+        }
+        else{
+          this._router.navigate([this.authService.redirectUrl])
+        }
       },
       error:(erro)=>{
         console.log(erro)
+        if(erro.status == 400){
+          this.toastr.error("Usuário e/ou senha inválidos","Erro")
+        }
+        else{
+          this.toastr.error("Ocorreu um erro ao efetuar o login","Erro")
+        }
       }
     });
 

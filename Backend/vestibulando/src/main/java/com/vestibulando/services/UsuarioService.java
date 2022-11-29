@@ -50,9 +50,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public UsuarioDTO salvarUsuario(Usuario usuario) {
-        if(usuario.getTipo()==null){
-            usuario.setTipo(EnumsUsuario.CLIENTE);
-        }
+
         if(usuario.getRoles().isEmpty()){
             Role rl = new Role();
             rl.setId(1L);
@@ -69,7 +67,7 @@ public class UsuarioService implements UserDetailsService {
         Usuario user = this.consultar(idUsuario);
         user.setEmail(usuario.getEmail());
         user.setNome(usuario.getNome());
-        user.setTipo(usuario.getTipo());
+        user.setRoles(usuario.getRoles());
         if (usuario.getSenha() != null && !usuario.getSenha().isBlank() && !usuario.getSenha().equals(user.getSenha())) {
             user.setSenha(usuario.getSenha());
         }

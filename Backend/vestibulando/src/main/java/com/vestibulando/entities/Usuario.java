@@ -34,7 +34,6 @@ public class Usuario implements UserDetails {
     private String senha;
     @NotBlank
     private String nome;
-    private EnumsUsuario tipo;
     @Column(columnDefinition = "DATETIME")
     private Instant createdAt;
 
@@ -94,13 +93,7 @@ public class Usuario implements UserDetails {
         this.senha = senha;
     }
 
-    public EnumsUsuario getTipo() {
-        return tipo;
-    }
 
-    public void setTipo(EnumsUsuario tipo) {
-        this.tipo = tipo;
-    }
 
     public String getNome() {
         return nome;

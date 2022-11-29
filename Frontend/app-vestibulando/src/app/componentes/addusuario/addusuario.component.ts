@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IUsuario from 'src/app/interfaces/IUsuario';
+import IRole from 'src/app/interfaces/IRole';
+import { RolesService } from 'src/app/services/roles.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -9,11 +11,21 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   templateUrl: './addusuario.component.html',
   styleUrls: ['./addusuario.component.css']
 })
-export class AddusuarioComponent {
+export class AddusuarioComponent implements OnInit {
 
-  usuario: IUsuario = { nome: "", email: "", tipo: "", senha: "" }
+  usuario: IUsuario = { nome: "", email: "", senha: "",roles:[{id:0,authority:''}] }
+  roles: IRole[] = []
 
-  constructor(private router: Router, private service: UsuarioService, private toastr: ToastrService) { }
+  constructor(private router: Router, private service: UsuarioService, private toastr: ToastrService,private roleService: RolesService) { }
+  ngOnInit(): void {
+    this.roleService.consultar().subscribe({
+      next: (rolesData)=> {
+        this.roles=rolesData
+        console.log(rolesData)
+      },
+      error: (erro)=>console.log(erro)
+    })
+  }
 
   salvar() {
     let teveErro = false;
@@ -32,6 +44,10 @@ export class AddusuarioComponent {
       teveErro = true
       this.toastr.error('Email Invalido', 'Erro')
     }
+    if(this.usuario.roles![0].id==0){
+      teveErro = true
+      this.toastr.error("Selecione um tipo válido para o usuário",'Erro')
+    }
 
     if (teveErro) {
       return
@@ -43,6 +59,7 @@ export class AddusuarioComponent {
           this.toastr.success('Usuario adicionado com sucesso!', 'Sucesso')
           this.router.navigate(['/app/usuarios'])
         }, error: (erro) => {
+          console.log(erro)
           this.toastr.error('Este usuário não pode ser adicionado, verifique todos os campos', 'Erro')
         }
       }
