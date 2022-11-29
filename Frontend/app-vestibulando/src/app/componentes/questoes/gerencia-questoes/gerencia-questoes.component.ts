@@ -6,6 +6,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { ContentObserver } from '@angular/cdk/observers';
 import { ThisReceiver } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-gerencia-questoes',
@@ -15,7 +17,8 @@ import { Router } from '@angular/router';
 export class GerenciaQuestoesComponent {
   constructor(
     private serviceQuestoes: QuestoesService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog
   ) {}
 
   pergunta: IPergunta[] = [];
@@ -44,6 +47,20 @@ export class GerenciaQuestoesComponent {
     };
 
     this.obterPerguntas(request);
+  }
+
+  confirmarExclusao(id: number) {
+    const dialogData = new ConfirmDialogModel('Confirmar exclusão', 'Tem certeza de que deseja excluir esta pergunta?')
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    })
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if ( dialogResult == true ) {
+        this.excluir(id)
+      }
+    })
   }
 
   excluir(id: number) {

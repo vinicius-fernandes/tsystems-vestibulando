@@ -28,7 +28,7 @@
           <td>{{ perg.banca.sigla }}</td>
           <td class="d-inline-flex">
             <div>
-            <button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluir(perg.id || 0)"><i class="fa fa-trash"></i></button>
+            <button style="margin-right: 5px;" mat-raised-button color="warn" (click)="confirmarExclusao(perg.id || 0)"><i class="fa fa-trash"></i></button>
               <a [routerLink]="['edita', perg.id]"
                 ><button mat-raised-button color="primary">
                   <i class="fas fa-edit"></i></button
