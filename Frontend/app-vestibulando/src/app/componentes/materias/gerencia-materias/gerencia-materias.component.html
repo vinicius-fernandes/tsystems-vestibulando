@@ -18,7 +18,7 @@
             <td>{{ m.nome }}</td>
             <td class="text-end">
               <div>
-                <button mat-raised-button color="warn" (click)="excluirMateria(m.id || 0)">
+                <button mat-raised-button color="warn" (click)="confirmarExclusao(m.id || 0)">
                   <i class="fa fa-trash"></i>
                 </button>
                 <a [routerLink]="['editmateria', m.id]">
