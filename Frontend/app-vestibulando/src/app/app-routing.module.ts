@@ -31,7 +31,6 @@ const routes: Routes = [
   {
     path: 'app',
     component: LayoutPadraoComponent,
-    canActivateChild:[ValidUserGuard],
     children: [
       { path: 'simulados/gerarSimulado',component:GerarSimuladoComponent },
       { path: 'simulados/realizar/:id',component:RealizarSimuladoComponent },

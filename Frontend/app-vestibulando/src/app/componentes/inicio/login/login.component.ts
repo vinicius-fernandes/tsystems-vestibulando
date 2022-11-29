@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   form: FormGroup
 
   constructor(private _router: Router, private formBuilder: FormBuilder,private authService:AuthService,private jwtTokenService:JwtTokenService,private toastr: ToastrService) {
@@ -21,6 +21,11 @@ export class LoginComponent {
       }
     )
    }
+  ngOnInit(): void {
+    if(this.jwtTokenService.getToken()!=null){
+      this._router.navigate(['app','home'])
+    }
+  }
 
   login(){
     console.log(this.form.value)
@@ -30,6 +35,7 @@ export class LoginComponent {
         this.jwtTokenService.saveToken(value.access_token)
         this.jwtTokenService.saveRefreshToken(value.refresh_token)
         console.log(value.access_token)
+        console.log("refresh "+value.refresh_token)
         if(this.authService.redirectUrl==null){
         this.redirecionarGerarSimulado()
         }

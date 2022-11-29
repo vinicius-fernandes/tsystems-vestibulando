@@ -8,7 +8,16 @@ const REFRESH_TOKEN:string = 'refresh_token';
 })
 export default class JwtTokenService {
 
+  isRefreshing:boolean=false;
   constructor() { }
+
+  setIsRefreshing(isRefreshing:boolean){
+    this.isRefreshing=isRefreshing;
+  }
+
+  getIsRefreshing():boolean{
+    return this.isRefreshing;
+  }
 
   getToken(): string | null{
     return localStorage.getItem(ACCESS_TOKEN);

@@ -70,8 +70,10 @@ export class GerarSimuladoComponent implements OnInit {
       },
       error: error => {
         console.log(error)
+        if(error.status!=401){
         this.toastr.error("Não foi possível consultar as bancas.", "Erro")
         this.router.navigate(['app', 'home'])
+        }
       }
     })
     this.materiaService.consultar().subscribe({
@@ -81,8 +83,11 @@ export class GerarSimuladoComponent implements OnInit {
       },
       error: error => {
         console.log(error)
+        if(error.status!=401){
+
         this.toastr.error("Não foi possível consultar as matérias.", "Erro")
         this.router.navigate(['app', 'home'])
+        }
       }
     })
   }
