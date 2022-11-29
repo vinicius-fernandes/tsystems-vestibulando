@@ -34,6 +34,57 @@ export class AdicionaQuestoesComponent {
   }
 
   salvarQuestao() {
+    let teveErro = false
+
+    if ( this.form.value.idMateria == null ) {
+      teveErro = true
+      this.toastr.error('Favor, escolher uma matéria.', 'Erro')
+    }
+
+    if ( this.form.value.idBanca == null ) {
+      teveErro = true
+      this.toastr.error('Favor, escolher uma banca.', 'Erro')
+    }
+
+    if ( this.form.value.enunciado == null || this.form.value.enunciado.length > 350 || this.form.value.enunciado.length < 4 ) {
+      teveErro = true
+      this.toastr.error('O enunciado da questão deve conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.form.value.resposta1 == null || this.form.value.resposta1.length > 350 || this.form.value.resposta1.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.form.value.resposta2 == null || this.form.value.resposta2.length > 350 || this.form.value.resposta2.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.form.value.resposta3 == null || this.form.value.resposta3.length > 350 || this.form.value.resposta3.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.form.value.resposta4 == null || this.form.value.resposta4.length > 350 || this.form.value.resposta4.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.form.value.resposta5 == null || this.form.value.resposta5.length > 350 || this.form.value.resposta5.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.form.value.respostaCorreta == '' ) {
+      teveErro = true
+      this.toastr.error('Favor, escolher a alternativa correta.', 'Erro')
+    }
+
+    if ( teveErro ) {
+      return
+    }
+
     let respostas: IResposta[] = [];
     respostas.push({
       descricao: this.form.value.resposta1,

@@ -49,6 +49,52 @@ export class EditaQuestoesComponent implements OnInit {
   }
 
   alterarQuestao() {
+    let teveErro = false
+
+    if ( this.questao.materia.id == null ) {
+      teveErro = true
+      this.toastr.error('Favor, escolher uma matéria.', 'Erro')
+    }
+
+    if ( this.questao.banca.id == null ) {
+      teveErro = true
+      this.toastr.error('Favor, escolher uma banca.', 'Erro')
+    }
+
+    if ( this.questao.corpo == null || this.questao.corpo.length > 350 || this.questao.corpo.length < 4 ) {
+      teveErro = true
+      this.toastr.error('O enunciado da questão deve conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.questao.respostas[0].descricao == null || this.questao.respostas[0].descricao.length > 350 || this.questao.respostas[0].descricao.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.questao.respostas[1].descricao == null || this.questao.respostas[1].descricao.length > 350 || this.questao.respostas[1].descricao.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.questao.respostas[2].descricao == null || this.questao.respostas[2].descricao.length > 350 || this.questao.respostas[2].descricao.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.questao.respostas[3].descricao == null || this.questao.respostas[3].descricao.length > 350 || this.questao.respostas[3].descricao.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( this.questao.respostas[4].descricao == null || this.questao.respostas[4].descricao.length > 350 || this.questao.respostas[4].descricao.length < 4 ) {
+      teveErro = true
+      this.toastr.error('Todas questões devem conter de 4 a 350 caracteres.', 'Erro')
+    }
+
+    if ( teveErro ) {
+      return
+    }
+
     if (this.form.value.respostaCorreta != '') {
       this.questao.respostas[0].correta = false;
       this.questao.respostas[1].correta = false;
