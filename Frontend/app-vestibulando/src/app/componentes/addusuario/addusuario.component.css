@@ -31,7 +31,7 @@ div.principal {
 }
 
 mat-form-field {
-  width: clamp(200px, 90%, 300px) !important;
+  width: clamp(200px, 90%, 500px) !important;
 }
 
 
