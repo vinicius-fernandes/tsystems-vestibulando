@@ -1,0 +1,15 @@
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+tr td:nth-child(3) {
+  display: flex;
+  justify-content: center;
+}
+
+tr td:nth-child(3) div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
