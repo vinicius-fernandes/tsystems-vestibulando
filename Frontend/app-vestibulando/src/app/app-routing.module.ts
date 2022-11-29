@@ -51,7 +51,7 @@ const routes: Routes = [
       { path: 'usuarios', component: UsuariosComponent , canActivate:[AdmGuard]},
       { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent , canActivate:[AdmGuard]},
       { path: 'usuarios/adduser', component: AddusuarioComponent, canActivate:[AdmGuard] },
-      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
       {path:'info/:mensagem',component:InfoComponent}
     ],
   },
