@@ -1,46 +1,46 @@
 .imgbg{
-    height: 100%;
-    min-height: 100vh;
-    background-image:linear-gradient(to bottom, rgba(1,0,0,0.5), rgb(1, 1, 1)),
-    url(https://uniandrade.br/wp-content/uploads/2020/07/simulado-tem-varias-questoes-vestibular-57d9a8d50b0b0.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-bottom: 10px;
+  height: 100%;
+  min-height: 100vh;
+  background-image:linear-gradient(to bottom, rgba(1,0,0,0.5), rgb(1, 1, 1)),
+  url(https://uniandrade.br/wp-content/uploads/2020/07/simulado-tem-varias-questoes-vestibular-57d9a8d50b0b0.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 10px;
 }
+
 header a div:hover {
   filter: brightness(0) invert(1);
 }
 
 .tituloLogin{
-    text-align: center;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    font-size: clamp(40px, 3vw, 16px);
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-size: clamp(40px, 3vw, 16px);
 }
 
 .logo {
-    height: 150px;
-}
-
-form {
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 35px;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+  height: 140px;
 }
 
 .principal {
-  display: flex;
-  width: 30%;
-  justify-content: center;
-  padding: 20px;
-  border-radius: 8px;
-  align-items: center;
+display: flex;
+width: 30%;
+justify-content: center;
+padding: 20px;
+border-radius: 8px;
+align-items: center;
 }
 
 .input{
+width: 100%;
+margin: auto;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.container div {
   width: 100%;
 }
 
