@@ -1,19 +1,42 @@
+h1 {
+  line-height: 2em;
+}
+
 .comp-75 {
     width: 75%;
 }
 
 .botoes{
-    text-align: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 button{
-    margin-right: 100px;
-    height: 48px;
-    width: 112.83px;
+  height: 48px;
+  width: 113px;
 }
 
 mat-label:not(.form-check-label):not(.custom-file-label) {
     font-weight: 350;
+}
+
+div.principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-form-field {
+  width: clamp(200px, 90%, 300px) !important;
+}
+
+
+input[matInput] {
+  width: clamp(200px, 90%, 300px);
 }
 
 .form-floating mb-3{
