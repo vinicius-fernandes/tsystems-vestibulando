@@ -12,3 +12,7 @@ button{
 .botoes{
     text-align: center;
 }
+
+mat-label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 350;
+}

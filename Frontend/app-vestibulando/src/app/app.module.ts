@@ -11,6 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -96,7 +97,8 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
     MatButtonModule,
     MatRadioModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
     ],
   providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl },{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr}],
   bootstrap: [AppComponent]

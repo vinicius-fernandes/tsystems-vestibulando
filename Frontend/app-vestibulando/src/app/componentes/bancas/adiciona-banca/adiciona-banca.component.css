@@ -2,10 +2,6 @@
     width: 75%;
 }
 
-.mleft-125 {
-    margin-left: 12.5%;
-}
-
 .botoes{
     text-align: center;
 }
@@ -16,3 +12,6 @@ button{
     width: 112.83px;
 }
 
+mat-label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 350;
+}
