@@ -12,6 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog'
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -105,6 +106,7 @@ import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dia
     MatChipsModule,
     MatPaginatorModule,
     MatDialogModule
+    MatSelectModule
     ],
   providers: [
     { provide: "BASE_API_URL", useValue: environment.apiUrl },

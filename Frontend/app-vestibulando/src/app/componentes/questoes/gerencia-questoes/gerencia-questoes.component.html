@@ -8,35 +8,38 @@
       </button></a
     >
   </p>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Enunciado</th>
+          <th>Disciplina</th>
+          <th>Banca</th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Enunciado</th>
-        <th>Disciplina</th>
-        <th>Banca</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let perg of pergunta">
-        <td>{{ perg.id }}</td>
-        <td>{{ perg.corpo }}</td>
-        <td>{{ perg.materia.nome }}</td>
-        <td>{{ perg.banca.sigla }}</td>
-        <td class="d-inline-flex">
-          <button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluir(perg.id || 0)"><i class="fa fa-trash"></i></button>
-          <a [routerLink]="['edita', perg.id]"
-            ><button mat-raised-button color="primary">
-              <i class="fas fa-edit"></i></button
-          ></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" [length]="totalElements"  (page)="nextPage($event)"> </mat-paginator>
+      <tbody>
+        <tr *ngFor="let perg of pergunta">
+          <td>{{ perg.id }}</td>
+          <td> <div> {{ perg.corpo }} </div> </td>
+          <td>{{ perg.materia.nome }}</td>
+          <td>{{ perg.banca.sigla }}</td>
+          <td class="d-inline-flex">
+            <div>
+            <button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluir(perg.id || 0)"><i class="fa fa-trash"></i></button>
+              <a [routerLink]="['edita', perg.id]"
+                ><button mat-raised-button color="primary">
+                  <i class="fas fa-edit"></i></button
+              ></a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="25" [length]="totalElements" (page)="nextPage($event)"> </mat-paginator>
 
 
 </div>
