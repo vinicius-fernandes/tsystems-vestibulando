@@ -2,6 +2,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+button.float-end {
+  height: auto;
+  padding: 5px;
+}
 @media screen and (max-width: 768px) {
   .materias {
     grid-template-columns: 1fr;

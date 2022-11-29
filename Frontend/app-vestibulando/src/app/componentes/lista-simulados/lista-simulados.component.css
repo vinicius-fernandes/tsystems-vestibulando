@@ -59,7 +59,7 @@ h1 {
     height: auto;
   }
 }
-@media only screen and (max-width: 475px) {
+@media only screen and (max-width: 530px) {
   .card:nth-child(2) {
     grid-column: 1;
   }
