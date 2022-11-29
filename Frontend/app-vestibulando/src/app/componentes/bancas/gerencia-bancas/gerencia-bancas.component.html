@@ -2,7 +2,7 @@
 <div class="container">
 <p class="text-end mt-3 mr-3"><a routerLink="addbanca"><button mat-raised-button color="primary"><i class="fa fa-plus"></i> Adicionar Banca</button></a></p>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
@@ -20,7 +20,7 @@
             <td class="text-end">
               <div>
                 <div>
-                  <button mat-raised-button color="warn" (click)="excluirBanca(b.id || 0)">
+                  <button mat-raised-button color="warn" (click)="confirmarExclusao(b.id || 0)">
                     <i class="fa fa-trash"></i>
                   </button>
                 </div>
