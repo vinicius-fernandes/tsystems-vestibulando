@@ -13,15 +13,27 @@
     </div>
 
     <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
+        
         <h3 class="tituloLogin"><b>Login</b></h3>
-        <form [formGroup]="form">
-        <input type="text" class="myinput" placeholder="E-mail" formControlName="username" required>
-        <input type="password" formControlName="password" class="myinput" placeholder="Senha" required>
-        <div class="botoesLogin">
-           <button mat-flat-button color="primary" (click)="login()" >Login</button>
-            <button mat-flat-button color="primary" (click)="redirecionarCadastro()">Cadastro</button>
 
-        </div>
+        <div>
+        <form [formGroup]="form">
+            <div>
+                <mat-form-field appearance="fill" color="primary" class="input">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput formControlName="username" type="text" placeholder="E-mail" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill" color="primary" class="input">
+                    <mat-label>Senha</mat-label>
+                    <input matInput type="password" formControlName="password" placeholder="Senha" required>
+            </mat-form-field>
+            </div>
+            <div class="botoesLogin">        
+                <button mat-flat-button color="primary" (click)="login()" >Login</button>
+                <button mat-flat-button color="primary" (click)="redirecionarCadastro()">Cadastro</button>
+            </div>
       </form>
     </div>
 </div>
