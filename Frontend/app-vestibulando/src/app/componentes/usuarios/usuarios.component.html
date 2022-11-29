@@ -1,21 +1,21 @@
 <p class="text-end mt-3 mr-3"><a routerLink="/app/usuarios/adduser"><button mat-raised-button color="primary"><i class="fa fa-plus"></i> Adicionar Usuario</button></a></p>
 
 <div class="container">
-    <div class="row">
-        <div class="col" *ngFor="let u of users">
+    <div>
+        <div *ngFor="let u of users">
             <div class="card" style="width: 17rem;">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <i class="fas fa-user col-2" *ngIf="checkRole(u.roles!,'ROLE_USUARIO')"></i>
                         <i class="fas fa-user-cog col-2" *ngIf="checkRole(u.roles!,'ROLE_ADMIN')"></i>
-                        <div class="col">
+                        <div>
                             <h5 class="card-title">{{u.nome}}</h5>
                             <p class="card-text">{{u.email}}</p>
                         </div>
                     </div>
                     <div class="mt-2">
                    <a [routerLink]="['/app/usuarios/edita',u.id]"><button mat-raised-button class="mr-2" color="primary"><i class="fas fa-edit"></i></button></a>
-                    <button mat-raised-button class="mr-2" color="warn" (click)="excluir(u.id)"><i class="fa fa-trash"></i></button>
+                    <button mat-raised-button class="mr-2" color="warn" (click)="confirmarExclusao(u.id || 0)"><i class="fa fa-trash"></i></button>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,51 @@
+.container {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+tr td:nth-child(2) div {
+  max-height: 80px;
+  text-wrap: normal;
+  overflow-y: auto;
+  padding-right: 1.5em;
+}
+
+tr td:nth-child(5) div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+tr td:nth-child(5) div button {
+  width: clamp(35px, 10vw, 64px);
+  min-width: 35px;
+  padding: 10px;
+}
+
+table {
+  overflow-x: auto;
+}
+
+mat-paginator {
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+}
+
+mat-paginator button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 560px) {
+  tr td:nth-child(1) {
+    width: 10px;
+  }
+  tr td {
+    font-size: clamp(13px, 1vh, 25px);
+  }
+}

@@ -16,17 +16,21 @@
   width: 100%;
 }
 
-button{
-  margin-left: 15px;
-  margin-right: 100px;
-  height: 48px;
-  width: 112.83px;
-}
-
 .botoes{
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+}
+
+button{
+  height: 48px;
+  width: 113px;
 }
 
 mat-label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 350;
 }
+

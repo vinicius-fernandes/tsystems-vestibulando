@@ -31,7 +31,6 @@ const routes: Routes = [
   {
     path: 'app',
     component: LayoutPadraoComponent,
-    canActivateChild:[ValidUserGuard],
     children: [
       { path: 'simulados/gerarSimulado',component:GerarSimuladoComponent },
       { path: 'simulados/realizar/:id',component:RealizarSimuladoComponent },
@@ -52,7 +51,7 @@ const routes: Routes = [
       { path: 'usuarios', component: UsuariosComponent , canActivate:[AdmGuard]},
       { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent , canActivate:[AdmGuard]},
       { path: 'usuarios/adduser', component: AddusuarioComponent, canActivate:[AdmGuard] },
-      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
       {path:'info/:mensagem',component:InfoComponent}
     ],
   },

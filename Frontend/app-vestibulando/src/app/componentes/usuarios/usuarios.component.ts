@@ -4,6 +4,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import IRole from 'src/app/interfaces/IRole';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -14,7 +16,7 @@ export class UsuariosComponent {
 
   public users: IUsuario[] = []
 
-  constructor(private service: UsuarioService, private toastr: ToastrService, private router: Router) {
+  constructor(private service: UsuarioService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) {
     this.consultar()
   }
   consultar() {
@@ -27,6 +29,21 @@ export class UsuariosComponent {
       }
     })
   }
+
+  confirmarExclusao(id: number) {
+    const dialogData = new ConfirmDialogModel(`Confirmar exclusão`, `Tem certeza de que deseja excluir este usuário?`)
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    })
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if ( dialogResult == true ) {
+        this.excluir(id)
+      }
+    })
+  }
+
   excluir(idUsuario: any) {
     this.service.excluir(idUsuario).subscribe({next: () => {
       this.users = this.users.filter(u => u.id != idUsuario)

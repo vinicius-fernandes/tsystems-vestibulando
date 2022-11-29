@@ -13,14 +13,14 @@ header a div:hover {
 }
 
 .tituloCadastro{
-    text-align: center;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    font-size: clamp(40px, 3vw, 16px);
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-size: clamp(40px, 3vw, 16px);
 }
 
 .logo {
-    height: 140px;
+  height: 140px;
 }
 
 .principal {
@@ -30,7 +30,10 @@ header a div:hover {
   padding: 20px;
   border-radius: 8px;
   align-items: center;
+}
 
+.input{
+  width: 80%;
 }
 
 form {
@@ -59,22 +62,6 @@ form>div>p {
 
 p{
     margin-bottom: 20px;
-    text-align: center;
-}
-
-.myinput {
-  width: 350px;
-  border-radius: 6px;
-  background-color: #303036;
-  padding: 3px 0 8px 3px;
-  margin-bottom: 1px;
-  text-align: center;
-  color: white;
-
-}
-
-.myinput::placeholder {
-    color: rgba(255, 255, 255, 0.8);
     text-align: center;
 }
 
