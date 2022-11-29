@@ -21,8 +21,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: 30px;
   justify-content: center;
-  gap: 20px;
 }
 
 button{
@@ -33,3 +33,4 @@ button{
 mat-label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 350;
 }
+
