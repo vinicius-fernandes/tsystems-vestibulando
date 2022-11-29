@@ -2,6 +2,9 @@ package com.vestibulando.entities;
 
 import com.vestibulando.enums.EnumsUsuario;
 import org.hibernate.annotations.Check;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -11,9 +14,13 @@ import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
-public class Usuario {
+public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,9 +34,16 @@ public class Usuario {
     private String senha;
     @NotBlank
     private String nome;
-    private EnumsUsuario tipo;
     @Column(columnDefinition = "DATETIME")
     private Instant createdAt;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "usuario_role",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @PrePersist
     public void setCreatedAt() {
@@ -79,13 +93,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public EnumsUsuario getTipo() {
-        return tipo;
-    }
 
-    public void setTipo(EnumsUsuario tipo) {
-        this.tipo = tipo;
-    }
 
     public String getNome() {
         return nome;
@@ -93,5 +101,50 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles
+                .stream()
+                .map(role->new SimpleGrantedAuthority(role.getAuthority()))
+                .collect(Collectors.toList());
+    }
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

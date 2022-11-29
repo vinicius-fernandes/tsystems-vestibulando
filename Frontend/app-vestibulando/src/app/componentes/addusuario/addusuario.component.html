@@ -17,17 +17,17 @@
         </div>
         <div class="form-floating mb-3">
             <select class="form-select" id="tipo" aria-label="Floating label select example"
-                [(ngModel)]="usuario.tipo" name="tipo">
-                <option selected value="">Selecione o privilégio do usuário</option>
-                <option value="CLIENTE">Cliente</option>
-                <option value="ADMINISTRADOR">Administrador</option>
+                [(ngModel)]="usuario.roles![0].id" name="tipo">
+                <option selected value="0">Selecione o privilégio do usuário</option>
+                <option *ngFor="let role of roles" [value]="role.id">{{role.authority.replace("ROLE_","")}}</option>
+
             </select>
             <label for="tipo">Regra Usuario</label>
         </div>
-        
+
         <p class="mb-5">
             <button class="btn btn-primary mr-3" (click)="salvar()">Salvar</button>
-            <a routerLink="../">                 
+            <a routerLink="../">
                 <button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
             </a>
         </p>

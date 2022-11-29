@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
@@ -43,6 +43,9 @@ import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/ed
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
 import { HomeComponent } from './componentes/home/home.component';
 import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
+import {AuthInterceptor} from './auth.interceptor';
+import { InfoComponent } from './componentes/info/info.component';
+import { ValidUserGuard } from './authGuard/ValidUserGuard';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,8 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
     GerenciaQuestoesComponent,
     EditaQuestoesComponent,
     AdicionaQuestoesComponent,
-    HomeComponent
+    HomeComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +102,19 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
     MatChipsModule,
     MatPaginatorModule
     ],
-  providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl },{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr}],
+  providers: [
+    { provide: "BASE_API_URL", useValue: environment.apiUrl },
+    { provide: "OAUTH_CLIENT", useValue: environment.OAUTH_CLIENT },
+    { provide: "OAUTH_SECRET", useValue: environment.OAUTH_SECRET },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+
+  { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr},
+  ValidUserGuard
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
