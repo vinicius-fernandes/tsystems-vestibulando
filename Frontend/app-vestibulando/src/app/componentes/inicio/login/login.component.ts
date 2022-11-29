@@ -60,6 +60,6 @@ export class LoginComponent implements OnInit{
   }
 
   redirecionarGerarSimulado() {
-    this._router.navigate(['app','home'])
+    this._router.navigate(['app'])
   }
 }
