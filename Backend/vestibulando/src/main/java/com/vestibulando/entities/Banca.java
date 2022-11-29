@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-
 public class Banca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +24,7 @@ public class Banca {
     @Column(unique = true)
     @Size(message = "A nome precisa possuir no mínimo 2 caracteres e no máximo 250", min = 2, max = 250)
     @NotBlank(message = "É necessário haver uma nome.")
-    @NotNull(message = "A nome não pode ser nula.")
+    @NotNull(message = "O nome não pode ser nula.")
     private String nome;
 
     @JsonIgnore

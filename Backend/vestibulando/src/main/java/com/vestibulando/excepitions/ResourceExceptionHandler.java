@@ -1,7 +1,5 @@
 package com.vestibulando.excepitions;
 
-
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -37,14 +35,14 @@ public class ResourceExceptionHandler {
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<StandardError> emailDuplicado(DataIntegrityViolationException e,
+    @ExceptionHandler(ArgumentoDuplicado.class)
+    public ResponseEntity<StandardError> emailDuplicado(ArgumentoDuplicado e,
                                                         HttpServletRequest req){
         StandardError err = new StandardError();
         err.setTimeStamp(Instant.now());
         err.setStatus(HttpStatus.BAD_REQUEST.value());
-        err.setError("Email já existe");
-        err.setMessage("E-mail já cadastrado");
+        err.setError("Argumento Duplicado");
+        err.setMessage(e.getMessage());
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
@@ -59,8 +57,6 @@ public class ResourceExceptionHandler {
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
-
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<StandardError> argumentoInvalidoException(MethodArgumentNotValidException e,
                                                                     HttpServletRequest req){
@@ -69,6 +65,17 @@ public class ResourceExceptionHandler {
         err.setStatus(HttpStatus.BAD_REQUEST.value());
         err.setError("Campo obrigatório");
         err.setMessage(e.getFieldError().getDefaultMessage());
+        err.setPath(req.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
+    @ExceptionHandler(NomeIncompleto.class)
+    public ResponseEntity<StandardError> argumentoInvalidoException(NomeIncompleto e,
+                                                                    HttpServletRequest req){
+        StandardError err = new StandardError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("Campo obrigatório");
+        err.setMessage(e.getMessage());
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }

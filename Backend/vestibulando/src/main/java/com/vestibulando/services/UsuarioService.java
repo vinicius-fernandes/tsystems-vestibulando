@@ -1,11 +1,12 @@
 package com.vestibulando.services;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Role;
 import com.vestibulando.entities.Usuario;
-import com.vestibulando.enums.EnumsUsuario;
+
+import com.vestibulando.excepitions.ArgumentoDuplicado;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
+import com.vestibulando.excepitions.NomeIncompleto;
 import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,13 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.zip.DataFormatException;
 import java.util.*;
 
 @Service
@@ -55,8 +50,12 @@ public class UsuarioService implements UserDetailsService {
         return userDTO;
     }
 
-    public UsuarioDTO salvarUsuario(Usuario usuario) {
+    public UsuarioDTO salvarUsuario(Usuario usuario)  {
+       Usuario user = usuarioRepository.findByEmail(usuario.getEmail());
 
+       if(user != null && usuario.getId() != user.getId()){
+           throw new ArgumentoDuplicado("Email já está cadastrado");
+       }
         if(usuario.getRoles().isEmpty()){
             Role rl = new Role();
             rl.setId(1L);
@@ -64,7 +63,9 @@ public class UsuarioService implements UserDetailsService {
             rlList.add(rl);
             usuario.setRoles(rlList);
         }
-
+        if(usuario.getNome().indexOf(" ") == -1){
+            throw new ArgumentoDuplicado("Insira nome e sobrenome");
+        }
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRepository.save(usuario));
         return usuarioDTO;
@@ -90,14 +91,14 @@ public class UsuarioService implements UserDetailsService {
 
     public void apagarUsuario(long idUsuario) {
         Usuario usuario = this.consultar(idUsuario);
-
         try {
             usuarioRepository.delete(usuario);
         }
         catch (Exception e){
-            throw  new DeleteComAssociacoes("Não é possível deletar o usuário pois há itens associados a ele");
+            throw new DeleteComAssociacoes("Não é possível deletar o usuário pois há itens associados a ele");
         }
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(username);

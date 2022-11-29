@@ -32,7 +32,6 @@ public class Usuario implements UserDetails {
     private Long id;
     @Email(message = "E-mail invalido")
     @NotBlank(message = "E-mail não pode ser em branco")
-    @Column(unique = true)
     private String email;
     @NotBlank(message = "Senha deve conter no minimo 6 caracteres")
     @Size(message = "Senha deve conter no minimo 6 caracteres", min = 6)
