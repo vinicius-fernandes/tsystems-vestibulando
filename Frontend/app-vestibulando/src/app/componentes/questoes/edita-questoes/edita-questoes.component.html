@@ -4,22 +4,24 @@
   <h2 class="text">Pergunta</h2>
   
   <div class="text-center">
-    <mat-form-field appearance="fill" color="primary" class="comp-75">
-      <mat-label>ID da matéria</mat-label>
-      <input
-        [(ngModel)]="questao.materia.id"
-        matInput
-        placeholder="Informe o ID da matéria"
-      />
+    <mat-form-field appearance="fill" class="w-50 pr-2">
+      <mat-label>Matérias</mat-label>
+      <mat-select name="materia" matInput [(ngModel)]="questao.materia.id">
+        <mat-option *ngFor="let mat of materiasData" [value]="mat.id">
+          {{ mat.nome }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="fill" color="primary" class="comp-75">
-      <mat-label>ID da banca</mat-label>
-      <input
-        [(ngModel)]="questao.banca.id"
-        matInput
-        placeholder="Informe o ID da banca"
-      />
+
+    <mat-form-field appearance="fill" class="w-50 pl-2">
+      <mat-label>Bancas</mat-label>
+      <mat-select name="banca" matInput [(ngModel)]="questao.banca.id">
+        <mat-option *ngFor="let banc of bancasData" [value]="banc.id">
+          {{ banc.sigla }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+
     <mat-form-field class="example-full-width">
       <mat-label>Enunciado</mat-label>
       <textarea
