@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import IUsuario from 'src/app/interfaces/IUsuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import IRole from 'src/app/interfaces/IRole';
 import { Router } from '@angular/router';
 
 @Component({
@@ -35,17 +36,12 @@ export class UsuariosComponent {
     }})
   }
 
-  user(tipo:string){
-    if(tipo == "CLIENTE"){
-      return true;
+  checkRole(roles:IRole[],role:string){
+    if(roles.findIndex(r=>r.authority==role)!= -1){
+      return true
     }
-    return false;
+    return false
   }
-  adm(tipo:string){
-    if(tipo == "ADMINISTRADOR"){
-      return true;
-    }
-    return false;
-  }
+
 
 }

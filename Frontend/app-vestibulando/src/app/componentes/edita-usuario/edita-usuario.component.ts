@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import IRole from 'src/app/interfaces/IRole';
 import IUsuario from 'src/app/interfaces/IUsuario';
+import { RolesService } from 'src/app/services/roles.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -11,13 +13,25 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class EditaUsuarioComponent implements OnInit {
 
-  usuario: IUsuario = { nome: "", email: "", tipo: "", senha: "" }
+  usuario: IUsuario = { nome: "", email: "", senha: "",roles:[{id:0,authority:''}] }
+  roles: IRole[] = []
 
-  constructor(private route: ActivatedRoute, private service: UsuarioService, private toastr: ToastrService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private service: UsuarioService, private toastr: ToastrService, private router: Router,private roleService: RolesService) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap
     let iduser = parseInt(routeParams.get('idusuario') || '')
+
+    this.roleService.consultar().subscribe({
+      next: (rolesData)=> {
+        this.roles=rolesData
+      },
+      error: (erro)=>{
+        console.log(erro)
+        this.toastr.error("Não foi possível carregar os tipos de usuário.", "Erro")
+        this.router.navigate(['/app/usuarios'])
+      }
+    })
     this.service.consultarbyId(iduser).subscribe({
       next: data => this.usuario = data,
       error: erro => {
@@ -45,6 +59,10 @@ export class EditaUsuarioComponent implements OnInit {
     if (this.usuario.email.indexOf("@") == -1 || this.usuario.email.indexOf(".com") == -1) {
       teveErro = true
       this.toastr.error('Email Invalido', 'Erro')
+    }
+    if(this.usuario.roles![0].id==0){
+      teveErro = true
+      this.toastr.error("Selecione um tipo válido para o usuário",'Erro')
     }
 
     if ( teveErro ) {

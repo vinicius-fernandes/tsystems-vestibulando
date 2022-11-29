@@ -14,11 +14,14 @@
 
     <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
         <h3 class="tituloLogin"><b>Login</b></h3>
-        <input type="text" class="myinput" placeholder="E-mail" required>
-        <input type="password" class="myinput" placeholder="Senha" required>
+        <form [formGroup]="form">
+        <input type="text" class="myinput" placeholder="E-mail" formControlName="username" required>
+        <input type="password" formControlName="password" class="myinput" placeholder="Senha" required>
         <div class="botoesLogin">
-            <a href="/app/home"><button mat-flat-button color="primary">Login</button></a>
+           <button mat-flat-button color="primary" (click)="login()" >Login</button>
             <button mat-flat-button color="primary" (click)="redirecionarCadastro()">Cadastro</button>
+
         </div>
+      </form>
     </div>
 </div>

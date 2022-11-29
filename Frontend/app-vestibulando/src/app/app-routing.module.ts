@@ -20,40 +20,40 @@ import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
 import { AddusuarioComponent } from './componentes/addusuario/addusuario.component';
-
+import { AdmGuard } from './authGuard/AdmGuard';
+import { ValidUserGuard } from './authGuard/ValidUserGuard';
 
 import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materia/adiciona-materia.component';
 import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { InfoComponent } from './componentes/info/info.component';
 const routes: Routes = [
   {
     path: 'app',
     component: LayoutPadraoComponent,
+    canActivateChild:[ValidUserGuard],
     children: [
       { path: 'simulados/gerarSimulado',component:GerarSimuladoComponent },
       { path: 'simulados/realizar/:id',component:RealizarSimuladoComponent },
       { path: 'simulados/resultado/:idSimulado/:idUser',component:ResultadoSimuladoComponent },
       { path: 'simulados', component: ListaSimuladosComponent },
       { path: 'simulados/rankingSimulado/:id', component:RankingSimuladoComponent },
-      { path: 'modbancas', component: GerenciaBancasComponent },
-      { path: 'modbancas/addbanca', component: AdicionaBancaComponent },
-      { path: 'modbancas/editbanca/:id', component: EditaBancaComponent},
-      { path: 'modmaterias', component: GerenciaMateriasComponent },
-      { path: 'modmaterias/addmateria', component: AdicionaMateriaComponent},
-      { path: 'modmaterias/editmateria/:id', component: EditaMateriaComponent},
-      { path: 'questoes', component: GerenciaQuestoesComponent },
-      { path: 'questoes/adiciona', component: AdicionaQuestoesComponent },
-      { path: 'questoes/edita/:id', component: EditaQuestoesComponent },
+      { path: 'modbancas', component: GerenciaBancasComponent, canActivate:[AdmGuard] },
+      { path: 'modbancas/addbanca', component: AdicionaBancaComponent, canActivate:[AdmGuard] },
+      { path: 'modbancas/editbanca/:id', component: EditaBancaComponent, canActivate:[AdmGuard]},
+      { path: 'modmaterias', component: GerenciaMateriasComponent , canActivate:[AdmGuard]},
+      { path: 'modmaterias/addmateria', component: AdicionaMateriaComponent, canActivate:[AdmGuard]},
+      { path: 'modmaterias/editmateria/:id', component: EditaMateriaComponent, canActivate:[AdmGuard]},
+      { path: 'questoes', component: GerenciaQuestoesComponent , canActivate:[AdmGuard]},
+      { path: 'questoes/adiciona', component: AdicionaQuestoesComponent , canActivate:[AdmGuard]},
+      { path: 'questoes/edita/:id', component: EditaQuestoesComponent, canActivate:[AdmGuard] },
       { path: 'gerarSimulado', component: GerarSimuladoComponent },
-      { path: 'modbancas', component: GerenciaBancasComponent },
-      { path: 'modbancas/addbanca', component: AdicionaBancaComponent },
-      { path: 'modbancas/editbanca/:id', component: EditaBancaComponent },
-      { path: 'modmaterias', component: GerenciaMateriasComponent },
       { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
-      { path: 'usuarios', component: UsuariosComponent },
-      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent },
-      { path: 'usuarios/adduser', component: AddusuarioComponent },
+      { path: 'usuarios', component: UsuariosComponent , canActivate:[AdmGuard]},
+      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent , canActivate:[AdmGuard]},
+      { path: 'usuarios/adduser', component: AddusuarioComponent, canActivate:[AdmGuard] },
       { path: 'home', component: HomeComponent },
+      {path:'info/:mensagem',component:InfoComponent}
     ],
   },
   { path: '', component: TelaComponent },

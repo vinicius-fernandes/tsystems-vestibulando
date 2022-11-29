@@ -1,26 +1,30 @@
 package com.vestibulando.services;
 
 import com.vestibulando.dtos.UsuarioDTO;
+import com.vestibulando.entities.Role;
 import com.vestibulando.entities.Usuario;
 import com.vestibulando.enums.EnumsUsuario;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService {
 
     @Autowired
     IUsuarioRepository usuarioRepository;
-
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
     public List<UsuarioDTO> consultarUsuario(String email) {
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
         if (email == null) {
@@ -46,9 +50,15 @@ public class UsuarioService {
     }
 
     public UsuarioDTO salvarUsuario(Usuario usuario) {
-        if(usuario.getTipo()==null){
-            usuario.setTipo(EnumsUsuario.CLIENTE);
+
+        if(usuario.getRoles().isEmpty()){
+            Role rl = new Role();
+            rl.setId(1L);
+            Set<Role> rlList= new LinkedHashSet<>();
+            rlList.add(rl);
+            usuario.setRoles(rlList);
         }
+        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRepository.save(usuario));
         return usuarioDTO;
     }
@@ -57,7 +67,7 @@ public class UsuarioService {
         Usuario user = this.consultar(idUsuario);
         user.setEmail(usuario.getEmail());
         user.setNome(usuario.getNome());
-        user.setTipo(usuario.getTipo());
+        user.setRoles(usuario.getRoles());
         if (usuario.getSenha() != null && !usuario.getSenha().isBlank() && !usuario.getSenha().equals(user.getSenha())) {
             user.setSenha(usuario.getSenha());
         }
@@ -82,4 +92,8 @@ public class UsuarioService {
         }
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return usuarioRepository.findByEmail(username);
+    }
 }

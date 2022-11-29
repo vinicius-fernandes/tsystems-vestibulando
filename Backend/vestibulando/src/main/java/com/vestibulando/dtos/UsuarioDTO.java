@@ -1,18 +1,21 @@
 package com.vestibulando.dtos;
 
+import com.vestibulando.entities.Role;
 import com.vestibulando.entities.Usuario;
 import com.vestibulando.enums.EnumsUsuario;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 public class UsuarioDTO {
     private Long id;
     private String email;
     private String nome;
     private Usuario usuario;
-    private EnumsUsuario tipo;
+
+    private Set<Role> roles;
     public UsuarioDTO() {
     }
 
@@ -20,7 +23,15 @@ public class UsuarioDTO {
         this.id = usuario.getId();
         this.email = usuario.getEmail();
         this.nome = usuario.getNome();
-        this.tipo = usuario.getTipo();
+        this.roles = usuario.getRoles();
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -51,11 +62,5 @@ public class UsuarioDTO {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public EnumsUsuario getTipo() {
-        return tipo;
-    }
 
-    public void setTipo(EnumsUsuario tipo) {
-        this.tipo = tipo;
-    }
 }
