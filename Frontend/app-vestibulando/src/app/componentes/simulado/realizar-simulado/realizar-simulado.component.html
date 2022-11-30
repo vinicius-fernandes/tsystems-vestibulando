@@ -23,11 +23,16 @@
           mat-raised-button
           color="basic"
           class="m-1"
-          *ngIf="perguntaAtual + 1 <= totalPerguntas"
+          *ngIf="perguntaAtual + 1 <= totalPerguntas; else finalizarBotao"
           (click)="alterarPergunta(perguntaAtual + 1)"
         >
           Próxima pergunta
         </button>
+        <ng-template #finalizarBotao>
+          <button mat-raised-button color="primary" class="m1" (click)="confirmarSalvar()">
+            Finalizar simulado
+          </button>
+        </ng-template>
       </div>
     </div>
     <div class="col-md-3 ">

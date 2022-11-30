@@ -6,7 +6,11 @@
 h4 {
   margin-top: 15px;
 }
-
+.botoes {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+}
 button {
   text-transform: capitalize;
 }
