@@ -12,6 +12,8 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  vertical-align: center;
+  align-items: center;
 }
 
 mat-form-field {
@@ -20,9 +22,6 @@ mat-form-field {
   min-width: 180px;
 }
 
-a[routerLink='adiciona'] {
-  margin-bottom: 20px;
-}
 
 tr td:nth-child(2) div {
   max-height: 80px;
@@ -43,6 +42,7 @@ tr td:nth-child(5) div button {
 
 table {
   overflow-x: auto;
+  margin-top: 20px;
 }
 
 mat-paginator {
