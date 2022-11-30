@@ -76,4 +76,6 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
     )
     List<NotaSimuladoUsuarioDTO> getNotasSimuladosUsuario( long idUsuario);
 
+    @Query("select p.id from RespostasUsuarios ru join ru.respostas respsU join respsU.pergunta p where ru.usuario.id=?1 and ru.simulado.id=?2 and respsU.correta=true")
+    List<Long> getPerguntasCorretasSimuladoUsuario(long idUsuario,long idSimulao);
 }
