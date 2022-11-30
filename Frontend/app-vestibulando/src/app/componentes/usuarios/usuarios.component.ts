@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import IUsuario from 'src/app/interfaces/IUsuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
@@ -6,6 +6,7 @@ import IRole from 'src/app/interfaces/IRole';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -23,7 +24,6 @@ export class UsuariosComponent {
     this.service.consultar().subscribe({
       next: data => this.users = data,
       error: erro => {
-        console.log(erro)
         this.toastr.error("Não foi possível consultar os usuários.", "Erro")
         this.router.navigate(['app', 'home'])
       }
@@ -49,7 +49,7 @@ export class UsuariosComponent {
       this.users = this.users.filter(u => u.id != idUsuario)
       this.toastr.success('Usuario excluído com sucesso!', 'Sucesso')
     }, error: (erro) => {
-    this.toastr.error('Este usuário não pode ser excluído, há objetos ligados a ele.', 'Erro')
+    this.toastr.error(erro.error.message, 'Erro')
     }})
   }
 

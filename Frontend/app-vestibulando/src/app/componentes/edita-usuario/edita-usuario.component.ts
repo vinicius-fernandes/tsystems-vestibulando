@@ -73,7 +73,7 @@ export class EditaUsuarioComponent implements OnInit {
         this.toastr.success('Usuario alteardo com sucesso!', 'Sucesso')
         this.router.navigate(['/app/usuarios'])
       }, error: (erro) => {
-        this.toastr.error('Este usuário não pode ser alterado, verifique todos os campos', 'Erro')
+        this.toastr.error(erro.error.message, 'Erro')
       }
     })
   }

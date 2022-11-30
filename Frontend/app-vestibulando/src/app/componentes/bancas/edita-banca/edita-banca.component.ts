@@ -20,8 +20,8 @@ export class EditaBancaComponent implements OnInit {
     let id = parseInt(routeParams.get('id') || '0')
     this.serviceBanca.consultarPorId(id).subscribe({
       next: data => this.banca = data,
-      error: () => {
-        this.toastr.error('Banca não encontrada.', 'Erro')
+      error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modbancas'])
       }
     })
@@ -49,8 +49,8 @@ export class EditaBancaComponent implements OnInit {
         this.toastr.success('Banca alterada com sucesso!', 'Sucesso')
         this.router.navigate(['app', 'modbancas'])
       },
-      error: () => {
-        this.toastr.error('Não foi possível alterar a banca.', 'Erro')
+      error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modbancas'])
       }
     })

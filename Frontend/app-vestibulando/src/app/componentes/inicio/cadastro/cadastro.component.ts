@@ -37,7 +37,7 @@ export class CadastroComponent implements OnInit{
       next: () => { this.router.navigate(["login"]) },
       error: erro => {
         console.log(erro)
-        this.toastr.error("Não foi possível realizar o cadastro.", "Erro")
+        this.toastr.error(erro.error.message, "Erro")
       }
     })
   }
