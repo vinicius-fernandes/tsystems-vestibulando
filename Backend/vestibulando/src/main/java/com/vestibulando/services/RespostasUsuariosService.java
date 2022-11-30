@@ -43,7 +43,9 @@ public class RespostasUsuariosService {
     }
 
 
-
+    public Page<RankingSimuladoDTO> getRankingGlobal(Pageable page){
+        return respostasUsuariosRepository.getRankingGlobal(page);
+    }
     public RespostasUsuarios obter(long id){
         RespostasUsuarios resp = respostasUsuariosRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Não foi possível encontrar as respostas do usuários com esse id de respostas usuários"));
         return resp;

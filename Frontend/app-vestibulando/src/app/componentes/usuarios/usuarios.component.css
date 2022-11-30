@@ -2,6 +2,20 @@
   display: flex;
   flex-wrap: wrap;
 } 
+.container>div {
+  display: grid;
+  margin: auto;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: center;
+  gap: 20px;
+}
+
+.card {
+  width: 180px;
+  margin: auto;
+}
+
 .mt-2{
     text-align: center;
 }

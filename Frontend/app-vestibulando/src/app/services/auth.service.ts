@@ -48,7 +48,8 @@ export class AuthService {
 
 
     refreshToken(refreshData: any): Observable<any> {
-      this.tokenService.removeToken();
+      this.tokenService.setIsRefreshing(true)
+   this.tokenService.removeToken();
       this.tokenService.removeRefreshToken();
       const body = new HttpParams()
         .set('refresh_token', refreshData.refresh_token)

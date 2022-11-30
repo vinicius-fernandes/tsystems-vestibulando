@@ -96,6 +96,8 @@ public class PerguntaService {
 
         p.setCorpo(pergunta.getCorpo());
         p.setRespostas(pergunta.getRespostas());
+        p.setBanca(pergunta.getBanca());
+        p.setMateria(pergunta.getMateria());
 
         for(Resposta res : p.getRespostas()){
             res.setPergunta(new Pergunta());

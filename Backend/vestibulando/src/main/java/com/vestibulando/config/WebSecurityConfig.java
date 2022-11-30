@@ -1,6 +1,7 @@
 package com.vestibulando.config;
 import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,6 +36,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
+    @Autowired
+    public void setApplicationContext(ApplicationContext context) {
+        super.setApplicationContext(context);
+        AuthenticationManagerBuilder globalAuthBuilder = context
+                .getBean(AuthenticationManagerBuilder.class);
+        try {
+            globalAuthBuilder.userDetailsService(userDetailsService);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

@@ -11,7 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
-import {MatCardModule} from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog'
 import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from './app.component';
@@ -48,6 +48,8 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
 import {AuthInterceptor} from './auth.interceptor';
 import { InfoComponent } from './componentes/info/info.component';
 import { ValidUserGuard } from './authGuard/ValidUserGuard';
+import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
+import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import { ValidUserGuard } from './authGuard/ValidUserGuard';
     EditaQuestoesComponent,
     AdicionaQuestoesComponent,
     HomeComponent,
-    InfoComponent
+    InfoComponent,
+    ConfirmDialogComponent,
+    RankingGeralComponent
   ],
   imports: [
     BrowserModule,
@@ -104,8 +108,7 @@ import { ValidUserGuard } from './authGuard/ValidUserGuard';
     MatRadioModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatCardModule,
-    
+    MatDialogModule,
     MatSelectModule
     ],
   providers: [
@@ -121,6 +124,7 @@ import { ValidUserGuard } from './authGuard/ValidUserGuard';
   { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr},
   ValidUserGuard
 ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmDialogComponent] 
 })
 export class AppModule { }

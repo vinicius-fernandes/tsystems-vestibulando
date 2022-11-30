@@ -20,7 +20,7 @@ export class ValidUserGuard implements CanActivate, CanActivateChild
 
     let user = this.jwtTokenService.getTokenDecoded()
 
-    if(user == null){
+    if(user == null && !this.jwtTokenService.getIsRefreshing()){
       this.authService.redirectUrl=state.url
       this.router.navigate(['login'])
     }
