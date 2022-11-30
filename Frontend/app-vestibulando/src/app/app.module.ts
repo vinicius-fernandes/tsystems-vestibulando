@@ -50,6 +50,7 @@ import { InfoComponent } from './componentes/info/info.component';
 import { ValidUserGuard } from './authGuard/ValidUserGuard';
 import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
 import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
+import { Error404Component } from './componentes/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral
     HomeComponent,
     InfoComponent,
     ConfirmDialogComponent,
-    RankingGeralComponent
+    RankingGeralComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,

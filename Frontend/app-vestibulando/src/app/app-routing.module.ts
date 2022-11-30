@@ -28,10 +28,12 @@ import { EditaMateriaComponent } from './componentes/materias/edita-materia/edit
 import { HomeComponent } from './componentes/home/home.component';
 import { InfoComponent } from './componentes/info/info.component';
 import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
+import { Error404Component } from './componentes/error404/error404.component';
 const routes: Routes = [
   {
     path: 'app',
     component: LayoutPadraoComponent,
+    canActivateChild:[ValidUserGuard],
     children: [
       { path: 'simulados/gerarSimulado',component:GerarSimuladoComponent },
       { path: 'simulados/realizar/:id',component:RealizarSimuladoComponent },
@@ -56,11 +58,14 @@ const routes: Routes = [
       {path:'info/:mensagem',component:InfoComponent},
       {path:'ranking',component:RankingGeralComponent},
       { path: '', component: HomeComponent },
+      {path:'**',component:Error404Component}
     ],
   },
   { path: '', component: TelaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent },
+  {path:'**',component:Error404Component}
+
 ];
 
 @NgModule({
