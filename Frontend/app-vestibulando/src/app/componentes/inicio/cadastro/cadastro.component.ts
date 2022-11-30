@@ -42,11 +42,7 @@ export class CadastroComponent implements OnInit{
       }
     })
   }
-<<<<<<< HEAD
-=======
-
   mudaVisibilidadeSenha() {
     this.mostrarSenha = !this.mostrarSenha
   }
->>>>>>> e1861ca3e03ff87a969dcf93b880b2622daa2fc0
 }
