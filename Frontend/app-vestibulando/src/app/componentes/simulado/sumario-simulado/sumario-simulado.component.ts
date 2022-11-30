@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import IRespostaMarcada from 'src/app/interfaces/IRespostaMarcada';
 
 @Component({
@@ -9,16 +9,16 @@ import IRespostaMarcada from 'src/app/interfaces/IRespostaMarcada';
 export class SumarioSimuladoComponent {
   @Input() respostasMarcadas: IRespostaMarcada[] = []
   @Input() finalizado: boolean = false
-  @Input() perguntasCorretas:number[] = []
+  @Input() perguntasCorretas: number[] = []
   @Output() mudarPerguntaEvent = new EventEmitter<number>();
 
-  changePergunta(numPerg:number){
+  changePergunta(numPerg: number) {
     this.mudarPerguntaEvent.emit(numPerg)
   }
 
-  estaCorreta(idPergunta:number){
-    const corretas = this.perguntasCorretas.find(p=> p == idPergunta)
-    if(corretas!=undefined)
+  estaCorreta(idPergunta: number) {
+    const corretas = this.perguntasCorretas.find(p => p == idPergunta)
+    if (corretas != undefined)
       return true
     return false
   }

@@ -2,10 +2,8 @@ package com.vestibulando.validators.perguntas;
 
 import com.vestibulando.constraints.perguntas.TotalRespostasCorretasConstraint;
 import com.vestibulando.entities.Resposta;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.List;
 import java.util.Set;
 
 public class TotalRespostasCorretasValidator implements ConstraintValidator<TotalRespostasCorretasConstraint, Set<Resposta>> {

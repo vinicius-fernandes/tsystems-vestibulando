@@ -12,7 +12,6 @@ public class BancaDTO {
         this.nome = nome;
         this.sigla = sigla;
     }
-
     public BancaDTO(Banca banca){
         this.id=banca.getId();
         this.nome=banca.getNome();
@@ -22,23 +21,18 @@ public class BancaDTO {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
-
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getSigla() {
         return sigla;
     }
-
     public void setSigla(String sigla) {
         this.sigla = sigla;
     }

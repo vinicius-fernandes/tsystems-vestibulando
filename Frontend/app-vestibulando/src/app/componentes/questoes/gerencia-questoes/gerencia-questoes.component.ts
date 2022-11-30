@@ -3,9 +3,6 @@ import IPergunta from 'src/app/interfaces/IPergunta';
 import { QuestoesService } from 'src/app/services/questoes.service';
 import { ToastrService } from 'ngx-toastr';
 import { PageEvent } from '@angular/material/paginator';
-import { ContentObserver } from '@angular/cdk/observers';
-import { ThisReceiver } from '@angular/compiler';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog/confirm-dialog.component';
 
@@ -19,7 +16,7 @@ export class GerenciaQuestoesComponent {
     private serviceQuestoes: QuestoesService,
     private toastr: ToastrService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   pergunta: IPergunta[] = [];
   totalElements: number = 0;
@@ -45,7 +42,6 @@ export class GerenciaQuestoesComponent {
       page: event.pageIndex.toString(),
       size: event.pageSize.toString(),
     };
-
     this.obterPerguntas(request);
   }
 
@@ -57,7 +53,7 @@ export class GerenciaQuestoesComponent {
     })
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if ( dialogResult == true ) {
+      if (dialogResult == true) {
         this.excluir(id)
       }
     })

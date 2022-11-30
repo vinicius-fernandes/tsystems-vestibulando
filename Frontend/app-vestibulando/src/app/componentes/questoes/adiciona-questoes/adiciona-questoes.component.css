@@ -16,7 +16,7 @@
   width: 100%;
 }
 
-.botoes{
+.botoes {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -25,7 +25,7 @@
   justify-content: center;
 }
 
-button{
+button {
   height: 48px;
   width: 113px;
 }
@@ -33,4 +33,3 @@ button{
 mat-label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 350;
 }
-

@@ -1,3 +1,3 @@
-export default interface IGeneric{
-  id:number
+export default interface IGeneric {
+  id: number
 }

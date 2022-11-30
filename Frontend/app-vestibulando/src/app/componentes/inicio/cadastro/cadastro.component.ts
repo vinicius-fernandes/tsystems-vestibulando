@@ -12,10 +12,9 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
-export class CadastroComponent implements OnInit{
-
+export class CadastroComponent implements OnInit {
   form: FormGroup
-  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder: FormBuilder, private service: UsuarioService, private router: Router, private toastr: ToastrService,private jwtTokenService:JwtTokenService) {
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder: FormBuilder, private service: UsuarioService, private router: Router, private toastr: ToastrService, private jwtTokenService: JwtTokenService) {
     this.form = this.formBuilder.group(
       {
         nome: new FormControl("", [Validators.minLength(5), Validators.required]),
@@ -26,8 +25,8 @@ export class CadastroComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(this.jwtTokenService.getToken()!=null){
-      this.router.navigate(['app','home'])
+    if (this.jwtTokenService.getToken() != null) {
+      this.router.navigate(['app', 'home'])
     }
   }
 
@@ -41,5 +40,4 @@ export class CadastroComponent implements OnInit{
       }
     })
   }
-
 }

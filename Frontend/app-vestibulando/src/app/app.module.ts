@@ -12,7 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog'
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -45,7 +45,7 @@ import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/ed
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
 import { HomeComponent } from './componentes/home/home.component';
 import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
-import {AuthInterceptor} from './auth.interceptor';
+import { AuthInterceptor } from './auth.interceptor';
 import { InfoComponent } from './componentes/info/info.component';
 import { ValidUserGuard } from './authGuard/ValidUserGuard';
 import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
@@ -112,7 +112,7 @@ import { Error404Component } from './componentes/error404/error404.component';
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule
-    ],
+  ],
   providers: [
     { provide: "BASE_API_URL", useValue: environment.apiUrl },
     { provide: "OAUTH_CLIENT", useValue: environment.OAUTH_CLIENT },
@@ -123,10 +123,10 @@ import { Error404Component } from './componentes/error404/error404.component';
       multi: true
     },
 
-  { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr},
-  ValidUserGuard
-],
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr },
+    ValidUserGuard
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmDialogComponent] 
+  entryComponents: [ConfirmDialogComponent]
 })
 export class AppModule { }

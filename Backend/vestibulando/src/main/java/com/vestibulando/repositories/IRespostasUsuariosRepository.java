@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -57,7 +56,6 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
             " group by ru.simulado.id "
     )
     Optional<NotaSimuladoUsuarioDTO> getNotaSimuladoUsuario( long idSimulado,long idUsuario);
-
 
     @Query("select u from RespostasUsuarios ru join ru.usuario u where ru.simulado.id=?1 ")
     Set<Usuario> getUsuariosSimulado(long idSimulado);

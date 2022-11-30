@@ -23,16 +23,12 @@ import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 public class UsuarioServiceTests {
-
     @InjectMocks
     UsuarioService usuarioService;
-
     @Mock
     IUsuarioRepository usuarioRepository;
-
     private long idExistente = 1L;
     private long idInexistente = 2L;
-
     @Test
     public void SalvarUsuarioRetornaUsuarioDTO(){
         Usuario usuario = new Usuario();
@@ -50,8 +46,8 @@ public class UsuarioServiceTests {
     public void ListarUsuarios(){
         Mockito.when(usuarioRepository.findAll()).thenReturn(new ArrayList<>());
         Assertions.assertNotNull(usuarioService.consultarUsuario(null));
-
     }
+
     @Test
     public void ApagarUsuarioRetornaNada(){
         Usuario usuario = new Usuario();
@@ -68,5 +64,4 @@ public class UsuarioServiceTests {
         Mockito.when(usuarioRepository.findById(idInexistente)).thenReturn(Optional.empty());
         Assertions.assertThrows(EntityNotFoundException.class,()->usuarioService.consultarById(idInexistente));
     }
-
 }

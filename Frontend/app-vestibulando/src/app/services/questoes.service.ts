@@ -10,7 +10,7 @@ export class QuestoesService {
   constructor(
     private http: HttpClient,
     @Inject('BASE_API_URL') private baseUrl: string
-  ) {}
+  ) { }
 
   salvar(dados: IPergunta) {
     return this.http.post<IPergunta>(`${this.baseUrl}/perguntas`, dados)
@@ -20,8 +20,8 @@ export class QuestoesService {
     return this.http.get<[IPergunta]>(`${this.baseUrl}/perguntas/todas`);
   }
 
-  consultaPaginada(params:any){
-    return this.http.get<IPage>(`${this.baseUrl}/perguntas`,{params})
+  consultaPaginada(params: any) {
+    return this.http.get<IPage>(`${this.baseUrl}/perguntas`, { params })
   }
 
   consultarPorId(id: number) {
@@ -33,7 +33,7 @@ export class QuestoesService {
   }
 
   excluir(id: number) {
-    return this.http.delete(`${this.baseUrl}/perguntas/${id}`, {responseType: 'arraybuffer'});
+    return this.http.delete(`${this.baseUrl}/perguntas/${id}`, { responseType: 'arraybuffer' });
   }
 
 }

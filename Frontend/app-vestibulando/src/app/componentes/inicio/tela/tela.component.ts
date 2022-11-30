@@ -9,12 +9,12 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
 })
 export class TelaComponent implements OnInit {
 
-  constructor(private jwtTokenService:JwtTokenService,private _router: Router){
+  constructor(private jwtTokenService: JwtTokenService, private _router: Router) {
 
   }
   ngOnInit(): void {
-    if(this.jwtTokenService.getToken()!=null){
-      this._router.navigate(['app','home'])
+    if (this.jwtTokenService.getToken() != null) {
+      this._router.navigate(['app', 'home'])
     }
   }
 }

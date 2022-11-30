@@ -7,9 +7,9 @@ import IBanca from '../interfaces/IBanca';
 })
 export class BancasService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
 
-  consultar(){
+  consultar() {
     return this.http.get<[IBanca]>(`${this.baseUrl}/banca`);
   }
 
@@ -18,7 +18,7 @@ export class BancasService {
   }
 
   excluir(id: number) {
-    return this.http.delete(`${this.baseUrl}/banca/${id}`, {responseType: 'arraybuffer'});
+    return this.http.delete(`${this.baseUrl}/banca/${id}`, { responseType: 'arraybuffer' });
   }
 
   salvar(dados: IBanca) {
