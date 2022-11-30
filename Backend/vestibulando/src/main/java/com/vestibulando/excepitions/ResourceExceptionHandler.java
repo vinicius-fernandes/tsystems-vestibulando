@@ -6,14 +6,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<StandardError> entidadeNaoEncontrada(EntityNotFoundException e,
                                                                HttpServletRequest req){
@@ -91,5 +89,4 @@ public class ResourceExceptionHandler {
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
-
 }

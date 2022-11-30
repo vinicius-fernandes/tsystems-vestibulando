@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-
 import java.util.Arrays;
 
 @Configuration
@@ -18,13 +17,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Autowired
     private Environment  env;
-
     @Autowired
     JwtTokenStore jwtTokenStore;
 
     private static final String[] PUBLIC = {"/oauth/token"};
     private static final String[] PUBLIC_POST = {"/usuarios"};
-
     private static final String[] PUBLIC_GET = {"/oauth/token","/h2-console/**","/swagger-ui.html","/webjars/**","/swagger-ui/index.html","/v2/api-docs","/swagger-resources/**","/swagger-ui/**"};
     private static final String[] USUARIO_GET= {"/simulados","/respostasUsuarios","/materia","/banca"};
     private static final String[] USUARIO_POST= {"/respostasUsuarios"};

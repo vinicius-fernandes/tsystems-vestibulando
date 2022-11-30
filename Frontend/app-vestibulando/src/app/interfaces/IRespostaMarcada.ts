@@ -1,5 +1,5 @@
-export default interface IRespostaMarcada{
+export default interface IRespostaMarcada {
   numeroPergunta: number,
-  idRespostaMarcada:number | null
-  idPergunta:number,
+  idRespostaMarcada: number | null
+  idPergunta: number,
 }

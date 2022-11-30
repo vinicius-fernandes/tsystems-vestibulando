@@ -39,7 +39,7 @@ export class GerenciaMateriasComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if ( dialogResult == true ) {
+      if (dialogResult == true) {
         this.excluirMateria(id)
       }
     })

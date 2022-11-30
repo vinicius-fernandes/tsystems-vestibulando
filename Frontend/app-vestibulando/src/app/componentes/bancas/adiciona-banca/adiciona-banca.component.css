@@ -2,16 +2,16 @@
     width: 75%;
 }
 
-.botoes{
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+.botoes {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
-button{
+button {
     height: 48px;
     width: 113px;
 }

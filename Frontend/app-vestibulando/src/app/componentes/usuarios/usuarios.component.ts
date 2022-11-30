@@ -38,23 +38,25 @@ export class UsuariosComponent {
     })
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if ( dialogResult == true ) {
+      if (dialogResult == true) {
         this.excluir(id)
       }
     })
   }
 
   excluir(idUsuario: any) {
-    this.service.excluir(idUsuario).subscribe({next: () => {
-      this.users = this.users.filter(u => u.id != idUsuario)
-      this.toastr.success('Usuario excluído com sucesso!', 'Sucesso')
-    }, error: (erro) => {
-    this.toastr.error(erro.error.message, 'Erro')
-    }})
+    this.service.excluir(idUsuario).subscribe({
+      next: () => {
+        this.users = this.users.filter(u => u.id != idUsuario)
+        this.toastr.success('Usuario excluído com sucesso!', 'Sucesso')
+      }, error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro')
+      }
+    })
   }
 
-  checkRole(roles:IRole[],role:string){
-    if(roles.findIndex(r=>r.authority==role)!= -1){
+  checkRole(roles: IRole[], role: string) {
+    if (roles.findIndex(r => r.authority == role) != -1) {
       return true
     }
     return false

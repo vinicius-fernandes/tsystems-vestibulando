@@ -1,10 +1,8 @@
-.sumarioItem{
+.sumarioItem {
   max-height: 20vh;
   display: inline-flex;
 
 }
-
-
 
 .mat-success {
   background-color: #26b863;

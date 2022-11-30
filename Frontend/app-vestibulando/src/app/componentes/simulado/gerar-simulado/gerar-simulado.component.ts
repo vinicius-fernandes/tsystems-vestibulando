@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray,FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IBanca from 'src/app/interfaces/IBanca';
@@ -15,107 +15,98 @@ import { SimuladoService } from 'src/app/services/simulado.service';
 })
 export class GerarSimuladoComponent implements OnInit {
 
-  form:FormGroup;
+  form: FormGroup;
 
 
   materiasData: IMateria[] = []
-  bancasData: IBanca[]= []
+  bancasData: IBanca[] = []
 
-  get bancasFormArray(){
+  get bancasFormArray() {
     return this.form.controls['bancas'] as FormArray;
   }
-  get materiasFormArray(){
+  get materiasFormArray() {
     return this.form.controls['materias'] as FormArray;
   }
 
-  constructor(private bancaService: BancasService,private materiaService:MateriasService,private simuladoService:SimuladoService,private formBuilder:FormBuilder, private toastr: ToastrService,private router:Router){
+  constructor(private bancaService: BancasService, private materiaService: MateriasService, private simuladoService: SimuladoService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) {
     this.form = this.formBuilder.group(
       {
-        bancas:new FormArray([],[ minSelectedCheckboxes(1)]),
-        materias: new FormArray([],[ minSelectedCheckboxes(1)]),
-        numPerguntas:new FormControl(10,[Validators.min(5),Validators.max(90),Validators.required])
+        bancas: new FormArray([], [minSelectedCheckboxes(1)]),
+        materias: new FormArray([], [minSelectedCheckboxes(1)]),
+        numPerguntas: new FormControl(10, [Validators.min(5), Validators.max(90), Validators.required])
       }
     )
   }
 
-  private addCheckboxesBanca(){
-    this.bancasData.forEach(()=>this.bancasFormArray.push(new FormControl(false)));
+  private addCheckboxesBanca() {
+    this.bancasData.forEach(() => this.bancasFormArray.push(new FormControl(false)));
   }
-  private addCheckboxesMateria(){
-    this.materiasData.forEach(()=>this.materiasFormArray.push(new FormControl(false)));
+  private addCheckboxesMateria() {
+    this.materiasData.forEach(() => this.materiasFormArray.push(new FormControl(false)));
   }
 
-  private getBancasSelecionadas(){
+  private getBancasSelecionadas() {
 
     return this.form.value.bancas
-          .map((v :boolean,i:number)=> v? this.bancasData[i]:null)
-          .filter((v : IBanca | null)  => v !==null)
+      .map((v: boolean, i: number) => v ? this.bancasData[i] : null)
+      .filter((v: IBanca | null) => v !== null)
   }
 
-  private getMateriasSelecionadas(){
+  private getMateriasSelecionadas() {
     return this.form.value.materias
-          .map((v :boolean,i:number)=> v? this.materiasData[i]:null)
-          .filter((v : IMateria | null)  => v !==null)
+      .map((v: boolean, i: number) => v ? this.materiasData[i] : null)
+      .filter((v: IMateria | null) => v !== null)
   }
-
 
   ngOnInit(): void {
 
     this.bancaService.consultar().subscribe(
       {
-      next: bancas =>{
-        this.bancasData=bancas
-        this.addCheckboxesBanca()
+        next: bancas => {
+          this.bancasData = bancas
+          this.addCheckboxesBanca()
 
-      },
-      error: error => {
-        console.log(error)
-        if(error.status!=401){
-        this.toastr.error("Não foi possível consultar as bancas.", "Erro")
-        this.router.navigate(['app', 'home'])
+        },
+        error: error => {
+          console.log(error)
+          if (error.status != 401) {
+            this.toastr.error("Não foi possível consultar as bancas.", "Erro")
+            this.router.navigate(['app', 'home'])
+          }
         }
-      }
-    })
+      })
     this.materiaService.consultar().subscribe({
-      next: materias =>{
-        this.materiasData=materias
+      next: materias => {
+        this.materiasData = materias
         this.addCheckboxesMateria()
       },
       error: error => {
         console.log(error)
-        if(error.status!=401){
+        if (error.status != 401) {
 
-        this.toastr.error("Não foi possível consultar as matérias.", "Erro")
-        this.router.navigate(['app', 'home'])
+          this.toastr.error("Não foi possível consultar as matérias.", "Erro")
+          this.router.navigate(['app', 'home'])
         }
       }
     })
   }
 
-  enviar():void{
-
-
-    this.simuladoService.gerar({numeroPerguntas:this.form.value.numPerguntas,materias:this.getMateriasSelecionadas(),bancas:this.getBancasSelecionadas()})
-                        .subscribe(
-                          {
-                            next: (gerado)=>{
-                              this.toastr.success("Simulado gerado com sucesso!")
-                              this.router.navigate(['app','simulados','realizar',gerado.id])
-                            }
-                          ,
-                            error: (erro)=>{
-                              this.toastr.error(erro.error.message)
-                            }
-                          }
-                        )
-
+  enviar(): void {
+    this.simuladoService.gerar({ numeroPerguntas: this.form.value.numPerguntas, materias: this.getMateriasSelecionadas(), bancas: this.getBancasSelecionadas() })
+      .subscribe(
+        {
+          next: (gerado) => {
+            this.toastr.success("Simulado gerado com sucesso!")
+            this.router.navigate(['app', 'simulados', 'realizar', gerado.id])
+          }
+          ,
+          error: (erro) => {
+            this.toastr.error(erro.error.message)
+          }
+        }
+      )
   }
-
-
-
 }
-
-
 
 function minSelectedCheckboxes(min = 1) {
   const validator: ValidatorFn = (formArray: AbstractControl) => {
@@ -128,6 +119,5 @@ function minSelectedCheckboxes(min = 1) {
 
     throw new Error('formArray is not an instance of FormArray');
   };
-
   return validator;
 }

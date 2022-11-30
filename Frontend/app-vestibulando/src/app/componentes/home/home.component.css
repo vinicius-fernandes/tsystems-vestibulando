@@ -1,14 +1,8 @@
-.home{
-    text-align: center;
+.home {
+  text-align: center;
 }
 
-/*img {*/
-/*    width: 35%;*/
-/*    margin: auto;*/
-/*    display: block;*/
-/*}*/
-
-h1, h2{
+h1,h2 {
   color: #30bced;
   margin: 50px auto;
 }
@@ -21,7 +15,7 @@ h1, h2{
   margin-bottom: 50px;
 }
 
-.home>div>.card{
+.home>div>.card {
   position: relative;
   height: 350px;
   align-items: center;
@@ -35,18 +29,18 @@ h1, h2{
   transition: .3s;
 }
 
-.home>div>.card:hover{
+.home>div>.card:hover {
   transform: scale(1.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.42);
   cursor: pointer;
 }
 
-.home>div>.card>.card-title{
+.home>div>.card>.card-title {
   font-weight: bolder;
   font-size: 20px;
 }
 
-.icone{
+.icone {
   font-size: 30px;
   line-height: 2em;
 }
@@ -55,6 +49,7 @@ h1, h2{
   .home>div {
     grid-template-columns: 1fr 1fr;
   }
+
   .home>div>div:nth-child(3) {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -66,6 +61,7 @@ h1, h2{
     grid-template-columns: 1fr;
     margin-bottom: 100px;
   }
+
   .home>div>div:nth-child(3) {
     grid-column-start: 1;
     grid-column-end: 1;

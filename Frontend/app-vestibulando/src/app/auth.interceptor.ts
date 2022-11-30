@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {throwError} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 import TokenService from './services/jwt-token.service';
-import {catchError, map} from 'rxjs/operators';
-import {AuthService} from './services/auth.service';
+import { catchError, map } from 'rxjs/operators';
+import { AuthService } from './services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -50,24 +50,25 @@ export class AuthInterceptor implements HttpInterceptor {
         console.log(error.error.error);
         if (error.status === 401) {
           if (error.error.error === 'invalid_token') {
-            this.authService.refreshToken({refresh_token: refreshToken})
+            this.authService.refreshToken({ refresh_token: refreshToken })
               .subscribe(
-                {next:(res) => {
+                {
+                  next: (res) => {
 
-                  this.tokenService.saveToken(res.access_token)
-                  this.tokenService.saveRefreshToken(res.refresh_token)
-                  console.log(res.refresh_token)
-                location.reload();
-              },
-              error:(erro)=>{
-                console.log(erro)
-              },
-              complete:()=>{
-                this.tokenService.setIsRefreshing(false)
-              }
+                    this.tokenService.saveToken(res.access_token)
+                    this.tokenService.saveRefreshToken(res.refresh_token)
+                    console.log(res.refresh_token)
+                    location.reload();
+                  },
+                  error: (erro) => {
+                    console.log(erro)
+                  },
+                  complete: () => {
+                    this.tokenService.setIsRefreshing(false)
+                  }
 
-            }
-            );
+                }
+              );
           }
           else {
             this.router.navigate(['login']).then(_ => console.log('redirect to login'));

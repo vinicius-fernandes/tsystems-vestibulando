@@ -23,11 +23,11 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>Enunciado</mat-label>
-      <textarea
-        [(ngModel)]="questao.corpo"
-        placeholder="Informe o enunciado da questão"
-        matInput
-      ></textarea>
+      <<<<<<< HEAD <textarea [(ngModel)]="questao.corpo" placeholder="Informe o enunciado da questão" matInput>
+        </textarea>
+        =======
+        <textarea [(ngModel)]="questao.corpo" placeholder="Informe o enunciado da questão" matInput></textarea>
+        >>>>>>> e1861ca3e03ff87a969dcf93b880b2622daa2fc0
     </mat-form-field>
   </div>
 
@@ -42,24 +42,13 @@
     <div class="col-9">
       <mat-form-field class="example-full-width">
         <mat-label>Primeira resposta</mat-label>
-        <textarea
-          [(ngModel)]="questao.respostas[0].descricao"
-          matInput
-        ></textarea>
+        <textarea [(ngModel)]="questao.respostas[0].descricao" matInput></textarea>
       </mat-form-field>
     </div>
     <div class="col-3" [formGroup]="form">
-      <mat-radio-group
-        aria-label="Select an option"
-        name="correta"
-        formControlName="respostaCorreta"
-      >
-        <mat-radio-button
-          class="example-margin"
-          value="0"
-          id="idcorreta1"
-          [checked]="questao.respostas[0].correta"
-        ></mat-radio-button>
+      <mat-radio-group aria-label="Select an option" name="correta" formControlName="respostaCorreta">
+        <mat-radio-button class="example-margin" value="0" id="idcorreta1" [checked]="questao.respostas[0].correta">
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -68,24 +57,13 @@
     <div class="col-9">
       <mat-form-field class="example-full-width">
         <mat-label>Segunda resposta</mat-label>
-        <textarea
-          [(ngModel)]="questao.respostas[1].descricao"
-          matInput
-        ></textarea>
+        <textarea [(ngModel)]="questao.respostas[1].descricao" matInput></textarea>
       </mat-form-field>
     </div>
     <div class="col-3" [formGroup]="form">
-      <mat-radio-group
-        aria-label="Select an option"
-        name="correta"
-        formControlName="respostaCorreta"
-      >
-        <mat-radio-button
-          class="example-margin"
-          value="1"
-          id="idcorreta2"
-          [checked]="questao.respostas[1].correta"
-        ></mat-radio-button>
+      <mat-radio-group aria-label="Select an option" name="correta" formControlName="respostaCorreta">
+        <mat-radio-button class="example-margin" value="1" id="idcorreta2" [checked]="questao.respostas[1].correta">
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -94,24 +72,13 @@
     <div class="col-9">
       <mat-form-field class="example-full-width">
         <mat-label>Terceira resposta</mat-label>
-        <textarea
-          [(ngModel)]="questao.respostas[2].descricao"
-          matInput
-        ></textarea>
+        <textarea [(ngModel)]="questao.respostas[2].descricao" matInput></textarea>
       </mat-form-field>
     </div>
     <div class="col-3" [formGroup]="form">
-      <mat-radio-group
-        aria-label="Select an option"
-        name="correta"
-        formControlName="respostaCorreta"
-      >
-        <mat-radio-button
-          class="example-margin"
-          value="2"
-          id="idcorreta3"
-          [checked]="questao.respostas[2].correta"
-        ></mat-radio-button>
+      <mat-radio-group aria-label="Select an option" name="correta" formControlName="respostaCorreta">
+        <mat-radio-button class="example-margin" value="2" id="idcorreta3" [checked]="questao.respostas[2].correta">
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -120,24 +87,13 @@
     <div class="col-9">
       <mat-form-field class="example-full-width">
         <mat-label>Quarta resposta</mat-label>
-        <textarea
-          [(ngModel)]="questao.respostas[3].descricao"
-          matInput
-        ></textarea>
+        <textarea [(ngModel)]="questao.respostas[3].descricao" matInput></textarea>
       </mat-form-field>
     </div>
     <div class="col-3" [formGroup]="form">
-      <mat-radio-group
-        aria-label="Select an option"
-        name="correta"
-        formControlName="respostaCorreta"
-      >
-        <mat-radio-button
-          class="example-margin"
-          value="3"
-          id="idcorreta4"
-          [checked]="questao.respostas[3].correta"
-        ></mat-radio-button>
+      <mat-radio-group aria-label="Select an option" name="correta" formControlName="respostaCorreta">
+        <mat-radio-button class="example-margin" value="3" id="idcorreta4" [checked]="questao.respostas[3].correta">
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -146,34 +102,21 @@
     <div class="col-9">
       <mat-form-field class="example-full-width">
         <mat-label>Quinta resposta</mat-label>
-        <textarea
-          [(ngModel)]="questao.respostas[4].descricao"
-          matInput
-        ></textarea>
+        <textarea [(ngModel)]="questao.respostas[4].descricao" matInput></textarea>
       </mat-form-field>
     </div>
     <div class="col-3" [formGroup]="form">
-      <mat-radio-group
-        aria-label="Select an option"
-        name="correta"
-        formControlName="respostaCorreta"
-      >
-        <mat-radio-button
-          class="example-margin"
-          value="4"
-          id="idcorreta5"
-          [checked]="questao.respostas[4].correta"
-        ></mat-radio-button>
+      <mat-radio-group aria-label="Select an option" name="correta" formControlName="respostaCorreta">
+        <mat-radio-button class="example-margin" value="4" id="idcorreta5" [checked]="questao.respostas[4].correta">
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
 
   <div class="text-start botoes">
-    <a routerLink="../.."
-      ><button mat-raised-button color="warn">
+    <a routerLink="../.."><button mat-raised-button color="warn">
         <i class="fa fa-ban" aria-hidden="true"></i> Cancelar
-      </button></a
-    >
+      </button></a>
     <button mat-raised-button color="primary" (click)="alterarQuestao()">
       <i class="fas fa-save"></i> Salvar
     </button>

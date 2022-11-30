@@ -7,9 +7,9 @@ import IMateria from '../interfaces/IMateria';
 })
 export class MateriasService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
 
-  consultar(){
+  consultar() {
     return this.http.get<[IMateria]>(`${this.baseUrl}/materia`);
   }
 
@@ -18,7 +18,7 @@ export class MateriasService {
   }
 
   excluir(id: number) {
-    return this.http.delete(`${this.baseUrl}/materia/${id}`, {responseType: "arraybuffer"})
+    return this.http.delete(`${this.baseUrl}/materia/${id}`, { responseType: "arraybuffer" })
   }
 
   salvar(dados: IMateria) {

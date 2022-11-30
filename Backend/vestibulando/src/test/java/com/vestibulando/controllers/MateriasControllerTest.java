@@ -19,25 +19,23 @@ public class MateriasControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private MateriaService materiaService;
-
     @Autowired
     ObjectMapper objectMapper;
 
     @Test
     public void ListarMateriasRetornaOk() throws Exception{
         mockMvc.perform(get("/materia")
-                .accept(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void ObterMateriaRetornaOk()throws Exception{
         mockMvc.perform(get("/materia/{id}", 1L)
-                .accept(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -68,5 +66,4 @@ public class MateriasControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
-
 }
