@@ -35,10 +35,8 @@ public class UsuarioService implements UserDetailsService {
             }
             return usuarioDTOS;
         }
-        Usuario usuario = usuarioRepository.findByEmail(email);
-        if(usuario == null){
-            throw new EntityNotFoundException("Usuário não encontrado");
-        }
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(()->new EntityNotFoundException("Usuário não encontrado"));
+
         usuarioDTOS.add(new UsuarioDTO(usuario));
         return usuarioDTOS;
     }
@@ -51,7 +49,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public UsuarioDTO salvarUsuario(Usuario usuario)  {
-       Usuario user = usuarioRepository.findByEmail(usuario.getEmail());
+       Usuario user = usuarioRepository.findByEmail(usuario.getEmail()).orElseThrow(()->new EntityNotFoundException("Usuário não encontrado"));;
 
        if(user != null && usuario.getId() != user.getId()){
            throw new ArgumentoDuplicado("Email já está cadastrado");
@@ -101,6 +99,6 @@ public class UsuarioService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return usuarioRepository.findByEmail(username);
+        return usuarioRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Usuário não encontrado"));
     }
 }
