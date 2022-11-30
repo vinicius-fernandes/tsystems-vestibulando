@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import INotasSimuladosUsuario from '../interfaces/INotasSimuladosUsuario';
 import IRespostaUsuario from '../interfaces/IRespostaUsuario';
 import IResultadoSimuladoUser from '../interfaces/IResultadoSimuladoUser';
 
@@ -21,6 +22,10 @@ export class RespostasUsuariosService {
    }
 
 
-   
-
+   notasSimuladosUsuario(idUser:number){
+    return this.http.get<[INotasSimuladosUsuario]>(`${this.baseUrl}/respostasUsuarios/notasSimuladosUsuario/${idUser}`)
+   }
+   perguntasCorretaSimuladoUsuario(idUser:number,idSimulado:number){
+    return this.http.get<[number]>(`${this.baseUrl}/respostasUsuarios/perguntasCorretas/${idUser}/${idSimulado}`)
+   }
 }

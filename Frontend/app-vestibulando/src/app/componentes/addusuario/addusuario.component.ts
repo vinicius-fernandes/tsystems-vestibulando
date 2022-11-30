@@ -60,7 +60,7 @@ export class AddusuarioComponent implements OnInit {
           this.router.navigate(['/app/usuarios'])
         }, error: (erro) => {
           console.log(erro)
-          this.toastr.error('Este usuário não pode ser adicionado, verifique todos os campos', 'Erro')
+          this.toastr.error(erro.error.message, 'Erro')
         }
       }
 

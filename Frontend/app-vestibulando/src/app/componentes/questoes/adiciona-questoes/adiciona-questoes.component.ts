@@ -195,9 +195,9 @@ export class AdicionaQuestoesComponent implements OnInit {
         this.toastr.success('Pergunta adicionada com sucesso!', 'Sucesso');
         this.router.navigateByUrl('app/questoes');
       },
-      error: () => {
+      error: (erro) => {
         console.log();
-        this.toastr.error('Não foi possível adicionar a pergunta.', 'Erro');
+        this.toastr.error(erro.error.message, 'Erro');
         this.router.navigateByUrl('app/questoes');
       },
     });

@@ -1,5 +1,6 @@
 package com.vestibulando.controllers;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Usuario;
 import com.vestibulando.services.UsuarioService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -40,7 +42,7 @@ public class UsuarioController {
 
     @PutMapping("/{idUsuario}")
     public ResponseEntity<UsuarioDTO> alterarUsuario(@PathVariable("idUsuario") Long idUsuario,
-                                                  @RequestBody Usuario usuario){
+                                                  @RequestBody Usuario usuario) {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.alterarUsuario(idUsuario,usuario));
     }
 

@@ -51,6 +51,8 @@ import { ValidUserGuard } from './authGuard/ValidUserGuard';
 import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
 import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
 import { Error404Component } from './componentes/error404/error404.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -110,7 +112,8 @@ import { Error404Component } from './componentes/error404/error404.component';
     MatChipsModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
     ],
   providers: [
     { provide: "BASE_API_URL", useValue: environment.apiUrl },

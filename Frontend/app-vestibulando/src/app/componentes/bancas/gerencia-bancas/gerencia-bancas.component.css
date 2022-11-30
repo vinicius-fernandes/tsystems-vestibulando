@@ -3,12 +3,17 @@
   overflow-x: hidden;
 }
 
+table {
+  margin: auto;
+  max-width: 1000px;
+}
+
 tr td:nth-child(4) div {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  justify-content: center;
+  justify-content: right;
 }
 
 tr td:nth-child(4) div button {

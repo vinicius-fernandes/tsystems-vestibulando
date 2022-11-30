@@ -50,7 +50,7 @@ export class GerenciaMateriasComponent implements OnInit {
       next: () => {
         this.materias = this.materias.filter(m => m.id != id)
         this.toastr.success('Matéria excluída com sucesso!', 'Sucesso')
-      }, error: erro => {
+      }, error: (erro) => {
         this.toastr.error('Esta matéria não pode ser excluída, há objetos ligados a ela.', 'Erro')
         console.log(erro)
       }

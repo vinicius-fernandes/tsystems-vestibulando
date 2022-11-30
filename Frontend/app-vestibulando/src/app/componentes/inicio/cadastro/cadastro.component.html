@@ -35,7 +35,8 @@
           <div>
             <mat-form-field appearance="fill" color="primary" class="input">
             <mat-label>Senha</mat-label>
-            <input matInput formControlName="senha" type="password" placeholder="Senha" required>
+            <input matInput formControlName="senha" [type]="mostrarSenha ? 'text' : 'password'" placeholder="Senha" required>
+            <button type="button" mat-icon-button matSuffix (click)="mudaVisibilidadeSenha()"><mat-icon>{{mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon></button>
             </mat-form-field>
             <p *ngIf="form.controls['senha'].hasError('required')">O preenchimento da senha é obrigatório</p>
             <p *ngIf="form.controls['senha'].hasError('minlength')">A senha deve possuir no mínimo 6 caracteres</p>

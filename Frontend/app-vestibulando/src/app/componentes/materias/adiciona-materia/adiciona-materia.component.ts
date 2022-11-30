@@ -30,8 +30,8 @@ export class AdicionaMateriaComponent {
       next: () => {
         this.toastr.success('Matéria adicionada com sucesso!', 'Sucesso')
         this.router.navigate(['app', 'modmaterias'])
-      }, error: erro => {
-        this.toastr.error('Não foi possível adicionar a matéria.', 'Erro')
+      }, error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }

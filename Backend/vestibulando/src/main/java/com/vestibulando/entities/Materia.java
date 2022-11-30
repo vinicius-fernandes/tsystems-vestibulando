@@ -1,6 +1,7 @@
 package com.vestibulando.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.aspectj.bridge.Message;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -20,12 +21,10 @@ public class Materia {
     @ManyToMany(mappedBy = "materias")
     private List<Simulado> simulado;
 
-
-    @Column(unique = true)
     @Size(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100", min = 2, max = 100)
-    @NotBlank
-    @NotEmpty
-    @NotNull
+    @NotBlank(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100")
+    @NotEmpty(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100")
+    @NotNull(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100")
     private String nome;
 
     @OneToMany(

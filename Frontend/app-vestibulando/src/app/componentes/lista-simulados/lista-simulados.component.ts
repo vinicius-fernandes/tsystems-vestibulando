@@ -6,6 +6,9 @@ import { ToastrService } from 'ngx-toastr';
 import JwtTokenService from "../../services/jwt-token.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
+import { RespostasUsuariosService } from 'src/app/services/respostas-usuarios.service';
+import INotasSimuladosUsuarios from 'src/app/interfaces/INotasSimuladosUsuario';
+import { provideProtractorTestingSupport } from '@angular/platform-browser';
 
 
 @Component({
@@ -16,6 +19,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
 export class ListaSimuladosComponent implements OnInit {
 
   simulados:ISimulado[] = []
+  resultadosUsuario: INotasSimuladosUsuarios[]= []
 
   isAdmin:boolean=false;
 
@@ -23,6 +27,7 @@ export class ListaSimuladosComponent implements OnInit {
               private service: ListaSimuladosService,
               private toastr: ToastrService,
               private router: Router,
+              private respostasUsuarioService: RespostasUsuariosService,
               private jwtService:JwtTokenService,
               private dialog: MatDialog) {
   }
@@ -33,7 +38,32 @@ export class ListaSimuladosComponent implements OnInit {
 
   ngOnInit() {
     this.isAdmin = this.jwtService.checkAuthoritie('ROLE_ADMIN')
+    this.obterRespostasUsuario()
     this.criarLista()
+  }
+
+  encontrarSimuladoRespondido(idSimulado:number){
+   const res = this.resultadosUsuario.find(r=>r.idSimulado==idSimulado);
+
+   if(res!=undefined){
+    return `Você já respondeu esse simulado e sua nota foi ${res.nota}`
+   }
+   return ''
+  }
+
+  obterRespostasUsuario(){
+    const user = this.jwtService.getTokenDecoded()
+    if(user !=null){
+      this.respostasUsuarioService.notasSimuladosUsuario(user.userId).subscribe(
+        {
+          next: (resps) => this.resultadosUsuario= resps,
+          error: (erro)=>{
+            this.toastr.error("Ocorreu um erro ao identificar os simulados respondidos pelo usuário atual","erro")
+          }
+        }
+
+      )
+    }
   }
 
   criarLista() {
@@ -64,6 +94,21 @@ export class ListaSimuladosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(dialogResult => {
       if ( dialogResult == true ) {
         this.excluirSimulado(id)
+      }
+    })
+  }
+
+
+  confirmarRealizacaoSimulado(id: number) {
+    const dialogData = new ConfirmDialogModel("Confirmar realização", "Tem certeza de que deseja realizar este simulado? Os resultado anteriores serão sobreescritos")
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    })
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if ( dialogResult == true ) {
+        this.redirecionarSimulado(id)
       }
     })
   }

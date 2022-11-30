@@ -181,8 +181,8 @@ export class EditaQuestoesComponent implements OnInit {
         this.toastr.success('Questão editada com sucesso!', 'Sucesso');
         this.router.navigateByUrl('app/questoes');
       },
-      error: () => {
-        this.toastr.error('Não foi possível editar a questão.', 'Erro');
+      error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro');
         this.router.navigateByUrl('app/questoes');
       },
     });

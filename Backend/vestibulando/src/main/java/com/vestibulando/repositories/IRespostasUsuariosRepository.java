@@ -25,13 +25,13 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
     @Query("select new com.vestibulando.dtos.RankingSimuladoDTO("+
             "u.id ,"+
             "u.email," +
-            "count(*)"+
+            "sum(CASE  WHEN (respsU.correta = true) then 1 ELSE 0 END) as nota"+
             ")"+
             " from RespostasUsuarios ru " +
             " join Usuario u on u.id = ru.usuario.id"+
             " join ru.respostas respsU "+
-            " where ru.simulado.id = ?1 and respsU.correta = true "+
-            " group by u.id "
+            " where ru.simulado.id = ?1  "+
+            " group by u.id order by nota desc"
     )
     List<RankingSimuladoDTO> getRankingSimulado(long idSimulado);
 
@@ -49,11 +49,11 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
 
     @Query("select new com.vestibulando.dtos.NotaSimuladoUsuarioDTO("+
             "ru.simulado.id ,"+
-            "count(*)"+
+            "sum(CASE  WHEN (respsU.correta = true) then 1 ELSE 0 END) as nota"+
             ")"+
             " from RespostasUsuarios ru " +
             " join ru.respostas respsU "+
-            " where ru.simulado.id = ?1 and ru.usuario.id= ?2 and respsU.correta = true "+
+            " where ru.simulado.id = ?1 and ru.usuario.id= ?2 "+
             " group by ru.simulado.id "
     )
     Optional<NotaSimuladoUsuarioDTO> getNotaSimuladoUsuario( long idSimulado,long idUsuario);
@@ -67,13 +67,15 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
 
     @Query("select new com.vestibulando.dtos.NotaSimuladoUsuarioDTO("+
             "ru.simulado.id ,"+
-            "count(*)"+
+            "sum(CASE  WHEN (respsU.correta = true) then 1 ELSE 0 END) as nota"+
             ")"+
             " from RespostasUsuarios ru " +
             " join ru.respostas respsU "+
-            " where ru.usuario.id= ?1 and respsU.correta = true "+
+            " where ru.usuario.id= ?1  "+
             " group by ru.simulado.id "
     )
     List<NotaSimuladoUsuarioDTO> getNotasSimuladosUsuario( long idUsuario);
 
+    @Query("select p.id from RespostasUsuarios ru join ru.respostas respsU join respsU.pergunta p where ru.usuario.id=?1 and ru.simulado.id=?2 and respsU.correta=true")
+    List<Long> getPerguntasCorretasSimuladoUsuario(long idUsuario,long idSimulao);
 }

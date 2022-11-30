@@ -6,26 +6,24 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.websocket.OnMessage;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-
 public class Banca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     @Size(message = "A sigla precisa possuir no mínimo 2 caracteres e no máximo 50", min = 2, max = 50)
     private String sigla;
 
-    @Column(unique = true)
     @Size(message = "A nome precisa possuir no mínimo 2 caracteres e no máximo 250", min = 2, max = 250)
     @NotBlank(message = "É necessário haver uma nome.")
-    @NotNull(message = "A nome não pode ser nula.")
+    @NotNull(message = "O nome não pode ser nula.")
     private String nome;
 
     @JsonIgnore

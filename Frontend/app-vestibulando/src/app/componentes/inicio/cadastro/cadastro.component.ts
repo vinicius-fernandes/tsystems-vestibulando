@@ -13,6 +13,8 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit{
+  
+  public mostrarSenha: boolean = false
 
   form: FormGroup
   constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder: FormBuilder, private service: UsuarioService, private router: Router, private toastr: ToastrService,private jwtTokenService:JwtTokenService) {
@@ -37,9 +39,12 @@ export class CadastroComponent implements OnInit{
       next: () => { this.router.navigate(["login"]) },
       error: erro => {
         console.log(erro)
-        this.toastr.error("Não foi possível realizar o cadastro.", "Erro")
+        this.toastr.error(erro.error.message, "Erro")
       }
     })
   }
 
+  mudaVisibilidadeSenha() {
+    this.mostrarSenha = !this.mostrarSenha
+  }
 }

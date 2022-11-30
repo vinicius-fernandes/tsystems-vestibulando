@@ -52,6 +52,10 @@ public class RespostasUsuariosController {
         return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.getNotasSimuladosUsuario(idUsuario));
     }
 
+    @GetMapping("/perguntasCorretas/{idusuario}/{idsimulado}")
+    public ResponseEntity<List<Long>> perguntasCorretas(@PathVariable("idusuario") Long idUsuario,@PathVariable("idsimulado") Long idSimulado){
+        return ResponseEntity.status(HttpStatus.OK).body(respostasUsuariosService.perguntasCorretasSimuladoUsuario(idUsuario,idSimulado));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<RespostasUsuarios> listar(@PathVariable("id") long id){
