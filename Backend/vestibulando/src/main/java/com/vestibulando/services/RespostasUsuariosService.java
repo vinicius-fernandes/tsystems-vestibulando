@@ -83,6 +83,10 @@ public class RespostasUsuariosService {
         return respostasUsuariosRepository.getNotasSimuladosUsuario(idUsuario);
     }
 
+    public List<Long> perguntasCorretasSimuladoUsuario(long idUsuario,long idSimulado){
+        return respostasUsuariosRepository.getPerguntasCorretasSimuladoUsuario(idUsuario,idSimulado);
+    }
+
 
     public void deletar(long id){
         RespostasUsuarios respUsuarios = this.obter(id);
