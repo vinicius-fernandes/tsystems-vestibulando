@@ -3,6 +3,13 @@
   overflow-y: auto;
 }
 
+h4 {
+  margin-top: 15px;
+}
+
+button {
+  text-transform: capitalize;
+}
 
 @media only screen and (max-width: 768px) {
   .sumario{
@@ -10,5 +17,11 @@
     overflow-y: auto;
     display: inline-flex;
     margin-top: 10px;
+  }
+
+  .botoes button[mat-raised-button]{
+    height: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }

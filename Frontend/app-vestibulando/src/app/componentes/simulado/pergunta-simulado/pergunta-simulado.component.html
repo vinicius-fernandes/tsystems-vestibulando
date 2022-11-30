@@ -17,7 +17,7 @@
 <label >Selecione uma resposta</label>
 <mat-radio-group [(ngModel)]="resposta" class="radio-group">
   <mat-radio-button  *ngFor="let resposta of pergunta.respostas" [value]="resposta.id" (change)="changeResposta($event)">
-    {{resposta.descricao}}
+    <p>{{resposta.descricao}}</p>
   </mat-radio-button>
 
 </mat-radio-group>
