@@ -1,0 +1,37 @@
+<div class="imgbg">
+  <header>
+      <a routerLink="">
+          <div class="fa-2x">
+              <i class="fas fa-arrow-left"
+                  style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
+          </div>
+      </a>
+  </header>
+  <div>
+      <div class="text-center">
+          <img src="../../../../assets/images/logo_azul_sem_fundo.png" alt="Logo Vestibulando" class="logo" id="logo">
+      </div>
+  </div>
+
+  <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
+
+      <h3 class="tituloLogin"><b>Recuperar a senha</b></h3>
+
+      <div>
+          <form [formGroup]="form">
+              <div class="input">
+                  <mat-form-field appearance="fill" color="primary" >
+                      <mat-label>Insira o e-mail da conta que deseja recuperar a senha</mat-label>
+                      <input matInput formControlName="username" type="text" placeholder="E-mail" required>
+                  </mat-form-field>
+
+              </div>
+              <div class="botoesLogin">
+                  <button *ngIf="!loading" mat-flat-button color="primary" (click)="resetPass()" [disabled]="form.invalid">Confirmar</button>
+                  <mat-spinner *ngIf="loading"></mat-spinner>
+
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
