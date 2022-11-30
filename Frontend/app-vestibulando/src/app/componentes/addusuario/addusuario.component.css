@@ -34,7 +34,6 @@ mat-form-field {
   width: clamp(200px, 90%, 500px) !important;
 }
 
-
 input[matInput] {
   width: clamp(200px, 90%, 300px);
 }
