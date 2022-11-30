@@ -20,12 +20,14 @@ table {
   max-height: 10px;
   overflow-y: scroll;
 }
-.paginator{
-  width: clamp(110px, 70%, 1500px);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.53);
-  border-radius: 5px;
-  margin: 20px auto auto;
+mat-paginator {
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+  margin: 20px auto;
 }
+
 h1, th, td {
   text-align: center;
 }
