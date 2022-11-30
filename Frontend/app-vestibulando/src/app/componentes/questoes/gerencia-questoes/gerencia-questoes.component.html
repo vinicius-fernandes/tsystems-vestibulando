@@ -26,8 +26,8 @@
           <td> <div> {{ perg.corpo }} </div> </td>
           <td>{{ perg.materia.nome }}</td>
           <td>{{ perg.banca.sigla }}</td>
-          <td class="d-inline-flex">
-            <div>
+          <td>
+            <div class="botoes">
             <button style="margin-right: 5px;" mat-raised-button color="warn" (click)="confirmarExclusao(perg.id || 0)"><i class="fa fa-trash"></i></button>
               <a [routerLink]="['edita', perg.id]"
                 ><button mat-raised-button color="primary">
