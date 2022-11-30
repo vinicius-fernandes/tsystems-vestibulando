@@ -24,7 +24,6 @@ export class UsuariosComponent {
     this.service.consultar().subscribe({
       next: data => this.users = data,
       error: erro => {
-        console.log(erro)
         this.toastr.error("Não foi possível consultar os usuários.", "Erro")
         this.router.navigate(['app', 'home'])
       }
@@ -50,7 +49,7 @@ export class UsuariosComponent {
       this.users = this.users.filter(u => u.id != idUsuario)
       this.toastr.success('Usuario excluído com sucesso!', 'Sucesso')
     }, error: (erro) => {
-    this.toastr.error('Este usuário não pode ser excluído, há objetos ligados a ele.', 'Erro')
+    this.toastr.error(erro.error.message, 'Erro')
     }})
   }
 

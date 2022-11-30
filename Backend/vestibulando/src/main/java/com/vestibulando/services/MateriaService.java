@@ -1,6 +1,7 @@
 package com.vestibulando.services;
 
 import com.vestibulando.entities.Materia;
+import com.vestibulando.excepitions.ArgumentoDuplicado;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IMateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ public class MateriaService {
 
     @Autowired
     IMateriaRepository materiaRepository;
-
     public List<Materia> listar() {
         return materiaRepository.findAllByOrderByIdAsc();
     }
@@ -38,6 +38,10 @@ public class MateriaService {
     }
 
     public Materia salvar(Materia materia){
+        Materia m = materiaRepository.findByNome(materia.getNome());
+        if(m != null && m.getId() != materia.getId()){
+            throw new ArgumentoDuplicado("Materia já existe");
+        }
         return materiaRepository.save(materia);
     }
 

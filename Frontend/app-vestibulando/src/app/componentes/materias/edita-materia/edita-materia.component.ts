@@ -39,8 +39,8 @@ export class EditaMateriaComponent implements OnInit {
       next: () => {
         this.toastr.success('Matéria alterada com sucesso!', 'Sucesso')
         this.router.navigate(['app', 'modmaterias'])
-      }, error: erro => {
-        this.toastr.error('Não foi possível alterar a matéria.', 'Erro')
+      }, error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }

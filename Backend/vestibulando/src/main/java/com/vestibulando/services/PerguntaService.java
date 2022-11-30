@@ -25,6 +25,12 @@ public class PerguntaService {
 
     @Autowired
     IRespostaRepository respostaRepository;
+
+    @Autowired
+    BancaService bancaService;
+    @Autowired
+    MateriaService materiaService;
+
     public List<Pergunta> listarTodas(){
         return perguntaRepository.findAll();
     }
@@ -65,15 +71,6 @@ public class PerguntaService {
         List<Resposta> resposta = this.respostaRepository.findByPergunta(pergunta);
 
         List<Long> idRespostas = resposta.stream().map(Resposta::getId).toList();
-
-//        if(resposta.size()>0){
-//            this.respostaRepository.deleteAll(resposta);
-//        }
-
-
-
-//        pergunta.setRespostas(new LinkedHashSet<>());
-//        this.salvar(pergunta);
         try {
             respostaRepository.deleteFromRespostas(idRespostas);
             perguntaRepository.deleteRespostasPergunta(id);
@@ -87,7 +84,8 @@ public class PerguntaService {
 
     @Transactional
     public Pergunta salvar(Pergunta pergunta){
-
+        materiaService.obter(pergunta.getMateria().getId());
+        bancaService.obter(pergunta.getBanca().getId());
         return perguntaRepository.save(pergunta);
     }
 
