@@ -2,6 +2,7 @@ package com.vestibulando.excepitions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +20,17 @@ public class ResourceExceptionHandler {
         err.setStatus(HttpStatus.NOT_FOUND.value());
         err.setError("Recurso não encontrado");
         err.setMessage(e.getMessage());
+        err.setPath(req.getRequestURI());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+    }
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<StandardError> usuarioNaoEncontrado(UsernameNotFoundException e,
+                                                               HttpServletRequest req){
+        StandardError err = new StandardError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("Senha ou usuário inválidos");
+        err.setMessage("Cheque se a senha e o usuário inseridos são válidos");
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }

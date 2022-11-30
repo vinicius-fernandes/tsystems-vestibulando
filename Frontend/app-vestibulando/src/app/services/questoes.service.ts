@@ -24,6 +24,10 @@ export class QuestoesService {
     return this.http.get<IPage>(`${this.baseUrl}/perguntas`, { params })
   }
 
+  consultaPorCorpo(corpo: string, params: any) {
+    return this.http.get<IPage>(`${this.baseUrl}/perguntas/pesquisar/${corpo}`, { params })
+  }
+
   consultarPorId(id: number) {
     return this.http.get<IPergunta>(`${this.baseUrl}/perguntas/${id}`);
   }

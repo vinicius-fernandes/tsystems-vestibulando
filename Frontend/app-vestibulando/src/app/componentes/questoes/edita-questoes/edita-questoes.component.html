@@ -1,5 +1,4 @@
 <div class="container">
-
   <h1 class="text-center">Adicionar Questão</h1>
   <h2 class="text">Pergunta</h2>
 
@@ -24,7 +23,11 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>Enunciado</mat-label>
-      <textarea [(ngModel)]="questao.corpo" placeholder="Informe o enunciado da questão" matInput></textarea>
+      <<<<<<< HEAD <textarea [(ngModel)]="questao.corpo" placeholder="Informe o enunciado da questão" matInput>
+        </textarea>
+        =======
+        <textarea [(ngModel)]="questao.corpo" placeholder="Informe o enunciado da questão" matInput></textarea>
+        >>>>>>> e1861ca3e03ff87a969dcf93b880b2622daa2fc0
     </mat-form-field>
   </div>
 
@@ -111,8 +114,11 @@
   </div>
 
   <div class="text-start botoes">
-    <a routerLink="../.."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i>
-        Cancelar</button></a>
-    <button mat-raised-button color="primary" (click)="alterarQuestao()"><i class="fas fa-save"></i> Salvar</button>
+    <a routerLink="../.."><button mat-raised-button color="warn">
+        <i class="fa fa-ban" aria-hidden="true"></i> Cancelar
+      </button></a>
+    <button mat-raised-button color="primary" (click)="alterarQuestao()">
+      <i class="fas fa-save"></i> Salvar
+    </button>
   </div>
 </div>

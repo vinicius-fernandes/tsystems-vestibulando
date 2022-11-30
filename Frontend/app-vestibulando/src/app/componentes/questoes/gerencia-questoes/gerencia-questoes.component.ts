@@ -20,6 +20,7 @@ export class GerenciaQuestoesComponent {
 
   pergunta: IPergunta[] = [];
   totalElements: number = 0;
+  corpo: string = '';
 
   ngOnInit(): void {
     this.obterPerguntas({ page: '0', size: '25' });
@@ -37,12 +38,32 @@ export class GerenciaQuestoesComponent {
     });
   }
 
+  obterPerguntasPorCorpo(params: any) {
+    if (this.corpo == '') {
+      this.obterPerguntas(params);
+      return
+    }
+    this.serviceQuestoes.consultaPorCorpo(this.corpo, params).subscribe({
+      next: (data) => {
+        this.pergunta = <IPergunta[]>data.content;
+        this.totalElements = data['totalElements'];
+      },
+      error: () => {
+        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
+      },
+    });
+  }
+
   nextPage(event: PageEvent) {
     const request = {
       page: event.pageIndex.toString(),
       size: event.pageSize.toString(),
     };
-    this.obterPerguntas(request);
+    if (this.corpo == '') {
+      this.obterPerguntas(request);
+    } else {
+      this.obterPerguntasPorCorpo(request);
+    }
   }
 
   confirmarExclusao(id: number) {

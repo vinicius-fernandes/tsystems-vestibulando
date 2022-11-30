@@ -2,20 +2,31 @@
   overflow-x: hidden;
 }
 
-.botoes {
+.pesquisar {
+  padding-top: 50px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  vertical-align: center;
+  align-items: center;
 }
+
+mat-form-field {
+  width: 95%;
+  max-width: 500px;
+  min-width: 180px;
+}
+
 
 tr td:nth-child(2) div {
   max-height: 80px;
-  text-wrap: normal;
   overflow-y: auto;
   padding-right: 1.5em;
 }
 
-tr td:nth-child(5) div {
-  align-items: center;
+.botoes {
+  display: flex;
+  justify-content: flex-end;
   gap: 10px;
 }
 
@@ -23,10 +34,12 @@ tr td:nth-child(5) div button {
   width: clamp(35px, 10vw, 64px);
   min-width: 35px;
   padding: 10px;
+  margin: auto;
 }
 
 table {
   overflow-x: auto;
+  margin-top: 20px;
 }
 
 mat-paginator {
@@ -43,6 +56,12 @@ mat-paginator button {
 }
 
 @media screen and (max-width: 560px) {
+  .pesquisar {
+    justify-content: center;
+  }
+  .pesquisar mat-form-field {
+    font-size: 13px;
+  }
   tr td:nth-child(1) {
     width: 10px;
   }
