@@ -55,7 +55,7 @@ public class PerguntaService {
     }
 
     public Page<Pergunta> findByCorpo(String corpo, Pageable page){
-        return perguntaRepository.findByCorpoContaining(corpo,page);
+        return perguntaRepository.findByCorpoIgnoreCaseContaining(corpo,page);
     }
 
     @Transactional

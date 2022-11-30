@@ -7,9 +7,18 @@
   justify-content: flex-end;
 }
 
+.pesquisar {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 50%;
+}
+
 tr td:nth-child(2) div {
   max-height: 80px;
-  text-wrap: normal;
   overflow-y: auto;
   padding-right: 1.5em;
 }
