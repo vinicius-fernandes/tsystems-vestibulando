@@ -72,7 +72,7 @@ export class GerenciaQuestoesComponent {
       error: () => {
         this.toastr.error('Não foi possível excluir a pergunta.', 'Erro');
         window.location.reload();
-      },
+      }
     });
   }
 }
