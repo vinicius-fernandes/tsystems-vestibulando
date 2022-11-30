@@ -11,6 +11,8 @@ import IRespostaMarcada from 'src/app/interfaces/IRespostaMarcada';
 export class PerguntaSimuladoComponent {
   @Input() pergunta: IPerguntaDTO;
   @Input() numQuestao:number;
+  @Input() finalizado: boolean =false;
+  @Input() perguntasCorretas: number[]=[];
   @Output() respostaMarcadaEvent = new EventEmitter<IRespostaMarcada>()
   resposta: number =0
 
@@ -21,8 +23,15 @@ export class PerguntaSimuladoComponent {
 
   changeResposta(event: { value: any; }){
 
-    let resp : IRespostaMarcada ={idRespostaMarcada:event.value,numeroPergunta:this.numQuestao}
+    let resp : IRespostaMarcada ={idRespostaMarcada:event.value,numeroPergunta:this.numQuestao,idPergunta:this.pergunta.idPergunta}
     this.respostaMarcadaEvent.emit(resp)
+  }
+
+  estaCorreta(){
+    const corretas = this.perguntasCorretas.find(p=> p == this.pergunta.idPergunta)
+    if(corretas!=undefined)
+      return true
+    return false
   }
 
 }

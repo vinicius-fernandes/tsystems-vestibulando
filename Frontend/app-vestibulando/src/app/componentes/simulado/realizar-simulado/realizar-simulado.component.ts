@@ -26,7 +26,8 @@ export class RealizarSimuladoComponent implements OnInit{
 
   perguntaAtual: number =0
   totalPerguntas: number = 0
-
+  perguntasCorretas:number[]= []
+  finalizado:boolean=false;
   constructor(private simuladoService:SimuladoService,private route: ActivatedRoute, private toastr: ToastrService,private respUserService: RespostasUsuariosService,private router:Router,private jwtTokenService:JwtTokenService, private dialog: MatDialog ){
     this.simulado = {perguntas:[],materias:[],id:0,bancas:[]}
   }
@@ -39,7 +40,7 @@ export class RealizarSimuladoComponent implements OnInit{
           this.simulado = sim
           sim.perguntas.forEach((element,i) => {
             this.exibicaoPerguntas.push(false)
-            this.respostasMarcadas.push({idRespostaMarcada:null,numeroPergunta:i})
+            this.respostasMarcadas.push({idRespostaMarcada:null,numeroPergunta:i,idPergunta:element.idPergunta})
           });
           this.exibicaoPerguntas[0]=true
           this.totalPerguntas = sim.perguntas.length - 1;
@@ -100,7 +101,18 @@ export class RealizarSimuladoComponent implements OnInit{
       {
         next:(resp)=>{
           this.toastr.success('Simulado finalizado com sucesso!!')
-          this.router.navigate(['app','simulados','resultado',respUser.simulado.id,usuario?.userId])
+          this.finalizado=true
+          this.respUserService.perguntasCorretaSimuladoUsuario(usuario!.userId,id).subscribe({
+            next:(res)=>{
+              this.perguntasCorretas=res
+              console.log(res)
+            },
+            error:(erro)=>{
+              console.log(erro)
+              this.toastr.error("Não foi possível validar as perguntas corretas para o simulado")
+            }
+          })
+          //this.router.navigate(['app','simulados','resultado',respUser.simulado.id,usuario?.userId])
       },
         error:(erro)=>{this.toastr.error(erro.error.message)}
       }

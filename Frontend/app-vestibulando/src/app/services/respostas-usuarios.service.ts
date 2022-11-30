@@ -25,5 +25,7 @@ export class RespostasUsuariosService {
    notasSimuladosUsuario(idUser:number){
     return this.http.get<[INotasSimuladosUsuario]>(`${this.baseUrl}/respostasUsuarios/notasSimuladosUsuario/${idUser}`)
    }
-
+   perguntasCorretaSimuladoUsuario(idUser:number,idSimulado:number){
+    return this.http.get<[number]>(`${this.baseUrl}/respostasUsuarios/perguntasCorretas/${idUser}/${idSimulado}`)
+   }
 }
