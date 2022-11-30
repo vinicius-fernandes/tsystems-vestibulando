@@ -29,10 +29,11 @@
       <div *ngIf="simulado.updatedAt != null">
         <p> Editado em: <br> {{converterData(simulado.updatedAt)}}</p>
       </div>
+      <p class="text-success">{{encontrarSimuladoRespondido(simulado.id)}}</p>
       <div class="botoes">
         <button
           mat-raised-button color="primary"
-          (click)="redirecionarSimulado(simulado.id)">
+          (click)="encontrarSimuladoRespondido(simulado.id)!=''?confirmarRealizacaoSimulado(simulado.id):redirecionarSimulado(simulado.id)">
           Fazer Simulado
         </button>
         <button
