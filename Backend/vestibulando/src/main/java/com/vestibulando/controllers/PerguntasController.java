@@ -55,7 +55,6 @@ public class PerguntasController {
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpo(corpo,page));
     }
 
-
     @PostMapping
     public ResponseEntity<Pergunta> criar(@Valid @RequestBody Pergunta pergunta){
         return ResponseEntity.status(HttpStatus.CREATED).body(perguntaService.salvar(pergunta));

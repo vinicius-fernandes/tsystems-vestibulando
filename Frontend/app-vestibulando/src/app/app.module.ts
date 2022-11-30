@@ -52,6 +52,7 @@ import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dia
 import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
 import { Error404Component } from './componentes/error404/error404.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

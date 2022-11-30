@@ -1,3 +1,7 @@
+.cardwrap{
+  display: flex;
+  flex-wrap: wrap;
+} 
 .container>div {
   display: grid;
   margin: auto;
@@ -11,7 +15,6 @@
   width: 180px;
   margin: auto;
 }
-
 
 .mt-2{
     text-align: center;
