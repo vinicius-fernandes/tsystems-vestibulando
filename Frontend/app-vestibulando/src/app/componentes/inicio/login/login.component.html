@@ -27,7 +27,7 @@
                     <mat-form-field appearance="fill" color="primary">
                         <mat-label>Senha</mat-label>
                         <input matInput [type]="mostrarSenha ? 'text' : 'password'" formControlName="password" placeholder="Senha" required>
-                        <button mat-icon-button matSuffix (click)="mudaVisibilidadeSenha()"><mat-icon>{{mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon></button>
+                        <button type="button" mat-icon-button matSuffix (click)="mudaVisibilidadeSenha()"><mat-icon>{{mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon></button>
                     </mat-form-field>
                 </div>
                 <div class="botoesLogin">
