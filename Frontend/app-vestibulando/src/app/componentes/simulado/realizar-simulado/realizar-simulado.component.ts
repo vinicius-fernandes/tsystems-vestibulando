@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IGeneric from 'src/app/interfaces/IGeneric';
@@ -8,6 +9,7 @@ import ISimuladoDTO from 'src/app/interfaces/ISimuladoDTO';
 import JwtTokenService from 'src/app/services/jwt-token.service';
 import { RespostasUsuariosService } from 'src/app/services/respostas-usuarios.service';
 import { SimuladoService } from 'src/app/services/simulado.service';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-realizar-simulado',
@@ -25,7 +27,7 @@ export class RealizarSimuladoComponent implements OnInit{
   perguntaAtual: number =0
   totalPerguntas: number = 0
 
-  constructor(private simuladoService:SimuladoService,private route: ActivatedRoute, private toastr: ToastrService,private respUserService: RespostasUsuariosService,private router:Router,private jwtTokenService:JwtTokenService ){
+  constructor(private simuladoService:SimuladoService,private route: ActivatedRoute, private toastr: ToastrService,private respUserService: RespostasUsuariosService,private router:Router,private jwtTokenService:JwtTokenService, private dialog: MatDialog ){
     this.simulado = {perguntas:[],materias:[],id:0,bancas:[]}
   }
   ngOnInit(): void {
@@ -62,6 +64,21 @@ export class RealizarSimuladoComponent implements OnInit{
       return
     }
     this.respostasMarcadas[index] = novaResposta;
+  }
+
+  confirmarSalvar() {
+    const dialogData = new ConfirmDialogModel('Confirmar finalização', 'Tem certeza de que deseja finalizar o simulado?')
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    })
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if ( dialogResult == true ) {
+        this.salvar()
+      }
+    })
   }
 
   salvar(){
