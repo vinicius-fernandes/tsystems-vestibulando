@@ -2,11 +2,6 @@
   overflow-x: hidden;
 }
 
-.botoes {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .pesquisar {
   padding-top: 50px;
   display: flex;
@@ -29,8 +24,9 @@ tr td:nth-child(2) div {
   padding-right: 1.5em;
 }
 
-tr td:nth-child(5) div {
-  align-items: center;
+.botoes {
+  display: flex;
+  justify-content: flex-end;
   gap: 10px;
 }
 
@@ -38,6 +34,7 @@ tr td:nth-child(5) div button {
   width: clamp(35px, 10vw, 64px);
   min-width: 35px;
   padding: 10px;
+  margin: auto;
 }
 
 table {
@@ -59,15 +56,12 @@ mat-paginator button {
 }
 
 @media screen and (max-width: 560px) {
-
   .pesquisar {
     justify-content: center;
   }
-
   .pesquisar mat-form-field {
     font-size: 13px;
   }
-
   tr td:nth-child(1) {
     width: 10px;
   }
