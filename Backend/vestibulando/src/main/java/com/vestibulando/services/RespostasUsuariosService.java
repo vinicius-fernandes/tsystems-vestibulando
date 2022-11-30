@@ -60,16 +60,9 @@ public class RespostasUsuariosService {
     }
 
     public List<RankingSimuladoDTO> getRankingSimulado(Long idSimulado){
-        Set<Usuario> usuariosSimulado = respostasUsuariosRepository.getUsuariosSimulado(idSimulado);
 
         List<RankingSimuladoDTO> ranking = respostasUsuariosRepository.getRankingSimulado(idSimulado);
-        for(Usuario user : usuariosSimulado){
-            if(ranking.stream().anyMatch(c->c.getIdUsuario()==user.getId())){
-                continue;
-            }
-            RankingSimuladoDTO rankingUser0 = new RankingSimuladoDTO(user.getId(), user.getEmail(), 0);
-            ranking.add(rankingUser0);
-        }
+
         return  ranking;
     }
 
