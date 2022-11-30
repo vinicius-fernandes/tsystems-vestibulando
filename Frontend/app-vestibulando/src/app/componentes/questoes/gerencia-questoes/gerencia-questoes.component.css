@@ -11,10 +11,17 @@
   padding-top: 50px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 mat-form-field {
-  width: 50%;
+  width: 95%;
+  max-width: 500px;
+  min-width: 180px;
+}
+
+a[routerLink='adiciona'] {
+  margin-bottom: 20px;
 }
 
 tr td:nth-child(2) div {
@@ -52,6 +59,15 @@ mat-paginator button {
 }
 
 @media screen and (max-width: 560px) {
+
+  .pesquisar {
+    justify-content: center;
+  }
+
+  .pesquisar mat-form-field {
+    font-size: 13px;
+  }
+
   tr td:nth-child(1) {
     width: 10px;
   }
