@@ -1,5 +1,5 @@
 export default interface IAlterarSenha
 {
-  senha:string,
+  novaSenha:string,
   token:string
 }

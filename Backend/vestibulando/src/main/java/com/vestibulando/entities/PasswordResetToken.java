@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 public class PasswordResetToken {
 
-    private static final long EXPIRATION = 15;
+    public static final long EXPIRATION = 10;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,5 +64,9 @@ public class PasswordResetToken {
         this.token = token;
         this.user = user;
         this.expiryDate = Instant.now().plus(EXPIRATION, ChronoUnit.MINUTES);
+    }
+
+    public boolean isTokenValid(){
+        return Instant.now().isBefore(this.expiryDate);
     }
 }

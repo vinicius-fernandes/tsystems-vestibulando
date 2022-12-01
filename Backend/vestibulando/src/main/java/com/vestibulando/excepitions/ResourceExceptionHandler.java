@@ -25,6 +25,9 @@ public class ResourceExceptionHandler {
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
+
+
+
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<StandardError> usuarioNaoEncontrado(UsernameNotFoundException e,
                                                                HttpServletRequest req){
@@ -35,6 +38,30 @@ public class ResourceExceptionHandler {
         err.setMessage("Cheque se a senha e o usuário inseridos são válidos");
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<StandardError> estadoIlegal(IllegalStateException e,
+                                                              HttpServletRequest req){
+        StandardError err = new StandardError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("Estado ilegal");
+        err.setMessage(e.getMessage());
+        err.setPath(req.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<StandardError> argumentoIlegal(IllegalArgumentException e,
+                                                      HttpServletRequest req){
+        StandardError err = new StandardError();
+        err.setTimeStamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("Argumento ilegal");
+        err.setMessage(e.getMessage());
+        err.setPath(req.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
     @ExceptionHandler(DeleteComAssociacoes.class)
     public ResponseEntity<StandardError> deleteComAssociacoes(DeleteComAssociacoes e,
@@ -63,8 +90,8 @@ public class ResourceExceptionHandler {
                                                       HttpServletRequest req){
         StandardError err = new StandardError();
         err.setTimeStamp(Instant.now());
-        err.setStatus(HttpStatus.NOT_FOUND.value());
-        err.setError("Recurso não encontrado");
+        err.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        err.setError("Erro interno");
         err.setMessage(e.getMessage());
         err.setPath(req.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);

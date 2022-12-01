@@ -17,6 +17,7 @@ public class PasswordResetController {
 
     @PostMapping("/alterarSenha")
     public ResponseEntity<SimpleResponse> alterarSenha(@RequestBody AlterarSenhaDTO alterarSenhaDTO){
+        passwordResetService.alterarSenha(alterarSenhaDTO);
         return ResponseEntity.status(HttpStatus.OK).body(new SimpleResponse("Senha alterada com sucesso"));
 
     }

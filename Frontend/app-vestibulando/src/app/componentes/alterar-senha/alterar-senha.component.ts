@@ -29,7 +29,7 @@ export class AlterarSenhaComponent {
 
     console.log(token)
 
-    let dados : IAlterarSenha = {senha:this.form.controls['password'].value,token:token}
+    let dados : IAlterarSenha = {novaSenha:this.form.controls['password'].value,token:token}
 
     this.resetPassService.alterarSenha(dados).subscribe({
       next:(msg)=>{
@@ -38,7 +38,13 @@ export class AlterarSenhaComponent {
       },
       error:(erro)=>{
         console.log(erro)
-        this.toastr.error("Ops ocorreu um erro ao alterar a senha, é possível que o token tenha expirado requisite uma nova mudança de senha!","Erro")
+        if(erro.error!=undefined){
+        this.toastr.error(erro.error.message,"Erro")
+        }
+        else{
+        this.toastr.error("Ocorreu um erro ao alterar a senha","Erro")
+        }
+
       }
     })
   }
