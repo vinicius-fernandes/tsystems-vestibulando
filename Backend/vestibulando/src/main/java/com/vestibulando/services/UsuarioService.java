@@ -49,11 +49,12 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public UsuarioDTO salvarUsuario(Usuario usuario)  {
-       Usuario user = usuarioRepository.findByEmail(usuario.getEmail()).orElseThrow(()->new EntityNotFoundException("Usuário não encontrado"));;
+        Optional<Usuario> user= usuarioRepository.findByEmail(usuario.getEmail());
 
-       if(user != null && usuario.getId() != user.getId()){
-           throw new ArgumentoDuplicado("Email já está cadastrado");
-       }
+        if(user.isPresent()  && !Objects.equals(usuario.getId(), user.get().getId())){
+            throw new ArgumentoDuplicado("Email já está cadastrado");
+        }
+
         if(usuario.getRoles().isEmpty()){
             Role rl = new Role();
             rl.setId(1L);
