@@ -25,6 +25,12 @@ public class PerguntaService {
 
     @Autowired
     IRespostaRepository respostaRepository;
+
+    @Autowired
+    BancaService bancaService;
+    @Autowired
+    MateriaService materiaService;
+
     public List<Pergunta> listarTodas(){
         return perguntaRepository.findAll();
     }
@@ -45,17 +51,25 @@ public class PerguntaService {
     public Page<Pergunta> findByMateria(long id,Pageable page){
         Materia materia = new Materia();
         materia.setId(id);
-        return perguntaRepository.findByMateria(materia ,page);
+        return perguntaRepository.findByMateria(materia, page);
     }
 
     public Page<Pergunta> findBySimulado(long simuladoId, Pageable page ){
         Simulado simulado = new Simulado();
         simulado.setId(simuladoId);
-        return perguntaRepository.findBySimulado(simulado,page);
+        return perguntaRepository.findBySimulado(simulado, page);
     }
 
     public Page<Pergunta> findByCorpo(String corpo, Pageable page){
-        return perguntaRepository.findByCorpoContaining(corpo,page);
+        return perguntaRepository.findByCorpoIgnoreCaseContaining(corpo, page);
+    }
+
+    public Page<Pergunta> consultarComFiltro(String corpo, long idBanca, long idMateria, Pageable page){
+        Banca banca = new Banca();
+        banca.setId(idBanca);
+        Materia materia = new Materia();
+        materia.setId(idMateria);
+        return perguntaRepository.findByCorpoIgnoreCaseContainingAndBancaAndMateria(corpo, banca, materia, page);
     }
 
     @Transactional
@@ -65,15 +79,6 @@ public class PerguntaService {
         List<Resposta> resposta = this.respostaRepository.findByPergunta(pergunta);
 
         List<Long> idRespostas = resposta.stream().map(Resposta::getId).toList();
-
-//        if(resposta.size()>0){
-//            this.respostaRepository.deleteAll(resposta);
-//        }
-
-
-
-//        pergunta.setRespostas(new LinkedHashSet<>());
-//        this.salvar(pergunta);
         try {
             respostaRepository.deleteFromRespostas(idRespostas);
             perguntaRepository.deleteRespostasPergunta(id);
@@ -87,7 +92,8 @@ public class PerguntaService {
 
     @Transactional
     public Pergunta salvar(Pergunta pergunta){
-
+        materiaService.obter(pergunta.getMateria().getId());
+        bancaService.obter(pergunta.getBanca().getId());
         return perguntaRepository.save(pergunta);
     }
 
@@ -96,6 +102,8 @@ public class PerguntaService {
 
         p.setCorpo(pergunta.getCorpo());
         p.setRespostas(pergunta.getRespostas());
+        p.setBanca(pergunta.getBanca());
+        p.setMateria(pergunta.getMateria());
 
         for(Resposta res : p.getRespostas()){
             res.setPergunta(new Pergunta());

@@ -43,7 +43,9 @@ public class RespostasUsuariosService {
     }
 
 
-
+    public Page<RankingSimuladoDTO> getRankingGlobal(Pageable page){
+        return respostasUsuariosRepository.getRankingGlobal(page);
+    }
     public RespostasUsuarios obter(long id){
         RespostasUsuarios resp = respostasUsuariosRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Não foi possível encontrar as respostas do usuários com esse id de respostas usuários"));
         return resp;
@@ -58,16 +60,9 @@ public class RespostasUsuariosService {
     }
 
     public List<RankingSimuladoDTO> getRankingSimulado(Long idSimulado){
-        Set<Usuario> usuariosSimulado = respostasUsuariosRepository.getUsuariosSimulado(idSimulado);
 
         List<RankingSimuladoDTO> ranking = respostasUsuariosRepository.getRankingSimulado(idSimulado);
-        for(Usuario user : usuariosSimulado){
-            if(ranking.stream().anyMatch(c->c.getIdUsuario()==user.getId())){
-                continue;
-            }
-            RankingSimuladoDTO rankingUser0 = new RankingSimuladoDTO(user.getId(), user.getEmail(), 0);
-            ranking.add(rankingUser0);
-        }
+
         return  ranking;
     }
 
@@ -86,6 +81,10 @@ public class RespostasUsuariosService {
 
     public List<NotaSimuladoUsuarioDTO> getNotasSimuladosUsuario(long idUsuario){
         return respostasUsuariosRepository.getNotasSimuladosUsuario(idUsuario);
+    }
+
+    public List<Long> perguntasCorretasSimuladoUsuario(long idUsuario,long idSimulado){
+        return respostasUsuariosRepository.getPerguntasCorretasSimuladoUsuario(idUsuario,idSimulado);
     }
 
 

@@ -1,15 +1,20 @@
-<div class="container" *ngIf="simulado.perguntas.length>0">
+<div class="container" *ngIf="simulado.perguntas.length > 0">
   <div class="row">
+    <div class="text-center" *ngIf="finalizado">
+      <h1>Você acertou {{perguntasCorretas.length}} {{perguntasCorretas.length==1?' pergunta':' perguntas'}}.</h1>
+    </div>
     <div class="col-md-9 col-12">
       <div *ngFor="let pergunta of simulado.perguntas; let i = index">
         <app-pergunta-simulado
           [pergunta]="pergunta"
           [numQuestao]="i"
+          [finalizado]="finalizado"
+          [perguntasCorretas]="perguntasCorretas"
           [hidden]="!exibicaoPerguntas[i]"
           (respostaMarcadaEvent)="novaRespostaMarcada($event)"
         ></app-pergunta-simulado>
       </div>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center botoes">
         <button
           mat-raised-button
           color="basic"
@@ -23,29 +28,51 @@
           mat-raised-button
           color="basic"
           class="m-1"
-          *ngIf="perguntaAtual + 1 <= totalPerguntas"
+          *ngIf="perguntaAtual + 1 <= totalPerguntas; else finalizarBotao"
           (click)="alterarPergunta(perguntaAtual + 1)"
         >
           Próxima pergunta
         </button>
+        <ng-template #finalizarBotao>
+          <button mat-raised-button color="primary" class="m1" (click)="confirmarSalvar()" *ngIf="!finalizado">
+            Finalizar simulado
+          </button>
+        </ng-template>
       </div>
     </div>
-    <div class="col-md-3 ">
+    <div class="col-md-3">
       <h4>Questões</h4>
       <div class="sumario">
-      <app-sumario-simulado
-        [respostasMarcadas]="respostasMarcadas"
-        (mudarPerguntaEvent)="alterarPergunta($event)"
-      >
-      </app-sumario-simulado>
-    </div>
-    <div class="d-flex justify-content-center">
+        <app-sumario-simulado
+          [respostasMarcadas]="respostasMarcadas"
+          (mudarPerguntaEvent)="alterarPergunta($event)"
+          [finalizado]="finalizado"
+          [perguntasCorretas]="perguntasCorretas"
+        >
+        </app-sumario-simulado>
+      </div>
+      <div class="d-flex justify-content-center" *ngIf="!finalizado">
+        <button
+          mat-raised-button
+          color="primary"
+          class="mt-4 col-12"
+          (click)="confirmarSalvar()"
+        >
+          Finalizar simulado
+        </button>
+      </div>
 
-      <button mat-raised-button color="primary" class="mt-4 col-12" (click)="salvar()">
-        Finalizar simulado
-      </button>
+      <div class="d-flex justify-content-center" *ngIf="finalizado">
+        <a routerLink='/app' >
+        <button
+          mat-raised-button
+          color="primary"
+          class="mt-4 col-12"
+        >
+          Ir para a home
+        </button>
+      </a>
       </div>
     </div>
-
   </div>
 </div>

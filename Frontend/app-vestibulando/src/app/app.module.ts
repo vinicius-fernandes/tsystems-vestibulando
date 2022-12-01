@@ -6,11 +6,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog'
+import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -43,6 +46,17 @@ import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/ed
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
 import { HomeComponent } from './componentes/home/home.component';
 import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
+import {AuthInterceptor} from './auth.interceptor';
+import { InfoComponent } from './componentes/info/info.component';
+import { ValidUserGuard } from './authGuard/ValidUserGuard';
+import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
+import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
+import { Error404Component } from './componentes/error404/error404.component';
+import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-senha.component';
+import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha.component';
+import { MatIconModule } from '@angular/material/icon';
+import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +87,14 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
     GerenciaQuestoesComponent,
     EditaQuestoesComponent,
     AdicionaQuestoesComponent,
-    HomeComponent
+    HomeComponent,
+    InfoComponent,
+    ConfirmDialogComponent,
+    RankingGeralComponent,
+    Error404Component,
+    EsqueceuSenhaComponent,
+    AlterarSenhaComponent,
+    SobreNosComponent
   ],
   imports: [
     BrowserModule,
@@ -96,9 +117,26 @@ import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
     MatButtonModule,
     MatRadioModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatIconModule
     ],
-  providers: [ { provide: "BASE_API_URL", useValue: environment.apiUrl },{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr}],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: "BASE_API_URL", useValue: environment.apiUrl },
+    { provide: "OAUTH_CLIENT", useValue: environment.OAUTH_CLIENT },
+    { provide: "OAUTH_SECRET", useValue: environment.OAUTH_SECRET },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+
+  { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr},
+  ValidUserGuard
+],
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmDialogComponent]
 })
 export class AppModule { }

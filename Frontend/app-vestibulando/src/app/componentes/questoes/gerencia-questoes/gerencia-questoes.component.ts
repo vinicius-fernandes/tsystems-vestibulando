@@ -5,6 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { PageEvent } from '@angular/material/paginator';
 import { ContentObserver } from '@angular/cdk/observers';
 import { ThisReceiver } from '@angular/compiler';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-gerencia-questoes',
@@ -12,52 +15,83 @@ import { ThisReceiver } from '@angular/compiler';
   styleUrls: ['./gerencia-questoes.component.css'],
 })
 export class GerenciaQuestoesComponent {
-
-
-
   constructor(
     private serviceQuestoes: QuestoesService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog
   ) {}
 
   pergunta: IPergunta[] = [];
   totalElements: number = 0;
-
+  corpo: string = '';
 
   ngOnInit(): void {
-
-      this.obterPerguntas({page:'0',size:'5'})
+    this.obterPerguntas({ page: '0', size: '25' });
   }
 
-  obterPerguntas(params:any){
+  obterPerguntas(params: any) {
     this.serviceQuestoes.consultaPaginada(params).subscribe({
-      next:(data)=>{
-        this.pergunta = <IPergunta[]>data.content
-        this.totalElements = data['totalElements']
+      next: (data) => {
+        this.pergunta = <IPergunta[]>data.content;
+        this.totalElements = data['totalElements'];
       },
-      error:(erro)=>{        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
+      error: () => {
+        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
+      },
+    });
+  }
+
+  obterPerguntasPorCorpo(params: any) {
+    if (this.corpo == '') {
+      this.obterPerguntas(params);
+      return
     }
-    })
-
-
+    this.serviceQuestoes.consultaPorCorpo(this.corpo, params).subscribe({
+      next: (data) => {
+        this.pergunta = <IPergunta[]>data.content;
+        this.totalElements = data['totalElements'];
+      },
+      error: () => {
+        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
+      },
+    });
   }
 
   nextPage(event: PageEvent) {
-    const request = {page:event.pageIndex.toString(),size:event.pageSize.toString()};
+    const request = {
+      page: event.pageIndex.toString(),
+      size: event.pageSize.toString(),
+    };
+    if (this.corpo == '') {
+      this.obterPerguntas(request);
+    } else {
+      this.obterPerguntasPorCorpo(request);
+    }
+  }
 
-    this.obterPerguntas(request);
-}
+  confirmarExclusao(id: number) {
+    const dialogData = new ConfirmDialogModel('Confirmar exclusão', 'Tem certeza de que deseja excluir esta pergunta?')
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    })
 
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if ( dialogResult == true ) {
+        this.excluir(id)
+      }
+    })
+  }
 
   excluir(id: number) {
     this.serviceQuestoes.excluir(id).subscribe({
       next: () => {
         this.toastr.success('Pergunta excluida com sucesso!', 'Sucesso');
+        window.location.reload();
       },
-      error: (err) => {
-        console.log(err);
-        this.toastr.error('Não foi possível excluir a pergunta.', 'Erro');
-      },
+      error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro');
+      }
     });
   }
 }

@@ -1,42 +1,71 @@
 <div class="container">
   <h1 class="text-center">Gerenciar Questões</h1>
 
-  <p class="text-end mt-3 mr-3">
+  <div class="pesquisar">
+    <mat-form-field class="example-full-width">
+      <mat-label>Pesquisar</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Sed commodo porttitor"
+        matInput
+        [(ngModel)]="corpo"
+      />
+      <button mat-button matSuffix (click)="obterPerguntasPorCorpo({ page: '0', size: '25' })">
+        <i class="fa fa-search"></i>
+      </button>
+    </mat-form-field>
+
     <a routerLink="adiciona"
       ><button mat-raised-button color="primary">
         <i class="fa fa-plus"></i> Adicionar Questão
       </button></a
     >
-  </p>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Enunciado</th>
+          <th>Disciplina</th>
+          <th>Banca</th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Enunciado</th>
-        <th>Disciplina</th>
-        <th>Banca</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let perg of pergunta">
-        <th>{{ perg.id }}</th>
-        <th>{{ perg.corpo }}</th>
-        <th>{{ perg.materia.nome }}</th>
-        <th>{{ perg.banca.sigla }}</th>
-        <td class="d-inline-flex">
-          <button style="margin-right: 5px;" mat-raised-button color="warn" (click)="excluir(perg.id || 0)"><i class="fa fa-trash"></i></button>
-          <a [routerLink]="['edita', perg.id]"
-            ><button mat-raised-button color="primary">
-              <i class="fas fa-edit"></i></button
-          ></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" [length]="totalElements"  (page)="nextPage($event)"> </mat-paginator>
-
-
+      <tbody>
+        <tr *ngFor="let perg of pergunta">
+          <td>{{ perg.id }}</td>
+          <td>
+            <div>{{ perg.corpo }}</div>
+          </td>
+          <td>{{ perg.materia.nome }}</td>
+          <td>{{ perg.banca.sigla }}</td>
+          <td>
+            <div class="botoes">
+              <button
+                style="margin-right: 5px"
+                mat-raised-button
+                color="warn"
+                (click)="confirmarExclusao(perg.id || 0)"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+              <a [routerLink]="['edita', perg.id]"
+                ><button mat-raised-button color="primary">
+                  <i class="fas fa-edit"></i></button
+              ></a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSize]="25"
+    [length]="totalElements"
+    (page)="nextPage($event)"
+  >
+  </mat-paginator>
 </div>

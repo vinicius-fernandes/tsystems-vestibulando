@@ -1,76 +1,85 @@
 package com.vestibulando.entities;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.vestibulando.enums.EnumsUsuario;
 import org.hibernate.annotations.Check;
+import org.hibernate.exception.DataException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.websocket.OnError;
+import javax.websocket.OnMessage;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.zip.DataFormatException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
-public class Usuario {
+public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Email
-    @NotBlank
-    @Column(unique = true)
+    @Email(message = "E-mail invalido")
+    @NotBlank(message = "E-mail não pode ser em branco")
     private String email;
-    @NotBlank
+    @NotBlank(message = "Senha deve conter no minimo 6 caracteres")
     @Size(message = "Senha deve conter no minimo 6 caracteres", min = 6)
     @Pattern(regexp = "[^\\ ]+", message="Senha não pode conter espaços")
     private String senha;
-    @NotBlank
+    @NotBlank(message = "O nome não pode ser em branco")
     private String nome;
-    private EnumsUsuario tipo;
     @Column(columnDefinition = "DATETIME")
     private Instant createdAt;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "usuario_role",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @PrePersist
     public void setCreatedAt() {
         this.createdAt = Instant.now();
     }
-
     @PreUpdate
     public void setUpdatedAt() {
         this.updatedAt = Instant.now();
     }
-
     public LocalDateTime getCreatedAt() {
         return (createdAt!=null)? createdAt.atZone(ZoneId.systemDefault().normalized()).toLocalDateTime():null;
-
     }
 
     public LocalDateTime getUpdatedAt() {
         return (updatedAt!=null)?updatedAt.atZone(ZoneId.systemDefault().normalized()).toLocalDateTime():null;
-
     }
-
     @Column(columnDefinition = "DATETIME")
     private Instant updatedAt;
-
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+            this.email = email;
     }
-
     public String getSenha() {
         return senha;
     }
@@ -79,13 +88,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public EnumsUsuario getTipo() {
-        return tipo;
-    }
 
-    public void setTipo(EnumsUsuario tipo) {
-        this.tipo = tipo;
-    }
 
     public String getNome() {
         return nome;
@@ -93,5 +96,50 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles
+                .stream()
+                .map(role->new SimpleGrantedAuthority(role.getAuthority()))
+                .collect(Collectors.toList());
+    }
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

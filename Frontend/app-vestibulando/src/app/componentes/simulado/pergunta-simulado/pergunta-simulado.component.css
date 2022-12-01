@@ -3,4 +3,21 @@
   flex-direction: column;
   margin: 15px 0;
   align-items: flex-start;
+  vertical-align: center;
 }
+
+.radio-group p{
+  font-weight: normal;
+  align-self: center;
+  margin: 0 0 -6px;
+}
+
+@media  (max-width: 400px) {
+  h3 {
+    font-size: 20px;
+  }
+  .radio-group p{
+    font-size: 12px;
+  }
+}
+

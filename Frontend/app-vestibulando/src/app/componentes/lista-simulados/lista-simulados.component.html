@@ -1,35 +1,47 @@
-<h1>Lista de Simulados</h1>
-<div class="grid">
-  <div class="card" *ngFor="let simulado of simulados">
-    <p> {{simulado.perguntas.length}} perguntas </p>
-    <div *ngIf="simulado.bancas.length>0">
-      <p>Bancas:</p>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let banca of simulado.bancas">{{banca.sigla}}</li>
-      </ul>
-    </div>
-    <div *ngIf="simulado.materias.length > 0">
-      <p >Matérias:</p>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let materia of simulado.materias">{{materia.nome}}</li>
-      </ul>
-    </div>
 
-    <p>Criado em: <br> {{converterData(simulado.createdAt)}}</p>
-    <div *ngIf="simulado.updatedAt != null">
-      <p> Editado em: <br> {{converterData(simulado.updatedAt)}}</p>
-    </div>
-    <div class="botoes">
-      <button
-        mat-raised-button color="primary"
-        (click)="redirecionarSimulado(simulado.id)">
-        Fazer Simulado
+<div class="container">
+  <h1 *ngIf="simulados.length > 0; else simuladoVazio" >Lista de Simulados </h1>
+  <ng-template #simuladoVazio>
+    <h1>Nenhum simulado encontrado</h1>
+  </ng-template>
+  <div class="grid">
+    <div class="card" *ngFor="let simulado of simulados">
+      <button *ngIf="isAdmin"
+        mat-raised-button color="warn"
+        (click)="confirmarExclusaoSimulado(this.simulado.id)">
+        <i class="fa fa-trash"></i>
       </button>
-      <button
-        mat-raised-button color="primary"
-        (click)="redirecionarRanking(simulado.id)">
-        Acessar Ranking
-      </button>
+      <p> {{simulado.perguntas.length}} perguntas </p>
+      <div *ngIf="simulado.bancas.length>0">
+        <p>Bancas:</p>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let banca of simulado.bancas">{{banca.sigla}}</li>
+        </ul>
+      </div>
+      <div *ngIf="simulado.materias.length > 0">
+        <p >Matérias:</p>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let materia of simulado.materias">{{materia.nome}}</li>
+        </ul>
+      </div>
+
+      <p>Criado em: <br> {{converterData(simulado.createdAt)}}</p>
+      <div *ngIf="simulado.updatedAt != null">
+        <p> Editado em: <br> {{converterData(simulado.updatedAt)}}</p>
+      </div>
+      <p class="text-success">{{encontrarSimuladoRespondido(simulado.id)}}</p>
+      <div class="botoes">
+        <button
+          mat-raised-button color="primary"
+          (click)="encontrarSimuladoRespondido(simulado.id)!=''?confirmarRealizacaoSimulado(simulado.id):redirecionarSimulado(simulado.id)">
+          Fazer Simulado
+        </button>
+        <button
+          mat-raised-button color="primary"
+          (click)="redirecionarRanking(simulado.id)">
+          Acessar Ranking
+        </button>
+      </div>
     </div>
   </div>
 </div>

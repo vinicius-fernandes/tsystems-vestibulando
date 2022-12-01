@@ -1,0 +1,20 @@
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+table {
+  margin: auto;
+  max-width: 1000px;
+}
+
+tr td:nth-child(3) {
+  display: flex;
+  justify-content: right;
+}
+
+tr td:nth-child(3) div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

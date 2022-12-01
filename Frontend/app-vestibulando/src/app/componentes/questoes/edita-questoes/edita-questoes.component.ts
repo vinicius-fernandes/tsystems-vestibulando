@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import IBanca from 'src/app/interfaces/IBanca';
+import IMateria from 'src/app/interfaces/IMateria';
 import IPergunta from 'src/app/interfaces/IPergunta';
 import IResposta from 'src/app/interfaces/IResposta';
+import { BancasService } from 'src/app/services/bancas.service';
+import { MateriasService } from 'src/app/services/materias.service';
 import { QuestoesService } from 'src/app/services/questoes.service';
 
 @Component({
@@ -12,37 +16,32 @@ import { QuestoesService } from 'src/app/services/questoes.service';
   styleUrls: ['./edita-questoes.component.css'],
 })
 export class EditaQuestoesComponent implements OnInit {
-
-  /* form: FormGroup; */
+  form: FormGroup;
 
   respostas: IResposta[] = [];
+  materiasData: IMateria[] = [];
+  bancasData: IBanca[] = [];
 
   questao: IPergunta = {
     id: 0,
     corpo: '',
     banca: { id: 0, nome: '', sigla: '' },
     materia: { id: 0, nome: '' },
-    respostas: this.respostas
+    respostas: this.respostas,
   };
-
 
   constructor(
     private serviceQuestoes: QuestoesService,
+    private bancaService: BancasService,
+    private materiaService: MateriasService,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
-    /* this.form = this.formBuilder.group({
-      enunciado: new FormControl(''),
-      idMateria: new FormControl(''),
-      idBanca: new FormControl(''),
-      resposta1: new FormControl(''),
-      resposta2: new FormControl(''),
-      resposta3: new FormControl(''),
-      resposta4: new FormControl(''),
-      resposta5: new FormControl(''),
+    this.form = this.formBuilder.group({
       respostaCorreta: new FormControl(''),
-    }); */
+    });
   }
 
   ngOnInit(): void {
@@ -52,54 +51,140 @@ export class EditaQuestoesComponent implements OnInit {
       next: (data) => (this.questao = data),
       error: () => {
         this.toastr.error('Questão não encontrada.', 'Erro');
-        window.history.back();
+        this.router.navigateByUrl('app/questoes');
+      },
+    });
+
+    this.bancaService.consultar().subscribe({
+      next: (bancas) => {
+        this.bancasData = bancas;
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error('Não foi possível consultar as bancas.', 'Erro');
+        this.router.navigate(['app', 'home']);
+      },
+    });
+
+    this.materiaService.consultar().subscribe({
+      next: (materias) => {
+        this.materiasData = materias;
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error('Não foi possível consultar as matérias.', 'Erro');
+        this.router.navigate(['app', 'home']);
       },
     });
   }
 
   alterarQuestao() {
-    console.log(this.questao)
-    /* let respostas: IResposta[] = [];
-    respostas.push({
-      descricao: this.form.value.resposta1,
-      correta: false,
-    });
-    respostas.push({
-      descricao: this.form.value.resposta2,
-      correta: false,
-    });
-    respostas.push({
-      descricao: this.form.value.resposta3,
-      correta: false,
-    });
-    respostas.push({
-      descricao: this.form.value.resposta4,
-      correta: false,
-    });
-    respostas.push({
-      descricao: this.form.value.resposta5,
-      correta: false,
-    });
+    let teveErro = false;
 
-    respostas[this.form.value.respostaCorreta].correta = true;
+    if (this.questao.materia.id == null) {
+      teveErro = true;
+      this.toastr.error('Favor, escolher uma matéria.', 'Erro');
+    }
 
-    let dados: IPergunta = {
-      corpo: this.form.value.enunciado,
-      banca: { id: this.form.value.idBanca, nome: '', sigla: '' },
-      materia: { id: this.form.value.idMateria, nome: '' },
-      respostas: respostas
-    }; */
+    if (this.questao.banca.id == null) {
+      teveErro = true;
+      this.toastr.error('Favor, escolher uma banca.', 'Erro');
+    }
 
-    /* this.serviceQuestoes.salvar(this.questao).subscribe({
+    if (
+      this.questao.corpo == null ||
+      this.questao.corpo.length > 3500 ||
+      this.questao.corpo.length < 4
+    ) {
+      teveErro = true;
+      this.toastr.error(
+        'O enunciado da questão deve conter de 4 a 3500 caracteres.',
+        'Erro'
+      );
+    }
+
+    if (
+      this.questao.respostas[0].descricao == null ||
+      this.questao.respostas[0].descricao.length > 2500 ||
+      this.questao.respostas[0].descricao.length < 1
+    ) {
+      teveErro = true;
+      this.toastr.error(
+        'Todas questões devem conter de 1 a 2500 caracteres.',
+        'Erro'
+      );
+    }
+
+    if (
+      this.questao.respostas[1].descricao == null ||
+      this.questao.respostas[1].descricao.length > 2500 ||
+      this.questao.respostas[1].descricao.length < 1
+    ) {
+      teveErro = true;
+      this.toastr.error(
+        'Todas questões devem conter de 1 a 2500 caracteres.',
+        'Erro'
+      );
+    }
+
+    if (
+      this.questao.respostas[2].descricao == null ||
+      this.questao.respostas[2].descricao.length > 2500 ||
+      this.questao.respostas[2].descricao.length < 1
+    ) {
+      teveErro = true;
+      this.toastr.error(
+        'Todas questões devem conter de 1 a 2500 caracteres.',
+        'Erro'
+      );
+    }
+
+    if (
+      this.questao.respostas[3].descricao == null ||
+      this.questao.respostas[3].descricao.length > 2500 ||
+      this.questao.respostas[3].descricao.length < 1
+    ) {
+      teveErro = true;
+      this.toastr.error(
+        'Todas questões devem conter de 1 a 2500 caracteres.',
+        'Erro'
+      );
+    }
+
+    if (
+      this.questao.respostas[4].descricao == null ||
+      this.questao.respostas[4].descricao.length > 2500 ||
+      this.questao.respostas[4].descricao.length < 1
+    ) {
+      teveErro = true;
+      this.toastr.error(
+        'Todas questões devem conter de 1 a 2500 caracteres.',
+        'Erro'
+      );
+    }
+
+    if (teveErro) {
+      return;
+    }
+
+    if (this.form.value.respostaCorreta != '') {
+      this.questao.respostas[0].correta = false;
+      this.questao.respostas[1].correta = false;
+      this.questao.respostas[2].correta = false;
+      this.questao.respostas[3].correta = false;
+      this.questao.respostas[4].correta = false;
+      this.questao.respostas[this.form.value.respostaCorreta].correta = true;
+    }
+
+    this.serviceQuestoes.editar(this.questao).subscribe({
       next: () => {
-        this.toastr.success('Pergunta adicionada com sucesso!', 'Sucesso');
-        window.history.back();
+        this.toastr.success('Questão editada com sucesso!', 'Sucesso');
+        this.router.navigateByUrl('app/questoes');
       },
-      error: () => {
-        this.toastr.error('Não foi possível adicionar a pergunta.', 'Erro');
-        window.history.back();
+      error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro');
+        this.router.navigateByUrl('app/questoes');
       },
-    }); */
+    });
   }
-
 }

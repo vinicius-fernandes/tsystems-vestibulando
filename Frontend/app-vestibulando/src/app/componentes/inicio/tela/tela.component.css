@@ -19,6 +19,10 @@ a {
     text-decoration: inherit;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 .banner {
     height: 80vh;
     width: 100vw;
@@ -69,7 +73,7 @@ nav a:nth-child(2) img {
     color: white;
 }
 
-.btn {
+button {
     padding: .8rem 1.2rem;
     border-radius: 15px;
     background-color: #30BCED;

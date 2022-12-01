@@ -1,33 +1,28 @@
 <div class="container">
-  <p class="mb-5">
-    <a routerLink=".."
-      ><button mat-raised-button color="warn">
-        <i class="fa fa-ban" aria-hidden="true"></i> Cancelar
-      </button></a
-    >
-  </p>
 
   <h1 class="text-center">Adicionar Questão</h1>
   <h2 class="text">Pergunta</h2>
 
   <form [formGroup]="form" (ngSubmit)="salvarQuestao()">
     <div class="text-center">
-      <mat-form-field appearance="fill" color="primary" class="comp-75">
-        <mat-label>ID da matéria</mat-label>
-        <input
-          formControlName="idMateria"
-          matInput
-          placeholder="Informe o ID da matéria"
-        />
+      <mat-form-field appearance="fill" class="w-50 pr-2">
+        <mat-label>Matérias</mat-label>
+        <mat-select name="materia" formControlName="idMateria" matInput>
+          <mat-option *ngFor="let mat of materiasData" [value]="mat.id">
+            {{ mat.nome }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-      <mat-form-field appearance="fill" color="primary" class="comp-75">
-        <mat-label>ID da banca</mat-label>
-        <input
-          formControlName="idBanca"
-          matInput
-          placeholder="Informe o ID da banca"
-        />
+
+      <mat-form-field appearance="fill" class="w-50 pl-2">
+        <mat-label>Bancas</mat-label>
+        <mat-select name="banca" formControlName="idBanca" matInput>
+          <mat-option *ngFor="let banc of bancasData" [value]="banc.id">
+            {{ banc.sigla }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <mat-label>Enunciado</mat-label>
         <textarea
@@ -39,11 +34,9 @@
     </div>
 
     <div class="row">
-      <div class="col-9">
+      <div class="col-12">
         <h2 class="text">Respostas</h2>
-      </div>
-      <div class="col-3">
-        <h2 class="text">Selecionar a correta</h2>
+        <p>Escreva a alternativa e selecione a correta no menu à direita</p>
       </div>
     </div>
 
@@ -52,7 +45,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Primeira resposta</mat-label>
           <textarea
-            placeholder="Informe a primeira resposta"
             formControlName="resposta1"
             matInput
           ></textarea>
@@ -78,7 +70,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Segunda resposta</mat-label>
           <textarea
-            placeholder="Informe a primeira resposta"
             formControlName="resposta2"
             matInput
           ></textarea>
@@ -104,7 +95,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Terceira resposta</mat-label>
           <textarea
-            placeholder="Informe a primeira resposta"
             formControlName="resposta3"
             matInput
           ></textarea>
@@ -130,7 +120,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Quarta resposta</mat-label>
           <textarea
-            placeholder="Informe a primeira resposta"
             formControlName="resposta4"
             matInput
           ></textarea>
@@ -156,7 +145,6 @@
         <mat-form-field class="example-full-width">
           <mat-label>Quinta resposta</mat-label>
           <textarea
-            placeholder="Informe a primeira resposta"
             formControlName="resposta5"
             matInput
           ></textarea>
@@ -178,8 +166,13 @@
     </div>
 
     <div class="text-start">
-      <button mat-raised-button color="primary" >
-        Salvar
+      <a routerLink=".."
+        ><button mat-raised-button color="warn">
+          <i class="fa fa-ban" aria-hidden="true"></i> Cancelar
+        </button></a
+      >
+      <button mat-raised-button color="primary">
+        <i class="fas fa-save"></i> Salvar
       </button>
     </div>
   </form>

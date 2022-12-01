@@ -1,36 +1,32 @@
 <div class="container w-50">
-    <form class="form-floating">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="nome" placeholder="Password" [(ngModel)]="usuario.nome"
-                name="nome">
-            <label for="nome">Nome Completo</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" placeholder="name@example.com"
-                [(ngModel)]="usuario.email" name="email">
-            <label for="email">E-mail</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="senha" placeholder="Password" [(ngModel)]="usuario.senha"
-                name="senha">
-            <label for="senha">Password</label>
-        </div>
-        <div class="form-floating mb-3">
-            <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
-                [(ngModel)]="usuario.tipo" name="tipo">
-                <option selected value="">Selecione o privilégio do usuário</option>
-                <option value="CLIENTE">Cliente</option>
-                <option value="ADMINISTRADOR">Administrador</option>
-            </select>
-            <label for="floatingSelect">Regra Usuario</label>
-        </div>
-        
-        <p class="mb-5">
-            <button mat-raised-button color="primary" class="mr-3" (click)="alterar()">Salvar</button>   
-            <a routerLink="../..">                 
-                <button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
-            </a>
-        </p>
+    <div class="text-center principal">
 
-    </form>
+        <h1>Editar Usuário</h1>
+
+        <mat-form-field appearance="fill" color="primary" class="comp-75">
+                <input [(ngModel)]="usuario.nome" matInput placeholder="Informe o nome completo" required>
+            <mat-label>Nome Completo</mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="primary" class="comp-75">
+            <input [(ngModel)]="usuario.email" matInput placeholder="Informe o e-mail" required>
+            <mat-label>E-mail</mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="primary" class="comp-75">
+            <input type="password" [(ngModel)]="usuario.senha" matInput placeholder="Informe a senha">
+            <mat-label>Password</mat-label>
+        </mat-form-field>
+
+    <mat-form-field appearance="fill" color="primary" class="comp-75">
+        <mat-label>Regra Usuário</mat-label>
+            <mat-select [(ngModel)]="usuario.roles![0].id" id="roles" matNativeControl required>
+                <mat-option *ngFor="let r of roles" [value]="r.id" (selected)="usuario.roles![0].id == r.id">{{r.authority.replace("ROLE_","")}}</mat-option>
+            </mat-select>
+    </mat-form-field>
+
+    <div class="botoes">
+        <a routerLink="../.."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a>
+        <button mat-raised-button color="primary" (click)="alterar()"><i class="fas fa-save"></i> Salvar</button>
+    </div>
 </div>

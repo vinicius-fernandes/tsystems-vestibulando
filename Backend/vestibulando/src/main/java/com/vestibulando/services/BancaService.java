@@ -1,6 +1,7 @@
 package com.vestibulando.services;
 
 import com.vestibulando.entities.Banca;
+import com.vestibulando.excepitions.ArgumentoDuplicado;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IBancaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,14 @@ public class BancaService {
 
     @Transactional
     public Banca salvar(Banca banca) {
+        Banca b = bancaRepository.findBySigla(banca.getSigla());
+        if(b != null && b.getId() != banca.getId()){
+            throw new ArgumentoDuplicado("Sigla cadastrada em banca existente");
+        }
+        b = bancaRepository.findByNome(banca.getNome());
+        if(b != null && b.getId() != banca.getId()){
+            throw new ArgumentoDuplicado("Nome cadastrado em banca existente");
+        }
         return bancaRepository.save(banca);
     }
 

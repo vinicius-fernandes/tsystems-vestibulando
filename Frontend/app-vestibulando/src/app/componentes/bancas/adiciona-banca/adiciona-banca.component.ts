@@ -43,8 +43,8 @@ export class AdicionaBancaComponent {
         this.toastr.success('Banca adicionada com sucesso!', 'Sucesso')
         this.router.navigate(['app', 'modbancas'])
       },
-      error: () => {
-        this.toastr.error('Não foi possível adicionar a banca.', 'Erro')
+      error: (erro) => {
+        this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modbancas'])
       }
     })

@@ -15,9 +15,7 @@ public class RespostasUsuarios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Instant created_at;
-
     private Instant updated_at;
-
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name = "Respostas_has_resultadosSimulados",
@@ -39,6 +37,7 @@ public class RespostasUsuarios {
     @PrePersist
     public void prePersist(){
         this.created_at = Instant.now();
+
 
     }
 

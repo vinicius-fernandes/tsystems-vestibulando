@@ -1,10 +1,11 @@
 <div class="imgbg">
     <header>
-            <a routerLink="">
-                <div class="fa-2x" >
-                    <i class="fas fa-arrow-left" style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
-                </div>
-            </a>
+        <a routerLink="">
+            <div class="fa-2x">
+                <i class="fas fa-arrow-left"
+                    style="color: #30BCED; margin-top: 5px; margin-right: 5px; margin-left: 15px;"></i>
+            </div>
+        </a>
     </header>
     <div>
         <div class="text-center">
@@ -13,12 +14,30 @@
     </div>
 
     <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
+
         <h3 class="tituloLogin"><b>Login</b></h3>
-        <input type="text" class="myinput" placeholder="E-mail" required>
-        <input type="password" class="myinput" placeholder="Senha" required>
-        <div class="botoesLogin">
-            <a href="/app/home"><button class="btn botaoazul">Login</button></a>
-            <button class="btn botaoazul" (click)="redirecionarCadastro()">Cadastro</button>
+
+        <div>
+            <form [formGroup]="form">
+                <div class="input">
+                    <mat-form-field appearance="fill" color="primary" >
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="username" type="text" placeholder="E-mail" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="primary">
+                        <mat-label>Senha</mat-label>
+                        <input matInput [type]="mostrarSenha ? 'text' : 'password'" formControlName="password" placeholder="Senha" required>
+                        <button type="button" mat-icon-button matSuffix (click)="mudaVisibilidadeSenha()"><mat-icon>{{mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon></button>
+                    </mat-form-field>
+                </div>
+                <div class="botoesLogin">
+                    <button mat-flat-button color="primary" (click)="login()">Login</button>
+                    <button mat-flat-button color="primary" (click)="redirecionarCadastro()">Cadastro</button>
+                </div>
+            </form>
+            <div class="text-center">
+              <a routerLink="/esqueceuSenha">Esqueci minha senha</a>
+            </div>
         </div>
     </div>
 </div>

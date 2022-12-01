@@ -15,9 +15,11 @@
 
 
 <label >Selecione uma resposta</label>
+<p *ngIf="finalizado && estaCorreta()" class="text-success"> Parabéns você acertou essa pergunta</p>
+<p *ngIf="finalizado && !estaCorreta()" class="text-danger"> A resposta marcada para a pergunta está incorreta</p>
 <mat-radio-group [(ngModel)]="resposta" class="radio-group">
   <mat-radio-button  *ngFor="let resposta of pergunta.respostas" [value]="resposta.id" (change)="changeResposta($event)">
-    {{resposta.descricao}}
+    <p>{{resposta.descricao}}</p>
   </mat-radio-button>
 
 </mat-radio-group>

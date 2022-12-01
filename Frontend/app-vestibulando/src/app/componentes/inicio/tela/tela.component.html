@@ -13,7 +13,7 @@
     </header>
     <section>
         <h1><strong>Conheça a Vestibulando e aumente seu desempenho no vestibular</strong></h1>
-        <a routerLink="/login"><button class="btn" value=""><b>Passar no Vestibular</b></button></a>
+        <a routerLink="/login"><button mat-flat-button color="primary">Passar no Vestibular</button></a>
     </section>
 </div>
 
@@ -22,7 +22,7 @@
     <div class="colunas">
         <ul>
             <li>Sobre nós</li>
-            <li><a href="#">Sobre a empresa</a> </li>
+            <li><a (click)="redirecionarSobreNos()">Sobre a empresa</a> </li>
             <li><a href="#">Política de Privacidade</a> </li>
             <li><a href="#">Termo de Uso</a> </li>
         </ul>

@@ -26,10 +26,6 @@ public class SimuladoController {
     @Autowired
     ISimuladoRepository simuladoRepository;
 
-
-
-
-
     @GetMapping
     public ResponseEntity<List<Simulado>> consultar() {
         return ResponseEntity.ok().body(simuladoService.consultar());

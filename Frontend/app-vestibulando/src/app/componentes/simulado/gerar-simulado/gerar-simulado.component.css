@@ -2,8 +2,30 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+button.float-end {
+  height: auto;
+  padding: 5px;
+}
+
+mat-form-field {
+  margin: 25px auto;
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+}
+
+mat-error {
+  text-align: center;
+}
+
 @media screen and (max-width: 768px) {
   .materias {
     grid-template-columns: 1fr;
   }
+  .checkbox-list {
+    width: 100%;
+  }
 }
+
+
+

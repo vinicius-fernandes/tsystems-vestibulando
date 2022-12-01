@@ -1,6 +1,8 @@
 export default interface IPage
 {
   content:Object[],
-  totalElements:number
+  totalElements:number,
+  number:number,
+  size:number
 
 }
