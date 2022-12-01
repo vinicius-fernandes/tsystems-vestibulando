@@ -55,6 +55,7 @@ import { Error404Component } from './componentes/error404/error404.component';
 import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-senha.component';
 import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { MatIconModule } from '@angular/material/icon';
     RankingGeralComponent,
     Error404Component,
     EsqueceuSenhaComponent,
-    AlterarSenhaComponent
+    AlterarSenhaComponent,
+    SobreNosComponent
   ],
   imports: [
     BrowserModule,
