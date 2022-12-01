@@ -150,6 +150,9 @@ footer .colunas ul li a:hover{
     color: white;;
 }
 
+a:hover {
+  cursor: pointer;
+}
 
 @media (max-width: 850px) {
     section {

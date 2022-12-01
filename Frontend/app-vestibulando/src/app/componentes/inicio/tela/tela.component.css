@@ -19,6 +19,10 @@ a {
     text-decoration: inherit;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 .banner {
     height: 80vh;
     width: 100vw;
