@@ -100,7 +100,7 @@ export class ListaSimuladosComponent implements OnInit {
 
 
   confirmarRealizacaoSimulado(id: number) {
-    const dialogData = new ConfirmDialogModel("Confirmar realização", "Tem certeza de que deseja realizar este simulado? Os resultado anteriores serão sobreescritos")
+    const dialogData = new ConfirmDialogModel("Confirmar realização", "Tem certeza de que deseja realizar este simulado? Os resultado anteriores serão sobrescritos")
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
       data: dialogData

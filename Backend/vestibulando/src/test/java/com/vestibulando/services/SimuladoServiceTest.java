@@ -1,9 +1,7 @@
 package com.vestibulando.services;
 
-import com.vestibulando.entities.Banca;
-import com.vestibulando.entities.Materia;
-import com.vestibulando.entities.Pergunta;
-import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.*;
+import com.vestibulando.repositories.IRespostasUsuariosRepository;
 import com.vestibulando.repositories.ISimuladoRepository;
 import com.vestibulando.services.SimuladoService;
 import org.junit.jupiter.api.Assertions;
@@ -46,6 +44,10 @@ public class SimuladoServiceTest {
     @Mock
     Page<Simulado> simuladoPage;
 
+    @Mock
+    private IRespostasUsuariosRepository respUserRepo;
+
+
     Pageable pageRequest = PageRequest.of(0, 1);
 
     @BeforeEach
@@ -76,6 +78,8 @@ public class SimuladoServiceTest {
         Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
 
         Mockito.when(repository.findAll(pageRequest)).thenReturn(simuladoPage);
+        Mockito.when(respUserRepo.findBySimulado(Mockito.any(Simulado.class))).thenReturn(new ArrayList<RespostasUsuarios>());
+
     }
 
     @Test
@@ -113,7 +117,7 @@ public class SimuladoServiceTest {
     @Test
     public void retornaStringAoDeletarSimuladoExistente() {
         Assertions.assertDoesNotThrow(() -> service.deletarSimulado(idExistente));
-        Assertions.assertEquals("Simulado deletado com sucesso.", service.deletarSimulado(idExistente));
+        Assertions.assertEquals("Simulado excluido com sucesso!", service.deletarSimulado(idExistente));
         Mockito.verify(repository, Mockito.times(2)).deleteById(idExistente);
     }
 

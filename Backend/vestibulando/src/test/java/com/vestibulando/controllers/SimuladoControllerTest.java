@@ -1,10 +1,8 @@
 package com.vestibulando.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vestibulando.entities.Banca;
-import com.vestibulando.entities.Materia;
-import com.vestibulando.entities.Pergunta;
-import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.*;
+import com.vestibulando.repositories.IRespostasUsuariosRepository;
 import com.vestibulando.repositories.ISimuladoRepository;
 import com.vestibulando.services.SimuladoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,12 +16,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -32,6 +32,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@WithMockUser(username = "admin", roles = { "ADMIN"})
+
 public class SimuladoControllerTest {
 
     @Autowired
@@ -40,6 +42,8 @@ public class SimuladoControllerTest {
     @MockBean
     private SimuladoService service;
 
+    @MockBean
+    private IRespostasUsuariosRepository  respUserRepo;
     Simulado simulado;
     Simulado simuladoAdicionaPergunta;
     Simulado simuladoAdicionaBanca;
@@ -159,6 +163,8 @@ public class SimuladoControllerTest {
         Mockito.when(service.alterarBanca(Mockito.eq(idExistente), Mockito.eq(banca.getId()), Mockito.any())).thenReturn(simulado);
 
         Mockito.when(service.alterarMateria(Mockito.eq(idExistente), Mockito.eq(materia.getId()), Mockito.any())).thenReturn(simulado);
+
+        Mockito.when(respUserRepo.findBySimulado(Mockito.any(Simulado.class))).thenReturn(new ArrayList<RespostasUsuarios>());
     }
 
     @Test

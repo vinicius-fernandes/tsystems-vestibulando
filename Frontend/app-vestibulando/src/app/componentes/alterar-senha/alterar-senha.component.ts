@@ -17,7 +17,7 @@ export class AlterarSenhaComponent {
   constructor(private _router: Router, private formBuilder: FormBuilder,private toastr: ToastrService,private resetPassService:ResetPasswordService,private route: ActivatedRoute){
     this.form = this.formBuilder.group(
       {
-        password: new FormControl("", [ Validators.required])
+        senha: new FormControl("", [ Validators.required, Validators.minLength(6), Validators.maxLength(20)])
       }
     )
   }
@@ -29,7 +29,7 @@ export class AlterarSenhaComponent {
 
     console.log(token)
 
-    let dados : IAlterarSenha = {novaSenha:this.form.controls['password'].value,token:token}
+    let dados : IAlterarSenha = {novaSenha:this.form.controls['senha'].value,token:token}
 
     this.resetPassService.alterarSenha(dados).subscribe({
       next:(msg)=>{
