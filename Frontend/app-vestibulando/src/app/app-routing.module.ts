@@ -31,36 +31,37 @@ import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral
 import { Error404Component } from './componentes/error404/error404.component';
 import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-senha.component';
 import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha.component';
+import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
 const routes: Routes = [
   {
     path: 'app',
     component: LayoutPadraoComponent,
-    canActivateChild:[ValidUserGuard],
+    canActivateChild: [ValidUserGuard],
     children: [
-      { path: 'simulados/gerarSimulado',component:GerarSimuladoComponent },
-      { path: 'simulados/realizar/:id',component:RealizarSimuladoComponent },
-      { path: 'simulados/resultado/:idSimulado/:idUser',component:ResultadoSimuladoComponent },
+      { path: 'simulados/gerarSimulado', component: GerarSimuladoComponent },
+      { path: 'simulados/realizar/:id', component: RealizarSimuladoComponent },
+      { path: 'simulados/resultado/:idSimulado/:idUser', component: ResultadoSimuladoComponent },
       { path: 'simulados', component: ListaSimuladosComponent },
-      { path: 'simulados/rankingSimulado/:id', component:RankingSimuladoComponent },
-      { path: 'modbancas', component: GerenciaBancasComponent, canActivate:[AdmGuard] },
-      { path: 'modbancas/addbanca', component: AdicionaBancaComponent, canActivate:[AdmGuard] },
-      { path: 'modbancas/editbanca/:id', component: EditaBancaComponent, canActivate:[AdmGuard]},
-      { path: 'modmaterias', component: GerenciaMateriasComponent , canActivate:[AdmGuard]},
-      { path: 'modmaterias/addmateria', component: AdicionaMateriaComponent, canActivate:[AdmGuard]},
-      { path: 'modmaterias/editmateria/:id', component: EditaMateriaComponent, canActivate:[AdmGuard]},
-      { path: 'questoes', component: GerenciaQuestoesComponent , canActivate:[AdmGuard]},
-      { path: 'questoes/adiciona', component: AdicionaQuestoesComponent , canActivate:[AdmGuard]},
-      { path: 'questoes/edita/:id', component: EditaQuestoesComponent, canActivate:[AdmGuard] },
+      { path: 'simulados/rankingSimulado/:id', component: RankingSimuladoComponent },
+      { path: 'modbancas', component: GerenciaBancasComponent, canActivate: [AdmGuard] },
+      { path: 'modbancas/addbanca', component: AdicionaBancaComponent, canActivate: [AdmGuard] },
+      { path: 'modbancas/editbanca/:id', component: EditaBancaComponent, canActivate: [AdmGuard] },
+      { path: 'modmaterias', component: GerenciaMateriasComponent, canActivate: [AdmGuard] },
+      { path: 'modmaterias/addmateria', component: AdicionaMateriaComponent, canActivate: [AdmGuard] },
+      { path: 'modmaterias/editmateria/:id', component: EditaMateriaComponent, canActivate: [AdmGuard] },
+      { path: 'questoes', component: GerenciaQuestoesComponent, canActivate: [AdmGuard] },
+      { path: 'questoes/adiciona', component: AdicionaQuestoesComponent, canActivate: [AdmGuard] },
+      { path: 'questoes/edita/:id', component: EditaQuestoesComponent, canActivate: [AdmGuard] },
       { path: 'gerarSimulado', component: GerarSimuladoComponent },
       { path: 'rankingSimulado/:id', component: RankingSimuladoComponent },
-      { path: 'usuarios', component: UsuariosComponent , canActivate:[AdmGuard]},
-      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent , canActivate:[AdmGuard]},
-      { path: 'usuarios/adduser', component: AddusuarioComponent, canActivate:[AdmGuard] },
+      { path: 'usuarios', component: UsuariosComponent, canActivate: [AdmGuard] },
+      { path: 'usuarios/edita/:idusuario', component: EditaUsuarioComponent, canActivate: [AdmGuard] },
+      { path: 'usuarios/adduser', component: AddusuarioComponent, canActivate: [AdmGuard] },
       { path: 'home', component: HomeComponent },
-      {path:'info/:mensagem',component:InfoComponent},
-      {path:'ranking',component:RankingGeralComponent},
+      { path: 'info/:mensagem', component: InfoComponent },
+      { path: 'ranking', component: RankingGeralComponent },
       { path: '', component: HomeComponent },
-      {path:'**',component:Error404Component}
+      { path: '**', component: Error404Component }
     ],
   },
   { path: '', component: TelaComponent },
@@ -68,8 +69,8 @@ const routes: Routes = [
   { path: 'esqueceuSenha', component: EsqueceuSenhaComponent },
   { path: 'cadastro', component: CadastroComponent },
   { path: 'alterarSenha/:token', component: AlterarSenhaComponent },
-
-  {path:'**',component:Error404Component}
+  { path: 'sobreNos', component: SobreNosComponent },
+  { path: '**', component: Error404Component }
 
 ];
 
@@ -77,4 +78,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
