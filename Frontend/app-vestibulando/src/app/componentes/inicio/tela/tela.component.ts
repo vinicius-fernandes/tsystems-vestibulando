@@ -17,4 +17,9 @@ export class TelaComponent implements OnInit {
       this._router.navigate(['app','home'])
     }
   }
+
+  redirecionarSobreNos() {
+    this._router.navigate(['sobreNos']);
+    window.scrollTo(0, 0);
+  }
 }
