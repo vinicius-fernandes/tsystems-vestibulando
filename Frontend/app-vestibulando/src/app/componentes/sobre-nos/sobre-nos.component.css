@@ -19,10 +19,6 @@ a {
     text-decoration: inherit;
 }
 
-a:hover {
-  cursor: pointer;
-}
-
 .banner {
     height: 80vh;
     width: 100vw;
@@ -67,10 +63,11 @@ nav a:nth-child(2) img {
     color: rgb(var(--branco));
 }
 
-.banner section h1 {
+.banner section h1,h2 {
     max-width: 90vw;
     font-size: clamp(16px, 4vw, 30px);
     color: white;
+    margin-bottom: 10px;
 }
 
 button {
@@ -153,6 +150,9 @@ footer .colunas ul li a:hover{
     color: white;;
 }
 
+a:hover {
+  cursor: pointer;
+}
 
 @media (max-width: 850px) {
     section {

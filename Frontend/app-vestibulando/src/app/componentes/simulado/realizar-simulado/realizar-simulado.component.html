@@ -1,7 +1,7 @@
 <div class="container" *ngIf="simulado.perguntas.length > 0">
   <div class="row">
     <div class="text-center" *ngIf="finalizado">
-      <h1>Parabéns você acertou {{perguntasCorretas.length}} {{perguntasCorretas.length==1?' pergunta':' perguntas'}}!</h1>
+      <h1>Você acertou {{perguntasCorretas.length}} {{perguntasCorretas.length==1?' pergunta':' perguntas'}}.</h1>
     </div>
     <div class="col-md-9 col-12">
       <div *ngFor="let pergunta of simulado.perguntas; let i = index">
@@ -34,7 +34,7 @@
           Próxima pergunta
         </button>
         <ng-template #finalizarBotao>
-          <button mat-raised-button color="primary" class="m1" (click)="confirmarSalvar()">
+          <button mat-raised-button color="primary" class="m1" (click)="confirmarSalvar()" *ngIf="!finalizado">
             Finalizar simulado
           </button>
         </ng-template>
