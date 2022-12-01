@@ -1539,6 +1539,7 @@ INSERT INTO usuario(email, senha, nome) VALUES ('brena@email.com', '$2a$10$eACCY
 INSERT INTO usuario(email, senha, nome) VALUES ('rafa@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Rafa da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('gustavo@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Gustavo da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('teshi@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Teshi da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('rafa_grassi@hotmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Rafael Grassi');
 
 INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,1);
 INSERT INTO respostas_usuarios (simulado_id,usuario_id) values (1,2);

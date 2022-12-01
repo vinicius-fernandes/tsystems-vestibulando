@@ -55,6 +55,41 @@ public class PerguntasController {
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpo(corpo,page));
     }
 
+    @GetMapping("/pesquisar/{corpo}/{idBanca}/{idMateria}")
+    public ResponseEntity<Page<Pergunta>> consultarComFiltro(@PathVariable(value = "corpo", required = false) String corpo,
+                                                             @PathVariable(value = "idBanca", required = false) long idBanca,
+                                                             @PathVariable(value = "idMateria", required = false) long idMateria,
+                                                             Pageable page) {
+        if (corpo != null && idBanca != 0 && idMateria != 0) {
+            //todos
+            return ResponseEntity.status(HttpStatus.OK).body(perguntaService.consultarComFiltro(corpo, idBanca, idMateria, page));
+        } else {
+            if (corpo == null) {
+                if (idBanca == 0) {
+                    //materia
+                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByMateria(idMateria, page));
+                } else if (idMateria == 0) {
+                    //banca
+                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByBanca(idBanca, page));
+                } else {
+                    //banca e materia
+                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.consultarComFiltro(corpo, idBanca, idMateria, page)); //FALTA
+                }
+            } else if (idBanca == 0) {
+                if (idMateria == 0) {
+                    //corpo
+                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpo(corpo, page));
+                } else {
+                    //corpo e materia
+                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.consultarComFiltro(corpo, idBanca, idMateria, page)); //FALTA
+                }
+            } else {
+                //corpo e banca
+                return ResponseEntity.status(HttpStatus.OK).body(perguntaService.consultarComFiltro(corpo, idBanca, idMateria, page)); //FALTA
+            }
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Pergunta> criar(@Valid @RequestBody Pergunta pergunta){
         return ResponseEntity.status(HttpStatus.CREATED).body(perguntaService.salvar(pergunta));

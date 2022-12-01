@@ -91,7 +91,6 @@ export class GerenciaQuestoesComponent {
       },
       error: (erro) => {
         this.toastr.error(erro.error.message, 'Erro');
-        window.location.reload();
       }
     });
   }
