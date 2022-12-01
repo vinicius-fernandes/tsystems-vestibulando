@@ -1,7 +1,10 @@
 package com.vestibulando.services;
 
 import com.vestibulando.entities.*;
+import com.vestibulando.repositories.IBancaRepository;
+import com.vestibulando.repositories.IMateriaRepository;
 import com.vestibulando.repositories.IPerguntaRepository;
+import com.vestibulando.repositories.IRespostaRepository;
 import com.vestibulando.services.PerguntaService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +30,16 @@ public class PerguntaServiceTests {
     PerguntaService perguntaService;
 
     @Mock
+    IRespostaRepository respostaRepository;
+    @Mock
     IPerguntaRepository perguntaRepository;
+
+    @Mock
+    MateriaService materiaService;
+
+    @Mock
+    BancaService bancaService;
+
 
     @Mock
     Page<Pergunta> pagePergunta;
@@ -43,6 +55,12 @@ public class PerguntaServiceTests {
     public void beforeEach(){
         pergunta= new Pergunta();
         pergunta.setId(idExistente);
+        Materia mat = new Materia();
+        Banca ban = new Banca();
+        mat.setId(1L);
+        ban.setId(1L);
+        pergunta.setMateria(mat);
+        pergunta.setBanca(ban);
         Mockito.when(perguntaRepository.save(Mockito.any(Pergunta.class))).thenReturn(pergunta);
 
         Mockito.when(perguntaRepository.findAll()).thenReturn(new ArrayList<Pergunta>());
@@ -52,7 +70,7 @@ public class PerguntaServiceTests {
         Mockito.when(perguntaRepository.findBySimulado(Mockito.any(Simulado.class),eq(page))).thenReturn(pagePergunta);
         Mockito.when(perguntaRepository.findByMateria(Mockito.any(Materia.class),eq(page))).thenReturn(pagePergunta);
         Mockito.when(perguntaRepository.findByBanca(Mockito.any(Banca.class),eq(page))).thenReturn(pagePergunta);
-        Mockito.when(perguntaRepository.findByCorpoIgnoreCaseContaining(Mockito.any(String.class),eq(page))).thenReturn(pagePergunta);
+      Mockito.when(perguntaRepository.findByCorpoIgnoreCaseContaining(Mockito.any(String.class),eq(page))).thenReturn(pagePergunta);
 
         Mockito.doNothing().when(perguntaRepository).delete(Mockito.any(Pergunta.class));
 

@@ -5,6 +5,7 @@ import com.vestibulando.dtos.RankingSimuladoDTO;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.RespostasUsuarios;
 import com.vestibulando.entities.Simulado;
+import com.vestibulando.entities.Usuario;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
 import com.vestibulando.services.RespostasUsuariosService;
 import org.junit.jupiter.api.Assertions;
@@ -48,6 +49,12 @@ public class RespostasUsuariosServiceTests {
     public void beforeEach(){
         respostasUsuarios = new RespostasUsuarios();
         respostasUsuarios.setId(idExistente);
+        Simulado sim = new Simulado();
+        sim.setId(1L);
+        Usuario usr = new Usuario();
+        usr.setId(1L);
+        respostasUsuarios.setSimulado(sim);
+        respostasUsuarios.setUsuario(usr);
         java.util.List<RespostasUsuarios> respostasUsuariosList = new ArrayList<>();
 
         Mockito.when(respostasUsuariosRepository.save(Mockito.any(RespostasUsuarios.class))).thenReturn(respostasUsuarios);
