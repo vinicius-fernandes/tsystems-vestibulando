@@ -36,6 +36,11 @@ header a div:hover {
   width: 80%;
 }
 
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
 form {
   display:grid;
   grid-template-columns: 1fr;

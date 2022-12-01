@@ -45,6 +45,11 @@ tbody>tr:nth-child(3) {
   background-color: #CD7F32;
 }
 
+ng-template {
+  width: 100%;
+  text-align: center;
+}
+
 
 
 
