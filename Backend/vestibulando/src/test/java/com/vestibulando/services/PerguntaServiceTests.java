@@ -96,7 +96,7 @@ public class PerguntaServiceTests {
     }
     @Test
     public void ListarSemPaginacaoRetornaLista(){
-        Assertions.assertNotNull(perguntaService.listar());
+        Assertions.assertNotNull(perguntaService.listarTodas());
     }
 
     @Test

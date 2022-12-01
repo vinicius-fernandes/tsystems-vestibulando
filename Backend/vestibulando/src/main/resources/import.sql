@@ -1532,7 +1532,7 @@ INSERT INTO usuario(email, senha, nome) VALUES ('ana@email.com', '$2a$10$eACCYoN
 INSERT INTO usuario(email, senha, nome) VALUES ('duda@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Duda da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('carla@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Carla da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('lucas@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Lucas da Silva');
-INSERT INTO usuario(email, senha, nome) VALUES ('vinicius@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Vinicius da Silva');
+INSERT INTO usuario(email, senha, nome) VALUES ('viniciusnandes@hotmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Vinicius da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('thomas@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Thomas da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('isa@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Isa da Silva');
 INSERT INTO usuario(email, senha, nome) VALUES ('brena@email.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', 'Brena da Silva');

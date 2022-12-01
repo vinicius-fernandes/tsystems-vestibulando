@@ -40,11 +40,6 @@ flex-direction: column;
 justify-content: center;
 }
 
-input::-ms-reveal,
-input::-ms-clear {
-  display: none;
-}
-
 .container div {
   width: 100%;
 }
@@ -96,8 +91,4 @@ input::-ms-clear {
   .input {
     width: 90%;
   }
-}
-
-a{
-  color:#2691b8
 }

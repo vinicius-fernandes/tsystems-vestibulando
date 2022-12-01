@@ -13,6 +13,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog'
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -51,7 +52,10 @@ import { ValidUserGuard } from './authGuard/ValidUserGuard';
 import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
 import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
 import { Error404Component } from './componentes/error404/error404.component';
+import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-senha.component';
+import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
 
 
 @NgModule({
@@ -87,7 +91,10 @@ import { MatIconModule } from '@angular/material/icon';
     InfoComponent,
     ConfirmDialogComponent,
     RankingGeralComponent,
-    Error404Component
+    Error404Component,
+    EsqueceuSenhaComponent,
+    AlterarSenhaComponent,
+    SobreNosComponent
   ],
   imports: [
     BrowserModule,
@@ -113,6 +120,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     MatIconModule
     ],
   providers: [
@@ -129,6 +137,6 @@ import { MatIconModule } from '@angular/material/icon';
   ValidUserGuard
 ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmDialogComponent] 
+  entryComponents: [ConfirmDialogComponent]
 })
 export class AppModule { }
