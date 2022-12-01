@@ -52,7 +52,7 @@ public class PerguntaServiceTests {
         Mockito.when(perguntaRepository.findBySimulado(Mockito.any(Simulado.class),eq(page))).thenReturn(pagePergunta);
         Mockito.when(perguntaRepository.findByMateria(Mockito.any(Materia.class),eq(page))).thenReturn(pagePergunta);
         Mockito.when(perguntaRepository.findByBanca(Mockito.any(Banca.class),eq(page))).thenReturn(pagePergunta);
-//        Mockito.when(perguntaRepository.findByCorpoContaining(Mockito.any(String.class),eq(page))).thenReturn(pagePergunta);
+        Mockito.when(perguntaRepository.findByCorpoIgnoreCaseContaining(Mockito.any(String.class),eq(page))).thenReturn(pagePergunta);
 
         Mockito.doNothing().when(perguntaRepository).delete(Mockito.any(Pergunta.class));
 

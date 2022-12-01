@@ -51,17 +51,25 @@ public class PerguntaService {
     public Page<Pergunta> findByMateria(long id,Pageable page){
         Materia materia = new Materia();
         materia.setId(id);
-        return perguntaRepository.findByMateria(materia ,page);
+        return perguntaRepository.findByMateria(materia, page);
     }
 
     public Page<Pergunta> findBySimulado(long simuladoId, Pageable page ){
         Simulado simulado = new Simulado();
         simulado.setId(simuladoId);
-        return perguntaRepository.findBySimulado(simulado,page);
+        return perguntaRepository.findBySimulado(simulado, page);
     }
 
     public Page<Pergunta> findByCorpo(String corpo, Pageable page){
-        return perguntaRepository.findByCorpoIgnoreCaseContaining(corpo,page);
+        return perguntaRepository.findByCorpoIgnoreCaseContaining(corpo, page);
+    }
+
+    public Page<Pergunta> consultarComFiltro(String corpo, long idBanca, long idMateria, Pageable page){
+        Banca banca = new Banca();
+        banca.setId(idBanca);
+        Materia materia = new Materia();
+        materia.setId(idMateria);
+        return perguntaRepository.findByCorpoIgnoreCaseContainingAndBancaAndMateria(corpo, banca, materia, page);
     }
 
     @Transactional
