@@ -21,10 +21,7 @@ public class VestibulandoApplication {
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext applicationContext=SpringApplication.run(VestibulandoApplication.class, args);
-
-
-		System.out.println(applicationContext.getEnvironment().getProperty("spring.mail.password"));
-		System.out.println(applicationContext.getEnvironment().getProperty("spring.mail.port"));
+		
 	}
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
