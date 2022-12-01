@@ -29,6 +29,8 @@ import { HomeComponent } from './componentes/home/home.component';
 import { InfoComponent } from './componentes/info/info.component';
 import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral.component';
 import { Error404Component } from './componentes/error404/error404.component';
+import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-senha.component';
+import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha.component';
 const routes: Routes = [
   {
     path: 'app',
@@ -63,7 +65,10 @@ const routes: Routes = [
   },
   { path: '', component: TelaComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'esqueceuSenha', component: EsqueceuSenhaComponent },
   { path: 'cadastro', component: CadastroComponent },
+  { path: 'alterarSenha/:token', component: AlterarSenhaComponent },
+
   {path:'**',component:Error404Component}
 
 ];
