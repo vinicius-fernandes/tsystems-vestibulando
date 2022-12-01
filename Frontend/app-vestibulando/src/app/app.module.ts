@@ -54,6 +54,7 @@ import { RankingGeralComponent } from './componentes/ranking-geral/ranking-geral
 import { Error404Component } from './componentes/error404/error404.component';
 import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-senha.component';
 import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -117,7 +118,8 @@ import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
     ],
   providers: [
     { provide: "BASE_API_URL", useValue: environment.apiUrl },

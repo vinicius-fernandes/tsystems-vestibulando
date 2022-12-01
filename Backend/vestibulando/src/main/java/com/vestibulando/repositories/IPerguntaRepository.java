@@ -45,8 +45,7 @@ public interface IPerguntaRepository extends JpaRepository<Pergunta, Long> {
     Page<Pergunta> findBySimulado(Simulado simulado, Pageable page);
     Page<Pergunta> findByBanca(Banca banca, Pageable page);
     Page<Pergunta> findByMateria(Materia materia, Pageable page);
-
-    Page<Pergunta> findByCorpoContaining(String corpo,Pageable page);
+    Page<Pergunta> findByCorpoIgnoreCaseContaining(String corpo,Pageable page);
 
 
 }

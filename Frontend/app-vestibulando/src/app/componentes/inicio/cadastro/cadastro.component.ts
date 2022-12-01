@@ -13,6 +13,8 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit{
+  
+  public mostrarSenha: boolean = false
 
   form: FormGroup
   constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder: FormBuilder, private service: UsuarioService, private router: Router, private toastr: ToastrService,private jwtTokenService:JwtTokenService) {
@@ -42,4 +44,7 @@ export class CadastroComponent implements OnInit{
     })
   }
 
+  mudaVisibilidadeSenha() {
+    this.mostrarSenha = !this.mostrarSenha
+  }
 }

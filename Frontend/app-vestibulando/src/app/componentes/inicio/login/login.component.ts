@@ -13,6 +13,8 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
 export class LoginComponent implements OnInit{
   form: FormGroup
 
+  public mostrarSenha: boolean = false
+
   constructor(private _router: Router, private formBuilder: FormBuilder,private authService:AuthService,private jwtTokenService:JwtTokenService,private toastr: ToastrService) {
     this.form = this.formBuilder.group(
       {
@@ -61,5 +63,9 @@ export class LoginComponent implements OnInit{
 
   redirecionarGerarSimulado() {
     this._router.navigate(['app'])
+  }
+
+  mudaVisibilidadeSenha() {
+    this.mostrarSenha = !this.mostrarSenha
   }
 }
