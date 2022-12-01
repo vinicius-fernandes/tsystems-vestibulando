@@ -34,7 +34,7 @@
           Próxima pergunta
         </button>
         <ng-template #finalizarBotao>
-          <button mat-raised-button color="primary" class="m1" (click)="confirmarSalvar()">
+          <button mat-raised-button color="primary" class="m1" (click)="confirmarSalvar()" *ngIf="!finalizado">
             Finalizar simulado
           </button>
         </ng-template>
