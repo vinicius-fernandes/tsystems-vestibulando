@@ -7,12 +7,14 @@ import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IUsuarioRepository;
 import com.vestibulando.services.UsuarioService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
@@ -30,13 +32,20 @@ public class UsuarioServiceTests {
     @Mock
     IUsuarioRepository usuarioRepository;
 
+    @Mock
+    BCryptPasswordEncoder passwordEncoder;
     private long idExistente = 1L;
     private long idInexistente = 2L;
 
+    @BeforeEach
+    public void beforeEach() {
+
+        Mockito.when(passwordEncoder.encode(Mockito.any(String.class))).thenReturn("senha");
+    }
     @Test
     public void SalvarUsuarioRetornaUsuarioDTO(){
         Usuario usuario = new Usuario();
-        usuario.setNome("Maria");
+        usuario.setNome("Maria Silva");
         usuario.setEmail("maria@email.com");
         usuario.setSenha("123456");
         usuario.setId(1l);
