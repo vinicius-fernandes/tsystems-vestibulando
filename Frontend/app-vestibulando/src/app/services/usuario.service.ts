@@ -29,6 +29,10 @@ export class UsuarioService {
   cadastrar(usuario: IUsuarioDTO | IUsuario) {
     return this.http.post<IUsuario>(`${this.baseUrl}/usuarios`, usuario)
   }
+
+  pesquisar(idRole: number, texto: String){
+    return this.http.get<[IUsuario]>(`${this.baseUrl}/usuarios/${idRole}/${texto}`)
+  }
 }
 
 

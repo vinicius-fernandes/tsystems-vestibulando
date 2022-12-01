@@ -26,6 +26,12 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> consultarById(@PathVariable("idUsuário") Long idusuario) {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.consultarById(idusuario));
     }
+    @GetMapping("/{idRole}/{texto}")
+    public ResponseEntity<List<UsuarioDTO>> consultarById(@PathVariable("idRole") Long idRole,
+                                                    @PathVariable("texto") String nome) {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.pesquisar(idRole, nome));
+    }
+
     @PostMapping
     public ResponseEntity<UsuarioDTO> salvarUsuario(@Valid @RequestBody Usuario usuario) {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario));

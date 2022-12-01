@@ -22,6 +22,8 @@ public class UsuarioService implements UserDetailsService {
     IUsuarioRepository usuarioRepository;
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    RoleService roleService;
     public List<UsuarioDTO> consultarUsuario(String email) {
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
         if (email == null) {
@@ -95,5 +97,14 @@ public class UsuarioService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Usuário não encontrado"));
+    }
+
+    public List<UsuarioDTO> pesquisar(Long idRole, String texto) {
+        List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
+        if (idRole != 0 && !texto.isEmpty()){
+            Role role = roleService.obter(idRole);
+            usuarioDTOS = usuarioRepository.findByRolesAndNome(role, texto);
+        }
+        return usuarioDTOS;
     }
 }
