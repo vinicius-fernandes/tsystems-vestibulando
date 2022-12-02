@@ -8,14 +8,14 @@ import IRankingSimulado from "../interfaces/IRankingSimulado";
 })
 export class RankingSimuladoService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl:String) { }
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: String) { }
 
-  consultar(id:number){
+  consultar(id: number) {
     return this.http.get<[IRankingSimulado]>(`${this.baseUrl}/respostasUsuarios/rankingSimulado/${id}`);
   }
 
-  rankingGeral(params:any){
-    return this.http.get<IPage>(`${this.baseUrl}/respostasUsuarios/rankingGlobal`,{params})
+  rankingGeral(params: any) {
+    return this.http.get<IPage>(`${this.baseUrl}/respostasUsuarios/rankingGlobal`, { params })
   }
 
 }

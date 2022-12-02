@@ -4,22 +4,15 @@
   <div class="pesquisar">
     <mat-form-field class="example-full-width">
       <mat-label>Pesquisar</mat-label>
-      <input
-        matInput
-        placeholder="Ex. Sed commodo porttitor"
-        matInput
-        [(ngModel)]="corpo"
-      />
+      <input matInput placeholder="Ex. Sed commodo porttitor" matInput [(ngModel)]="corpo" />
       <button mat-button matSuffix (click)="obterPerguntasPorCorpo({ page: '0', size: '25' })">
         <i class="fa fa-search"></i>
       </button>
     </mat-form-field>
 
-    <a routerLink="adiciona"
-      ><button mat-raised-button color="primary">
+    <a routerLink="adiciona"><button mat-raised-button color="primary">
         <i class="fa fa-plus"></i> Adicionar Questão
-      </button></a
-    >
+      </button></a>
   </div>
   <div class="table-responsive">
     <table class="table table-striped">
@@ -43,29 +36,19 @@
           <td>{{ perg.banca.sigla }}</td>
           <td>
             <div class="botoes">
-              <button
-                style="margin-right: 5px"
-                mat-raised-button
-                color="warn"
-                (click)="confirmarExclusao(perg.id || 0)"
-              >
+              <button style="margin-right: 5px" mat-raised-button color="warn"
+                (click)="confirmarExclusao(perg.id || 0)">
                 <i class="fa fa-trash"></i>
               </button>
-              <a [routerLink]="['edita', perg.id]"
-                ><button mat-raised-button color="primary">
-                  <i class="fas fa-edit"></i></button
-              ></a>
+              <a [routerLink]="['edita', perg.id]"><button mat-raised-button color="primary">
+                  <i class="fas fa-edit"></i></button></a>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    [pageSize]="25"
-    [length]="totalElements"
-    (page)="nextPage($event)"
-  >
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="25" [length]="totalElements"
+    (page)="nextPage($event)">
   </mat-paginator>
 </div>

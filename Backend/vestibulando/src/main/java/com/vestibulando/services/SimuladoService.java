@@ -3,7 +3,6 @@ package com.vestibulando.services;
 import com.vestibulando.dtos.GerarSimuladoDTO;
 import com.vestibulando.dtos.SimuladoDTO;
 import com.vestibulando.entities.*;
-import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
 import com.vestibulando.repositories.ISimuladoRepository;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.*;
@@ -22,10 +20,8 @@ public class SimuladoService {
 
     @Autowired
     ISimuladoRepository simuladoRepository;
-
     @Autowired
     IPerguntaRepository perguntaRepository;
-
     @Autowired
     IRespostasUsuariosRepository respostasUsuariosRepository;
 
@@ -39,7 +35,6 @@ public class SimuladoService {
 
     public Simulado consultar(Long id) {
         Optional<Simulado> s = simuladoRepository.findById(id);
-
         return s.orElseThrow(()-> new EntityNotFoundException("Simulado não encontrado."));
     }
 
@@ -51,19 +46,17 @@ public class SimuladoService {
     public SimuladoDTO gerarSimulado(GerarSimuladoDTO gerarSimuladoDTO){
         List<Long> idMaterias = gerarSimuladoDTO.getMaterias().stream().map(Materia::getId).toList();
         List<Long> idBancas = gerarSimuladoDTO.getBancas().stream().map(Banca::getId).toList();
-
         List<Pergunta> perguntasParaOSimulado = perguntaRepository.getPerguntasParaGerarSimulado(idMaterias,idBancas, PageRequest.of(0,gerarSimuladoDTO.getNumeroPerguntas()));
-
         if(perguntasParaOSimulado.size()<gerarSimuladoDTO.getNumeroPerguntas()){
             throw new RuntimeException("Não foi possível obter o número de perguntas desejados para o simulado com base nos filtros inseridos");
         }
 
         Simulado simulado = new Simulado();
-
         simulado.setMaterias(gerarSimuladoDTO.getMaterias());
         simulado.setBancas(gerarSimuladoDTO.getBancas());
         simulado.setPerguntas(new HashSet<>(perguntasParaOSimulado));
         Simulado simuladoGerado = this.salvar(simulado);
+
         return new SimuladoDTO(simuladoGerado);
     }
 
@@ -79,21 +72,17 @@ public class SimuladoService {
         return consultar(idSimulado).getMaterias();
     }
 
-
-
     @Transactional
     public Simulado salvar(Simulado s) {
         return simuladoRepository.save(s);
     }
 
-
     @Transactional
     public String deletarSimulado(Long id) {
         consultar(id);
+
         Simulado simulado = this.consultar(id);
-
         List<RespostasUsuarios> respostasUsuarios = this.respostasUsuariosRepository.findBySimulado(simulado);
-
         List<Long> idsRespostasUsuarios = respostasUsuarios.stream().map(RespostasUsuarios::getId).toList();
 
         try {
@@ -145,7 +134,6 @@ public class SimuladoService {
                 return simuladoRepository.save(s);
             }
         }
-
         throw new EntityNotFoundException("Pergunta não encontrada ou não cadastrada no simulado.");
     }
 
@@ -158,7 +146,6 @@ public class SimuladoService {
                 return simuladoRepository.save(s);
             }
         }
-
         throw new EntityNotFoundException("Banca não encontrada ou não cadastrada no simulado.");
     }
 
@@ -171,7 +158,6 @@ public class SimuladoService {
                 return simuladoRepository.save(s);
             }
         }
-
         throw new EntityNotFoundException("Matéria não encontrada ou não cadastrada no simulado.");
     }
 

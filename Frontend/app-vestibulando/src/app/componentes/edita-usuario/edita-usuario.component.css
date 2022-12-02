@@ -6,7 +6,7 @@ h1 {
   width: 75%;
 }
 
-.botoes{
+.botoes {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@ h1 {
   gap: 20px;
 }
 
-button{
+button {
   height: 48px;
   width: 113px;
 }
@@ -39,6 +39,6 @@ input[matInput] {
   width: clamp(200px, 90%, 300px);
 }
 
-.form-floating mb-3{
+.form-floating mb-3 {
   text-align: center;
 }

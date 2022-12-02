@@ -1,7 +1,3 @@
-.cardwrap{
-  display: flex;
-  flex-wrap: wrap;
-} 
 .container>div {
   display: grid;
   margin: auto;
@@ -10,12 +6,12 @@
   align-items: center;
   gap: 20px;
 }
-
 .card {
   width: 180px;
   margin: auto;
 }
 
-.mt-2{
-    text-align: center;
+.mt-2 {
+  text-align: center;
 }
+

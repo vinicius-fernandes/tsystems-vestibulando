@@ -1,33 +1,26 @@
 <main>
-
-  <h1 >Ranking geral</h1>
-
-
-  <div  *ngIf="ranking && ranking.length > 0; else rankingVazio">
+  <h1>Ranking geral</h1>
+  <div *ngIf="ranking && ranking.length > 0; else rankingVazio">
     <table class="table ">
       <thead>
         <tr>
           <th>Posição</th>
           <th>Usuário</th>
           <th>Pontos</th>
-
         </tr>
       </thead>
-
       <tbody>
         <tr *ngFor="let r of ranking; index as i" [ngClass]="{'bg-white':page>0}">
           <td>{{page==0?i+1:page*10+i+1}} º</td>
           <td> {{r.emailUsuario}} </td>
           <td>{{ r.acertosUsuario}}</td>
-
         </tr>
       </tbody>
     </table>
-    <mat-paginator  [pageSize]="10" [length]="totalElements" (page)="nextPage($event)" class="paginator"> </mat-paginator>
-
+    <mat-paginator [pageSize]="10" [length]="totalElements" (page)="nextPage($event)" class="paginator">
+    </mat-paginator>
   </div>
-<ng-template #rankingVazio>
-  <p>Ooops parece que ninguém respondeu um simulado ainda</p>
-</ng-template>
-
+  <ng-template #rankingVazio>
+    <p>Ooops parece que ninguém respondeu um simulado ainda</p>
+  </ng-template>
 </main>

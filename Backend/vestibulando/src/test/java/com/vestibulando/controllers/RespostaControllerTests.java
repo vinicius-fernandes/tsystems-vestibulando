@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -26,10 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RespostaControllerTests {
     @Autowired
     private MockMvc mockMvc;
-
     @MockBean
     private RespostaService respostaService;
-
     @Autowired
     ObjectMapper objectMapper;
 
@@ -110,6 +107,4 @@ public class RespostaControllerTests {
                         .accept(MediaType.APPLICATION_JSON));
         result.andExpect(status().isOk());
     }
-
-
 }

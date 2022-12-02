@@ -6,10 +6,10 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit{
+export class SidebarComponent implements OnInit {
 
-  isAdmin:boolean=false;
-  constructor(private jwtService:JwtTokenService){ }
+  isAdmin: boolean = false;
+  constructor(private jwtService: JwtTokenService) { }
   ngOnInit(): void {
     this.isAdmin = this.jwtService.checkAuthoritie('ROLE_ADMIN')
   }

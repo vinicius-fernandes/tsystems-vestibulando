@@ -35,10 +35,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser(username = "admin", roles = { "ADMIN"})
 
 public class SimuladoControllerTest {
-
     @Autowired
     MockMvc mockMvc;
-
     @MockBean
     private SimuladoService service;
 
@@ -48,24 +46,17 @@ public class SimuladoControllerTest {
     Simulado simuladoAdicionaPergunta;
     Simulado simuladoAdicionaBanca;
     Simulado simuladoAdicionaMateria;
-
     Materia materia;
     Materia materia2;
-
     Pergunta pergunta;
     Pergunta pergunta2;
-
     Banca banca;
     Banca banca2;
 
     long idExistente = 1L;
-
     long idExistente2 = 2L;
-
     long idExistente3 = 3L;
-
     long idExistente4 = 4L;
-
     long idInexistente = -1L;
 
     @Autowired

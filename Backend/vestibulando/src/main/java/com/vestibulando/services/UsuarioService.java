@@ -3,10 +3,8 @@ package com.vestibulando.services;
 import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Role;
 import com.vestibulando.entities.Usuario;
-
 import com.vestibulando.excepitions.ArgumentoDuplicado;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
-import com.vestibulando.excepitions.NomeIncompleto;
 import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.*;
 
@@ -26,6 +22,8 @@ public class UsuarioService implements UserDetailsService {
     IUsuarioRepository usuarioRepository;
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    RoleService roleService;
     public List<UsuarioDTO> consultarUsuario(String email) {
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
         if (email == null) {
@@ -77,7 +75,6 @@ public class UsuarioService implements UserDetailsService {
         if (usuario.getSenha() != null && !usuario.getSenha().isBlank() && !usuario.getSenha().equals(user.getSenha())) {
             user.setSenha(usuario.getSenha());
         }
-
         return this.salvarUsuario(user);
     }
 
@@ -100,5 +97,14 @@ public class UsuarioService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Usuário não encontrado"));
+    }
+
+    public List<UsuarioDTO> pesquisar(Long idRole, String texto) {
+        List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
+        if (idRole != 0 && !texto.isEmpty()){
+            Role role = roleService.obter(idRole);
+            usuarioDTOS = usuarioRepository.findByRolesAndNome(role, texto);
+        }
+        return usuarioDTOS;
     }
 }

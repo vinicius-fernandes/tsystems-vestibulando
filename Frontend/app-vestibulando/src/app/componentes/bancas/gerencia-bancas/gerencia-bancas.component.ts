@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import IBanca from 'src/app/interfaces/IBanca';
 import { BancasService } from 'src/app/services/bancas.service';
 import { ToastrService } from 'ngx-toastr';
@@ -24,7 +24,7 @@ export class GerenciaBancasComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if ( dialogResult == true ) {
+      if (dialogResult == true) {
         this.excluirBanca(id)
       }
     })
@@ -44,13 +44,14 @@ export class GerenciaBancasComponent implements OnInit {
   }
 
   excluirBanca(id: number) {
-
-    this.serviceBanca.excluir(id).subscribe({next: () => {
-      this.bancas = this.bancas.filter(b => b.id != id)
-      this.toastr.success('Banca excluída com sucesso!', 'Sucesso')
-    }, error: (erro) => {
-      this.toastr.error('Esta banca não pode ser excluída, há objetos ligados a ela.', 'Erro')
-      console.log(erro)
-    }})
+    this.serviceBanca.excluir(id).subscribe({
+      next: () => {
+        this.bancas = this.bancas.filter(b => b.id != id)
+        this.toastr.success('Banca excluída com sucesso!', 'Sucesso')
+      }, error: (erro) => {
+        this.toastr.error('Esta banca não pode ser excluída, há objetos ligados a ela.', 'Erro')
+        console.log(erro)
+      }
+    })
   }
 }
