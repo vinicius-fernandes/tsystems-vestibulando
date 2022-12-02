@@ -21,7 +21,7 @@ public class VestibulandoApplication {
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext applicationContext=SpringApplication.run(VestibulandoApplication.class, args);
-		
+
 	}
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
