@@ -43,7 +43,7 @@ public interface IRespostasUsuariosRepository extends JpaRepository<RespostasUsu
             " from RespostasUsuarios ru " +
             " join Usuario u on u.id = ru.usuario.id"+
             " join ru.respostas respsU  "+
-            " group by u.id order by nota desc "
+            " group by u.id order by nota desc, u.email "
     )
     Page<RankingSimuladoDTO> getRankingGlobal(Pageable pageable);
 
