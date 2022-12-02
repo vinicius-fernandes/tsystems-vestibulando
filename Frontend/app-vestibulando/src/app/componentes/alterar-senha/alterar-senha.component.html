@@ -32,10 +32,7 @@
               <p *ngIf="form.controls['senha'].hasError('maxlength')">A senha deve possuir no máximo 20 caracteres</p>
               <div class="botoesLogin">
                   <button  mat-flat-button color="primary" (click)="alterarSenha()" [disabled]="form.invalid">Confirmar</button>
-
               </div>
-
-
           </form>
       </div>
   </div>

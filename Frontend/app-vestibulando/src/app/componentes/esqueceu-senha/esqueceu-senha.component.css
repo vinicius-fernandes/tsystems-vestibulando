@@ -45,11 +45,13 @@ justify-content: center;
 }
 
 .botoesLogin{
-    margin-bottom: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    color: #30BCED;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.botoesLogin button {
+  width: 50%;
 }
 
 .marg-10 {
