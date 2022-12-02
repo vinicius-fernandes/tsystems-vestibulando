@@ -14,5 +14,5 @@ import java.util.Optional;
 public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("Select u from Usuario u where u.email = ?1")
     Optional<Usuario> findByEmail(String email);
-    List<UsuarioDTO> findByRolesAndNome(Role role, String texto);
+    List<UsuarioDTO> findByRolesAndNomeContainsIgnoreCase(Role role, String texto);
 }

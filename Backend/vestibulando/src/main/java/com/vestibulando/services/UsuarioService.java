@@ -103,7 +103,7 @@ public class UsuarioService implements UserDetailsService {
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
         if (idRole != 0 && !texto.isEmpty()){
             Role role = roleService.obter(idRole);
-            usuarioDTOS = usuarioRepository.findByRolesAndNome(role, texto);
+            usuarioDTOS = usuarioRepository.findByRolesAndNomeContainsIgnoreCase(role, texto);
         }
         return usuarioDTOS;
     }
