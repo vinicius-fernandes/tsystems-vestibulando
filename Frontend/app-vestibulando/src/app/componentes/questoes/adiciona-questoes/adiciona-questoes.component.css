@@ -20,6 +20,11 @@ mat-form-field {
   height: 90px;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+}
+
 .botoes{
   text-align: center;
   display: flex;
