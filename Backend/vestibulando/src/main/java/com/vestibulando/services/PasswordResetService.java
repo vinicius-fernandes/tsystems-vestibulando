@@ -61,6 +61,10 @@ public class PasswordResetService {
             throw new IllegalArgumentException("A senha deve ser preenchida");
         }
 
+        if(!alterarSenhaDTO.senhasCoincidem()){
+            throw new IllegalArgumentException("As senhas devem coincidir !");
+        }
+
         Usuario user = passResToken.getUser();
 
         user.setSenha(passwordEncoder.encode(alterarSenhaDTO.getNovaSenha()));
