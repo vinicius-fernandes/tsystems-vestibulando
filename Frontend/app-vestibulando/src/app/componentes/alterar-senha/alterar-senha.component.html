@@ -22,14 +22,28 @@
               <div class="input">
                 <mat-form-field appearance="fill" color="primary">
                   <mat-label>Nova Senha</mat-label>
-                  <input matInput type="password" formControlName="senha" placeholder="Senha" required>
+                  <input matInput [type]="mostrarSenha ? 'text' : 'password'" formControlName="senha" placeholder="Senha" required>
+                  <button type="button" mat-icon-button matSuffix (click)="mudaVisibilidadeSenha()"><mat-icon>{{mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon></button>
+
+              </mat-form-field>
+</div>
+<p class="text-danger" *ngIf="form.controls['senha'].hasError('required')">O preenchimento da senha é obrigatório</p>
+<p class="text-danger" *ngIf="form.controls['senha'].hasError('minlength')">A senha deve possuir no mínimo 6 caracteres</p>
+<p class="text-danger" *ngIf="form.controls['senha'].hasError('maxlength')">A senha deve possuir no máximo 20 caracteres</p>
+              <div class="input">
+                <mat-form-field appearance="fill" color="primary">
+                  <mat-label>Confirmar senha</mat-label>
+                  <input matInput [type]="mostrarConfirmaSenha ? 'text' : 'password'" formControlName="confirmarSenha" placeholder="Confirmar senha" required>
+                  <button type="button" mat-icon-button matSuffix (click)="mudaVisibilidadeConfirmaSenha()"><mat-icon>{{mostrarConfirmaSenha ? 'visibility_off' : 'visibility' }}</mat-icon></button>
 
               </mat-form-field>
 
               </div>
-              <p *ngIf="form.controls['senha'].hasError('required')">O preenchimento da senha é obrigatório</p>
-              <p *ngIf="form.controls['senha'].hasError('minlength')">A senha deve possuir no mínimo 6 caracteres</p>
-              <p *ngIf="form.controls['senha'].hasError('maxlength')">A senha deve possuir no máximo 20 caracteres</p>
+
+              <p class="text-danger" *ngIf="form.controls['confirmarSenha'].hasError('required')">O preenchimento da confirmação de senha é obrigatório</p>
+              <p class="text-danger" *ngIf="form.controls['confirmarSenha'].hasError('minlength')">A confirmação de senha deve possuir no mínimo 6 caracteres</p>
+              <p class="text-danger" *ngIf="form.controls['confirmarSenha'].hasError('maxlength')">A confirmação senha deve possuir no máximo 20 caracteres</p>
+              <p class="text-danger" *ngIf="form.controls['confirmarSenha'].hasError('senhas_diferentes')">As senhas devem coincidir </p>
               <div class="botoesLogin">
                   <button  mat-flat-button color="primary" (click)="alterarSenha()" [disabled]="form.invalid">Confirmar</button>
               </div>
