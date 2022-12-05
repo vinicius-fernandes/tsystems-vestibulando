@@ -2,15 +2,39 @@
   <h1 class="text-center">Gerenciar Questões</h1>
 
   <div class="pesquisar">
-    <mat-form-field class="example-full-width">
+
+    <mat-form-field appearance="fill" class="w-25">
+      <mat-label>Matérias</mat-label>
+      <mat-select matInput [(ngModel)]="idMateria">
+        <mat-option value="0" (click)="obterFiltrado({ page: '0', size: '25' })">
+          Todas as bancas
+        </mat-option>
+        <mat-option *ngFor="let mat of materiasData" [value]="mat.id" (click)="obterFiltrado({ page: '0', size: '25' })">
+          {{ mat.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-25">
+      <mat-label>Bancas</mat-label>
+      <mat-select matInput [(ngModel)]="idBanca">
+        <mat-option value="0" (click)="obterFiltrado({ page: '0', size: '25' })">
+          Todas as materias
+        </mat-option>
+        <mat-option *ngFor="let banc of bancasData" [value]="banc.id" (click)="obterFiltrado({ page: '0', size: '25' })">
+          {{ banc.sigla }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-25">
       <mat-label>Pesquisar</mat-label>
       <input
         matInput
         placeholder="Ex. Sed commodo porttitor"
-        matInput
         [(ngModel)]="corpo"
       />
-      <button mat-button matSuffix (click)="obterPerguntasPorCorpo({ page: '0', size: '25' })">
+      <button mat-button matSuffix (click)="obterFiltrado({ page: '0', size: '25' })">
         <i class="fa fa-search"></i>
       </button>
     </mat-form-field>
@@ -20,6 +44,7 @@
         <i class="fa fa-plus"></i> Adicionar Questão
       </button></a
     >
+
   </div>
   <div class="table-responsive">
     <table class="table table-striped">
