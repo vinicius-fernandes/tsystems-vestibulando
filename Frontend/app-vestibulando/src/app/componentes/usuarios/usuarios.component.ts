@@ -76,7 +76,13 @@ export class UsuariosComponent implements OnInit {
   }
 
   pesquisar(){
-    this.service.pesquisar(this.idRole, this.pesquisa).subscribe(
+    this.service.pesquisar(this.idRole, this.pesquisa).subscribe({
+      next: (data) => {this.users = data
+      },
+      error: () => {
+        this.toastr.error("Não foi possível consultar os usuários.", "Erro")
+      }
+    }
 
     )
 

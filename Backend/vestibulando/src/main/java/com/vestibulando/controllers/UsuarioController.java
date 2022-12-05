@@ -26,10 +26,10 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> consultarById(@PathVariable("idUsuário") Long idusuario) {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.consultarById(idusuario));
     }
-    @GetMapping("/{idRole}/{texto}")
-    public ResponseEntity<List<UsuarioDTO>> consultarById(@PathVariable("idRole") Long idRole,
-                                                    @PathVariable("texto") String nome) {
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.pesquisar(idRole, nome));
+    @GetMapping("pesquisar/{idRole}")
+    public ResponseEntity<List<UsuarioDTO>> pesquisarUsuario(@PathVariable(value = "idRole") Long idRole,
+                                                    @RequestParam(value = "pesquisa", required = false) String pesquisa) {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.pesquisar(idRole, pesquisa));
     }
 
     @PostMapping

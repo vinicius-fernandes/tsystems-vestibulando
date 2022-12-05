@@ -99,14 +99,30 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Usuário não encontrado"));
     }
 
-    public List<UsuarioDTO> pesquisar(Long idRole, String texto) {
+    public List<UsuarioDTO> pesquisar(Long idRole, String pesquisa) {
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
-        Role role = new Role();
-        if (idRole != 0){
-            role = roleService.obter(idRole);
+        if(idRole != 0) {
+            Role role = roleService.obter(idRole);
+            if(pesquisa != null) {
+                if (pesquisa.indexOf("@") == -1) {
+                    usuarioDTOS = usuarioRepository.findByRolesAndNomeContainsIgnoreCase(role, pesquisa);
+                } else {
+                    usuarioDTOS = usuarioRepository.findByRolesAndEmailContainsIgnoreCase(role, pesquisa);
+                }
+                return usuarioDTOS;
+            }
+            usuarioDTOS = usuarioRepository.findByRoles(role);
+            return usuarioDTOS;
         }
-        
-        usuarioDTOS = usuarioRepository.findByRolesAndNomeContainsIgnoreCase(role, texto);
-        return usuarioDTOS;
+        if (pesquisa != null) {
+            if (pesquisa.indexOf("@") == -1) {
+                usuarioDTOS = usuarioRepository.findByNomeContainsIgnoreCase(pesquisa);
+                return usuarioDTOS;
+            } else {
+                usuarioDTOS = usuarioRepository.findByEmailContainsIgnoreCase(pesquisa);
+                return usuarioDTOS;
+            }
+        }
+        return this.consultarUsuario(null);
     }
 }

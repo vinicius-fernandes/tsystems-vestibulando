@@ -14,7 +14,11 @@ import java.util.Optional;
 public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("Select u from Usuario u where u.email = ?1")
     Optional<Usuario> findByEmail(String email);
-    List<UsuarioDTO> findByRolesAndNomeContainsIgnoreCase(Role role, String texto);
+    List<UsuarioDTO> findByRolesAndNomeContainsIgnoreCase(Role role, String pesquisa);
+    List<UsuarioDTO> findByRolesAndEmailContainsIgnoreCase(Role role, String pesquisa);
     List<UsuarioDTO> findByRoles(Role role);
 
+    List<UsuarioDTO> findByNomeContainsIgnoreCase(String pesquisa);
+
+    List<UsuarioDTO> findByEmailContainsIgnoreCase(String pesquisa);
 }

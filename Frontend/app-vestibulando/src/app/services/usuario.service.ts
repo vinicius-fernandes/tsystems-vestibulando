@@ -31,7 +31,7 @@ export class UsuarioService {
   }
 
   pesquisar(idRole: number, texto: String){
-    return this.http.get<[IUsuario]>(`${this.baseUrl}/usuarios/${idRole}/${texto}`)
+    return this.http.get<[IUsuario]>(`${this.baseUrl}/usuarios/pesquisar/${idRole}?pesquisa=${texto}`)
   }
 }
 
