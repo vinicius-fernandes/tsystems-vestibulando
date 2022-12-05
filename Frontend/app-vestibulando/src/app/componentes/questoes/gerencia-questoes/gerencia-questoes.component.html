@@ -10,9 +10,27 @@
         matInput
         [(ngModel)]="corpo"
       />
-      <button mat-button matSuffix (click)="obterPerguntasPorCorpo({ page: '0', size: '25' })">
+      <button mat-button matSuffix (click)="obterFiltrado({ page: '0', size: '25' })">
         <i class="fa fa-search"></i>
       </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-50 pr-2">
+      <mat-label>Matérias</mat-label>
+      <mat-select name="materia" matInput [(ngModel)]="idBanca">
+        <mat-option *ngFor="let mat of materiasData" [value]="mat.id">
+          {{ mat.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-50 pl-2">
+      <mat-label>Bancas</mat-label>
+      <mat-select name="banca" matInput [(ngModel)]="idMateria">
+        <mat-option *ngFor="let banc of bancasData" [value]="banc.id" matInput [(ngModel)]="idMateria">
+          {{ banc.sigla }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <a routerLink="adiciona"

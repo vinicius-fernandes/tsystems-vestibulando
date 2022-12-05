@@ -8,6 +8,10 @@ import { ThisReceiver } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog/confirm-dialog.component';
+import IMateria from 'src/app/interfaces/IMateria';
+import IBanca from 'src/app/interfaces/IBanca';
+import { BancasService } from 'src/app/services/bancas.service';
+import { MateriasService } from 'src/app/services/materias.service';
 
 @Component({
   selector: 'app-gerencia-questoes',
@@ -17,16 +21,45 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog
 export class GerenciaQuestoesComponent {
   constructor(
     private serviceQuestoes: QuestoesService,
+    private bancaService: BancasService,
+    private materiaService: MateriasService,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   pergunta: IPergunta[] = [];
   totalElements: number = 0;
   corpo: string = '';
+  idBanca: number = 0;
+  idMateria: number = 0;
+  materiasData: IMateria[] = [];
+  bancasData: IBanca[] = [];
 
   ngOnInit(): void {
     this.obterPerguntas({ page: '0', size: '25' });
+
+    this.bancaService.consultar().subscribe({
+      next: (bancas) => {
+        this.bancasData = bancas;
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error('Não foi possível consultar as bancas.', 'Erro');
+        this.router.navigate(['app', 'home']);
+      },
+    });
+
+    this.materiaService.consultar().subscribe({
+      next: (materias) => {
+        this.materiasData = materias;
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error('Não foi possível consultar as matérias.', 'Erro');
+        this.router.navigate(['app', 'home']);
+      },
+    });
   }
 
   obterPerguntas(params: any) {
@@ -47,6 +80,18 @@ export class GerenciaQuestoesComponent {
       return
     }
     this.serviceQuestoes.consultaPorCorpo(this.corpo, params).subscribe({
+      next: (data) => {
+        this.pergunta = <IPergunta[]>data.content;
+        this.totalElements = data['totalElements'];
+      },
+      error: () => {
+        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
+      },
+    });
+  }
+
+  obterFiltrado(params: any) {
+    this.serviceQuestoes.consultaFiltrada(this.corpo, this.idBanca, this.idMateria, params).subscribe({
       next: (data) => {
         this.pergunta = <IPergunta[]>data.content;
         this.totalElements = data['totalElements'];
