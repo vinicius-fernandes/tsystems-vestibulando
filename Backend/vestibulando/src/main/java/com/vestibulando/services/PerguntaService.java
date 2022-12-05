@@ -56,6 +56,26 @@ public class PerguntaService {
         return perguntaRepository.findByCorpoIgnoreCaseContaining(corpo, page);
     }
 
+    public Page<Pergunta> findByBancaAndMateria(long idBanca, long idMateria, Pageable page){
+        Banca banca = new Banca();
+        banca.setId(idBanca);
+        Materia materia = new Materia();
+        materia.setId(idMateria);
+        return perguntaRepository.findByBancaAndMateria(banca, materia, page);
+    }
+
+    public Page<Pergunta> findByCorpoAndMateria(String corpo, long idMateria, Pageable page){
+        Materia materia = new Materia();
+        materia.setId(idMateria);
+        return perguntaRepository.findByCorpoIgnoreCaseContainingAndMateria(corpo, materia, page);
+    }
+
+    public Page<Pergunta> findByCorpoAndBanca(String corpo, long idBanca, Pageable page){
+        Banca banca = new Banca();
+        banca.setId(idBanca);
+        return perguntaRepository.findByCorpoIgnoreCaseContainingAndBanca(corpo, banca, page);
+    }
+
     public Page<Pergunta> consultarComFiltro(String corpo, long idBanca, long idMateria, Pageable page){
         Banca banca = new Banca();
         banca.setId(idBanca);

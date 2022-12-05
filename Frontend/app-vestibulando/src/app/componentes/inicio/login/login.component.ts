@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit{
         }
       }
     });
-    
+
 
   }
   redirecionarCadastro() {
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit{
 
   redirecionarGerarSimulado() {
     this._router.navigate(['app']);
-    location. reload();
+    //location. reload();
   }
 
   mudaVisibilidadeSenha() {

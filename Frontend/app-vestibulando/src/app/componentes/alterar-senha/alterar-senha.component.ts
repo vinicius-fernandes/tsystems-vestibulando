@@ -1,6 +1,7 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { TransitionCheckState } from '@angular/material/checkbox';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IAlterarSenha from 'src/app/interfaces/IAlterarSenha';
@@ -13,13 +14,52 @@ import { ResetPasswordService } from 'src/app/services/reset-password.service';
 })
 export class AlterarSenhaComponent {
   form: FormGroup
-
+  public mostrarSenha: boolean = false
+  public mostrarConfirmaSenha: boolean=false
   constructor(private _router: Router, private formBuilder: FormBuilder,private toastr: ToastrService,private resetPassService:ResetPasswordService,private route: ActivatedRoute){
     this.form = this.formBuilder.group(
       {
-        senha: new FormControl("", [ Validators.required, Validators.minLength(6), Validators.maxLength(20)])
-      }
+        senha: new FormControl("", [ Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+        confirmarSenha: new FormControl("", [ Validators.required, Validators.minLength(6), Validators.maxLength(20),this.validaSenha()])
+      },
+
     )
+
+  }
+
+  mudaVisibilidadeSenha() {
+    this.mostrarSenha = !this.mostrarSenha
+  }
+  mudaVisibilidadeConfirmaSenha() {
+    this.mostrarConfirmaSenha = !this.mostrarConfirmaSenha
+  }
+  validaSenha() {
+    const validator: ValidatorFn = (control: AbstractControl) => {
+        if(!control.parent)
+          return null
+
+          const senha = control.parent.get('senha');
+          const confirmarSenha = control.parent.get('confirmarSenha');
+          console.log(senha)
+
+          if (!senha || !confirmarSenha){
+              return null;
+          }
+
+          if (confirmarSenha.value === ''){
+              return null;
+          }
+
+          if (senha.value === confirmarSenha.value){
+              return null;
+          }
+          console.log('diferentets')
+
+          return { 'senhas_diferentes': true };
+
+    };
+
+    return validator;
   }
 
   alterarSenha(){
@@ -29,7 +69,7 @@ export class AlterarSenhaComponent {
 
     console.log(token)
 
-    let dados : IAlterarSenha = {novaSenha:this.form.controls['senha'].value,token:token}
+    let dados : IAlterarSenha = {novaSenha:this.form.controls['senha'].value,token:token,confirmarNovaSenha:this.form.controls['confirmarSenha'].value}
 
     this.resetPassService.alterarSenha(dados).subscribe({
       next:(msg)=>{
@@ -49,3 +89,11 @@ export class AlterarSenhaComponent {
     })
   }
 }
+
+
+
+
+
+
+
+
