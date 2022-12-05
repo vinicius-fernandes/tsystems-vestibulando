@@ -16,19 +16,22 @@
   width: 100%;
 }
 
+mat-form-field {
+  height: 90px;
+}
+
 .botoes{
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 30px;
+  align-items: flex-start;
+  gap: 20px;
   justify-content: center;
 }
 
 button{
   height: 48px;
   width: 113px;
-  margin-right: 50px;
 }
 
 mat-label:not(.form-check-label):not(.custom-file-label) {
