@@ -74,22 +74,6 @@ export class GerenciaQuestoesComponent {
     });
   }
 
-  obterPerguntasPorCorpo(params: any) {
-    if (this.corpo == '') {
-      this.obterPerguntas(params);
-      return
-    }
-    this.serviceQuestoes.consultaPorCorpo(this.corpo, params).subscribe({
-      next: (data) => {
-        this.pergunta = <IPergunta[]>data.content;
-        this.totalElements = data['totalElements'];
-      },
-      error: () => {
-        this.toastr.error('Não foi possível obter as perguntas', 'Erro');
-      },
-    });
-  }
-
   obterFiltrado(params: any) {
     this.serviceQuestoes.consultaFiltrada(this.corpo, this.idBanca, this.idMateria, params).subscribe({
       next: (data) => {
@@ -107,11 +91,7 @@ export class GerenciaQuestoesComponent {
       page: event.pageIndex.toString(),
       size: event.pageSize.toString(),
     };
-    if (this.corpo == '') {
-      this.obterPerguntas(request);
-    } else {
-      this.obterPerguntasPorCorpo(request);
-    }
+    this.obterFiltrado(request);
   }
 
   confirmarExclusao(id: number) {
