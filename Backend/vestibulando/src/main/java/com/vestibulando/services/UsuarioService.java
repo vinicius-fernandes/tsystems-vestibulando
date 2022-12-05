@@ -101,10 +101,12 @@ public class UsuarioService implements UserDetailsService {
 
     public List<UsuarioDTO> pesquisar(Long idRole, String texto) {
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
-        if (idRole != 0 && !texto.isEmpty()){
-            Role role = roleService.obter(idRole);
-            usuarioDTOS = usuarioRepository.findByRolesAndNomeContainsIgnoreCase(role, texto);
+        Role role = new Role();
+        if (idRole != 0){
+            role = roleService.obter(idRole);
         }
+        
+        usuarioDTOS = usuarioRepository.findByRolesAndNomeContainsIgnoreCase(role, texto);
         return usuarioDTOS;
     }
 }

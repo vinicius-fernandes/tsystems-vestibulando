@@ -15,4 +15,6 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("Select u from Usuario u where u.email = ?1")
     Optional<Usuario> findByEmail(String email);
     List<UsuarioDTO> findByRolesAndNomeContainsIgnoreCase(Role role, String texto);
+    List<UsuarioDTO> findByRoles(Role role);
+
 }
