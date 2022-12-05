@@ -55,14 +55,17 @@ public class PerguntasController {
         return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpo(corpo,page));
     }
 
-    @GetMapping("/pesquisar/{corpo}/{idBanca}/{idMateria}")
-    public ResponseEntity<Page<Pergunta>> consultarComFiltro(@PathVariable(value = "corpo", required = false) String corpo,
-                                                             @PathVariable(value = "idBanca", required = false) long idBanca,
-                                                             @PathVariable(value = "idMateria", required = false) long idMateria,
+    @GetMapping("/pesquisar")
+    public ResponseEntity<Page<Pergunta>> consultarComFiltro(@RequestParam(value = "corpo", required = false) String corpo,
+                                                             @RequestParam(value = "idBanca", defaultValue = "0", required = false) long idBanca,
+                                                             @RequestParam(value = "idMateria", defaultValue = "0", required = false) long idMateria,
                                                              Pageable page) {
         if (corpo != null && idBanca != 0 && idMateria != 0) {
             //todos
             return ResponseEntity.status(HttpStatus.OK).body(perguntaService.consultarComFiltro(corpo, idBanca, idMateria, page));
+        } else if (corpo == null && idBanca == 0 && idMateria == 0) {
+            //nenhum
+            return ResponseEntity.status(HttpStatus.OK).body(perguntaService.listar(page));
         } else {
             if (corpo == null) {
                 if (idBanca == 0) {
@@ -73,7 +76,7 @@ public class PerguntasController {
                     return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByBanca(idBanca, page));
                 } else {
                     //banca e materia
-                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.consultarComFiltro(corpo, idBanca, idMateria, page)); //FALTA
+                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByBancaAndMateria(idBanca, idMateria, page));
                 }
             } else if (idBanca == 0) {
                 if (idMateria == 0) {
@@ -81,11 +84,11 @@ public class PerguntasController {
                     return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpo(corpo, page));
                 } else {
                     //corpo e materia
-                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.consultarComFiltro(corpo, idBanca, idMateria, page)); //FALTA
+                    return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpoAndMateria(corpo, idMateria, page));
                 }
             } else {
                 //corpo e banca
-                return ResponseEntity.status(HttpStatus.OK).body(perguntaService.consultarComFiltro(corpo, idBanca, idMateria, page)); //FALTA
+                return ResponseEntity.status(HttpStatus.OK).body(perguntaService.findByCorpoAndBanca(corpo, idBanca, page));
             }
         }
     }

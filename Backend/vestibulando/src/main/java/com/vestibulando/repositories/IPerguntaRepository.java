@@ -47,8 +47,8 @@ public interface IPerguntaRepository extends JpaRepository<Pergunta, Long> {
     Page<Pergunta> findByMateria(Materia materia, Pageable page);
     Page<Pergunta> findByCorpoIgnoreCaseContaining(String corpo,Pageable page);
     Page<Pergunta> findByCorpoIgnoreCaseContainingAndBancaAndMateria(String corpo, Banca banca, Materia materia, Pageable page);
-
-//    @Query("select p from Pergunta p where p.materia.id IN ?1 and p.banca.id IN ?2")
-//    Page<Pergunta> getPerguntasFiltro(List<Long> idMaterias, List<Long> idBancas, Pageable pageable);
+    Page<Pergunta> findByBancaAndMateria(Banca banca, Materia materia, Pageable page);
+    Page<Pergunta> findByCorpoIgnoreCaseContainingAndMateria(String corpo, Materia materia, Pageable page);
+    Page<Pergunta> findByCorpoIgnoreCaseContainingAndBanca(String corpo, Banca banca, Pageable page);
 
 }
