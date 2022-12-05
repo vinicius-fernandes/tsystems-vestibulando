@@ -6,6 +6,7 @@ import IRole from 'src/app/interfaces/IRole';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -16,13 +17,15 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
 export class UsuariosComponent {
 
   public users: IUsuario[] = []
-
+  totalElements: number = 0;
   constructor(private service: UsuarioService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) {
-    this.consultar()
+    this.consultar({ page: '0', size: '8' })
   }
-  consultar() {
-    this.service.consultar().subscribe({
-      next: data => this.users = data,
+  consultar(params:any) {
+    this.service.consultarPaginado(params).subscribe({
+      next: data => {this.users = <IUsuario[]> data.content
+        this.totalElements = data['totalElements']
+      },
       error: erro => {
         this.toastr.error("Não foi possível consultar os usuários.", "Erro")
         this.router.navigate(['app', 'home'])
@@ -60,5 +63,12 @@ export class UsuariosComponent {
     return false
   }
 
+  nextPage(event: PageEvent) {
+    const request = {
+      page: event.pageIndex.toString(),
+      size: event.pageSize.toString(),
+    };
 
+    this.consultar(request);
+  }
 }

@@ -4,7 +4,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Usuario;
 import com.vestibulando.services.UsuarioService;
+import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +30,12 @@ public class UsuarioController {
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> consultarUsuario(@RequestParam(value= "email",required = false) String email) {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.consultarUsuario(email));
+    }
+
+
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<UsuarioDTO>> consultarPaginado(Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.pageUsuarios(page));
     }
 
     @GetMapping("/{idUsuário}")
