@@ -36,7 +36,7 @@ public class UsuarioControllerTests {
     @BeforeEach
     public void beforeEach() throws JsonProcessingException {
         Usuario usuario = new Usuario();
-        usuario.setNome("Maria");
+        usuario.setNome("Maria Eduarda");
         usuario.setEmail("maria@email.com");
         usuario.setSenha("123456");
         usuario.setId(1l);
