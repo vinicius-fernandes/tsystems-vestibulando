@@ -16,19 +16,27 @@
   width: 100%;
 }
 
-.botoes {
+mat-form-field {
+  height: 90px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.botoes{
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 30px;
+  align-items: flex-start;
+  gap: 20px;
   justify-content: center;
 }
 
 button {
   height: 48px;
   width: 113px;
-  margin-right: 50px;
 }
 
 mat-label:not(.form-check-label):not(.custom-file-label) {

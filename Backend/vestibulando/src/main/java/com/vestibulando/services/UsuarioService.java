@@ -7,6 +7,8 @@ import com.vestibulando.excepitions.ArgumentoDuplicado;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,6 +39,13 @@ public class UsuarioService implements UserDetailsService {
 
         usuarioDTOS.add(new UsuarioDTO(usuario));
         return usuarioDTOS;
+    }
+
+
+    public Page<UsuarioDTO> pageUsuarios(Pageable page){
+        Page<Usuario> p = usuarioRepository.findAll(page);
+        Page<UsuarioDTO> pDto = p.map(UsuarioDTO::new);
+        return pDto;
     }
 
     public UsuarioDTO consultarById(long idUsuario) {
