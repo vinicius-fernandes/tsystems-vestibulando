@@ -41,7 +41,6 @@ public class UsuarioService implements UserDetailsService {
         return usuarioDTOS;
     }
 
-
     public Page<UsuarioDTO> pageUsuarios(Pageable page){
         Page<Usuario> p = usuarioRepository.findAll(page);
         Page<UsuarioDTO> pDto = p.map(UsuarioDTO::new);
@@ -68,9 +67,9 @@ public class UsuarioService implements UserDetailsService {
             rlList.add(rl);
             usuario.setRoles(rlList);
         }
-        if(usuario.getNome().indexOf(" ") == -1){
-            throw new ArgumentoDuplicado("Insira nome e sobrenome");
-        }
+//        if(usuario.getNome().indexOf(" ") == -1){
+//            throw new ArgumentoDuplicado("Insira nome e sobrenome");
+//        }
         if(!user.isPresent() || !user.get().getSenha().equals(usuario.getSenha())) {
             usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         }
