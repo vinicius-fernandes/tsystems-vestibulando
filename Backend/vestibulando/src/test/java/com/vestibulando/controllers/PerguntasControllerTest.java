@@ -1,7 +1,5 @@
 package com.vestibulando.controllers;
 
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
@@ -12,17 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,11 +29,8 @@ public class PerguntasControllerTest {
 
     @MockBean
     private PerguntaService perguntaService;
-
-
     @Autowired
     ObjectMapper objectMapper;
-
     Pergunta pergunta;
 
     @BeforeEach
@@ -55,8 +45,6 @@ public class PerguntasControllerTest {
         resp2.setId(2L);
         resp3.setId(3L);
         resp4.setId(4L);
-
-
         resp1.setCorreta(true);
         resp2.setCorreta(false);
         resp3.setCorreta(false);
@@ -72,61 +60,55 @@ public class PerguntasControllerTest {
     @Test
     public void ListarPerguntasRetornaOk() throws Exception {
         mockMvc.perform(get("/perguntas")
-                .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isOk());
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void ObterPerguntaRetornaOk() throws Exception {
         mockMvc.perform(get("/perguntas/2")
-                .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isOk());
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
+
     @Test
     public void ObterPerguntaPorBancaRetornaOk() throws Exception {
         mockMvc.perform(get("/perguntas/banca/{id}",2L)
-                .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isOk());
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
+
     @Test
     public void ObterPerguntaPorMateriaRetornaOk() throws Exception {
         mockMvc.perform(get("/perguntas/materia/{id}",2L)
-                        .accept(MediaType.APPLICATION_JSON)
-                )
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void ObterPerguntaPorSimuladoRetornaOk() throws Exception {
         mockMvc.perform(get("/perguntas/simulado/{id}",2L)
-                        .accept(MediaType.APPLICATION_JSON)
-                )
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
     @Test
     public void ObterPerguntaPorCorpoRetornaOk() throws Exception {
         mockMvc.perform(get("/perguntas/pesquisar/corpo}","Pergunta1231 asda12")
-                        .accept(MediaType.APPLICATION_JSON)
-                )
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
-
     @Test
     public void CriarPerguntaRetornaCreated() throws Exception {
-
         ResultActions ra = mockMvc.perform(post("/perguntas")
                 .content(objectMapper.writeValueAsString(pergunta))
                 .contentType(MediaType.APPLICATION_JSON));
 
         ra.andExpect(status().isCreated());
     }
+
     @Test
     public void EditarPerguntaRetornaOk() throws Exception {
-
         ResultActions ra = mockMvc.perform(put("/perguntas/{id}",1L)
                 .content(objectMapper.writeValueAsString(pergunta))
                 .contentType(MediaType.APPLICATION_JSON));
@@ -145,7 +127,6 @@ public class PerguntasControllerTest {
         resp2.setId(2L);
         resp3.setId(3L);
         resp4.setId(4L);
-
         resp1.setCorreta(true);
         resp2.setCorreta(true);
         resp3.setCorreta(false);
@@ -156,6 +137,7 @@ public class PerguntasControllerTest {
         respostasPergunta.add(resp3);
         respostasPergunta.add(resp4);
         pergunta.setRespostas(respostasPergunta);
+
         ResultActions ra = mockMvc.perform(post("/perguntas")
                 .content(objectMapper.writeValueAsString(pergunta))
                 .contentType(MediaType.APPLICATION_JSON));
@@ -166,8 +148,7 @@ public class PerguntasControllerTest {
     @Test
     public void DeletarPerguntaRetornaOk() throws Exception {
         mockMvc.perform(delete("/perguntas/2")
-                        .accept(MediaType.APPLICATION_JSON)
-                )
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -177,13 +158,9 @@ public class PerguntasControllerTest {
         Resposta resp1 = new Resposta();
         Resposta resp2 = new Resposta();
         Resposta resp3 = new Resposta();
-
-
-
         resp1.setCorreta(true);
         resp2.setCorreta(false);
         resp3.setCorreta(false);
-
         Set<Resposta> respostasPergunta = new LinkedHashSet<>();
         respostasPergunta.add(resp1);
         respostasPergunta.add(resp2);
@@ -207,9 +184,6 @@ public class PerguntasControllerTest {
         Resposta resp4 = new Resposta();
         Resposta resp5 = new Resposta();
         Resposta resp6 = new Resposta();
-
-
-
         resp1.setCorreta(true);
         resp2.setCorreta(false);
         resp3.setCorreta(false);
@@ -224,11 +198,11 @@ public class PerguntasControllerTest {
         respostasPergunta.add(resp5);
         respostasPergunta.add(resp6);
         pergunta.setRespostas(respostasPergunta);
+
         ResultActions ra = mockMvc.perform(post("/perguntas")
                 .content(objectMapper.writeValueAsString(pergunta))
                 .contentType(MediaType.APPLICATION_JSON));
 
         ra.andExpect(status().is4xxClientError());
     }
-
 }

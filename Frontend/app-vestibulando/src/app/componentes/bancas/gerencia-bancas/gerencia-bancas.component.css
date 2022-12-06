@@ -26,6 +26,7 @@ tr td:nth-child(4) div button {
   tr td:nth-child(1) {
     width: 10px;
   }
+
   tr td {
     font-size: clamp(13px, 1vh, 25px);
   }

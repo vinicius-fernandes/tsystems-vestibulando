@@ -16,52 +16,52 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog
   templateUrl: './realizar-simulado.component.html',
   styleUrls: ['./realizar-simulado.component.css']
 })
-export class RealizarSimuladoComponent implements OnInit{
+export class RealizarSimuladoComponent implements OnInit {
 
-  simulado:ISimuladoDTO;
+  simulado: ISimuladoDTO;
 
   exibicaoPerguntas: boolean[] = []
 
-  respostasMarcadas: IRespostaMarcada[]=[]
+  respostasMarcadas: IRespostaMarcada[] = []
 
-  perguntaAtual: number =0
+  perguntaAtual: number = 0
   totalPerguntas: number = 0
-  perguntasCorretas:number[]= []
-  finalizado:boolean=false;
-  constructor(private simuladoService:SimuladoService,private route: ActivatedRoute, private toastr: ToastrService,private respUserService: RespostasUsuariosService,private router:Router,private jwtTokenService:JwtTokenService, private dialog: MatDialog ){
-    this.simulado = {perguntas:[],materias:[],id:0,bancas:[]}
+  perguntasCorretas: number[] = []
+  finalizado: boolean = false;
+  constructor(private simuladoService: SimuladoService, private route: ActivatedRoute, private toastr: ToastrService, private respUserService: RespostasUsuariosService, private router: Router, private jwtTokenService: JwtTokenService, private dialog: MatDialog) {
+    this.simulado = { perguntas: [], materias: [], id: 0, bancas: [] }
   }
+
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap
     let id = parseInt(routeParams.get('id') || '')
     this.simuladoService.realizar(id).subscribe(
       {
-        next:(sim)=>{
+        next: (sim) => {
           this.simulado = sim
-          sim.perguntas.forEach((element,i) => {
+          sim.perguntas.forEach((element, i) => {
             this.exibicaoPerguntas.push(false)
-            this.respostasMarcadas.push({idRespostaMarcada:null,numeroPergunta:i,idPergunta:element.idPergunta})
+            this.respostasMarcadas.push({ idRespostaMarcada: null, numeroPergunta: i, idPergunta: element.idPergunta })
           });
-          this.exibicaoPerguntas[0]=true
+          this.exibicaoPerguntas[0] = true
           this.totalPerguntas = sim.perguntas.length - 1;
         },
-        error:(erro)=>this.toastr.error(erro.error.message)
+        error: (erro) => this.toastr.error(erro.error.message)
       }
     )
   }
 
-  alterarPergunta(pergunta:number){
-    this.exibicaoPerguntas = this.exibicaoPerguntas.map(x=>false);
-    this.exibicaoPerguntas[pergunta]=true
-    this.perguntaAtual=pergunta
+  alterarPergunta(pergunta: number) {
+    this.exibicaoPerguntas = this.exibicaoPerguntas.map(x => false);
+    this.exibicaoPerguntas[pergunta] = true
+    this.perguntaAtual = pergunta
   }
 
-  novaRespostaMarcada(novaResposta:IRespostaMarcada){
-    let index: number = this.respostasMarcadas.findIndex(p=>p.numeroPergunta==novaResposta.numeroPergunta)
+  novaRespostaMarcada(novaResposta: IRespostaMarcada) {
+    let index: number = this.respostasMarcadas.findIndex(p => p.numeroPergunta == novaResposta.numeroPergunta)
 
-    if(index === -1){
+    if (index === -1) {
       this.respostasMarcadas.push(novaResposta)
-
       return
     }
     this.respostasMarcadas[index] = novaResposta;
@@ -76,48 +76,43 @@ export class RealizarSimuladoComponent implements OnInit{
     })
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if ( dialogResult == true ) {
+      if (dialogResult == true) {
         this.salvar()
       }
     })
   }
 
-  salvar(){
+  salvar() {
     const routeParams = this.route.snapshot.paramMap
     let id = parseInt(routeParams.get('id') || '')
-    let respsParaEnvio : IGeneric[] = []
-    this.respostasMarcadas.forEach((resp)=>{
-      if(resp.idRespostaMarcada!=null){
-        respsParaEnvio.push({id:resp.idRespostaMarcada})
+    let respsParaEnvio: IGeneric[] = []
+    this.respostasMarcadas.forEach((resp) => {
+      if (resp.idRespostaMarcada != null) {
+        respsParaEnvio.push({ id: resp.idRespostaMarcada })
       }
     })
     let usuario = this.jwtTokenService.getTokenDecoded();
-    if(usuario==null){
+    if (usuario == null) {
       this.toastr.error("Você deve estar logado para salvar o simulado");
       return;
     }
-    let respUser : IRespostaUsuario = {simulado:{id:id},usuario:{id:usuario.userId},respostas:respsParaEnvio}
+    let respUser: IRespostaUsuario = { simulado: { id: id }, usuario: { id: usuario.userId }, respostas: respsParaEnvio }
     this.respUserService.salvar(respUser).subscribe(
       {
-        next:(resp)=>{
+        next: (resp) => {
           this.toastr.success('Simulado finalizado com sucesso!!')
-          this.finalizado=true
-          this.respUserService.perguntasCorretaSimuladoUsuario(usuario!.userId,id).subscribe({
-            next:(res)=>{
-              this.perguntasCorretas=res
-              console.log(res)
+          this.finalizado = true
+          this.respUserService.perguntasCorretaSimuladoUsuario(usuario!.userId, id).subscribe({
+            next: (res) => {
+              this.perguntasCorretas = res
             },
-            error:(erro)=>{
-              console.log(erro)
+            error: (erro) => {
               this.toastr.error("Não foi possível validar as perguntas corretas para o simulado")
             }
           })
-          //this.router.navigate(['app','simulados','resultado',respUser.simulado.id,usuario?.userId])
-      },
-        error:(erro)=>{this.toastr.error(erro.error.message)}
+        },
+        error: (erro) => { this.toastr.error(erro.error.message) }
       }
     )
   }
-
-
 }

@@ -3,15 +3,13 @@ import IPergunta from 'src/app/interfaces/IPergunta';
 import { QuestoesService } from 'src/app/services/questoes.service';
 import { ToastrService } from 'ngx-toastr';
 import { PageEvent } from '@angular/material/paginator';
-import { ContentObserver } from '@angular/cdk/observers';
-import { ThisReceiver } from '@angular/compiler';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog/confirm-dialog.component';
 import IMateria from 'src/app/interfaces/IMateria';
 import IBanca from 'src/app/interfaces/IBanca';
 import { BancasService } from 'src/app/services/bancas.service';
 import { MateriasService } from 'src/app/services/materias.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gerencia-questoes',
@@ -102,7 +100,7 @@ export class GerenciaQuestoesComponent {
     })
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if ( dialogResult == true ) {
+      if (dialogResult == true) {
         this.excluir(id)
       }
     })

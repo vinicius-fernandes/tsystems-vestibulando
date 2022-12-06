@@ -1,7 +1,6 @@
 package com.vestibulando.constraints.perguntas;
 
 import com.vestibulando.validators.perguntas.TotalRespostasCorretasValidator;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Retention;

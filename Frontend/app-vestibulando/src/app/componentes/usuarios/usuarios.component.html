@@ -1,7 +1,24 @@
-<p class="text-end mt-3 mr-3"><a routerLink="/app/usuarios/adduser"><button mat-raised-button color="primary"><i
-                class="fa fa-plus"></i> Adicionar Usuario</button></a></p>
-
 <div class="container">
+    <div class="pesquisar">
+        <mat-form-field class="example-full-width">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Ex. ana" matInput [(ngModel)]="pesquisa" />
+        </mat-form-field>
+        <div>
+            <mat-form-field color="primary" class="example-full-width">
+                <mat-label>Regra Usuário</mat-label>
+                <mat-select id="roles" matNativeControl [(ngModel)]="idRole">
+                    <mat-option value="0" selected></mat-option>
+                    <mat-option *ngFor="let r of roles" [value]="r.id">{{r.authority.replace("ROLE_","")}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-button matSuffix (click)="pesquisar()">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+        <p class="text-end"><a routerLink="/app/usuarios/adduser"><button mat-raised-button color="primary"><i
+                        class="fa fa-plus"></i> Adicionar Usuario</button></a></p>
+    </div>
     <div>
         <div *ngFor="let u of users">
             <div class="card" style="width: 17rem;">

@@ -1,5 +1,4 @@
-export default interface INotasSimuladosUsuarios
-{
-  idSimulado:number,
-  nota:number,
+export default interface INotasSimuladosUsuarios {
+  idSimulado: number,
+  nota: number,
 }

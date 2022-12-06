@@ -3,8 +3,6 @@ package com.vestibulando.dtos;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -17,7 +15,6 @@ public class RespostaDTO {
 
     public RespostaDTO() {
     }
-
     public RespostaDTO(Resposta resposta) {
         id = resposta.getId();
         descricao = resposta.getDescricao();
@@ -28,23 +25,18 @@ public class RespostaDTO {
     public Pergunta getPergunta() {
         return pergunta;
     }
-
     public void setPergunta(Pergunta pergunta) {
         this.pergunta = pergunta;
     }
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }

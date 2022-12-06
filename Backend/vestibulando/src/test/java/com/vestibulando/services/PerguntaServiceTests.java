@@ -14,14 +14,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.*;
-
 import static org.mockito.ArgumentMatchers.eq;
 
 @ExtendWith(SpringExtension.class)
@@ -33,7 +30,6 @@ public class PerguntaServiceTests {
     IRespostaRepository respostaRepository;
     @Mock
     IPerguntaRepository perguntaRepository;
-
     @Mock
     MateriaService materiaService;
 
@@ -45,9 +41,7 @@ public class PerguntaServiceTests {
     Page<Pergunta> pagePergunta;
 
     private Pageable page = PageRequest.of(0,8);
-
     Pergunta pergunta;
-
     long idExistente = 1L;
     long idInexistente = 2L;
 
@@ -55,12 +49,16 @@ public class PerguntaServiceTests {
     public void beforeEach(){
         pergunta= new Pergunta();
         pergunta.setId(idExistente);
+<<<<<<< HEAD
         Materia mat = new Materia();
         Banca ban = new Banca();
         mat.setId(1L);
         ban.setId(1L);
         pergunta.setMateria(mat);
         pergunta.setBanca(ban);
+=======
+
+>>>>>>> 04c636420ff5f98dd72b30a8e327bda356345725
         Mockito.when(perguntaRepository.save(Mockito.any(Pergunta.class))).thenReturn(pergunta);
 
         Mockito.when(perguntaRepository.findAll()).thenReturn(new ArrayList<Pergunta>());
@@ -68,23 +66,29 @@ public class PerguntaServiceTests {
         Mockito.when(perguntaRepository.findAll(page)).thenReturn(pagePergunta);
 
         Mockito.when(perguntaRepository.findBySimulado(Mockito.any(Simulado.class),eq(page))).thenReturn(pagePergunta);
+
         Mockito.when(perguntaRepository.findByMateria(Mockito.any(Materia.class),eq(page))).thenReturn(pagePergunta);
+
         Mockito.when(perguntaRepository.findByBanca(Mockito.any(Banca.class),eq(page))).thenReturn(pagePergunta);
+<<<<<<< HEAD
       Mockito.when(perguntaRepository.findByCorpoIgnoreCaseContaining(Mockito.any(String.class),eq(page))).thenReturn(pagePergunta);
+=======
+
+        Mockito.when(perguntaRepository.findByCorpoContaining(Mockito.any(String.class),eq(page))).thenReturn(pagePergunta);
+>>>>>>> 04c636420ff5f98dd72b30a8e327bda356345725
 
         Mockito.doNothing().when(perguntaRepository).delete(Mockito.any(Pergunta.class));
 
         Mockito.when(perguntaRepository.findById(idExistente)).thenReturn(Optional.of(pergunta));
 
         Mockito.when(perguntaRepository.findById(idInexistente)).thenReturn(Optional.empty());
+
         Mockito.doNothing().when(perguntaRepository).delete(Mockito.any(Pergunta.class));
     }
 
     @Test
     public void RetornaPerguntaAposCriar(){
-
         Assertions.assertNotNull(perguntaService.salvar(pergunta));
-
     }
 
     @Test
@@ -98,11 +102,13 @@ public class PerguntaServiceTests {
         respostasPergunta.add(resp3);
         pergunta.setRespostas(respostasPergunta);
         Pergunta perguntaAtualizada = perguntaService.atualizar(1L,pergunta);
-        boolean todasAsRespostasPossuemOIdDaPergunta = perguntaAtualizada.getRespostas().stream().allMatch(resp->resp.getPergunta().getId()==1L);
+
+        boolean todasAsRespostasPossuemOIdDaPergunta = perguntaAtualizada.getRespostas()
+                                                                         .stream()
+                                                                         .allMatch(resp->resp.getPergunta().getId()==1L);
         Assertions.assertNotNull(pergunta);
         Assertions.assertTrue(todasAsRespostasPossuemOIdDaPergunta);
     }
-
 
     @Test
     public void ObterItemExistenteRetornaOItem(){
@@ -138,14 +144,11 @@ public class PerguntaServiceTests {
         Page<Pergunta> pagePerguntaBanca= perguntaService.findByBanca(1L,page);
         Assertions.assertNotNull(pagePerguntaBanca);
     }
-
-
     @Test
     public void EncontrarPorCorpoRetornaPagina(){
         Page<Pergunta> pagePerguntaCorpo= perguntaService.findByCorpo("Pergunta x",page);
         Assertions.assertNotNull(pagePerguntaCorpo);
     }
-
     @Test
     public void ExcluirNaoRetornaNada(){
         Assertions.assertDoesNotThrow(()->perguntaService.deletar(idExistente));

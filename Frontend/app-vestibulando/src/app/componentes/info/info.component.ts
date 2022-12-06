@@ -6,10 +6,10 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.css']
 })
-export class InfoComponent implements OnInit{
+export class InfoComponent implements OnInit {
 
-  msg:string=''
-  constructor(private route:ActivatedRoute){
+  msg: string = ''
+  constructor(private route: ActivatedRoute) {
 
   }
   ngOnInit(): void {

@@ -26,16 +26,11 @@ public class SimuladoServiceTest {
 
     @InjectMocks
     private SimuladoService service;
-
     @Mock
     private ISimuladoRepository repository;
-
     Simulado simulado;
-
     Banca banca;
-
     Materia materia;
-
     Pergunta pergunta;
 
     long idExistente = 1L;
@@ -46,7 +41,6 @@ public class SimuladoServiceTest {
 
     @Mock
     private IRespostasUsuariosRepository respUserRepo;
-
 
     Pageable pageRequest = PageRequest.of(0, 1);
 
@@ -65,7 +59,6 @@ public class SimuladoServiceTest {
 
         materia = new Materia();
         materia.setId(idExistente);
-
 
         Mockito.when(repository.save(Mockito.any(Simulado.class))).thenReturn(simulado);
 

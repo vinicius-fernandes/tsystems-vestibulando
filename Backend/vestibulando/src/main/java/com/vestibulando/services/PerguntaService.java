@@ -1,6 +1,5 @@
 package com.vestibulando.services;
 
-
 import com.vestibulando.entities.*;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IRespostaRepository;
@@ -8,24 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.naming.directory.InvalidAttributesException;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 @Service
 public class PerguntaService {
-
     @Autowired
     IPerguntaRepository perguntaRepository;
-
     @Autowired
     IRespostaRepository respostaRepository;
-
     @Autowired
     BancaService bancaService;
     @Autowired
@@ -48,6 +39,7 @@ public class PerguntaService {
         banca.setId(id);
         return perguntaRepository.findByBanca(banca,page);
     }
+
     public Page<Pergunta> findByMateria(long id,Pageable page){
         Materia materia = new Materia();
         materia.setId(id);
@@ -107,7 +99,6 @@ public class PerguntaService {
         catch (Exception e){
            throw new RuntimeException(e.getMessage());
         }
-
     }
 
     @Transactional
@@ -129,8 +120,6 @@ public class PerguntaService {
             res.setPergunta(new Pergunta());
             res.getPergunta().setId(p.getId());
         }
-
         return this.salvar(p);
     }
-
 }

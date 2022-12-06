@@ -3,10 +3,8 @@ package com.vestibulando.services;
 import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Role;
 import com.vestibulando.entities.Usuario;
-
 import com.vestibulando.excepitions.ArgumentoDuplicado;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
-import com.vestibulando.excepitions.NomeIncompleto;
 import com.vestibulando.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.*;
 
@@ -28,6 +24,8 @@ public class UsuarioService implements UserDetailsService {
     IUsuarioRepository usuarioRepository;
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    RoleService roleService;
     public List<UsuarioDTO> consultarUsuario(String email) {
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
         if (email == null) {
@@ -73,7 +71,9 @@ public class UsuarioService implements UserDetailsService {
         if(usuario.getNome().indexOf(" ") == -1){
             throw new ArgumentoDuplicado("Insira nome e sobrenome");
         }
-        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        if(!user.isPresent() || !user.get().getSenha().equals(usuario.getSenha())) {
+            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        }
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRepository.save(usuario));
         return usuarioDTO;
     }
@@ -83,10 +83,9 @@ public class UsuarioService implements UserDetailsService {
         user.setEmail(usuario.getEmail());
         user.setNome(usuario.getNome());
         user.setRoles(usuario.getRoles());
-        if (usuario.getSenha() != null && !usuario.getSenha().isBlank() && !usuario.getSenha().equals(user.getSenha())) {
+        if (usuario.getSenha() != null && !usuario.getSenha().isBlank() && !passwordEncoder.matches(usuario.getSenha(),user.getSenha())) {
             user.setSenha(usuario.getSenha());
         }
-
         return this.salvarUsuario(user);
     }
 
@@ -109,5 +108,32 @@ public class UsuarioService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Usuário não encontrado"));
+    }
+
+    public List<UsuarioDTO> pesquisar(Long idRole, String pesquisa) {
+        List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
+        if(idRole != 0) {
+            Role role = roleService.obter(idRole);
+            if(pesquisa != null) {
+                if (pesquisa.indexOf("@") == -1) {
+                    usuarioDTOS = usuarioRepository.findByRolesAndNomeContainsIgnoreCase(role, pesquisa);
+                } else {
+                    usuarioDTOS = usuarioRepository.findByRolesAndEmailContainsIgnoreCase(role, pesquisa);
+                }
+                return usuarioDTOS;
+            }
+            usuarioDTOS = usuarioRepository.findByRoles(role);
+            return usuarioDTOS;
+        }
+        if (pesquisa != null) {
+            if (pesquisa.indexOf("@") == -1) {
+                usuarioDTOS = usuarioRepository.findByNomeContainsIgnoreCase(pesquisa);
+                return usuarioDTOS;
+            } else {
+                usuarioDTOS = usuarioRepository.findByEmailContainsIgnoreCase(pesquisa);
+                return usuarioDTOS;
+            }
+        }
+        return this.consultarUsuario(null);
     }
 }

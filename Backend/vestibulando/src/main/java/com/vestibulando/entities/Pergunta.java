@@ -4,13 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vestibulando.constraints.perguntas.TotalRespostasConstraint;
 import com.vestibulando.constraints.perguntas.TotalRespostasCorretasConstraint;
-
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,12 +18,15 @@ public class Pergunta {
     @Column(length=3500)
     @Size(min=4,max=3500,message = "O corpo da pergunta deve possuir de 4 a 3500 caracteres")
     private String corpo;
+
     @ManyToOne
     @JoinColumn(name = "materia_id")
     private Materia materia;
+
     @ManyToOne
     @JoinColumn(name = "banca_id")
     private Banca banca;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "perguntas")
     private Set<Simulado> simulado;
@@ -91,8 +90,4 @@ public class Pergunta {
     public void setRespostas(Set<Resposta> respostas) {
         this.respostas = respostas;
     }
-
-
-
-
 }

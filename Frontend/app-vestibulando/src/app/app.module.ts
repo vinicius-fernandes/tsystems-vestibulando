@@ -46,7 +46,7 @@ import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/ed
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
 import { HomeComponent } from './componentes/home/home.component';
 import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
-import {AuthInterceptor} from './auth.interceptor';
+import { AuthInterceptor } from './auth.interceptor';
 import { InfoComponent } from './componentes/info/info.component';
 import { ValidUserGuard } from './authGuard/ValidUserGuard';
 import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
@@ -133,9 +133,9 @@ import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
       multi: true
     },
 
-  { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr},
-  ValidUserGuard
-],
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr },
+    ValidUserGuard
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmDialogComponent]
 })
