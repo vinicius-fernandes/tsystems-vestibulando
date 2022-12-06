@@ -1,6 +1,6 @@
 #Build stage
 FROM maven:3.8.1-openjdk-17-slim AS build
-COPY . /home/app
+ADD . /home/app
 RUN ls -alh
 RUN mvn -f /home/app/pom.xml clean package
 
