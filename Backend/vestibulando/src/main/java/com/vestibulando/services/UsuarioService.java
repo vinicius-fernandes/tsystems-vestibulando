@@ -62,7 +62,9 @@ public class UsuarioService implements UserDetailsService {
         if(usuario.getNome().indexOf(" ") == -1){
             throw new ArgumentoDuplicado("Insira nome e sobrenome");
         }
-        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        if(!user.isPresent() || !user.get().getSenha().equals(usuario.getSenha())) {
+            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        }
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRepository.save(usuario));
         return usuarioDTO;
     }
@@ -72,7 +74,7 @@ public class UsuarioService implements UserDetailsService {
         user.setEmail(usuario.getEmail());
         user.setNome(usuario.getNome());
         user.setRoles(usuario.getRoles());
-        if (usuario.getSenha() != null && !usuario.getSenha().isBlank() && !usuario.getSenha().equals(user.getSenha())) {
+        if (usuario.getSenha() != null && !usuario.getSenha().isBlank() && !passwordEncoder.matches(usuario.getSenha(),user.getSenha())) {
             user.setSenha(usuario.getSenha());
         }
         return this.salvarUsuario(user);
