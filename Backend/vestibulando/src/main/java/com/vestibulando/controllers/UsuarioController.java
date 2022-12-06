@@ -37,9 +37,9 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.consultarById(idusuario));
     }
     @GetMapping("pesquisar/{idRole}")
-    public ResponseEntity<List<UsuarioDTO>> pesquisarUsuario(@PathVariable(value = "idRole") Long idRole,
-                                                    @RequestParam(value = "pesquisa", required = false) String pesquisa) {
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.pesquisar(idRole, pesquisa));
+    public ResponseEntity<Page<UsuarioDTO>> pesquisarUsuario(@PathVariable(value = "idRole") Long idRole,
+                                                    @RequestParam(value = "pesquisa", required = false) String pesquisa,Pageable page) {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.pesquisar(idRole, pesquisa,page));
     }
 
     @PostMapping

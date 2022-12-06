@@ -109,30 +109,26 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Usuário não encontrado"));
     }
 
-    public List<UsuarioDTO> pesquisar(Long idRole, String pesquisa) {
-        List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
+    public Page<UsuarioDTO> pesquisar(Long idRole, String pesquisa,Pageable page) {
         if(idRole != 0) {
             Role role = roleService.obter(idRole);
             if(pesquisa != null) {
-                if (pesquisa.indexOf("@") == -1) {
-                    usuarioDTOS = usuarioRepository.findByRolesAndNomeContainsIgnoreCase(role, pesquisa);
-                } else {
-                    usuarioDTOS = usuarioRepository.findByRolesAndEmailContainsIgnoreCase(role, pesquisa);
+                if (!pesquisa.contains("@")) {
+                    return usuarioRepository.findByRolesAndNomeContainsIgnoreCase(role, pesquisa,page);
                 }
-                return usuarioDTOS;
+                return usuarioRepository.findByRolesAndEmailContainsIgnoreCase(role, pesquisa,page);
+
             }
-            usuarioDTOS = usuarioRepository.findByRoles(role);
-            return usuarioDTOS;
+            return usuarioRepository.findByRoles(role,page);
         }
         if (pesquisa != null) {
-            if (pesquisa.indexOf("@") == -1) {
-                usuarioDTOS = usuarioRepository.findByNomeContainsIgnoreCase(pesquisa);
-                return usuarioDTOS;
-            } else {
-                usuarioDTOS = usuarioRepository.findByEmailContainsIgnoreCase(pesquisa);
-                return usuarioDTOS;
+            if (!pesquisa.contains("@")) {
+                return usuarioRepository.findByNomeContainsIgnoreCase(pesquisa, page);
             }
+            return usuarioRepository.findByEmailContainsIgnoreCase(pesquisa,page);
+
         }
-        return this.consultarUsuario(null);
+
+        return this.pageUsuarios(page);
     }
 }
