@@ -13,17 +13,18 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class AddusuarioComponent implements OnInit {
 
-  usuario: IUsuario = { nome: "", email: "", senha: "",roles:[{id:0,authority:''}] }
+  usuario: IUsuario = { nome: "", email: "", senha: "", roles: [{ id: 0, authority: '' }] }
   roles: IRole[] = []
+  public mostrarSenha: boolean = false
 
-  constructor(private router: Router, private service: UsuarioService, private toastr: ToastrService,private roleService: RolesService) { }
+  constructor(private router: Router, private service: UsuarioService, private toastr: ToastrService, private roleService: RolesService) { }
   ngOnInit(): void {
     this.roleService.consultar().subscribe({
-      next: (rolesData)=> {
-        this.roles=rolesData
+      next: (rolesData) => {
+        this.roles = rolesData
         console.log(rolesData)
       },
-      error: (erro)=>console.log(erro)
+      error: (erro) => console.log(erro)
     })
   }
 
@@ -44,9 +45,9 @@ export class AddusuarioComponent implements OnInit {
       teveErro = true
       this.toastr.error('Email Invalido', 'Erro')
     }
-    if(this.usuario.roles![0].id==0){
+    if (this.usuario.roles![0].id == 0) {
       teveErro = true
-      this.toastr.error("Selecione um tipo válido para o usuário",'Erro')
+      this.toastr.error("Selecione um tipo válido para o usuário", 'Erro')
     }
 
     if (teveErro) {
@@ -67,5 +68,7 @@ export class AddusuarioComponent implements OnInit {
     )
 
   }
-
+  mudaVisibilidadeSenha() {
+    this.mostrarSenha = !this.mostrarSenha
+  }
 }

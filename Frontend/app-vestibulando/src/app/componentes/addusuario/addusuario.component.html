@@ -14,7 +14,8 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" color="primary" class="comp-75">
-            <input type="password" [(ngModel)]="usuario.senha" matInput placeholder="Informe a senha" required>
+            <input [type]="mostrarSenha ? 'text' : 'password'" [(ngModel)]="usuario.senha" matInput placeholder="Informe a senha" required>
+            <button type="button" mat-icon-button matSuffix (click)="mudaVisibilidadeSenha()"><mat-icon>{{mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon></button>
             <mat-label>Password</mat-label>
         </mat-form-field>
 

@@ -15,6 +15,7 @@ export class EditaUsuarioComponent implements OnInit {
 
   usuario: IUsuario = { nome: "", email: "", senha: "", roles: [{ id: 0, authority: '' }] }
   roles: IRole[] = []
+  public mostrarSenha: boolean = false
 
   constructor(private route: ActivatedRoute, private service: UsuarioService, private toastr: ToastrService, private router: Router, private roleService: RolesService) { }
 
@@ -76,5 +77,8 @@ export class EditaUsuarioComponent implements OnInit {
         this.toastr.error(erro.error.message, 'Erro')
       }
     })
+  }
+  mudaVisibilidadeSenha() {
+    this.mostrarSenha = !this.mostrarSenha
   }
 }
