@@ -41,7 +41,6 @@ public class UsuarioService implements UserDetailsService {
         return usuarioDTOS;
     }
 
-
     public Page<UsuarioDTO> pageUsuarios(Pageable page){
         Page<Usuario> p = usuarioRepository.findAll(page);
         Page<UsuarioDTO> pDto = p.map(UsuarioDTO::new);
