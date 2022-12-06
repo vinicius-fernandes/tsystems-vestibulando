@@ -5,6 +5,8 @@ FROM node:16.17-alpine3.15 As build
 #Create a virtual directory inside the image
 WORKDIR /dist/src/app
 
+ENV API_URL="https://tsystems-vesti-prod-vestibulando-ffanlh.mo2.mogenius.io/"
+
 RUN npm cache clean --force
 
 #Copy files to image virtual directory
