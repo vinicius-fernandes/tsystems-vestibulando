@@ -46,7 +46,7 @@ export class EditaUsuarioComponent implements OnInit {
 
     let teveErro = false;
 
-    if (this.usuario.nome.length < 3 || this.usuario.nome.indexOf(" ") == -1) {
+    if (this.usuario.nome.length < 3 || this.usuario.nome.indexOf(" ") <= 0 || this.usuario.nome.indexOf(" ") == (this.usuario.nome.length - 1)) {
       teveErro = true
       this.toastr.error('Insira o nome completo', 'Erro')
     }

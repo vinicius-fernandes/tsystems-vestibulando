@@ -96,6 +96,7 @@ export class UsuariosComponent {
     this.service.pesquisar(this.idRole, this.pesquisa).subscribe({
       next: (data) => {
         this.users = data
+        this.totalElements = data.length
       },
       error: () => {
         this.toastr.error("Não foi possível consultar os usuários.", "Erro")

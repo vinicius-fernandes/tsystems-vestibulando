@@ -24,8 +24,7 @@ public class Usuario implements UserDetails {
     private Long id;
 
     @Email(message = "E-mail invalido")
-    @NotBlank
-            (message = "E-mail não pode ser em branco")
+    @NotBlank(message = "E-mail não pode ser em branco")
     private String email;
 
     @NotBlank(message = "Senha deve conter no minimo 6 caracteres")
@@ -34,6 +33,7 @@ public class Usuario implements UserDetails {
     private String senha;
 
     @NotBlank(message = "O nome não pode ser em branco")
+    @Pattern(regexp = "(([À-ü]*[a-z]*[A-Z]*)+\s([À-ü]*[a-z]*[A-Z]*)+)+", message = "Insira o nome completo.")
     private String nome;
 
     @Column(columnDefinition = "DATETIME")

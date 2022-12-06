@@ -67,9 +67,9 @@ public class UsuarioService implements UserDetailsService {
             rlList.add(rl);
             usuario.setRoles(rlList);
         }
-        if(usuario.getNome().indexOf(" ") == -1){
-            throw new ArgumentoDuplicado("Insira nome e sobrenome");
-        }
+//        if(usuario.getNome().indexOf(" ") == -1){
+//            throw new ArgumentoDuplicado("Insira nome e sobrenome");
+//        }
         if(!user.isPresent() || !user.get().getSenha().equals(usuario.getSenha())) {
             usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         }

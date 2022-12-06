@@ -34,6 +34,27 @@ export class CadastroComponent implements OnInit{
 
   cadastrar() {
     let dados: IUsuarioDTO = { email: this.form.value.email, nome: this.form.value.nome, senha: this.form.value.senha }
+    let teveErro = false;
+
+    if (dados.nome.length < 3 || dados.nome.indexOf(" ") <= 0 || dados.nome.indexOf(" ") == (dados.nome.length - 1)) {
+      teveErro = true
+      this.toastr.error('Insira o nome completo', 'Erro')
+    }
+
+    if (dados.senha != null && (dados.senha.length < 5 || dados.senha.indexOf(" ") != -1)) {
+      teveErro = true
+      this.toastr.error('A senha deve conter no mínimo 6 caracteres e não pode conter espaços', 'Erro')
+    }
+
+    if (dados.email.indexOf("@") == -1 || dados.email.indexOf(".com") == -1) {
+      teveErro = true
+      this.toastr.error('Email Invalido', 'Erro')
+    }
+
+    if (teveErro) {
+      return
+    }
+    
     this.service.cadastrar(dados).subscribe({
       next: () => { this.router.navigate(["login"]) },
       error: erro => {
