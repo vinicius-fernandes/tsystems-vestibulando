@@ -12,7 +12,7 @@
                     <mat-option *ngFor="let r of roles" [value]="r.id">{{r.authority.replace("ROLE_","")}}</mat-option>
                 </mat-select>
             </mat-form-field>
-            <button mat-button matSuffix (click)="pesquisar()">
+            <button mat-button matSuffix (click)="pesquisar({ page: '0', size: '8' })">
                 <i class="fa fa-search"></i>
             </button>
         </div>

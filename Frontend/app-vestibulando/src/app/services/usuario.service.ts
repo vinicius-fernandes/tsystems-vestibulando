@@ -35,8 +35,8 @@ export class UsuarioService {
     return this.http.post<IUsuario>(`${this.baseUrl}/usuarios`, usuario)
   }
 
-  pesquisar(idRole: number, texto: String){
-    return this.http.get<[IUsuario]>(`${this.baseUrl}/usuarios/pesquisar/${idRole}?pesquisa=${texto}`)
+  pesquisar(idRole: number, texto: String,params:any){
+    return this.http.get<IPage>(`${this.baseUrl}/usuarios/pesquisar/${idRole}?pesquisa=${texto}`,{params})
   }
 }
 
