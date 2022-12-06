@@ -31,10 +31,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.tokenStore(jwtTokenStore);
-        if(Arrays.asList(env.getActiveProfiles()).contains("test")) {
 
             resources.stateless(false);
-        }
+
     }
 
 
