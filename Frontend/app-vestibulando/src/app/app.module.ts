@@ -36,11 +36,11 @@ import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-sim
 import { PerguntaSimuladoComponent } from './componentes/simulado/pergunta-simulado/pergunta-simulado.component';
 import { SumarioSimuladoComponent } from './componentes/simulado/sumario-simulado/sumario-simulado.component';
 import { ResultadoSimuladoComponent } from './componentes/simulado/resultado-simulado/resultado-simulado.component';
-import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
-import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
+import { UsuariosComponent } from './componentes/usuarios/gerencia-usuarios/usuarios.component';
+import { EditaUsuarioComponent } from './componentes/usuarios/edita-usuario/edita-usuario.component';
 import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materia/adiciona-materia.component';
 import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
-import { AddusuarioComponent } from './componentes/addusuario/addusuario.component';
+import { AddusuarioComponent } from './componentes/usuarios/addusuario/addusuario.component';
 import { GerenciaQuestoesComponent } from './componentes/questoes/gerencia-questoes/gerencia-questoes.component';
 import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/edita-questoes.component';
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';

@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {
   ConfirmDialogComponent,
   ConfirmDialogModel,
-} from '../confirm-dialog/confirm-dialog.component';
+} from '../../confirm-dialog/confirm-dialog.component';
 import { PageEvent } from '@angular/material/paginator';
 import { RolesService } from 'src/app/services/roles.service';
 

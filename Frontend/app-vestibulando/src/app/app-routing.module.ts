@@ -17,9 +17,9 @@ import { LayoutPadraoComponent } from './pages/layout-padrao/layout-padrao.compo
 import { RealizarSimuladoComponent } from './componentes/simulado/realizar-simulado/realizar-simulado.component';
 import { ResultadoSimuladoComponent } from './componentes/simulado/resultado-simulado/resultado-simulado.component';
 import { RankingSimuladoComponent } from './componentes/ranking-simulado/ranking-simulado.component';
-import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
-import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
-import { AddusuarioComponent } from './componentes/addusuario/addusuario.component';
+import { UsuariosComponent } from './componentes/usuarios/gerencia-usuarios/usuarios.component';
+import { EditaUsuarioComponent } from './componentes/usuarios/edita-usuario/edita-usuario.component';
+import { AddusuarioComponent } from './componentes/usuarios/addusuario/addusuario.component';
 import { AdmGuard } from './authGuard/AdmGuard';
 import { ValidUserGuard } from './authGuard/ValidUserGuard';
 
