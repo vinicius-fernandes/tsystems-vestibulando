@@ -6,7 +6,6 @@ import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IMateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 

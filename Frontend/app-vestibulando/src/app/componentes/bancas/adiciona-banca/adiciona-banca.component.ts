@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BancasService } from 'src/app/services/bancas.service';
@@ -16,22 +16,22 @@ export class AdicionaBancaComponent {
 
   nomeBanca = new FormControl()
   siglaBanca = new FormControl()
-  dados: IBanca = {nome: '', sigla: ''}
+  dados: IBanca = { nome: '', sigla: '' }
 
   adicionarBanca() {
     let teveErro = false
 
-    if ( this.nomeBanca.value == null || this.nomeBanca.value.length > 250 || this.nomeBanca.value.length < 2 ) {
+    if (this.nomeBanca.value == null || this.nomeBanca.value.length > 250 || this.nomeBanca.value.length < 2) {
       teveErro = true
       this.toastr.error('O nome da banca deve conter de 2 a 250 caracteres.', 'Erro')
     }
 
-    if ( this.siglaBanca.value == null || this.siglaBanca.value.length > 50 || this.siglaBanca.value.length < 2 ) {
+    if (this.siglaBanca.value == null || this.siglaBanca.value.length > 50 || this.siglaBanca.value.length < 2) {
       teveErro = true
       this.toastr.error('A sigla da banca deve conter de 2 a 250 caracteres.', 'Erro')
     }
 
-    if ( teveErro ) {
+    if (teveErro) {
       return
     }
 

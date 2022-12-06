@@ -1,4 +1,4 @@
-export default interface IResultadoSimuladoUser{
-  idSimulado:number,
-  nota:number
+export default interface IResultadoSimuladoUser {
+  idSimulado: number,
+  nota: number
 }

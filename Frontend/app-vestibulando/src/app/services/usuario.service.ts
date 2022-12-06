@@ -9,7 +9,7 @@ import IUsuarioDTO from '../interfaces/IUsuarioDTO';
 })
 export class UsuarioService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl:String) { }
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: String) { }
 
   consultar(){
     return this.http.get<[IUsuario]>(`${this.baseUrl}/usuarios`);
@@ -23,7 +23,7 @@ export class UsuarioService {
     return this.http.delete(`${this.baseUrl}/usuarios/${idUsuario}`);
 
   }
-  consultarbyId(idUsuario: any){
+  consultarbyId(idUsuario: any) {
     return this.http.get<IUsuario>(`${this.baseUrl}/usuarios/${idUsuario}`);
   }
 
@@ -33,6 +33,10 @@ export class UsuarioService {
 
   cadastrar(usuario: IUsuarioDTO|IUsuario){
     return this.http.post<IUsuario>(`${this.baseUrl}/usuarios`, usuario)
+  }
+
+  pesquisar(idRole: number, texto: String,params:any){
+    return this.http.get<IPage>(`${this.baseUrl}/usuarios/pesquisar/${idRole}?pesquisa=${texto}`,{params})
   }
 }
 

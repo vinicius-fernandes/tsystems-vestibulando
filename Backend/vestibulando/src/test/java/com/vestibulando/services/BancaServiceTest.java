@@ -1,9 +1,7 @@
 package com.vestibulando.services;
 
 import com.vestibulando.entities.Banca;
-import com.vestibulando.entities.Materia;
 import com.vestibulando.repositories.IBancaRepository;
-import com.vestibulando.services.BancaService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -22,14 +19,10 @@ public class BancaServiceTest {
 
     @InjectMocks
     BancaService bancaService;
-
     @Mock
     IBancaRepository bancaRepository;
-
     Banca banca;
-
     long idExistente = 1L;
-
     long idInexistente = 4L;
 
     @BeforeEach
@@ -48,19 +41,16 @@ public class BancaServiceTest {
 
     @Test
     public void RetornarBancaAposCriar(){
-
         Assertions.assertNotNull(bancaService.salvar(banca));
     }
 
     @Test
     public void RetornarBancaAposAtualizar(){
-
         Assertions.assertNotNull(bancaService.atualizar(1L, banca));
     }
 
     @Test
     public void ObterItemExistenteRetornaOItem(){
-
         Assertions.assertNotNull(bancaService.obter(idExistente));
     }
 

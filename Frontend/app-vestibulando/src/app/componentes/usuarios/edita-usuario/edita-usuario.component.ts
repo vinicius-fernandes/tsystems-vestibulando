@@ -13,20 +13,21 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class EditaUsuarioComponent implements OnInit {
 
-  usuario: IUsuario = { nome: "", email: "", senha: "",roles:[{id:0,authority:''}] }
+  usuario: IUsuario = { nome: "", email: "", senha: "", roles: [{ id: 0, authority: '' }] }
   roles: IRole[] = []
+  public mostrarSenha: boolean = false
 
-  constructor(private route: ActivatedRoute, private service: UsuarioService, private toastr: ToastrService, private router: Router,private roleService: RolesService) { }
+  constructor(private route: ActivatedRoute, private service: UsuarioService, private toastr: ToastrService, private router: Router, private roleService: RolesService) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap
     let iduser = parseInt(routeParams.get('idusuario') || '')
 
     this.roleService.consultar().subscribe({
-      next: (rolesData)=> {
-        this.roles=rolesData
+      next: (rolesData) => {
+        this.roles = rolesData
       },
-      error: (erro)=>{
+      error: (erro) => {
         console.log(erro)
         this.toastr.error("Não foi possível carregar os tipos de usuário.", "Erro")
         this.router.navigate(['/app/usuarios'])
@@ -46,12 +47,12 @@ export class EditaUsuarioComponent implements OnInit {
 
     let teveErro = false;
 
-    if ( this.usuario.nome.length < 3 || this.usuario.nome.indexOf(" ") == -1) {
+    if (this.usuario.nome.length < 3 || this.usuario.nome.indexOf(" ") <= 0 || this.usuario.nome.indexOf(" ") == (this.usuario.nome.length - 1)) {
       teveErro = true
       this.toastr.error('Insira o nome completo', 'Erro')
     }
 
-    if ( this.usuario.senha != null && (this.usuario.senha.length < 5 || this.usuario.senha.indexOf(" ") != -1)) {
+    if (this.usuario.senha != null && (this.usuario.senha.length < 5 || this.usuario.senha.indexOf(" ") != -1)) {
       teveErro = true
       this.toastr.error('A senha deve conter no mínimo 6 caracteres e não pode conter espaços', 'Erro')
     }
@@ -60,12 +61,12 @@ export class EditaUsuarioComponent implements OnInit {
       teveErro = true
       this.toastr.error('Email Invalido', 'Erro')
     }
-    if(this.usuario.roles![0].id==0){
+    if (this.usuario.roles![0].id == 0) {
       teveErro = true
-      this.toastr.error("Selecione um tipo válido para o usuário",'Erro')
+      this.toastr.error("Selecione um tipo válido para o usuário", 'Erro')
     }
 
-    if ( teveErro ) {
+    if (teveErro) {
       return
     }
     this.service.alterar(this.usuario).subscribe({
@@ -77,5 +78,7 @@ export class EditaUsuarioComponent implements OnInit {
       }
     })
   }
-
+  mudaVisibilidadeSenha() {
+    this.mostrarSenha = !this.mostrarSenha
+  }
 }

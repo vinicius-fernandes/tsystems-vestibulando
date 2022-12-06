@@ -8,19 +8,14 @@ import ISimuladoDTO from '../interfaces/ISimuladoDTO';
 })
 export class SimuladoService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
 
+  gerar(simulado: IGerarSimulado) {
+    return this.http.post<ISimuladoDTO>(`${this.baseUrl}/simulados/gerar`, simulado)
+  }
 
-
-   }
-
-
-   gerar(simulado:IGerarSimulado){
-    return this.http.post<ISimuladoDTO>(`${this.baseUrl}/simulados/gerar`,simulado)
-   }
-
-   realizar(id:number){
+  realizar(id: number) {
     return this.http.get<ISimuladoDTO>(`${this.baseUrl}/simulados/realizar/${id}`)
-   }
+  }
 
 }

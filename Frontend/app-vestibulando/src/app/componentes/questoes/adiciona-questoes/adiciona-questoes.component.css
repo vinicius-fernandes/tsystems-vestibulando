@@ -34,7 +34,7 @@ mat-form-field {
   justify-content: center;
 }
 
-button{
+button {
   height: 48px;
   width: 113px;
 }
@@ -42,4 +42,3 @@ button{
 mat-label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 350;
 }
-

@@ -2,7 +2,6 @@ package com.vestibulando.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.lang.reflect.Type;
 import java.time.Instant;
 import java.util.List;
 
@@ -14,8 +13,11 @@ public class RespostasUsuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private Instant created_at;
+
     private Instant updated_at;
+
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name = "Respostas_has_resultadosSimulados",
@@ -40,14 +42,10 @@ public class RespostasUsuarios {
 
 
     }
-
     @PreUpdate
     public void preUpdate(){
         this.updated_at = Instant.now();
     }
-
-
-
 
     public List<Resposta> getRespostas() {
         return respostas;

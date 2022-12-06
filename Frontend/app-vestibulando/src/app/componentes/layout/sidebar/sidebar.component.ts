@@ -6,10 +6,10 @@ declare var $: any;
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit{
+export class SidebarComponent implements OnInit {
 
-  isAdmin:boolean=false;
-  constructor(private jwtService:JwtTokenService){ }
+  isAdmin: boolean = false;
+  constructor(private jwtService: JwtTokenService) { }
   ngOnInit(): void {
     $('[data-widget="treeview"]').Treeview('init');
 

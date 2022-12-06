@@ -1,17 +1,14 @@
 package com.vestibulando.services;
 
-import com.vestibulando.controllers.RespostaController;
 import com.vestibulando.dtos.RespostaDTO;
 import com.vestibulando.entities.Pergunta;
 import com.vestibulando.entities.Resposta;
-import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IRespostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +18,6 @@ import java.util.Set;
 public class RespostaService {
     @Autowired
     IRespostaRepository IRespostaRepository;
-
     @Autowired
     PerguntaService perguntaService;
 
@@ -71,7 +67,6 @@ public class RespostaService {
 
     public Optional<RespostaDTO> consultarByIdComoUser(Long idrespostaDTO){
         Optional<Resposta> resposta = IRespostaRepository.findById(idrespostaDTO);
-
         RespostaDTO respostaDTO = new RespostaDTO(resposta.get());
         return Optional.of(respostaDTO);
     }
