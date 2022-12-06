@@ -67,3 +67,10 @@ h1,h2 {
     grid-column-end: 1;
   }
 }
+
+@media (orientation: portrait) {
+  .home>div>.card:hover {
+    transform: scale(1);
+    cursor: pointer;
+  }
+}
