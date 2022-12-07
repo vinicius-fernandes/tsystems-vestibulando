@@ -159,10 +159,6 @@ footer .colunas ul li a:hover {
     section {
         flex-direction: column;
     }
-
-    section ul {
-        border-left: none;
-    }
 }
 
 @media (max-width: 560px) {
