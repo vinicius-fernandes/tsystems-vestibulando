@@ -1,3 +1,4 @@
 export default interface IGeneric {
-  id: number
+  id: number,
+  name?:string
 }

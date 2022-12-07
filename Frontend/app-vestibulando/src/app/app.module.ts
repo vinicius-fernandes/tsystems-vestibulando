@@ -58,6 +58,7 @@ import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha
 import { MatIconModule } from '@angular/material/icon';
 import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
 import { LoadingComponent } from './componentes/utils/loading/loading.component';
+import { ChecboxGroupComponent } from './componentes/utils/checbox-group/checbox-group.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { LoadingComponent } from './componentes/utils/loading/loading.component'
     EsqueceuSenhaComponent,
     AlterarSenhaComponent,
     SobreNosComponent,
-    LoadingComponent
+    LoadingComponent,
+    ChecboxGroupComponent
   ],
   imports: [
     BrowserModule,

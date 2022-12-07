@@ -75,3 +75,39 @@ h1 {
     grid-column: 1;
   }
 }
+
+mat-paginator {
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+}
+
+mat-paginator button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectCustom{
+  width: 40%;
+  margin:5px;
+}
+
+
+.checkContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 768px) {
+  .checkContainer {
+    display: grid;
+    grid-template-columns: 1fr ;
+    margin-bottom: 20px;
+  }
+  .selectCustom{
+    width: 100%;
+    margin:5px;
+  }
+}
