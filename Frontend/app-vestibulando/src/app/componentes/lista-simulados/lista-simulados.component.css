@@ -40,7 +40,11 @@ h1 {
 .card>p:first-child {
   font-weight: 600;
 }
-
+.respondeuSimulado {
+  width: 85%;
+  text-align: center;
+  margin: auto auto 10px;
+}
 .botoes {
   display: flex;
   align-items: center;
