@@ -175,6 +175,10 @@ footer .colunas ul li a:hover {
         margin-top: 10px;
     }
 
+    footer .colunad ul {
+      border-left: none;
+    }
+
     footer .colunas ul li:first-child {
         font-size: 1.5em;
     }
