@@ -40,11 +40,11 @@ public class BancaService {
 
     @Transactional
     public Banca salvar(Banca banca) {
-        Banca b = bancaRepository.findBySigla(banca.getSigla());
+        Banca b = bancaRepository.findBySiglaIgnoreCase(banca.getSigla());
         if(b != null && b.getId() != banca.getId()){
             throw new ArgumentoDuplicado("Sigla cadastrada em banca existente");
         }
-        b = bancaRepository.findByNome(banca.getNome());
+        b = bancaRepository.findByNomeIgnoreCase(banca.getNome());
         if(b != null && b.getId() != banca.getId()){
             throw new ArgumentoDuplicado("Nome cadastrado em banca existente");
         }

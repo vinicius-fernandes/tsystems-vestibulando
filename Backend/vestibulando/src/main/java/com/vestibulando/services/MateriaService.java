@@ -37,7 +37,7 @@ public class MateriaService {
     }
 
     public Materia salvar(Materia materia){
-        Materia m = materiaRepository.findByNome(materia.getNome());
+        Materia m = materiaRepository.findByNomeIgnoreCase(materia.getNome().toLowerCase());
         if(m != null && m.getId() != materia.getId()){
             throw new ArgumentoDuplicado("Materia já existe");
         }
