@@ -2,6 +2,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.container>h1 {
+  line-height: 2em;
+}
+
 .container>div:not(.pesquisar) {
   display: grid;
   margin: auto;
