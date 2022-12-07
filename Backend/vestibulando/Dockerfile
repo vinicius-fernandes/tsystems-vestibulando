@@ -1,6 +1,6 @@
 #Build stage
 FROM maven:3.8.1-openjdk-17-slim AS build
-ARG BUILD_TIME=jdbc:mysql://tcp-mo1.mogenius.io:19062/vestibulando
+ARG MYSQL_URL=jdbc:mysql://tcp-mo1.mogenius.io:19062/vestibulando
 
 COPY src /home/app/src
 COPY pom.xml /home/app
