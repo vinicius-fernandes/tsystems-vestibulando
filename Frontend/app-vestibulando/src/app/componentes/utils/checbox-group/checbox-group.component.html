@@ -1,0 +1,7 @@
+<form [formGroup]="form"  >
+<div  class="checkContainer" formArrayName="itens" *ngIf="itensFormArray && itensFormArray.length>0">
+  <mat-checkbox *ngFor="let it of data; let i = index" [formControlName]="i" (change)="emitChange()">
+    {{ data[i].name }}
+  </mat-checkbox>
+</div>
+</form>

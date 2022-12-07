@@ -1,11 +1,14 @@
 package com.vestibulando.controllers;
 
 import com.vestibulando.dtos.GerarSimuladoDTO;
+import com.vestibulando.dtos.PesquisaSimuladoDTO;
 import com.vestibulando.dtos.SimuladoDTO;
 import com.vestibulando.entities.*;
 import com.vestibulando.repositories.ISimuladoRepository;
 import com.vestibulando.services.SimuladoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -25,6 +28,12 @@ public class SimuladoController {
     public ResponseEntity<List<Simulado>> consultar() {
         return ResponseEntity.ok().body(simuladoService.consultar());
     }
+
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<Simulado>> consultaPaginada(Pageable page){return ResponseEntity.ok().body(simuladoService.consultarPaginada(page));}
+    @PostMapping("/pesquisar")
+    public ResponseEntity<Page<Simulado>> pesquisa(@RequestBody PesquisaSimuladoDTO  pesquisaSimuladoDTO, Pageable page){return ResponseEntity.ok().body(simuladoService.pesquisar(pesquisaSimuladoDTO,page));}
+
     @GetMapping("/{idSimulado}")
     public ResponseEntity<Simulado> consultar(@PathVariable("idSimulado") Long id) {
         return ResponseEntity.ok().body(simuladoService.consultar(id));

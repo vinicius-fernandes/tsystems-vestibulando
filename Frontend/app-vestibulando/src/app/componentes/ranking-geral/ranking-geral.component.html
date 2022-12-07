@@ -10,19 +10,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let r of ranking; index as i" [ngClass]="{'bg-white':page>0}">
-          <td>{{page==0?i+1:page*10+i+1}} º</td>
+        <tr *ngFor="let r of ranking; index as i" [ngClass]="{'bg-white':actualPage>0}">
+          <td>{{actualPage==0?i+1:actualPage*10+i+1}} º</td>
           <td> {{r.emailUsuario}} </td>
           <td>{{ r.acertosUsuario}}</td>
         </tr>
       </tbody>
     </table>
-    <mat-paginator [pageSize]="10" [length]="totalElements" (page)="nextPage($event)" class="paginator">
-    </mat-paginator>
+
   </div>
+  <mat-paginator [pageSize]="10" [length]="totalElements"  (page)="nextPage($event)" class="paginator">
+  </mat-paginator>
   <ng-template #rankingVazio>
     <p *ngIf="!loading">Ooops parece que ninguém respondeu um simulado ainda</p>
   </ng-template>
-  <app-loading [loading]="loading"></app-loading>
+  <!-- <app-loading [loading]="loading"></app-loading> -->
 
 </main>

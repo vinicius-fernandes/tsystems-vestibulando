@@ -7,7 +7,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Materia {
@@ -16,7 +18,7 @@ public class Materia {
     private Long id;
     @JsonIgnore
     @ManyToMany(mappedBy = "materias")
-    private List<Simulado> simulado;
+    private Set<Simulado> simulado;
     @Size(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100", min = 2, max = 100)
     @NotBlank(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100")
     @NotEmpty(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100")
@@ -29,7 +31,7 @@ public class Materia {
             orphanRemoval = true,
             fetch = FetchType.EAGER
     )
-    private List<Pergunta> perguntas = new ArrayList<>();
+    private Set<Pergunta> perguntas = new HashSet<>();
 
     public String getNome() {
         return nome;
@@ -43,10 +45,10 @@ public class Materia {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public List<Simulado> getSimulado() {
+    public Set<Simulado> getSimulado() {
         return simulado;
     }
-    public void setSimulado(List<Simulado> simulado) {
+    public void setSimulado(Set<Simulado> simulado) {
         this.simulado = simulado;
     }
 }
