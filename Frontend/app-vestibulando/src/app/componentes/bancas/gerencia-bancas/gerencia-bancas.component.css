@@ -36,3 +36,10 @@ tr td:nth-child(4) div button {
   display: flex;
   justify-content: center;
 }
+mat-paginator {
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+  margin: 20px auto;
+}

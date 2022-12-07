@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog/confirm-dialog.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-gerencia-bancas',
@@ -14,6 +15,8 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog
 export class GerenciaBancasComponent implements OnInit {
 
   loading:boolean=true
+  totalElements: number = 0;
+
   constructor(private serviceBanca: BancasService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) { }
 
   confirmarExclusao(id: number) {
@@ -34,14 +37,8 @@ export class GerenciaBancasComponent implements OnInit {
   bancas: IBanca[] = []
 
   ngOnInit(): void {
-    this.serviceBanca.consultar().subscribe({
-      next: data => this.bancas = data,
-      error: erro => {
-        console.log(erro)
-        this.toastr.error("Não foi possível consultar as bancas.", "Erro")
-        this.router.navigate(['app', 'home'])
-      }
-    }).add(()=>this.loading=false)
+
+    this.consultar({ page: '0', size: '8' })
   }
 
   excluirBanca(id: number) {
@@ -54,5 +51,27 @@ export class GerenciaBancasComponent implements OnInit {
         console.log(erro)
       }
     })
+  }
+
+  consultar(params: any){
+    this.serviceBanca.consultarPaginado(params).subscribe({
+      next: (data) => {this.bancas= <IBanca[]>data.content
+      this.totalElements = data['totalElements'];},
+      error: erro => {
+        console.log(erro)
+        this.toastr.error("Não foi possível consultar as bancas.", "Erro")
+        this.router.navigate(['app', 'home'])
+      }
+    }).add(()=>this.loading=false)
+  }
+
+  nextPage(event: PageEvent) {
+    const request = {
+      page: event.pageIndex.toString(),
+      size: event.pageSize.toString(),
+    };
+    this.loading=true
+    this.bancas=[]
+    this.consultar(request)
   }
 }
