@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import IMateria from '../interfaces/IMateria';
+import IPage from '../interfaces/IPage';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,9 @@ export class MateriasService {
 
   consultar() {
     return this.http.get<[IMateria]>(`${this.baseUrl}/materia`);
+  }
+  consultarPaginado(params:any){
+    return this.http.get<IPage>(`${this.baseUrl}/materia/paginado`,{params});
   }
 
   consultarPorId(id: number) {

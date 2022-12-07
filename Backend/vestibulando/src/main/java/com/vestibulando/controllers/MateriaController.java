@@ -1,8 +1,11 @@
 package com.vestibulando.controllers;
 
+import com.vestibulando.entities.Banca;
 import com.vestibulando.entities.Materia;
 import com.vestibulando.services.MateriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,10 @@ public class MateriaController {
     @GetMapping
     public ResponseEntity<List<Materia>> listar(){
         return ResponseEntity.status(HttpStatus.OK).body(materiaService.listar());
+    }
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<Materia>> consultarPaginado(Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(materiaService.pageBancas(page));
     }
     @GetMapping("{id}")
     public ResponseEntity<Materia> obter(@PathVariable("id") long id){

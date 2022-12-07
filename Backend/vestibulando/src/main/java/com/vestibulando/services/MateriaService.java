@@ -5,6 +5,8 @@ import com.vestibulando.excepitions.ArgumentoDuplicado;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IMateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -16,6 +18,10 @@ public class MateriaService {
     IMateriaRepository materiaRepository;
     public List<Materia> listar() {
         return materiaRepository.findAllByOrderByIdAsc();
+    }
+
+    public Page<Materia> pageBancas(Pageable page) {
+        return materiaRepository.findAll(page);
     }
 
     public Materia obter(long id) {
