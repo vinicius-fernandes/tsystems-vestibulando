@@ -74,7 +74,7 @@ input::-ms-clear {
   filter: brightness(0.7);
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 850px) {
   .principal {
     width: 60%;
   }
