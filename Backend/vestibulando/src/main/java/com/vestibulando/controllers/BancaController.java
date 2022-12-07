@@ -1,8 +1,11 @@
 package com.vestibulando.controllers;
 
+import com.vestibulando.dtos.UsuarioDTO;
 import com.vestibulando.entities.Banca;
 import com.vestibulando.services.BancaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,12 @@ public class BancaController {
     public ResponseEntity<List<Banca>> listar () {
         return ResponseEntity.status(HttpStatus.OK).body(bancaService.listar());
     }
+
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<Banca>> consultarPaginado(Pageable page){
+        return ResponseEntity.status(HttpStatus.OK).body(bancaService.pageBancas(page));
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<Banca> obter (@PathVariable("id") long id) {
         return ResponseEntity.status(HttpStatus.OK).body(bancaService.obter(id));

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import IBanca from '../interfaces/IBanca';
+import IPage from '../interfaces/IPage';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class BancasService {
 
   consultar() {
     return this.http.get<[IBanca]>(`${this.baseUrl}/banca`);
+  }
+
+  consultarPaginado(params:any){
+    return this.http.get<IPage>(`${this.baseUrl}/banca/paginado`,{params});
   }
 
   consultarPorId(id: number) {
