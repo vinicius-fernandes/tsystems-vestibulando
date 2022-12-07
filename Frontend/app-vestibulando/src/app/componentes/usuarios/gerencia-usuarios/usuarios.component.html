@@ -16,12 +16,12 @@
                 <i class="fa fa-search"></i>
             </button>
         </div>
-        <p class="text-end"><a routerLink="/app/usuarios/adduser"><button mat-raised-button color="primary"><i
-                        class="fa fa-plus"></i> Adicionar Usuario</button></a></p>
     </div>
+    <p class="text-end"><a routerLink="/app/usuarios/adduser"><button mat-raised-button color="primary"><i
+    class="fa fa-plus"></i> Adicionar Usuario</button></a></p>
     <div>
         <div *ngFor="let u of users">
-            <div class="card" style="width: 17rem;">
+            <div class="card">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <i class="fas fa-user col-2" *ngIf="checkRole(u.roles!,'ROLE_USUARIO')"></i>

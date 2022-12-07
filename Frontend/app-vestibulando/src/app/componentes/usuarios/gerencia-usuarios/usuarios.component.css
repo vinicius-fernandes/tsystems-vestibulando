@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.container>div {
+.container>div:not(.pesquisar) {
   display: grid;
   margin: auto;
   justify-content: center;
@@ -10,8 +10,33 @@
   align-items: center;
   gap: 20px;
 }
+
+.pesquisar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  align-items: center;
+
+}
+
+.pesquisar>mat-form-field, .pesquisar>div {
+  max-width: 500px;
+}
+
+.pesqusiar mat-form-field{
+  justify-self: left;
+}
+
+.pesquisar>div>mat-form-field {
+  width: calc(100% - 64px);
+}
+
+.pesquisar>div>button {
+  margin-bottom: 10px;
+}
+
 .card {
-  width: 180px;
+  width: 16rem;
   margin: auto;
 }
 
