@@ -3,26 +3,22 @@
   <ng-template #simuladoVazio>
     <h1 *ngIf="!loading">Nenhum simulado encontrado</h1>
   </ng-template>
-  <div class="checkContainer">
-    <div class="checkbox-list">
-      <label class="form-label">Filtrar por matérias</label>
 
-      <app-checbox-group
-        [data]="materiasFiltro"
-        (checkChangeEvent)="filtroMateriaMudou($event)"
-      >
-      </app-checbox-group>
-    </div>
-    <div class="checkbox-list">
-      <label class="form-label">Filtrar por bancas</label>
+  <div class="check-container">
+  <mat-form-field appearance="fill" class="selectCustom">
+    <mat-label>Filtrar por matérias</mat-label>
+    <mat-select [formControl]="materiasSelecionadas" multiple (selectionChange)="filtroMateriaMudou()">
+      <mat-option *ngFor="let mat of materiasFiltro" [value]="mat.id">{{mat.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <app-checbox-group
-        [data]="bancasFiltro"
-        (checkChangeEvent)="filtroBancasMudou($event)"
-      >
-      </app-checbox-group>
-    </div>
-  </div>
+  <mat-form-field appearance="fill" class="selectCustom">
+    <mat-label>Filtrar por bancas</mat-label>
+    <mat-select [formControl]="bancasSelecionadas" multiple (selectionChange)="filtroBancasMudou()">
+      <mat-option *ngFor="let ban of bancasFiltro" [value]="ban.id">{{ban.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
   <ng-template #simuladoVazio>
     <h1 *ngIf="!loading">Nenhum simulado encontrado</h1>
   </ng-template>

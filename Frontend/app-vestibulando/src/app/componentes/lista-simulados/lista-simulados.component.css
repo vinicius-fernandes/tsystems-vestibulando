@@ -89,6 +89,10 @@ mat-paginator button {
   align-items: center;
 }
 
+.selectCustom{
+  width: 40%;
+  margin:5px;
+}
 
 
 .checkContainer {
@@ -101,5 +105,9 @@ mat-paginator button {
     display: grid;
     grid-template-columns: 1fr ;
     margin-bottom: 20px;
+  }
+  .selectCustom{
+    width: 100%;
+    margin:5px;
   }
 }

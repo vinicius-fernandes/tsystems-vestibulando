@@ -13,6 +13,8 @@ import IGeneric from 'src/app/interfaces/IGeneric';
 import { BancasService } from 'src/app/services/bancas.service';
 import { MateriasService } from 'src/app/services/materias.service';
 import IPesquisaSimuladoDTO from 'src/app/interfaces/IPesquisaSimuladoDTO';
+import { FormControl } from '@angular/forms';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-lista-simulados',
@@ -20,6 +22,8 @@ import IPesquisaSimuladoDTO from 'src/app/interfaces/IPesquisaSimuladoDTO';
   styleUrls: ['./lista-simulados.component.css']
 })
 export class ListaSimuladosComponent implements OnInit {
+  materiasSelecionadas = new FormControl<number[]>([]);
+  bancasSelecionadas = new FormControl<number[]>([]);
 
   simulados: ISimulado[] = []
   resultadosUsuario: INotasSimuladosUsuarios[] = []
@@ -29,8 +33,7 @@ export class ListaSimuladosComponent implements OnInit {
   materiasFiltro:IGeneric[]=[]
   bancasFiltro:IGeneric[]=[]
 
-  bancasFiltroSelecionadas:number[]=[]
-  materiasFiltroSelecionadas:number[]=[]
+
   isAdmin: boolean = false;
   totalElements: number = 0;
 
@@ -108,7 +111,11 @@ export class ListaSimuladosComponent implements OnInit {
   }
 
   pesquisar(params:any){
-    let pesquisaDto : IPesquisaSimuladoDTO = {idBancas:this.bancasFiltroSelecionadas,idMaterias:this.materiasFiltroSelecionadas}
+
+    let bancas: number[]= this.bancasSelecionadas.value? this.bancasSelecionadas.value:[]
+    let materias:number[]= this.materiasSelecionadas.value? this.materiasSelecionadas.value:[]
+
+    let pesquisaDto : IPesquisaSimuladoDTO = {idBancas:bancas,idMaterias:materias}
 
     this.service.pesquisar(params,pesquisaDto).subscribe({
       next:(value)=>{
@@ -165,23 +172,23 @@ export class ListaSimuladosComponent implements OnInit {
     })
   }
 
-  filtroBancasMudou(selecionados:number[]){
-    console.log(selecionados)
-    this.bancasFiltroSelecionadas=selecionados;
+  filtroBancasMudou(){
+
     this.carregarSimulados({ page: '0', size: '3' })
 
   }
 
-  filtroMateriaMudou(selecionados:number[]){
-    console.log(selecionados)
-    this.materiasFiltroSelecionadas=selecionados
+  filtroMateriaMudou(){
+    console.log(this.materiasSelecionadas.value)
+
     this.carregarSimulados({ page: '0', size: '3' })
+
   }
 
   carregarSimulados(params:any){
     this.loading=true
     this.simulados=[]
-    if(this.bancasFiltroSelecionadas.length==0 && this.materiasFiltroSelecionadas.length==0){
+    if(this.materiasSelecionadas.value?.length==0 && this.bancasSelecionadas.value?.length==0){
       this.consultar(params);
       return
     }
