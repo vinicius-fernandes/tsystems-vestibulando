@@ -14,6 +14,7 @@ export class RankingSimuladoComponent implements OnInit{
   ranking:IRankingSimulado[] = []
 
   id:number = 0
+  loading:boolean=true
 
   constructor(private service: RankingSimuladoService, private route: ActivatedRoute, private toastr: ToastrService, private router: Router) { }
 
@@ -36,6 +37,6 @@ export class RankingSimuladoComponent implements OnInit{
           this.toastr.error("Não foi possível consultar o ranking deste simulado.", "Erro")
           this.router.navigate(['app', 'home'])
         }
-    })
+    }).add(()=>this.loading=false)
   }
 }

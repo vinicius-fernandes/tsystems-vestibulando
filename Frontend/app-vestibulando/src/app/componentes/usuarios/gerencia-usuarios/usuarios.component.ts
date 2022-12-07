@@ -23,7 +23,7 @@ export class UsuariosComponent {
   public roles: IRole[] = [];
   public pesquisa: String = '';
   public idRole: number = 0;
-
+  loading:boolean=true
   constructor(
     private service: UsuarioService,
     private toastr: ToastrService,
@@ -36,6 +36,7 @@ export class UsuariosComponent {
   }
 
   consultar(params: any) {
+
     this.service.consultarPaginado(params).subscribe({
       next: (data) => {
         this.users = <IUsuario[]>data.content;
@@ -45,7 +46,7 @@ export class UsuariosComponent {
         this.toastr.error('Não foi possível consultar os usuários.', 'Erro');
         this.router.navigate(['app', 'home']);
       },
-    });
+    }).add(()=>this.loading=false);
   }
 
   confirmarExclusao(id: number) {
@@ -89,7 +90,8 @@ export class UsuariosComponent {
       page: event.pageIndex.toString(),
       size: event.pageSize.toString(),
     };
-
+    this.users=[]
+    this.loading=true
     if (this.pesquisa || this.idRole != 0) this.pesquisar(request);
     else this.consultar(request);
   }
@@ -114,6 +116,6 @@ export class UsuariosComponent {
       error: () => {
         this.toastr.error('Não foi possível consultar os usuários.', 'Erro');
       },
-    });
+    }).add(()=>this.loading=false);
   }
 }

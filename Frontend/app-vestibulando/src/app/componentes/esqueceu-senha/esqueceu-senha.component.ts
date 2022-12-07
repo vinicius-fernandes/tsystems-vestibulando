@@ -32,10 +32,9 @@ export class EsqueceuSenhaComponent {
       error:(erro)=>{
         console.log(erro)
         this.toastr.error("Ops ocorreu um erro ao pedir o reset de senha","Erro")
-      },
-      complete:()=>{
-        this.loading=false;
       }
-    })
+    }).add(
+      ()=> this.loading=false
+    )
   }
 }

@@ -13,6 +13,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog
 })
 export class GerenciaMateriasComponent implements OnInit {
 
+  loading:boolean=true
   materias: IMateria[] = []
 
   constructor(private serviceMateria: MateriasService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) {
@@ -27,7 +28,7 @@ export class GerenciaMateriasComponent implements OnInit {
         this.toastr.error("Não foi possível consultar as matérias.", "Erro")
         this.router.navigate(['app', 'home'])
       }
-    })
+    }).add(()=>this.loading=false)
   }
 
   confirmarExclusao(id: number) {

@@ -17,6 +17,8 @@
     </tbody>
   </table>
   <ng-template #rankingVazio>
-    <h2>Ninguém respondeu esse simulado ainda...</h2>
+    <h2 *ngIf="!loading">Ninguém respondeu esse simulado ainda...</h2>
   </ng-template>
+  <app-loading [loading]="loading"></app-loading>
+
 </main>

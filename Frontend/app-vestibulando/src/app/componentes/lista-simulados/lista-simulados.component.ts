@@ -21,6 +21,7 @@ export class ListaSimuladosComponent implements OnInit {
 
   isAdmin: boolean = false;
 
+  loading:boolean=true
   constructor(private _router: Router,
     private service: ListaSimuladosService,
     private toastr: ToastrService,
@@ -78,7 +79,7 @@ export class ListaSimuladosComponent implements OnInit {
             this.router.navigate(['app', 'home'])
           }
         }
-      })
+      }).add(()=>this.loading=false)
   }
 
   confirmarExclusaoSimulado(id: number) {

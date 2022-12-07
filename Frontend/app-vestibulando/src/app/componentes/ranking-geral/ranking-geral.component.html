@@ -1,6 +1,6 @@
 <main>
   <h1>Ranking geral</h1>
-  <div *ngIf="ranking && ranking.length > 0; else rankingVazio">
+  <div *ngIf="ranking && ranking.length > 0 ; else rankingVazio">
     <table class="table ">
       <thead>
         <tr>
@@ -21,6 +21,8 @@
     </mat-paginator>
   </div>
   <ng-template #rankingVazio>
-    <p>Ooops parece que ninguém respondeu um simulado ainda</p>
+    <p *ngIf="!loading">Ooops parece que ninguém respondeu um simulado ainda</p>
   </ng-template>
+  <app-loading [loading]="loading"></app-loading>
+
 </main>

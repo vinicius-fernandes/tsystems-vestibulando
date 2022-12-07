@@ -33,9 +33,9 @@ export class GerenciaQuestoesComponent {
   idMateria: number = 0;
   materiasData: IMateria[] = [];
   bancasData: IBanca[] = [];
-
+  loading:boolean=true;
   ngOnInit(): void {
-    this.obterPerguntas({ page: '0', size: '25' });
+    this.obterPerguntas({ page: '0', size: '10' });
 
     this.bancaService.consultar().subscribe({
       next: (bancas) => {
@@ -61,6 +61,8 @@ export class GerenciaQuestoesComponent {
   }
 
   obterPerguntas(params: any) {
+    this.pergunta=[]
+    this.loading=true
     this.serviceQuestoes.consultaPaginada(params).subscribe({
       next: (data) => {
         this.pergunta = <IPergunta[]>data.content;
@@ -69,10 +71,12 @@ export class GerenciaQuestoesComponent {
       error: () => {
         this.toastr.error('Não foi possível obter as perguntas', 'Erro');
       },
-    });
+    }).add(()=>this.loading=false);
   }
 
   obterFiltrado(params: any) {
+    this.pergunta=[]
+    this.loading=true
     this.serviceQuestoes.consultaFiltrada(this.corpo, this.idBanca, this.idMateria, params).subscribe({
       next: (data) => {
         this.pergunta = <IPergunta[]>data.content;
@@ -81,7 +85,7 @@ export class GerenciaQuestoesComponent {
       error: () => {
         this.toastr.error('Não foi possível obter as perguntas', 'Erro');
       },
-    });
+    }).add(()=>this.loading=false);
   }
 
   nextPage(event: PageEvent) {

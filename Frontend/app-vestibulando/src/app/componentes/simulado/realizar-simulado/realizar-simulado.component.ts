@@ -23,7 +23,8 @@ export class RealizarSimuladoComponent implements OnInit {
   exibicaoPerguntas: boolean[] = []
 
   respostasMarcadas: IRespostaMarcada[] = []
-
+  loading:boolean=true
+  loadingSalvar:boolean=false
   perguntaAtual: number = 0
   totalPerguntas: number = 0
   perguntasCorretas: number[] = []
@@ -48,7 +49,7 @@ export class RealizarSimuladoComponent implements OnInit {
         },
         error: (erro) => this.toastr.error(erro.error.message)
       }
-    )
+    ).add(()=>this.loading=false)
   }
 
   alterarPergunta(pergunta: number) {
@@ -86,6 +87,7 @@ export class RealizarSimuladoComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap
     let id = parseInt(routeParams.get('id') || '')
     let respsParaEnvio: IGeneric[] = []
+    this.loadingSalvar=true
     this.respostasMarcadas.forEach((resp) => {
       if (resp.idRespostaMarcada != null) {
         respsParaEnvio.push({ id: resp.idRespostaMarcada })
@@ -113,6 +115,6 @@ export class RealizarSimuladoComponent implements OnInit {
         },
         error: (erro) => { this.toastr.error(erro.error.message) }
       }
-    )
+    ).add(()=>this.loadingSalvar=false)
   }
 }

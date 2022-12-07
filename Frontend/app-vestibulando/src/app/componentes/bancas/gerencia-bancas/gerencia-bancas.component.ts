@@ -13,6 +13,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog
 })
 export class GerenciaBancasComponent implements OnInit {
 
+  loading:boolean=true
   constructor(private serviceBanca: BancasService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) { }
 
   confirmarExclusao(id: number) {
@@ -40,7 +41,7 @@ export class GerenciaBancasComponent implements OnInit {
         this.toastr.error("Não foi possível consultar as bancas.", "Erro")
         this.router.navigate(['app', 'home'])
       }
-    })
+    }).add(()=>this.loading=false)
   }
 
   excluirBanca(id: number) {

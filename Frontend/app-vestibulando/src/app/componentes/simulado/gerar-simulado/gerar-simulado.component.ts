@@ -21,6 +21,8 @@ export class GerarSimuladoComponent implements OnInit {
   materiasData: IMateria[] = []
   bancasData: IBanca[] = []
 
+  loadingBancas: boolean = true
+  loadingMaterias : boolean= true
   get bancasFormArray() {
     return this.form.controls['bancas'] as FormArray;
   }
@@ -36,6 +38,10 @@ export class GerarSimuladoComponent implements OnInit {
         numPerguntas: new FormControl(10, [Validators.min(5), Validators.max(90), Validators.required])
       }
     )
+  }
+
+  public isLoading(){
+    return !this.loadingBancas && !this.loadingMaterias
   }
 
   private addCheckboxesBanca() {
@@ -74,7 +80,8 @@ export class GerarSimuladoComponent implements OnInit {
             this.router.navigate(['app', 'home'])
           }
         }
-      })
+      }).add(()=>this.loadingBancas=false)
+
     this.materiaService.consultar().subscribe({
       next: materias => {
         this.materiasData = materias
@@ -88,7 +95,7 @@ export class GerarSimuladoComponent implements OnInit {
           this.router.navigate(['app', 'home'])
         }
       }
-    })
+    }).add(()=>this.loadingMaterias=false)
   }
 
   enviar(): void {

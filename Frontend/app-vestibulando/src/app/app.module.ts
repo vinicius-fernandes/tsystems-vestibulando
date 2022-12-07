@@ -14,6 +14,7 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { MatDialogModule } from '@angular/material/dialog'
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -56,6 +57,7 @@ import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-se
 import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
+import { LoadingComponent } from './componentes/utils/loading/loading.component';
 
 
 @NgModule({
@@ -94,7 +96,8 @@ import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
     Error404Component,
     EsqueceuSenhaComponent,
     AlterarSenhaComponent,
-    SobreNosComponent
+    SobreNosComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +124,8 @@ import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
     MatDialogModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressBarModule
     ],
   providers: [
     { provide: "BASE_API_URL", useValue: environment.apiUrl },

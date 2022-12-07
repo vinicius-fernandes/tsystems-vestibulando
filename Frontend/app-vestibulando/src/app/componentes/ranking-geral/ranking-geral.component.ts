@@ -14,7 +14,7 @@ export class RankingGeralComponent implements OnInit {
   totalElements: number = 0;
   page:number=0;
   size:number=0;
-
+  loading:boolean=true
   constructor(private rankingService:RankingSimuladoService,    private toastr: ToastrService,
     ){
 
@@ -24,6 +24,8 @@ export class RankingGeralComponent implements OnInit {
   }
 
   obterRanking(params:any){
+    this.ranking=[]
+    this.loading=true
     this.rankingService.rankingGeral(params).subscribe(
       {
         next:(data)=>{
@@ -39,7 +41,7 @@ export class RankingGeralComponent implements OnInit {
           }
         }
       }
-    )
+    ).add(()=>this.loading=false)
   }
   nextPage(event: PageEvent) {
     const request = {

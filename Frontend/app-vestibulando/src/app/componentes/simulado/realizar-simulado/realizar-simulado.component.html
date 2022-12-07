@@ -1,4 +1,4 @@
-<div class="container" *ngIf="simulado.perguntas.length > 0">
+<div class="container" *ngIf="simulado.perguntas.length > 0;else nHaPerguntas">
   <div class="row">
     <div class="text-center" *ngIf="finalizado">
       <h1>Você acertou {{perguntasCorretas.length}} {{perguntasCorretas.length==1?' pergunta':' perguntas'}}.</h1>
@@ -32,11 +32,12 @@
           [finalizado]="finalizado" [perguntasCorretas]="perguntasCorretas">
         </app-sumario-simulado>
       </div>
-      <div class="d-flex justify-content-center" *ngIf="!finalizado">
+      <div class="d-flex justify-content-center" *ngIf="!finalizado && !loadingSalvar">
         <button mat-raised-button color="primary" class="mt-4 col-12" (click)="confirmarSalvar()">
           Finalizar simulado
         </button>
       </div>
+      <app-loading [loading]="loadingSalvar"></app-loading>
 
       <div class="d-flex justify-content-center" *ngIf="finalizado">
         <a routerLink='/app'>
@@ -47,4 +48,9 @@
       </div>
     </div>
   </div>
+
 </div>
+<ng-template #nHaPerguntas>
+  <p *ngIf="!loading">Não foi possível identificar perguntas associadas ao simulado desejado</p>
+</ng-template>
+<app-loading [loading]="loading"></app-loading>
