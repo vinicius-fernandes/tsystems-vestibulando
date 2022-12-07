@@ -11,6 +11,5 @@ import java.util.List;
 public interface IMateriaRepository extends JpaRepository<Materia, Long> {
     public List<Materia> findAllByOrderByIdAsc();
 
-    @Query("Select m from Materia m where m.nome = ?1")
-    Materia findByNome(String nome);
+    Materia findByNomeIgnoreCase(String nome);
 }

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IBancaRepository extends JpaRepository<Banca, Long> {
 
-    @Query("Select b from Banca b where b.sigla = ?1")
-    Banca findBySigla(String sigla);
 
-    @Query("Select b from Banca b where b.nome = ?1")
-    Banca findByNome(String nome);
+    Banca findBySiglaIgnoreCase(String sigla);
+
+
+    Banca findByNomeIgnoreCase(String nome);
 }
