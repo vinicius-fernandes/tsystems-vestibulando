@@ -12,16 +12,22 @@ export class SidebarComponent implements OnInit {
 
   constructor(private jwtService: JwtTokenService) { }
   ngOnInit(): void {
-
-    let treeView: any;
+    
+    let treeView: undefined;
 
     $(window).on('load.lte.treeview', function (e: any) {
       treeView = e;
     });
 
-    if(treeView == undefined) {
-      $('[data-widget="treeview"]').Treeview('init');
-    }
+    let readyStateCheckInterval = setInterval(function() {
+      if (document.readyState === "complete") {
+        clearInterval(readyStateCheckInterval);
+
+        if(treeView == undefined) {
+          $('[data-widget="treeview"]').Treeview('init');
+        }
+      }
+    }, 10);
 
     this.isAdmin = this.jwtService.checkAuthoritie('ROLE_ADMIN')
   }
