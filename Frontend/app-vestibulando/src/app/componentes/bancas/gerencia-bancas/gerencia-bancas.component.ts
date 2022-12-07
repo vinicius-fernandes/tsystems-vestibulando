@@ -14,7 +14,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class GerenciaBancasComponent implements OnInit {
 
-  loading:boolean=true
+  loading: boolean = true
   totalElements: number = 0;
 
   constructor(private serviceBanca: BancasService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) { }
@@ -37,7 +37,6 @@ export class GerenciaBancasComponent implements OnInit {
   bancas: IBanca[] = []
 
   ngOnInit(): void {
-
     this.consultar({ page: '0', size: '8' })
   }
 
@@ -53,16 +52,18 @@ export class GerenciaBancasComponent implements OnInit {
     })
   }
 
-  consultar(params: any){
+  consultar(params: any) {
     this.serviceBanca.consultarPaginado(params).subscribe({
-      next: (data) => {this.bancas= <IBanca[]>data.content
-      this.totalElements = data['totalElements'];},
+      next: (data) => {
+        this.bancas = <IBanca[]>data.content
+        this.totalElements = data['totalElements']
+      },
       error: erro => {
         console.log(erro)
         this.toastr.error("Não foi possível consultar as bancas.", "Erro")
         this.router.navigate(['app', 'home'])
       }
-    }).add(()=>this.loading=false)
+    }).add(() => this.loading = false)
   }
 
   nextPage(event: PageEvent) {
@@ -70,8 +71,8 @@ export class GerenciaBancasComponent implements OnInit {
       page: event.pageIndex.toString(),
       size: event.pageSize.toString(),
     };
-    this.loading=true
-    this.bancas=[]
+    this.loading = true
+    this.bancas = []
     this.consultar(request)
   }
 }

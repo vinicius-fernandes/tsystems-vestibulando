@@ -32,3 +32,5 @@
   </table>
   <app-loading [loading]="loading"></app-loading>
 </div>
+<mat-paginator [pageSizeOptions]="[8, 24, 80]" [pageSize]="8" [length]="totalElements" (page)="nextPage($event)">
+</mat-paginator>
