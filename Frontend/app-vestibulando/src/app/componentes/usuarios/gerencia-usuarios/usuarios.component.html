@@ -8,8 +8,8 @@
             <mat-form-field color="primary" class="example-full-width">
                 <mat-label>Regra Usuário</mat-label>
                 <mat-select id="roles" matNativeControl [(ngModel)]="idRole">
-                    <mat-option value="0" selected></mat-option>
-                    <mat-option *ngFor="let r of roles" [value]="r.id">{{r.authority.replace("ROLE_","")}}</mat-option>
+                    <mat-option value="0" selected (click) = "pesquisar({ page: '0', size: '8' })">Todos os usuários</mat-option>
+                    <mat-option *ngFor="let r of roles" [value]="r.id" (click) = "pesquisar({ page: '0', size: '8' })">{{r.authority.replace("ROLE_","")}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <button mat-button matSuffix (click)="pesquisar({ page: '0', size: '8' })">
