@@ -28,7 +28,7 @@ public interface IPerguntaRepository extends JpaRepository<Pergunta, Long> {
 
 
     @Query(
-            "select p from Pergunta p where p.materia.id IN ?1 and p.banca.id IN ?2 order by random() "
+            "select p from Pergunta p where p.materia.id IN ?1 and p.banca.id IN ?2 order by rand() "
     )
     List<Pergunta> getPerguntasParaGerarSimulado(List<Long> idMaterias, List<Long> idBancas,Pageable pageable);
 
