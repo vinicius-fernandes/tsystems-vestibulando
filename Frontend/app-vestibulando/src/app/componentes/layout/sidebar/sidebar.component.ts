@@ -9,9 +9,25 @@ declare var $: any;
 export class SidebarComponent implements OnInit {
 
   isAdmin: boolean = false;
+
   constructor(private jwtService: JwtTokenService) { }
   ngOnInit(): void {
-    $('[data-widget="treeview"]').Treeview('init');
+    
+    let treeView: undefined;
+
+    $(window).on('load.lte.treeview', function (e: any) {
+      treeView = e;
+    });
+
+    let readyStateCheckInterval = setInterval(function() {
+      if (document.readyState === "complete") {
+        clearInterval(readyStateCheckInterval);
+
+        if(treeView == undefined) {
+          $('[data-widget="treeview"]').Treeview('init');
+        }
+      }
+    }, 10);
 
     this.isAdmin = this.jwtService.checkAuthoritie('ROLE_ADMIN')
   }

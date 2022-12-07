@@ -5,10 +5,15 @@
 .pesquisar {
   padding-top: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   vertical-align: center;
   align-items: center;
+  gap: 10px;
+}
+
+.pesquisar a {
+  margin-bottom: 20px;
 }
 
 mat-form-field {
@@ -26,15 +31,20 @@ tr td:nth-child(2) div {
 
 .botoes {
   display: flex;
-  justify-content: flex-end;
+  justify-content: right;
+  flex-wrap: wrap;
   gap: 10px;
+}
+
+tr td:nth-child(5) {
+  display: flex;
+  justify-content: flex-end;
 }
 
 tr td:nth-child(5) div button {
   width: clamp(100px, 10vw, 100px);
   min-width: 100px;
   padding: 10px;
-  margin: auto;
 }
 
 table {

@@ -50,7 +50,7 @@
         <tr>
           <th>ID</th>
           <th>Enunciado</th>
-          <th>Disciplina</th>
+          <th>Matérias</th>
           <th>Banca</th>
           <th></th>
         </tr>
@@ -66,12 +66,15 @@
           <td>{{ perg.banca.sigla }}</td>
           <td>
             <div class="botoes">
-              <button style="margin-right: 5px" mat-raised-button color="warn"
+              <button mat-raised-button color="warn"
                 (click)="confirmarExclusao(perg.id || 0)">
                 <i class="fa fa-trash"></i>
               </button>
-              <a [routerLink]="['edita', perg.id]"><button mat-raised-button color="primary">
-                  <i class="fas fa-edit"></i></button></a>
+              <a [routerLink]="['edita', perg.id]">
+                <button mat-raised-button color="primary">
+                  <i class="fas fa-edit"></i>
+                </button>
+              </a>
             </div>
           </td>
         </tr>

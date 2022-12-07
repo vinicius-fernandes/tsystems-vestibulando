@@ -19,3 +19,15 @@ button {
 mat-label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 350;
 }
+
+.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+mat-form-field {
+  width: clamp(200px, 90%, 500px) !important;
+}
