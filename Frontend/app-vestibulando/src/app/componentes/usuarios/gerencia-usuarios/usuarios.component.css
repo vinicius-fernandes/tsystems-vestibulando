@@ -18,7 +18,7 @@
 
 .pesquisar {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
   align-items: center;
 
@@ -30,6 +30,7 @@
 
 .pesqusiar mat-form-field{
   justify-self: left;
+  width: 100%;
 }
 
 .pesquisar>div>mat-form-field {
