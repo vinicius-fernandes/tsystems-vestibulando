@@ -31,8 +31,8 @@ tr td:nth-child(2) div {
 }
 
 tr td:nth-child(5) div button {
-  width: clamp(35px, 10vw, 64px);
-  min-width: 35px;
+  width: clamp(100px, 10vw, 100px);
+  min-width: 100px;
   padding: 10px;
   margin: auto;
 }

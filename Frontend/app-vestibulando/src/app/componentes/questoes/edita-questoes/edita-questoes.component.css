@@ -25,9 +25,9 @@
   gap: 20px;
 }
 
-button{
+button {
   height: 48px;
-  width: 113px;
+  width: 165px;
 }
 
 mat-label:not(.form-check-label):not(.custom-file-label) {
