@@ -27,7 +27,7 @@
 
 button {
   height: 48px;
-  width: 165px;
+  width: 150px;
 }
 
 mat-label:not(.form-check-label):not(.custom-file-label) {
