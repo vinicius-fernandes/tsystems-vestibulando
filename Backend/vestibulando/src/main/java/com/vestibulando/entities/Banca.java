@@ -38,10 +38,10 @@ public class Banca {
         this.id = id;
     }
     public String getSigla() {
-        return sigla;
+        return sigla.toUpperCase();
     }
     public void setSigla(String sigla) {
-        this.sigla = sigla;
+        this.sigla = sigla.toUpperCase();
     }
     public String getNome() {
         return nome;
