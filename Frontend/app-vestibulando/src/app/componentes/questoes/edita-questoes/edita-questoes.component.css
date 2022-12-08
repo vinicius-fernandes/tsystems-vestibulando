@@ -33,3 +33,7 @@ button {
 mat-label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 350;
 }
+
+.tamanhoLoading{
+  width: 30em
+}

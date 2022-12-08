@@ -14,7 +14,7 @@
 
     <div class="container d-flex align-items-center flex-column bg-light principal mx-auto marg-10">
         <h3 class="tituloCadastro"><b>Cadastro</b></h3>
-        
+
         <form [formGroup]="form">
           <div>
             <mat-form-field appearance="fill" color="primary" class="input">
@@ -41,9 +41,12 @@
             <p *ngIf="form.controls['senha'].hasError('required')">O preenchimento da senha é obrigatório</p>
             <p *ngIf="form.controls['senha'].hasError('minlength')">A senha deve possuir no mínimo 6 caracteres</p>
             <p *ngIf="form.controls['senha'].hasError('maxlength')">A senha deve possuir no máximo 20 caracteres</p>
-        </div> 
+        </div>
           <div class="botao">
-              <button mat-flat-button color="primary" (click)="cadastrar()" [disabled]="!form.valid">Cadastrar</button>
+              <button mat-flat-button color="primary" (click)="cadastrar()" [disabled]="!form.valid || loading">
+                <mat-spinner *ngIf="loading" [diameter]="20"></mat-spinner>
+                <span *ngIf="!loading">Cadastro</span>
+              </button>
           </div>
         </form>
     </div>

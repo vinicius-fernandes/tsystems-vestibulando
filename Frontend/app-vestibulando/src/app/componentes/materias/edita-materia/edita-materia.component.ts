@@ -12,9 +12,9 @@ import { MateriasService } from 'src/app/services/materias.service';
 export class EditaMateriaComponent implements OnInit {
 
   materia: IMateria = { id: 0, nome: "" }
-
+  loading:boolean=true;
   constructor(private serviceMateria: MateriasService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) { }
-
+  editando:boolean=false
   ngOnInit(): void {
     var routeParams = this.route.snapshot.paramMap
     let id = parseInt(routeParams.get('id') || '0')
@@ -25,7 +25,7 @@ export class EditaMateriaComponent implements OnInit {
         this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }
-    })
+    }).add(()=>this.loading=false)
   }
 
   editarMateria() {
@@ -34,7 +34,7 @@ export class EditaMateriaComponent implements OnInit {
       this.toastr.error('O nome da matéria deve conter de 2 a 100 caracteres.', 'Erro')
       return
     }
-
+      this.editando=true
     this.serviceMateria.editar(this.materia).subscribe({
       next: () => {
         this.toastr.success('Matéria alterada com sucesso!', 'Sucesso')
@@ -44,6 +44,6 @@ export class EditaMateriaComponent implements OnInit {
         this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }
-    })
+    }).add(()=>this.editando=false)
   }
 }

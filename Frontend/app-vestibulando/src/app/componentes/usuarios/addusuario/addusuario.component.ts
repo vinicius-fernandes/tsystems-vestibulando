@@ -16,7 +16,7 @@ export class AddusuarioComponent implements OnInit {
   usuario: IUsuario = { nome: "", email: "", senha: "", roles: [{ id: 0, authority: '' }] }
   roles: IRole[] = []
   public mostrarSenha: boolean = false
-
+  criando:boolean=false
   constructor(private router: Router, private service: UsuarioService, private toastr: ToastrService, private roleService: RolesService) { }
   ngOnInit(): void {
     this.roleService.consultar().subscribe({
@@ -53,7 +53,7 @@ export class AddusuarioComponent implements OnInit {
     if (teveErro) {
       return
     }
-
+    this.criando=true
     this.service.cadastrar(this.usuario).subscribe(
       {
         next: () => {
@@ -65,7 +65,7 @@ export class AddusuarioComponent implements OnInit {
         }
       }
 
-    )
+    ).add(()=>this.criando=false)
 
   }
   mudaVisibilidadeSenha() {

@@ -63,7 +63,10 @@
 
     <div class="row justify-content-center g-2">
       <div class="col-6">
-        <button mat-raised-button color="primary" class=" float-end" [disabled]="!form.valid">Gerar Simulado</button>
+        <button mat-raised-button color="primary" class=" float-end" [disabled]="!form.valid || loadingGeracao">
+          <mat-spinner *ngIf="loadingGeracao" [diameter]="20"></mat-spinner>
+          <span *ngIf="!loadingGeracao">Gerar simulado</span>
+        </button>
       </div>
     </div>
   </form>

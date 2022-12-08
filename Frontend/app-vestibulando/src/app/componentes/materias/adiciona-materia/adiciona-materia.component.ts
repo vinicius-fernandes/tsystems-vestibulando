@@ -16,6 +16,7 @@ export class AdicionaMateriaComponent {
 
   nomeMateria = new FormControl()
   dados: IMateria = { nome: '' }
+  criando:boolean=false
 
   adicionarMateria() {
 
@@ -25,7 +26,7 @@ export class AdicionaMateriaComponent {
     }
 
     this.dados.nome = this.nomeMateria.value
-
+    this.criando=true
     this.serviceMateria.salvar(this.dados).subscribe({
       next: () => {
         this.toastr.success('Matéria adicionada com sucesso!', 'Sucesso')
@@ -35,6 +36,6 @@ export class AdicionaMateriaComponent {
         this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }
-    })
+    }).add(()=>this.criando=false)
   }
 }

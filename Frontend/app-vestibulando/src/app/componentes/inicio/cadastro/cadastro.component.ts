@@ -12,9 +12,9 @@ import JwtTokenService from 'src/app/services/jwt-token.service';
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
-export class CadastroComponent implements OnInit{  
+export class CadastroComponent implements OnInit{
   public mostrarSenha: boolean = false
-
+  public loading:boolean=false
   form: FormGroup
   constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private formBuilder: FormBuilder, private service: UsuarioService, private router: Router, private toastr: ToastrService, private jwtTokenService: JwtTokenService) {
     this.form = this.formBuilder.group(
@@ -54,14 +54,15 @@ export class CadastroComponent implements OnInit{
     if (teveErro) {
       return
     }
-    
+
+    this.loading=true
     this.service.cadastrar(dados).subscribe({
       next: () => { this.router.navigate(["login"]) },
       error: erro => {
         console.log(erro)
         this.toastr.error(erro.error.message, "Erro")
       }
-    })
+    }).add(()=>this.loading=false)
   }
   mudaVisibilidadeSenha() {
     this.mostrarSenha = !this.mostrarSenha

@@ -42,3 +42,7 @@ input[matInput] {
 .form-floating mb-3 {
   text-align: center;
 }
+.tamanhoLoading{
+  width: 30em
+}
+

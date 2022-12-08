@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PerguntaService {
@@ -91,8 +92,10 @@ public class PerguntaService {
         List<Resposta> resposta = this.respostaRepository.findByPergunta(pergunta);
 
         List<Long> idRespostas = resposta.stream().map(Resposta::getId).toList();
+        Set<Long> respostasUsuarios = this.respostaRepository.getRespostasUsuariosFromRespostas(idRespostas);
+
         try {
-            respostaRepository.deleteFromRespostas(idRespostas);
+            respostaRepository.deleteFromRespostas(respostasUsuarios.stream().toList());
             perguntaRepository.deleteRespostasPergunta(id);
             perguntaRepository.deletePerguntaCustomizado(id);
         }
