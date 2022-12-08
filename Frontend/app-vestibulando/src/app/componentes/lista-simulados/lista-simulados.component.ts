@@ -15,6 +15,7 @@ import { MateriasService } from 'src/app/services/materias.service';
 import IPesquisaSimuladoDTO from 'src/app/interfaces/IPesquisaSimuladoDTO';
 import { FormControl } from '@angular/forms';
 import { filter } from 'rxjs';
+import ISimuladoSimplificadoDTO from 'src/app/interfaces/ISimuladoSimplificadoDTO';
 
 @Component({
   selector: 'app-lista-simulados',
@@ -25,7 +26,7 @@ export class ListaSimuladosComponent implements OnInit {
   materiasSelecionadas = new FormControl<number[]>([]);
   bancasSelecionadas = new FormControl<number[]>([]);
 
-  simulados: ISimulado[] = []
+  simuladosSimples:ISimuladoSimplificadoDTO[]=[]
   resultadosUsuario: INotasSimuladosUsuarios[] = []
 
   dataTest:IGeneric[]=[{id:1,name:'batata'},{id:2,name:'carne'}]
@@ -56,7 +57,7 @@ export class ListaSimuladosComponent implements OnInit {
   ngOnInit() {
     this.isAdmin = this.jwtService.checkAuthoritie('ROLE_ADMIN')
     this.obterRespostasUsuario()
-    this.consultar({ page: '0', size: '3' })
+    this.consultarSimples({ page: '0', size: '3' })
     this.carregarBancas();
     this.carregarMaterias();
   }
@@ -91,11 +92,14 @@ export class ListaSimuladosComponent implements OnInit {
     })
   }
 
-  consultar(params:any){
-    this.service.listarPaginado(params).subscribe(
+
+
+
+  consultarSimples(params:any){
+    this.service.listarSimplificado (params).subscribe(
       {
         next:(value)=>{
-          this.simulados=<ISimulado[]>value.content
+          this.simuladosSimples=<ISimuladoSimplificadoDTO[]>value.content
           this.totalElements=value.totalElements
         },
         error:(erro)=>{
@@ -119,7 +123,7 @@ export class ListaSimuladosComponent implements OnInit {
 
     this.service.pesquisar(params,pesquisaDto).subscribe({
       next:(value)=>{
-        this.simulados=<ISimulado[]>value.content
+        this.simuladosSimples=<ISimuladoSimplificadoDTO[]>value.content
         this.totalElements=value.totalElements
       },
       error:(erro)=>{
@@ -187,9 +191,9 @@ export class ListaSimuladosComponent implements OnInit {
 
   carregarSimulados(params:any){
     this.loading=true
-    this.simulados=[]
+    this.simuladosSimples=[]
     if(this.materiasSelecionadas.value?.length==0 && this.bancasSelecionadas.value?.length==0){
-      this.consultar(params);
+      this.consultarSimples(params);
       return
     }
     this.pesquisar(params)
@@ -214,7 +218,7 @@ export class ListaSimuladosComponent implements OnInit {
   excluirSimulado(id: number) {
     this.service.excluir(id).subscribe({
       next: () => {
-        this.simulados = this.simulados.filter(b => b.id != id)
+        this.simuladosSimples  = this.simuladosSimples.filter(b => b.id != id)
         this.toastr.success('Simulado excluído com sucesso!', 'Sucesso')
       }, error: (erro) => {
         this.toastr.error('Este simulado não pode ser excluído.', 'Erro')

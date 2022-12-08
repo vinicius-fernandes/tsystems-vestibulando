@@ -24,7 +24,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private static final String[] PUBLIC_POST = {"/usuarios","/simulados/pesquisar"};
 
     private static final String[] PUBLIC_GET = {"/oauth/token","/swagger-ui.html","/webjars/**","/swagger-ui/index.html","/v2/api-docs","/swagger-resources/**","/swagger-ui/**"};
-    private static final String[] USUARIO_GET= {"/simulados","/respostasUsuarios","/materia","/banca"};
+    private static final String[] USUARIO_GET= {"/simulados","/respostasUsuarios","/materia","/banca","/simulados/simples"};
     private static final String[] USUARIO_POST= {"/respostasUsuarios"};
     private static final String[] USUARIO= {"/respostasUsuarios/notaSimuladoUsuario/*/*","/respostasUsuarios/rankingGlobal","/simulados/gerar","/simulados/realizar/*","/respostasUsuarios/rankingSimulado/*","/respostasUsuarios/notasSimuladosUsuario/*","/respostasUsuarios/perguntasCorretas/*/*"};
 

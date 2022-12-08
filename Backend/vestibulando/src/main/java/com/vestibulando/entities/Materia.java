@@ -25,11 +25,11 @@ public class Materia {
     @NotNull(message = "O nome da matéria deve ser maior que 2 caracteres e menor que 100")
     private String nome;
 
+    @JsonIgnore
     @OneToMany(
             mappedBy = "materia",
             cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.EAGER
+            orphanRemoval = true
     )
     private Set<Pergunta> perguntas = new HashSet<>();
 

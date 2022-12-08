@@ -15,6 +15,11 @@ export class ListaSimuladosService {
     return this.http.get<ISimulado[]>(`${this.baseUrl}/simulados`)
   }
 
+  listarSimplificado(params:any){
+    return this.http.get<IPage>(`${this.baseUrl}/simulados/simples`,{params})
+
+  }
+
   listarPaginado(params:any){
     return this.http.get<IPage>(`${this.baseUrl}/simulados/paginado`,{params})
   }

@@ -12,6 +12,8 @@ public class SimuladoDTO {
     private Set<PerguntaDTO> perguntas;
     private long id;
 
+
+
     public SimuladoDTO() {
     }
     public SimuladoDTO(Simulado simulado){

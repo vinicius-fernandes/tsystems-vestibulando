@@ -3,6 +3,7 @@ package com.vestibulando.services;
 import com.vestibulando.dtos.GerarSimuladoDTO;
 import com.vestibulando.dtos.PesquisaSimuladoDTO;
 import com.vestibulando.dtos.SimuladoDTO;
+import com.vestibulando.dtos.SimuladoSimplificadoDTO;
 import com.vestibulando.entities.*;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IRespostasUsuariosRepository;
@@ -30,13 +31,17 @@ public class SimuladoService {
         return simuladoRepository.findAll();
     }
 
+    public Page<SimuladoSimplificadoDTO> consultaSimples(Pageable page){
+        return simuladoRepository.findAllSimplificado(page);
+    }
     public Page<Simulado> consultarPaginada(Pageable pageable) {
+
         return simuladoRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
-    public Page<Simulado> pesquisar(PesquisaSimuladoDTO  pesquisaSimuladoDTO, Pageable page){
+    public Page<SimuladoSimplificadoDTO> pesquisar(PesquisaSimuladoDTO  pesquisaSimuladoDTO, Pageable page){
 
         if(!pesquisaSimuladoDTO.valid())
-            return this.consultarPaginada(page);
+            return this.consultaSimples(page);
 
         if(pesquisaSimuladoDTO.getIdBancas().size()>0 && pesquisaSimuladoDTO.getIdMaterias().size()>0)
             return simuladoRepository.findByBancaAndMateria(pesquisaSimuladoDTO.getIdMaterias(),pesquisaSimuladoDTO.getIdBancas(),page);
