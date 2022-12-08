@@ -16,10 +16,6 @@
   width: 100%;
 }
 
-mat-form-field {
-  height: 90px;
-}
-
 .row {
   display: flex;
   align-items: center;
