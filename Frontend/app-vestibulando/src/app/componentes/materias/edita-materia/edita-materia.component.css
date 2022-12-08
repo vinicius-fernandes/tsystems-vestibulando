@@ -31,3 +31,7 @@ mat-label:not(.form-check-label):not(.custom-file-label) {
 mat-form-field {
   width: clamp(200px, 90%, 500px) !important;
 }
+
+.tamanhoLoading{
+  width: 30em
+}

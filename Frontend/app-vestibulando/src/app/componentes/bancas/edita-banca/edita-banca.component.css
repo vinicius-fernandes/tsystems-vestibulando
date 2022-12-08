@@ -2,6 +2,10 @@
   width: 75%;
 }
 
+.tamanhoLoading{
+  width: 30em
+}
+
 .botoes {
   text-align: center;
   display: flex;
@@ -31,3 +35,5 @@ mat-label:not(.form-check-label):not(.custom-file-label) {
 mat-form-field {
   width: clamp(200px, 90%, 500px) !important;
 }
+
+

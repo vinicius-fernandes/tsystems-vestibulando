@@ -12,7 +12,8 @@ import { BancasService } from 'src/app/services/bancas.service';
 export class EditaBancaComponent implements OnInit {
 
   banca: IBanca = { nome: '', sigla: '', id: 0 }
-
+  loading:boolean=true;
+  editando:boolean=false
   constructor(private serviceBanca: BancasService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class EditaBancaComponent implements OnInit {
         this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modbancas'])
       }
-    })
+    }).add(()=>this.loading=false)
   }
 
   editarBanca() {
@@ -43,6 +44,7 @@ export class EditaBancaComponent implements OnInit {
     if (teveErro) {
       return
     }
+    this.editando=true
 
     this.serviceBanca.editar(this.banca).subscribe({
       next: () => {
@@ -53,6 +55,6 @@ export class EditaBancaComponent implements OnInit {
         this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modbancas'])
       }
-    })
+    }).add(()=>this.editando=false)
   }
 }

@@ -17,7 +17,7 @@ export class AdicionaBancaComponent {
   nomeBanca = new FormControl()
   siglaBanca = new FormControl()
   dados: IBanca = { nome: '', sigla: '' }
-
+  criando:boolean=false
   adicionarBanca() {
     let teveErro = false
 
@@ -37,7 +37,7 @@ export class AdicionaBancaComponent {
 
     this.dados.nome = this.nomeBanca.value
     this.dados.sigla = this.siglaBanca.value
-
+    this.criando  =true
     this.serviceBanca.salvar(this.dados).subscribe({
       next: () => {
         this.toastr.success('Banca adicionada com sucesso!', 'Sucesso')
@@ -47,6 +47,6 @@ export class AdicionaBancaComponent {
         this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modbancas'])
       }
-    })
+    }).add(()=>this.criando =false)
   }
 }

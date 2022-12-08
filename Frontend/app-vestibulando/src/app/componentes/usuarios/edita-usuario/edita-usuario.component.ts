@@ -15,6 +15,8 @@ export class EditaUsuarioComponent implements OnInit {
 
   usuario: IUsuario = { nome: "", email: "", senha: "", roles: [{ id: 0, authority: '' }] }
   roles: IRole[] = []
+  loading:boolean=true
+  enviando:boolean=false
   public mostrarSenha: boolean = false
 
   constructor(private route: ActivatedRoute, private service: UsuarioService, private toastr: ToastrService, private router: Router, private roleService: RolesService) { }
@@ -40,7 +42,7 @@ export class EditaUsuarioComponent implements OnInit {
         this.toastr.error("Não foi possível consultar este usuário.", "Erro")
         this.router.navigate(['/app/usuarios'])
       }
-    })
+    }).add(()=>this.loading=false)
   }
 
   alterar() {
@@ -69,6 +71,7 @@ export class EditaUsuarioComponent implements OnInit {
     if (teveErro) {
       return
     }
+    this.enviando=true
     this.service.alterar(this.usuario).subscribe({
       next: () => {
         this.toastr.success('Usuario alteardo com sucesso!', 'Sucesso')
@@ -76,7 +79,7 @@ export class EditaUsuarioComponent implements OnInit {
       }, error: (erro) => {
         this.toastr.error(erro.error.message, 'Erro')
       }
-    })
+    }).add(()=>this.enviando=false)
   }
   mudaVisibilidadeSenha() {
     this.mostrarSenha = !this.mostrarSenha

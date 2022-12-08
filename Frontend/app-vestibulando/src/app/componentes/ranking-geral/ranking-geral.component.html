@@ -1,5 +1,5 @@
 <main>
-  <h1>Ranking geral</h1>
+  <h1>Ranking global</h1>
   <div *ngIf="ranking && ranking.length > 0 ; else rankingVazio">
     <table class="table ">
       <thead>
@@ -19,6 +19,8 @@
     </table>
 
   </div>
+  <app-loading [loading]="loading"></app-loading>
+
   <mat-paginator [pageSize]="10" [length]="totalElements"  (page)="nextPage($event)" class="paginator">
   </mat-paginator>
   <ng-template #rankingVazio>

@@ -21,6 +21,7 @@ export class GerarSimuladoComponent implements OnInit {
   bancasData: IBanca[] = []
   loadingBancas: boolean = true
   loadingMaterias: boolean = true
+  loadingGeracao:boolean=false
 
   get bancasFormArray() {
     return this.form.controls['bancas'] as FormArray;
@@ -104,6 +105,7 @@ export class GerarSimuladoComponent implements OnInit {
   }
 
   enviar(): void {
+    this.loadingGeracao=true
     this.simuladoService.gerar({ numeroPerguntas: this.form.value.numPerguntas, materias: this.getMateriasSelecionadas(), bancas: this.getBancasSelecionadas() })
       .subscribe(
         {
@@ -116,7 +118,7 @@ export class GerarSimuladoComponent implements OnInit {
             this.toastr.error(erro.error.message)
           }
         }
-      )
+      ).add(()=>this.loadingGeracao=false)
   }
 
   bancaSelected: any[] = []

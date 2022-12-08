@@ -2,7 +2,9 @@
     <div class="text-center principal">
 
         <h1>Editar Usuário</h1>
-
+        <div class="d-flex align-items-center justify-content-center p-2">
+          <mat-progress-bar *ngIf="loading" mode="indeterminate" class="tamanhoLoading"></mat-progress-bar>
+        </div>
         <mat-form-field appearance="fill" color="primary" class="comp-75">
             <input [(ngModel)]="usuario.nome" matInput placeholder="Informe o nome completo" required>
             <mat-label>Nome Completo</mat-label>
@@ -30,6 +32,8 @@
         <div class="botoes">
             <a routerLink="../.."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i>
                     Cancelar</button></a>
-            <button mat-raised-button color="primary" (click)="alterar()"><i class="fas fa-save"></i> Salvar</button>
+            <button mat-raised-button color="primary" (click)="alterar()" [disabled]="enviando"><i class="fas fa-save"></i>
+              <mat-spinner *ngIf="enviando" [diameter]="20"></mat-spinner>
+              <span *ngIf="!enviando">Salvar</span></button>
         </div>
     </div>
