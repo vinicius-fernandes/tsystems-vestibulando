@@ -26,7 +26,7 @@ mat-form-field {
 tr td:nth-child(2) div {
   max-height: 80px;
   overflow-y: auto;
-  padding-right: 1.5em;
+  max-width: 600px;
 }
 
 .botoes {
@@ -42,8 +42,8 @@ tr td:nth-child(5) {
 }
 
 tr td:nth-child(5) div button {
-  width: clamp(100px, 10vw, 100px);
-  min-width: 100px;
+  width: clamp(35px, 10vw, 64px);
+  min-width: 35px;
   padding: 10px;
 }
 
