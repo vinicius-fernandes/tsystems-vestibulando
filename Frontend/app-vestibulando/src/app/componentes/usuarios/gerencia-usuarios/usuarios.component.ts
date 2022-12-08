@@ -31,7 +31,7 @@ export class UsuariosComponent {
     private dialog: MatDialog,
     private roleService: RolesService
   ) {
-    this.consultar({ page: '0', size: '12' });
+    this.consultar({ page: '0', size: '8' });
     this.consultaRole();
   }
 
