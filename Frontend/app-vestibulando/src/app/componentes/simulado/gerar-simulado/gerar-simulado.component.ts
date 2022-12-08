@@ -17,12 +17,11 @@ export class GerarSimuladoComponent implements OnInit {
 
   form: FormGroup;
 
-
   materiasData: IMateria[] = []
   bancasData: IBanca[] = []
-
   loadingBancas: boolean = true
-  loadingMaterias : boolean= true
+  loadingMaterias: boolean = true
+
   get bancasFormArray() {
     return this.form.controls['bancas'] as FormArray;
   }
@@ -40,7 +39,7 @@ export class GerarSimuladoComponent implements OnInit {
     )
   }
 
-  public isLoading(){
+  public isLoading() {
     return !this.loadingBancas && !this.loadingMaterias
   }
 
@@ -64,14 +63,12 @@ export class GerarSimuladoComponent implements OnInit {
       .filter((v: IMateria | null) => v !== null)
   }
 
-  ngOnInit(): void {
-
+  consultarBancas() {
     this.bancaService.consultar().subscribe(
       {
         next: bancas => {
           this.bancasData = bancas
           this.addCheckboxesBanca()
-
         },
         error: error => {
           console.log(error)
@@ -80,8 +77,11 @@ export class GerarSimuladoComponent implements OnInit {
             this.router.navigate(['app', 'home'])
           }
         }
-      }).add(()=>this.loadingBancas=false)
+      }).add(() => this.loadingBancas = false)
 
+  }
+
+  consultarMaterias() {
     this.materiaService.consultar().subscribe({
       next: materias => {
         this.materiasData = materias
@@ -95,7 +95,12 @@ export class GerarSimuladoComponent implements OnInit {
           this.router.navigate(['app', 'home'])
         }
       }
-    }).add(()=>this.loadingMaterias=false)
+    }).add(() => this.loadingMaterias = false)
+  }
+
+  ngOnInit(): void {
+    this.consultarBancas()
+    this.consultarMaterias()
   }
 
   enviar(): void {
@@ -112,6 +117,38 @@ export class GerarSimuladoComponent implements OnInit {
           }
         }
       )
+  }
+
+  bancaSelected: any[] = []
+  verificaMaterias(idBanca: any) {
+    this.loadingMaterias = true
+    this.materiasFormArray.clear()
+    let index = this.bancaSelected.indexOf(idBanca)
+    if (index == -1)
+      this.bancaSelected.push(idBanca)
+    else
+      this.bancaSelected.splice(index, 1)
+
+    if (this.bancaSelected.length == 0)
+      this.consultarMaterias()
+    else
+      this.getMaterias(this.bancaSelected)
+  }
+
+  getMaterias(idBancas: any[]) {
+    this.materiaService.consultarPorBanca(idBancas).subscribe({
+      next: (materias: IMateria[]) => {
+        this.materiasData = materias
+        this.addCheckboxesMateria()
+      },
+      error: (error: { status: number; }) => {
+        console.log(error)
+        if (error.status != 401) {
+
+          this.toastr.error("Não foi possível consultar as matérias.", "Erro")
+        }
+      }
+    }).add(() => this.loadingMaterias = false)
   }
 }
 

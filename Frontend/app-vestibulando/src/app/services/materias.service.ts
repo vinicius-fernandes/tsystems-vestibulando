@@ -32,4 +32,8 @@ export class MateriasService {
   editar(dados: IMateria) {
     return this.http.put<IMateria>(`${this.baseUrl}/materia/${dados.id}`, dados)
   }
+
+  consultarPorBanca(idBancas: any){
+    return this.http.get<IMateria[]>(`${this.baseUrl}/materia/materiaporbanca?idBancas=${idBancas}`);
+  }
 }
