@@ -26,6 +26,12 @@ public class MateriaController {
     public ResponseEntity<Page<Materia>> consultarPaginado(Pageable page){
         return ResponseEntity.status(HttpStatus.OK).body(materiaService.pageBancas(page));
     }
+
+    @GetMapping("/materiaporbanca")
+    public ResponseEntity<List<Materia>> obterPorBanca(@RequestParam("idBancas") List<Long> idBancas){
+        return ResponseEntity.status(HttpStatus.OK).body(materiaService.obterPorBanca(idBancas));
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<Materia> obter(@PathVariable("id") long id){
         return ResponseEntity.status(HttpStatus.OK).body(materiaService.obter(id));

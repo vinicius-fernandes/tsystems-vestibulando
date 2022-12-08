@@ -8,11 +8,11 @@ h1,h2 {
 }
 
 .home>div {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 5%;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 50px;
+  justify-content: center;
+  gap: 20px;
 }
 
 .home>div>.card {
@@ -25,8 +25,8 @@ h1,h2 {
   padding: 20px 10px;
   min-height: 350px;
   max-width: 350px;
-  margin: auto;
   transition: .3s;
+  margin: 0;
 }
 
 .home>div>.card:hover {
@@ -45,28 +45,6 @@ h1,h2 {
   line-height: 2em;
 }
 
-@media (max-width: 950px) {
-  .home>div {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .home>div>div:nth-child(3) {
-    grid-column-start: 1;
-    grid-column-end: 3;
-  }
-}
-
-@media (max-width: 500px) {
-  .home>div {
-    grid-template-columns: 1fr;
-    margin-bottom: 100px;
-  }
-
-  .home>div>div:nth-child(3) {
-    grid-column-start: 1;
-    grid-column-end: 1;
-  }
-}
 
 @media (orientation: portrait) {
   .home>div>.card:hover {

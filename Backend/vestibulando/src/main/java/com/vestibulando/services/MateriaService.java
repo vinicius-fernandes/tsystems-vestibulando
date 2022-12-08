@@ -57,4 +57,10 @@ public class MateriaService {
 
         return this.salvar(oldMateria);
     }
+
+    public List<Materia> obterPorBanca(List<Long> idBanca){
+        List<Materia> m = materiaRepository.getByBanca(idBanca);
+        return m;
+
+    }
 }

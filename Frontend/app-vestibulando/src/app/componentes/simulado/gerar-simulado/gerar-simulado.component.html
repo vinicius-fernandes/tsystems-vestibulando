@@ -1,4 +1,3 @@
-
 <div class="container">
 
   <div class="row">
@@ -7,8 +6,8 @@
       <br />
     </div>
   </div>
-  <form [formGroup]="form" (ngSubmit)="enviar()" >
-    <div class="row d-flex justify-content-center" >
+  <form [formGroup]="form" (ngSubmit)="enviar()">
+    <div class="row d-flex justify-content-center">
       <div class="col-12 col-sm-8">
         <div class="row">
           <div class="col-md-5 col-12 my-2">
@@ -20,7 +19,8 @@
 
             <div class="checkbox-list">
               <div formArrayName="bancas" class="">
-                <mat-checkbox *ngFor="let ban of bancasFormArray.controls; let i = index" [formControlName]="i">
+                <mat-checkbox *ngFor="let ban of bancasFormArray.controls; let i = index" [formControlName]="i"
+                  (click)="verificaMaterias(bancasData[i].id)">
                   {{ bancasData[i].nome }}
                 </mat-checkbox>
               </div>
@@ -33,13 +33,10 @@
               *Selecione ao menos uma matéria
             </div>
             <mat-progress-bar *ngIf="loadingMaterias" mode="indeterminate"></mat-progress-bar>
-
-            <div>
               <div formArrayName="materias" class="materias">
-                <mat-checkbox *ngFor="let mat of materiasFormArray.controls; let i = index" [formControlName]="i">
-                  {{ materiasData[i].nome }}
-                </mat-checkbox>
-              </div>
+                  <mat-checkbox *ngFor="let mat of materiasFormArray.controls; let i = index" [formControlName]="i">
+                    {{ materiasData[i].nome }}
+                  </mat-checkbox>
             </div>
           </div>
         </div>
