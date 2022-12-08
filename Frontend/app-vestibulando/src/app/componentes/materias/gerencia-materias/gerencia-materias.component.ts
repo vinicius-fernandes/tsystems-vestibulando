@@ -23,7 +23,7 @@ export class GerenciaMateriasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.consultar({ page: '0', size: '8' })
+    this.consultar({ page: '0', size: '14' })
   }
 
   consultar(params:any){
