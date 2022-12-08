@@ -96,13 +96,15 @@ mat-paginator button {
 
 .selectCustom{
   width: 40%;
-  margin:5px;
+  margin: auto;
 }
 
-.checkContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: auto;
+.check-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
 }
 @media screen and (max-width: 768px) {
   .checkContainer {
