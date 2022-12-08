@@ -39,6 +39,7 @@ tr td:nth-child(2) div {
 tr td:nth-child(5) {
   display: flex;
   justify-content: flex-end;
+  min-height: 5em;
 }
 
 tr td:nth-child(5) div button {
