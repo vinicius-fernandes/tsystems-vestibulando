@@ -3,6 +3,7 @@ package com.vestibulando.controllers;
 import com.vestibulando.dtos.GerarSimuladoDTO;
 import com.vestibulando.dtos.PesquisaSimuladoDTO;
 import com.vestibulando.dtos.SimuladoDTO;
+import com.vestibulando.dtos.SimuladoSimplificadoDTO;
 import com.vestibulando.entities.*;
 import com.vestibulando.repositories.ISimuladoRepository;
 import com.vestibulando.services.SimuladoService;
@@ -29,10 +30,12 @@ public class SimuladoController {
         return ResponseEntity.ok().body(simuladoService.consultar());
     }
 
+    @GetMapping("/simples")
+    public ResponseEntity<Page<SimuladoSimplificadoDTO>> consultaSimples(Pageable page) {return ResponseEntity.ok().body(simuladoService.consultaSimples(page));}
     @GetMapping("/paginado")
     public ResponseEntity<Page<Simulado>> consultaPaginada(Pageable page){return ResponseEntity.ok().body(simuladoService.consultarPaginada(page));}
     @PostMapping("/pesquisar")
-    public ResponseEntity<Page<Simulado>> pesquisa(@RequestBody PesquisaSimuladoDTO  pesquisaSimuladoDTO, Pageable page){return ResponseEntity.ok().body(simuladoService.pesquisar(pesquisaSimuladoDTO,page));}
+    public ResponseEntity<Page<SimuladoSimplificadoDTO>> pesquisa(@RequestBody PesquisaSimuladoDTO  pesquisaSimuladoDTO, Pageable page){return ResponseEntity.ok().body(simuladoService.pesquisar(pesquisaSimuladoDTO,page));}
 
     @GetMapping("/{idSimulado}")
     public ResponseEntity<Simulado> consultar(@PathVariable("idSimulado") Long id) {

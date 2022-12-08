@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 *ngIf="simulados.length > 0; else simuladoVazio">Lista de Simulados</h1>
+  <h1 *ngIf="simuladosSimples.length > 0; else simuladoVazio">Lista de Simulados</h1>
   <ng-template #simuladoVazio>
     <h1 *ngIf="!loading">Nenhum simulado encontrado</h1>
   </ng-template>
@@ -23,7 +23,7 @@
     <h1 *ngIf="!loading">Nenhum simulado encontrado</h1>
   </ng-template>
   <div class="grid">
-    <div class="card" *ngFor="let simulado of simulados">
+    <div class="card" *ngFor="let simulado of simuladosSimples">
       <button
         *ngIf="isAdmin"
         mat-raised-button
@@ -32,20 +32,20 @@
       >
         <i class="fa fa-trash"></i>
       </button>
-      <p>{{ simulado.perguntas.length }} perguntas</p>
-      <div *ngIf="simulado.bancas.length > 0">
+      <p>{{ simulado.qntPerguntas }} perguntas</p>
+      <div *ngIf="simulado.bancasList.length > 0">
         <p>Bancas:</p>
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let banca of simulado.bancas">
-            {{ banca.sigla }}
+          <li class="list-group-item" *ngFor="let banca of simulado.bancasList">
+            {{ banca}}
           </li>
         </ul>
       </div>
-      <div *ngIf="simulado.materias.length > 0">
+      <div *ngIf="simulado.materiasList.length > 0">
         <p>Matérias:</p>
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let materia of simulado.materias">
-            {{ materia.nome }}
+          <li class="list-group-item" *ngFor="let materia of simulado.materiasList">
+            {{ materia }}
           </li>
         </ul>
       </div>
@@ -54,12 +54,7 @@
         Criado em: <br />
         {{ converterData(simulado.createdAt) }}
       </p>
-      <div *ngIf="simulado.updatedAt != null">
-        <p>
-          Editado em: <br />
-          {{ converterData(simulado.updatedAt) }}
-        </p>
-      </div>
+
       <p class="text-success text-center">{{encontrarSimuladoRespondido(simulado.id)}}</p>
       <div class="botoes">
         <button
