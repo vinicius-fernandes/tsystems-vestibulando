@@ -37,7 +37,7 @@ export class GerenciaBancasComponent implements OnInit {
   bancas: IBanca[] = []
 
   ngOnInit(): void {
-    this.consultar({ page: '0', size: '8' })
+    this.consultar({ page: '0', size: '14' })
   }
 
   excluirBanca(id: number) {
