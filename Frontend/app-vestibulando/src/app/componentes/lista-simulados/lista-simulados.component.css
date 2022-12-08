@@ -99,11 +99,10 @@ mat-paginator button {
   margin:5px;
 }
 
-
 .checkContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: auto auto 10px;
+  margin: auto;
 }
 @media screen and (max-width: 768px) {
   .checkContainer {
