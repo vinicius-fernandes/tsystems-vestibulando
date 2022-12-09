@@ -1,4 +1,7 @@
-# Vestibulando
+
+<div align="center">
+<img style="heigth:200px;width:200px" src="https://github.com/vinicius-fernandes/tsystems-vestibulando/blob/main/Frontend/app-vestibulando/src/assets/images/Logo%20Azul%20Alta%20Res.png?raw=true"/>
+</div>
 
 Nossa missão é :
 
@@ -10,6 +13,10 @@ Auxiliar estudantes que pretendem prestar vestibular a obter a aprovação por m
 
 # Demonstração
 Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.mogenius.io/
+
+
+# Documentação API
+/swagger-ui/index.html
 
 # Tecnologias utilizadas
 
