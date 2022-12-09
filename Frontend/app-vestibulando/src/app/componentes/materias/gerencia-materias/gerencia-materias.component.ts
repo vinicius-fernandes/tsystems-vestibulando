@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import IMateria from 'src/app/interfaces/IMateria';
@@ -13,21 +14,31 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../../confirm-dialog
 })
 export class GerenciaMateriasComponent implements OnInit {
 
+  loading:boolean=true
   materias: IMateria[] = []
+  totalElements: number = 0;
 
   constructor(private serviceMateria: MateriasService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) {
 
   }
 
   ngOnInit(): void {
-    this.serviceMateria.consultar().subscribe({
-      next: data => this.materias = data,
+    this.consultar({ page: '0', size: '14' })
+  }
+
+  consultar(params:any){
+    this.serviceMateria.consultarPaginado(params).subscribe({
+      next: (data) => {
+        this.materias = <IMateria[]> data.content
+        this.totalElements = data['totalElements']
+      },
       error: erro => {
         console.log(erro)
         this.toastr.error("Não foi possível consultar as matérias.", "Erro")
         this.router.navigate(['app', 'home'])
       }
-    })
+    }).add(()=>this.loading=false)
+
   }
 
   confirmarExclusao(id: number) {
@@ -39,7 +50,7 @@ export class GerenciaMateriasComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      if ( dialogResult == true ) {
+      if (dialogResult == true) {
         this.excluirMateria(id)
       }
     })
@@ -55,5 +66,14 @@ export class GerenciaMateriasComponent implements OnInit {
         console.log(erro)
       }
     })
+  }
+  nextPage(event: PageEvent) {
+    const request = {
+      page: event.pageIndex.toString(),
+      size: event.pageSize.toString(),
+    };
+    this.loading=true
+    this.materias=[]
+    this.consultar(request)
   }
 }

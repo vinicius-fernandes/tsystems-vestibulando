@@ -15,17 +15,18 @@ export class AdicionaMateriaComponent {
   constructor(private toastr: ToastrService, private serviceMateria: MateriasService, private router: Router) { }
 
   nomeMateria = new FormControl()
-  dados: IMateria = {nome: ''}
+  dados: IMateria = { nome: '' }
+  criando:boolean=false
 
   adicionarMateria() {
 
-    if ( this.nomeMateria.value == null || this.nomeMateria.value.length > 100 || this.nomeMateria.value.length < 2 ) {
+    if (this.nomeMateria.value == null || this.nomeMateria.value.length > 100 || this.nomeMateria.value.length < 2) {
       this.toastr.error('O nome da matéria deve conter de 2 a 100 caracteres.', 'Erro')
       return
     }
 
     this.dados.nome = this.nomeMateria.value
-
+    this.criando=true
     this.serviceMateria.salvar(this.dados).subscribe({
       next: () => {
         this.toastr.success('Matéria adicionada com sucesso!', 'Sucesso')
@@ -35,6 +36,6 @@ export class AdicionaMateriaComponent {
         this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }
-    })
+    }).add(()=>this.criando=false)
   }
 }

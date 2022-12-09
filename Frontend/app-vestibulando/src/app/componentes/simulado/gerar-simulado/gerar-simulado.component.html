@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col text-center">
       <h1>Gerar simulado</h1>
@@ -14,12 +15,12 @@
             <div *ngIf="form.controls['bancas'].hasError('required')" class="text-danger">
               *Selecione ao menos uma banca
             </div>
+            <mat-progress-bar *ngIf="loadingBancas" mode="indeterminate"></mat-progress-bar>
+
             <div class="checkbox-list">
               <div formArrayName="bancas" class="">
-                <mat-checkbox
-                  *ngFor="let ban of bancasFormArray.controls; let i = index"
-                  [formControlName]="i"
-                >
+                <mat-checkbox *ngFor="let ban of bancasFormArray.controls; let i = index" [formControlName]="i"
+                  (click)="verificaMaterias(bancasData[i].id)">
                   {{ bancasData[i].nome }}
                 </mat-checkbox>
               </div>
@@ -31,15 +32,11 @@
             <div *ngIf="form.controls['materias'].hasError('required')" class="text-danger">
               *Selecione ao menos uma matéria
             </div>
-            <div>
+            <mat-progress-bar *ngIf="loadingMaterias" mode="indeterminate"></mat-progress-bar>
               <div formArrayName="materias" class="materias">
-                <mat-checkbox
-                  *ngFor="let mat of materiasFormArray.controls; let i = index"
-                  [formControlName]="i"
-                >
-                  {{ materiasData[i].nome }}
-                </mat-checkbox>
-              </div>
+                  <mat-checkbox *ngFor="let mat of materiasFormArray.controls; let i = index" [formControlName]="i">
+                    {{ materiasData[i].nome }}
+                  </mat-checkbox>
             </div>
           </div>
         </div>
@@ -50,28 +47,28 @@
       <div class="col-12">
         <mat-form-field class="w-100">
           <mat-label>Número de perguntas</mat-label>
-          <input
-          matInput
-          type="number"
-          formControlName="numPerguntas"
-          />
+          <input matInput type="number" formControlName="numPerguntas" />
           <mat-error *ngIf="form.controls['numPerguntas'].hasError('min')">
-           O simulado deve possuir ao menos 5 perguntas
+            O simulado deve possuir ao menos 5 perguntas
           </mat-error>
           <mat-error *ngIf="form.controls['numPerguntas'].hasError('max')">
             O simulado deve possuir no máximo 90 perguntas
-           </mat-error>
-           <mat-error *ngIf="form.controls['numPerguntas'].hasError('required')">
+          </mat-error>
+          <mat-error *ngIf="form.controls['numPerguntas'].hasError('required')">
             O número de perguntas é obrigatório
-           </mat-error>
+          </mat-error>
         </mat-form-field>
       </div>
-
     </div>
+
     <div class="row justify-content-center g-2">
       <div class="col-6">
-        <button mat-raised-button color="primary" class=" float-end" [disabled]="!form.valid">Gerar Simulado</button>
+        <button mat-raised-button color="primary" class=" float-end" [disabled]="!form.valid || loadingGeracao">
+          <mat-spinner *ngIf="loadingGeracao" [diameter]="20"></mat-spinner>
+          <span *ngIf="!loadingGeracao">Gerar simulado</span>
+        </button>
       </div>
     </div>
   </form>
+
 </div>

@@ -1,39 +1,47 @@
 <h1 class="text-center">Gerenciar Bancas</h1>
 <div class="container">
-<p class="text-end mt-3 mr-3"><a routerLink="addbanca"><button mat-raised-button color="primary"><i class="fa fa-plus"></i> Adicionar Banca</button></a></p>
+  <p class="text-end mt-3 mr-3"><a routerLink="addbanca"><button mat-raised-button color="primary"><i
+          class="fa fa-plus"></i> Adicionar Banca</button></a></p>
 
-<table class="table table-striped">
+  <table class="table table-striped">
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sigla</th>
-            <th></th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Sigla</th>
+        <th></th>
+      </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let b of bancas">
-            <td>{{ b.id }}</td>
-            <td>{{ b.nome }}</td>
-            <td>{{ b.sigla }}</td>
-            <td class="text-end">
-              <div>
-                <div>
-                  <button mat-raised-button color="warn" (click)="confirmarExclusao(b.id || 0)">
-                    <i class="fa fa-trash"></i>
-                  </button>
-                </div>
-                <div>
-                  <a [routerLink]="['editbanca', b.id]">
-                    <button mat-raised-button color="primary">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </td>
-        </tr>
+
+      <tr *ngFor="let b of bancas">
+        <td>{{ b.id }}</td>
+        <td>{{ b.nome }}</td>
+        <td>{{ b.sigla }}</td>
+        <td class="text-end">
+          <div>
+            <div>
+              <button mat-raised-button color="warn" (click)="confirmarExclusao(b.id || 0)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+            <div>
+              <a [routerLink]="['editbanca', b.id]">
+                <button mat-raised-button color="primary">
+                  <i class="fas fa-edit"></i>
+                </button>
+              </a>
+            </div>
+          </div>
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
+  <app-loading [loading]="loading"></app-loading>
+
 </div>
+  <mat-paginator [pageSizeOptions]="[14, 24, 80]" [pageSize]="14" [length]="totalElements" (page)="nextPage($event)">
+  </mat-paginator>
+
+

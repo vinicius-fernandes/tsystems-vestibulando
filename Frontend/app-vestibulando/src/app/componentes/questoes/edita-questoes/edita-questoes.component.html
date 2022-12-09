@@ -1,5 +1,8 @@
 <div class="container">
-  <h1 class="text-center">Adicionar Questão</h1>
+  <h1 class="text-center">Editar Questão</h1>
+  <div class="d-flex align-items-center justify-content-center p-2">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" class="tamanhoLoading"></mat-progress-bar>
+  </div>
   <h2 class="text">Pergunta</h2>
 
   <div class="text-center">
@@ -27,7 +30,8 @@
         [(ngModel)]="questao.corpo"
         placeholder="Informe o enunciado da questão"
         matInput
-      ></textarea>
+      >
+      </textarea>
     </mat-form-field>
   </div>
 
@@ -59,7 +63,8 @@
           value="0"
           id="idcorreta1"
           [checked]="questao.respostas[0].correta"
-        ></mat-radio-button>
+        >
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -85,7 +90,8 @@
           value="1"
           id="idcorreta2"
           [checked]="questao.respostas[1].correta"
-        ></mat-radio-button>
+        >
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -111,7 +117,8 @@
           value="2"
           id="idcorreta3"
           [checked]="questao.respostas[2].correta"
-        ></mat-radio-button>
+        >
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -137,7 +144,8 @@
           value="3"
           id="idcorreta4"
           [checked]="questao.respostas[3].correta"
-        ></mat-radio-button>
+        >
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -163,7 +171,8 @@
           value="4"
           id="idcorreta5"
           [checked]="questao.respostas[4].correta"
-        ></mat-radio-button>
+        >
+        </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
@@ -172,10 +181,11 @@
     <a routerLink="../.."
       ><button mat-raised-button color="warn">
         <i class="fa fa-ban" aria-hidden="true"></i> Cancelar
-      </button></a
-    >
-    <button mat-raised-button color="primary" (click)="alterarQuestao()">
-      <i class="fas fa-save"></i> Salvar
-    </button>
+      </button></a>
+    <button mat-raised-button color="primary" (click)="alterarQuestao()" [disabled]="editando">
+      <i class="fas fa-save"></i>
+      <mat-spinner *ngIf="editando" [diameter]="20"></mat-spinner>
+              <span *ngIf="!editando">Salvar</span>
+      </button>
   </div>
 </div>

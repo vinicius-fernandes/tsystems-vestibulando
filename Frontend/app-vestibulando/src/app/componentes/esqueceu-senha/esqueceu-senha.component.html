@@ -21,15 +21,14 @@
           <form [formGroup]="form">
               <div class="input">
                   <mat-form-field appearance="fill" color="primary" >
-                      <mat-label>Insira o e-mail da conta que deseja recuperar a senha</mat-label>
-                      <input matInput formControlName="username" type="text" placeholder="E-mail" required>
+                      <mat-label>Insira o seu e-mail</mat-label>
+                      <input matInput formControlName="username" type="email" placeholder="E-mail" required>
                   </mat-form-field>
 
               </div>
               <div class="botoesLogin">
                   <button *ngIf="!loading" mat-flat-button color="primary" (click)="resetPass()" [disabled]="form.invalid">Confirmar</button>
                   <mat-spinner *ngIf="loading" class="text-center"></mat-spinner>
-
               </div>
           </form>
       </div>

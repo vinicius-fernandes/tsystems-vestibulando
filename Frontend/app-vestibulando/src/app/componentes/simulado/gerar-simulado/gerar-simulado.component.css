@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
 button.float-end {
   height: auto;
   padding: 5px;
@@ -22,10 +23,8 @@ mat-error {
   .materias {
     grid-template-columns: 1fr;
   }
+
   .checkbox-list {
     width: 100%;
   }
 }
-
-
-

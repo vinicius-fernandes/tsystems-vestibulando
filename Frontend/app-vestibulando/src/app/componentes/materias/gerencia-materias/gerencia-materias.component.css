@@ -1,5 +1,5 @@
 .container {
-  max-width: 100%;
+  max-width: 1000px;
   overflow-x: hidden;
 }
 
@@ -17,4 +17,12 @@ tr td:nth-child(3) div {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+mat-paginator {
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+  margin: 20px auto;
 }

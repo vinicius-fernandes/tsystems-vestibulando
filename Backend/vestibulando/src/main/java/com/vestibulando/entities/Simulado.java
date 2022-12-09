@@ -1,13 +1,7 @@
 package com.vestibulando.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,18 +9,21 @@ public class Simulado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "simulado_materia",
             joinColumns = @JoinColumn(name = "simulado_id"),
             inverseJoinColumns = @JoinColumn(name = "materia_id"))
     private Set<Materia> materias;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "simulado_banca",
             joinColumns = @JoinColumn(name = "simulado_id"),
             inverseJoinColumns = @JoinColumn(name = "banca_id"))
     private Set<Banca> bancas;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "simulado_pergunta",

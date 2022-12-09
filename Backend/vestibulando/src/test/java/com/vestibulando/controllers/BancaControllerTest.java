@@ -2,16 +2,16 @@ package com.vestibulando.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vestibulando.entities.Banca;
+import com.vestibulando.services.BancaService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,24 +22,24 @@ public class BancaControllerTest {
 
     @Autowired
     MockMvc mockMvc;
-
     @Autowired
     ObjectMapper objectMapper;
+
+    @MockBean
+    BancaService bancaService;
 
     @Test
     public void ListarBancasRetornaOk() throws Exception {
         mockMvc.perform(get("/banca")
-                .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isOk());
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void ObterBancaRetornarOK() throws Exception {
         mockMvc.perform(get("/banca/1")
-                .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isOk());
+               .accept(MediaType.APPLICATION_JSON))
+               .andExpect(status().isOk());
     }
 
     @Test
@@ -73,9 +73,7 @@ public class BancaControllerTest {
     @Test
     public void deletarBancaRetornaOk() throws Exception {
         mockMvc.perform(delete("/banca/{id}", 4L)
-                .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isOk());
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
-    
 }

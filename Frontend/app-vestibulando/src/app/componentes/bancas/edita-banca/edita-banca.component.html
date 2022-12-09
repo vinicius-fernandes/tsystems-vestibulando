@@ -1,22 +1,47 @@
+<div class="container">
+  <h1 class="text-center">Editar Banca</h1>
+  <div class="d-flex align-items-center justify-content-center p-2">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" class="tamanhoLoading"></mat-progress-bar>
+  </div>
+  <div class="text-center">
 
-<h1 class="text-center">Editar Banca</h1>
-
-<div class="text-center">
     <mat-form-field appearance="fill" color="primary" class="comp-75">
-        <mat-label>ID da Banca</mat-label>
-        <input [(ngModel)]="banca.id" matInput placeholder="Informe o ID da banca" readonly>
+      <mat-label>ID da Banca</mat-label>
+      <input
+        [(ngModel)]="banca.id"
+        matInput
+        placeholder="Informe o ID da banca"
+        readonly
+      />
     </mat-form-field>
     <mat-form-field appearance="fill" color="primary" class="comp-75">
-        <mat-label>Nome da Banca</mat-label>
-        <input [(ngModel)]="banca.nome" matInput placeholder="Informe o nome da banca">
+      <mat-label>Nome da Banca</mat-label>
+      <input
+        [(ngModel)]="banca.nome"
+        matInput
+        placeholder="Informe o nome da banca"
+      />
     </mat-form-field>
     <mat-form-field appearance="fill" color="primary" class="comp-75">
-        <mat-label>Sigla</mat-label>
-        <input [(ngModel)]="banca.sigla" matInput placeholder="Informe a sigla da banca">
+      <mat-label>Sigla</mat-label>
+      <input
+        [(ngModel)]="banca.sigla"
+        matInput
+        placeholder="Informe a sigla da banca"
+      />
     </mat-form-field>
-</div>
+  </div>
 
-<div class="botoes">
-    <a routerLink="../.."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></a>
-    <button mat-raised-button color="primary" (click)="editarBanca()"><i class="fas fa-save"></i> Salvar</button>
+  <div class="botoes">
+    <a routerLink="../.."
+      ><button mat-raised-button color="warn">
+        <i class="fa fa-ban" aria-hidden="true"></i> Cancelar
+      </button></a
+    >
+    <button mat-raised-button color="primary" (click)="editarBanca()" [disabled]="editando" class="d-inline-flex">
+      <i class="fas fa-save"></i>
+      <mat-spinner *ngIf="editando" [diameter]="20"></mat-spinner>
+              <span *ngIf="!editando">Salvar</span>
+    </button>
+  </div>
 </div>

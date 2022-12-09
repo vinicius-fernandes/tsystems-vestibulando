@@ -9,23 +9,22 @@ import IResultadoSimuladoUser from '../interfaces/IResultadoSimuladoUser';
 })
 export class RespostasUsuariosService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string) {
 
-   }
+  }
 
-   salvar(respUser:IRespostaUsuario){
-      return this.http.post<IRespostaUsuario>(`${this.baseUrl}/respostasUsuarios`,respUser)
-   }
+  salvar(respUser: IRespostaUsuario) {
+    return this.http.post<IRespostaUsuario>(`${this.baseUrl}/respostasUsuarios`, respUser)
+  }
 
-   resultado(idSimulado:number,idUser:number){
+  resultado(idSimulado: number, idUser: number) {
     return this.http.get<IResultadoSimuladoUser>(`${this.baseUrl}/respostasUsuarios/notaSimuladoUsuario/${idUser}/${idSimulado}`)
-   }
+  }
 
-
-   notasSimuladosUsuario(idUser:number){
+  notasSimuladosUsuario(idUser: number) {
     return this.http.get<[INotasSimuladosUsuario]>(`${this.baseUrl}/respostasUsuarios/notasSimuladosUsuario/${idUser}`)
-   }
-   perguntasCorretaSimuladoUsuario(idUser:number,idSimulado:number){
+  }
+  perguntasCorretaSimuladoUsuario(idUser: number, idSimulado: number) {
     return this.http.get<[number]>(`${this.baseUrl}/respostasUsuarios/perguntasCorretas/${idUser}/${idSimulado}`)
-   }
+  }
 }

@@ -24,12 +24,12 @@ header a div:hover {
 }
 
 .principal {
-display: flex;
-width: 30%;
-justify-content: center;
-padding: 20px;
-border-radius: 8px;
-align-items: center;
+  display: flex;
+  width: clamp(200px, 100%, 450px);
+  justify-content: center;
+  padding: 20px;
+  border-radius: 8px;
+  align-items: center;
 }
 
 .input{
@@ -69,22 +69,7 @@ justify-content: center;
     filter: brightness(0.7);
 }
 
-@media screen and (max-width: 1250px) {
-  .principal {
-    width: 60%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .principal {
-    width: 80%;
-  }
-}
-
 @media screen and (max-width: 450px) {
-  .principal {
-    width: 100%;
-  }
   form>div>p {
     font-size: 12px;
   }

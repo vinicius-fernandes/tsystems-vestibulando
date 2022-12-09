@@ -1,6 +1,7 @@
 main {
   margin: auto;
 }
+
 h1 {
   font-size: clamp(10px, 10vmin, 50px);
   line-height: 1.5em;
@@ -8,22 +9,26 @@ h1 {
   margin-bottom: 20px;
   text-transform: capitalize;
 }
-h2  {
+
+h2 {
   text-align: center;
   line-height: 1.5em;
 }
+
 table {
   margin: auto;
   max-width: 1000px;
   width: 100%;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
-
 }
-table td, table th {
+
+table td,
+table th {
   width: auto;
   padding-right: 0;
   padding-left: 0;
 }
+
 mat-paginator {
   background-color: #f4f6f9;
   display: flex;
@@ -32,24 +37,28 @@ mat-paginator {
   margin: 20px auto;
 }
 
-h1, th, td {
+h1,
+th,
+td {
   text-align: center;
 }
-tbody > tr:first-child{
+
+tbody>tr:first-child {
   background-color: gold;
 }
+
 tbody>tr:nth-child(2) {
   background-color: silver;
 }
+
 tbody>tr:nth-child(3) {
   background-color: #CD7F32;
 }
-
+tbody td {
+  line-break: anywhere;
+}
 ng-template {
   width: 100%;
   text-align: center;
 }
-
-
-
 

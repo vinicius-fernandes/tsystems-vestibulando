@@ -20,7 +20,7 @@ export class AdicionaQuestoesComponent implements OnInit {
 
   materiasData: IMateria[] = [];
   bancasData: IBanca[] = [];
-
+  criando:boolean=false;
   constructor(
     private serviceQuestoes: QuestoesService,
     private bancaService: BancasService,
@@ -182,7 +182,7 @@ export class AdicionaQuestoesComponent implements OnInit {
     });
 
     respostas[this.form.value.respostaCorreta].correta = true;
-
+    this.criando=true
     let dados: IPergunta = {
       corpo: this.form.value.enunciado,
       banca: { id: this.form.value.idBanca, nome: '', sigla: '' },
@@ -200,6 +200,6 @@ export class AdicionaQuestoesComponent implements OnInit {
         this.toastr.error(erro.error.message, 'Erro');
         this.router.navigateByUrl('app/questoes');
       },
-    });
+    }).add(()=>this.criando=false);
   }
 }

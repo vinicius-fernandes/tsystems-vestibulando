@@ -1,16 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import IMateria from '../interfaces/IMateria';
+import IPage from '../interfaces/IPage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MateriasService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
 
-  consultar(){
+  consultar() {
     return this.http.get<[IMateria]>(`${this.baseUrl}/materia`);
+  }
+  consultarPaginado(params:any){
+    return this.http.get<IPage>(`${this.baseUrl}/materia/paginado`,{params});
   }
 
   consultarPorId(id: number) {
@@ -18,7 +22,7 @@ export class MateriasService {
   }
 
   excluir(id: number) {
-    return this.http.delete(`${this.baseUrl}/materia/${id}`, {responseType: "arraybuffer"})
+    return this.http.delete(`${this.baseUrl}/materia/${id}`, { responseType: "arraybuffer" })
   }
 
   salvar(dados: IMateria) {
@@ -27,5 +31,9 @@ export class MateriasService {
 
   editar(dados: IMateria) {
     return this.http.put<IMateria>(`${this.baseUrl}/materia/${dados.id}`, dados)
+  }
+
+  consultarPorBanca(idBancas: any){
+    return this.http.get<IMateria[]>(`${this.baseUrl}/materia/materiaporbanca?idBancas=${idBancas}`);
   }
 }

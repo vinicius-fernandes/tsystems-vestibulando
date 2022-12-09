@@ -1,16 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import IBanca from '../interfaces/IBanca';
+import IPage from '../interfaces/IPage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BancasService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string) { }
 
-  consultar(){
+  consultar() {
     return this.http.get<[IBanca]>(`${this.baseUrl}/banca`);
+  }
+
+  consultarPaginado(params:any){
+    return this.http.get<IPage>(`${this.baseUrl}/banca/paginado`,{params});
   }
 
   consultarPorId(id: number) {
@@ -18,7 +23,7 @@ export class BancasService {
   }
 
   excluir(id: number) {
-    return this.http.delete(`${this.baseUrl}/banca/${id}`, {responseType: 'arraybuffer'});
+    return this.http.delete(`${this.baseUrl}/banca/${id}`, { responseType: 'arraybuffer' });
   }
 
   salvar(dados: IBanca) {

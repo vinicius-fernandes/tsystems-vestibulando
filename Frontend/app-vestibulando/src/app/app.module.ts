@@ -14,6 +14,7 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { MatDialogModule } from '@angular/material/dialog'
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/layout/header/header.component';
@@ -36,17 +37,17 @@ import { ListaSimuladosComponent } from './componentes/lista-simulados/lista-sim
 import { PerguntaSimuladoComponent } from './componentes/simulado/pergunta-simulado/pergunta-simulado.component';
 import { SumarioSimuladoComponent } from './componentes/simulado/sumario-simulado/sumario-simulado.component';
 import { ResultadoSimuladoComponent } from './componentes/simulado/resultado-simulado/resultado-simulado.component';
-import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
-import { EditaUsuarioComponent } from './componentes/edita-usuario/edita-usuario.component';
+import { UsuariosComponent } from './componentes/usuarios/gerencia-usuarios/usuarios.component';
+import { EditaUsuarioComponent } from './componentes/usuarios/edita-usuario/edita-usuario.component';
 import { AdicionaMateriaComponent } from './componentes/materias/adiciona-materia/adiciona-materia.component';
 import { EditaMateriaComponent } from './componentes/materias/edita-materia/edita-materia.component';
-import { AddusuarioComponent } from './componentes/addusuario/addusuario.component';
+import { AddusuarioComponent } from './componentes/usuarios/addusuario/addusuario.component';
 import { GerenciaQuestoesComponent } from './componentes/questoes/gerencia-questoes/gerencia-questoes.component';
 import { EditaQuestoesComponent } from './componentes/questoes/edita-questoes/edita-questoes.component';
 import { AdicionaQuestoesComponent } from './componentes/questoes/adiciona-questoes/adiciona-questoes.component';
 import { HomeComponent } from './componentes/home/home.component';
 import MatPaginatorIntlPtBr from './config/MatPaginatorIntlPtBr';
-import {AuthInterceptor} from './auth.interceptor';
+import { AuthInterceptor } from './auth.interceptor';
 import { InfoComponent } from './componentes/info/info.component';
 import { ValidUserGuard } from './authGuard/ValidUserGuard';
 import { ConfirmDialogComponent } from './componentes/confirm-dialog/confirm-dialog.component';
@@ -56,6 +57,8 @@ import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-se
 import { AlterarSenhaComponent } from './componentes/alterar-senha/alterar-senha.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
+import { LoadingComponent } from './componentes/utils/loading/loading.component';
+import { ChecboxGroupComponent } from './componentes/utils/checbox-group/checbox-group.component';
 
 
 @NgModule({
@@ -94,7 +97,9 @@ import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
     Error404Component,
     EsqueceuSenhaComponent,
     AlterarSenhaComponent,
-    SobreNosComponent
+    SobreNosComponent,
+    LoadingComponent,
+    ChecboxGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +126,8 @@ import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
     MatDialogModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressBarModule
     ],
   providers: [
     { provide: "BASE_API_URL", useValue: environment.apiUrl },
@@ -133,9 +139,9 @@ import { SobreNosComponent } from './componentes/sobre-nos/sobre-nos.component';
       multi: true
     },
 
-  { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr},
-  ValidUserGuard
-],
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPtBr },
+    ValidUserGuard
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmDialogComponent]
 })

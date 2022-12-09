@@ -20,9 +20,9 @@
         <div>
             <form [formGroup]="form">
                 <div class="input">
-                    <mat-form-field appearance="fill" color="primary" >
+                    <mat-form-field appearance="fill" color="primary">
                         <mat-label>E-mail</mat-label>
-                        <input matInput formControlName="username" type="text" placeholder="E-mail" required>
+                        <input matInput formControlName="username" type="email" placeholder="E-mail" required>
                     </mat-form-field>
                     <mat-form-field appearance="fill" color="primary">
                         <mat-label>Senha</mat-label>
@@ -31,7 +31,10 @@
                     </mat-form-field>
                 </div>
                 <div class="botoesLogin">
-                    <button mat-flat-button color="primary" (click)="login()">Login</button>
+                    <button mat-flat-button color="primary" (click)="login()" [disabled]="loading">
+                      <mat-spinner *ngIf="loading" [diameter]="20"></mat-spinner>
+ <span *ngIf="!loading">Login</span>
+                    </button>
                     <button mat-flat-button color="primary" (click)="redirecionarCadastro()">Cadastro</button>
                 </div>
             </form>

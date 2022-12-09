@@ -11,30 +11,30 @@ import { MateriasService } from 'src/app/services/materias.service';
 })
 export class EditaMateriaComponent implements OnInit {
 
-  materia: IMateria = {id: 0, nome: ""}
-
+  materia: IMateria = { id: 0, nome: "" }
+  loading:boolean=true;
   constructor(private serviceMateria: MateriasService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) { }
-
+  editando:boolean=false
   ngOnInit(): void {
-      var routeParams = this.route.snapshot.paramMap
-      let id = parseInt(routeParams.get('id') || '0')
-      this.serviceMateria.consultarPorId(id).subscribe({
-        next: data => this.materia = data,
-        error: erro => {
-          this.toastr.error('Matéria não encontrada.', 'Erro')
-          this.router.navigate(['app', 'modmaterias'])
-          console.log(erro)
-        }
-      })
+    var routeParams = this.route.snapshot.paramMap
+    let id = parseInt(routeParams.get('id') || '0')
+    this.serviceMateria.consultarPorId(id).subscribe({
+      next: data => this.materia = data,
+      error: erro => {
+        this.toastr.error('Matéria não encontrada.', 'Erro')
+        this.router.navigate(['app', 'modmaterias'])
+        console.log(erro)
+      }
+    }).add(()=>this.loading=false)
   }
 
   editarMateria() {
 
-    if ( this.materia.nome == null || this.materia.nome.length < 2 || this.materia.nome.length > 100 ) {
+    if (this.materia.nome == null || this.materia.nome.length < 2 || this.materia.nome.length > 100) {
       this.toastr.error('O nome da matéria deve conter de 2 a 100 caracteres.', 'Erro')
       return
     }
-
+      this.editando=true
     this.serviceMateria.editar(this.materia).subscribe({
       next: () => {
         this.toastr.success('Matéria alterada com sucesso!', 'Sucesso')
@@ -44,6 +44,6 @@ export class EditaMateriaComponent implements OnInit {
         this.router.navigate(['app', 'modmaterias'])
         console.log(erro)
       }
-    })
+    }).add(()=>this.editando=false)
   }
 }

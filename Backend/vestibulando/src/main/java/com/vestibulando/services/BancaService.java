@@ -5,8 +5,9 @@ import com.vestibulando.excepitions.ArgumentoDuplicado;
 import com.vestibulando.excepitions.DeleteComAssociacoes;
 import com.vestibulando.repositories.IBancaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,6 +20,10 @@ public class BancaService {
 
     public List<Banca> listar() {
         return bancaRepository.findAll();
+    }
+
+    public Page<Banca> pageBancas(Pageable page) {
+        return bancaRepository.findAll(page);
     }
 
     public Banca obter(long id) {
@@ -41,11 +46,11 @@ public class BancaService {
 
     @Transactional
     public Banca salvar(Banca banca) {
-        Banca b = bancaRepository.findBySigla(banca.getSigla());
+        Banca b = bancaRepository.findBySiglaIgnoreCase(banca.getSigla());
         if(b != null && b.getId() != banca.getId()){
             throw new ArgumentoDuplicado("Sigla cadastrada em banca existente");
         }
-        b = bancaRepository.findByNome(banca.getNome());
+        b = bancaRepository.findByNomeIgnoreCase(banca.getNome());
         if(b != null && b.getId() != banca.getId()){
             throw new ArgumentoDuplicado("Nome cadastrado em banca existente");
         }
@@ -61,5 +66,4 @@ public class BancaService {
 
         return this.salvar(oldBanca);
     }
-
 }

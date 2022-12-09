@@ -7,8 +7,7 @@ import IRole from '../interfaces/IRole'
 })
 export class RolesService {
 
-  constructor(private http:HttpClient, @Inject('BASE_API_URL') private baseUrl:String) { }
-
+  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: String) { }
 
   consultar() {
     return this.http.get<[IRole]>(`${this.baseUrl}/roles`);

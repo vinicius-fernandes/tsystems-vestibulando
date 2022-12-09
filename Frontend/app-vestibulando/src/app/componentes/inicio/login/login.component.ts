@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit{
 
   public mostrarSenha: boolean = false
 
+  loading:Boolean = false;
+
   constructor(private _router: Router, private formBuilder: FormBuilder,private authService:AuthService,private jwtTokenService:JwtTokenService,private toastr: ToastrService) {
     this.form = this.formBuilder.group(
       {
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit{
 
   login(){
     console.log(this.form.value)
+    this.loading=true
     this.authService.login(this.form.value)
     .subscribe({
       next:(value) =>{
@@ -54,8 +57,8 @@ export class LoginComponent implements OnInit{
           this.toastr.error("Ocorreu um erro ao efetuar o login","Erro")
         }
       }
-    });
-    
+    }).add(()=>this.loading=false);
+
 
   }
   redirecionarCadastro() {
@@ -64,7 +67,7 @@ export class LoginComponent implements OnInit{
 
   redirecionarGerarSimulado() {
     this._router.navigate(['app']);
-    location. reload();
+    //location. reload();
   }
 
   mudaVisibilidadeSenha() {

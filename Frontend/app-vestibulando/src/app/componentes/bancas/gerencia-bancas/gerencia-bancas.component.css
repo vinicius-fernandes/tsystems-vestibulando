@@ -1,5 +1,5 @@
 .container {
-  max-width: 100%;
+  max-width: 1000px;
   overflow-x: hidden;
 }
 
@@ -26,7 +26,20 @@ tr td:nth-child(4) div button {
   tr td:nth-child(1) {
     width: 10px;
   }
+
   tr td {
     font-size: clamp(13px, 1vh, 25px);
   }
+}
+.loading{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+mat-paginator {
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+  margin: 20px auto;
 }

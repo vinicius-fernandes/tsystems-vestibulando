@@ -1,8 +1,12 @@
 .comp-75 {
-    width: 75%;
+  width: 75%;
 }
 
-.botoes{
+.tamanhoLoading{
+  width: 30em
+}
+
+.botoes {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -11,11 +15,25 @@
   gap: 20px;
 }
 
-button{
+button {
   height: 48px;
-  width: 113px;
+  width: 150px;
 }
 
 mat-label:not(.form-check-label):not(.custom-file-label) {
-    font-weight: 350;
+  font-weight: 350;
 }
+
+.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+mat-form-field {
+  width: clamp(200px, 90%, 500px) !important;
+}
+
+

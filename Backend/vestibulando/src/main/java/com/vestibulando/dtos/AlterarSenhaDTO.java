@@ -1,10 +1,18 @@
 package com.vestibulando.dtos;
 
+import java.util.Objects;
+
 public class AlterarSenhaDTO {
     private String novaSenha;
+
+    private String confirmarNovaSenha;
     private String token;
 
     public AlterarSenhaDTO() {
+    }
+
+    public boolean senhasCoincidem(){
+        return Objects.equals(this.novaSenha, this.confirmarNovaSenha);
     }
 
     public AlterarSenhaDTO(String novaSenha, String token) {
@@ -26,5 +34,20 @@ public class AlterarSenhaDTO {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public AlterarSenhaDTO(String novaSenha, String confirmarNovaSenha, String token) {
+        this.novaSenha = novaSenha;
+        this.confirmarNovaSenha = confirmarNovaSenha;
+        this.token = token;
+    }
+
+
+    public String getConfirmarNovaSenha() {
+        return confirmarNovaSenha;
+    }
+
+    public void setConfirmarNovaSenha(String confirmarNovaSenha) {
+        this.confirmarNovaSenha = confirmarNovaSenha;
     }
 }

@@ -1,6 +1,5 @@
 package com.vestibulando.services;
 
-
 import com.vestibulando.entities.*;
 import com.vestibulando.repositories.IPerguntaRepository;
 import com.vestibulando.repositories.IRespostaRepository;
@@ -8,24 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.naming.directory.InvalidAttributesException;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
-import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PerguntaService {
-
     @Autowired
     IPerguntaRepository perguntaRepository;
-
     @Autowired
     IRespostaRepository respostaRepository;
-
     @Autowired
     BancaService bancaService;
     @Autowired
@@ -48,6 +40,7 @@ public class PerguntaService {
         banca.setId(id);
         return perguntaRepository.findByBanca(banca,page);
     }
+
     public Page<Pergunta> findByMateria(long id,Pageable page){
         Materia materia = new Materia();
         materia.setId(id);
@@ -62,6 +55,26 @@ public class PerguntaService {
 
     public Page<Pergunta> findByCorpo(String corpo, Pageable page){
         return perguntaRepository.findByCorpoIgnoreCaseContaining(corpo, page);
+    }
+
+    public Page<Pergunta> findByBancaAndMateria(long idBanca, long idMateria, Pageable page){
+        Banca banca = new Banca();
+        banca.setId(idBanca);
+        Materia materia = new Materia();
+        materia.setId(idMateria);
+        return perguntaRepository.findByBancaAndMateria(banca, materia, page);
+    }
+
+    public Page<Pergunta> findByCorpoAndMateria(String corpo, long idMateria, Pageable page){
+        Materia materia = new Materia();
+        materia.setId(idMateria);
+        return perguntaRepository.findByCorpoIgnoreCaseContainingAndMateria(corpo, materia, page);
+    }
+
+    public Page<Pergunta> findByCorpoAndBanca(String corpo, long idBanca, Pageable page){
+        Banca banca = new Banca();
+        banca.setId(idBanca);
+        return perguntaRepository.findByCorpoIgnoreCaseContainingAndBanca(corpo, banca, page);
     }
 
     public Page<Pergunta> consultarComFiltro(String corpo, long idBanca, long idMateria, Pageable page){
@@ -79,15 +92,16 @@ public class PerguntaService {
         List<Resposta> resposta = this.respostaRepository.findByPergunta(pergunta);
 
         List<Long> idRespostas = resposta.stream().map(Resposta::getId).toList();
+        Set<Long> respostasUsuarios = this.respostaRepository.getRespostasUsuariosFromRespostas(idRespostas);
+
         try {
-            respostaRepository.deleteFromRespostas(idRespostas);
+            respostaRepository.deleteFromRespostas(respostasUsuarios.stream().toList());
             perguntaRepository.deleteRespostasPergunta(id);
             perguntaRepository.deletePerguntaCustomizado(id);
         }
         catch (Exception e){
            throw new RuntimeException(e.getMessage());
         }
-
     }
 
     @Transactional
@@ -109,8 +123,6 @@ public class PerguntaService {
             res.setPergunta(new Pergunta());
             res.getPergunta().setId(p.getId());
         }
-
         return this.salvar(p);
     }
-
 }

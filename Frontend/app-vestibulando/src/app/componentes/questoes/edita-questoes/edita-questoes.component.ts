@@ -18,13 +18,14 @@ import { QuestoesService } from 'src/app/services/questoes.service';
 export class EditaQuestoesComponent implements OnInit {
   form: FormGroup;
 
-  respostas: IResposta[] = [];
+  respostas: IResposta[] = [{descricao:"Carregando...",correta:false},{descricao:"Carregando...",correta:false},{descricao:"Carregando...",correta:false},{descricao:"Carregando...",correta:false},{descricao:"Carregando...",correta:false}];
   materiasData: IMateria[] = [];
   bancasData: IBanca[] = [];
-
+  loading:boolean=true;
+  editando:boolean=false
   questao: IPergunta = {
     id: 0,
-    corpo: '',
+    corpo: 'carregando ...',
     banca: { id: 0, nome: '', sigla: '' },
     materia: { id: 0, nome: '' },
     respostas: this.respostas,
@@ -53,7 +54,7 @@ export class EditaQuestoesComponent implements OnInit {
         this.toastr.error('Questão não encontrada.', 'Erro');
         this.router.navigateByUrl('app/questoes');
       },
-    });
+    }).add(()=>this.loading=false);
 
     this.bancaService.consultar().subscribe({
       next: (bancas) => {
@@ -175,7 +176,7 @@ export class EditaQuestoesComponent implements OnInit {
       this.questao.respostas[4].correta = false;
       this.questao.respostas[this.form.value.respostaCorreta].correta = true;
     }
-
+    this.editando=true
     this.serviceQuestoes.editar(this.questao).subscribe({
       next: () => {
         this.toastr.success('Questão editada com sucesso!', 'Sucesso');
@@ -185,6 +186,6 @@ export class EditaQuestoesComponent implements OnInit {
         this.toastr.error(erro.error.message, 'Erro');
         this.router.navigateByUrl('app/questoes');
       },
-    });
+    }).add(()=>this.editando=false);
   }
 }

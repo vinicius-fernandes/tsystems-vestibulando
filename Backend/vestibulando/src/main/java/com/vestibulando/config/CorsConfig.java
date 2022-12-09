@@ -8,7 +8,6 @@ import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
 import java.util.Collections;
 
 @Configuration
@@ -22,7 +21,7 @@ public class CorsConfig {
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         config.addAllowedOrigin("http://localhost:4200");
-        config.addAllowedOrigin("http://production.url");
+        config.addAllowedOrigin("https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.mogenius.io");
         config.setAllowCredentials(true);
         source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));

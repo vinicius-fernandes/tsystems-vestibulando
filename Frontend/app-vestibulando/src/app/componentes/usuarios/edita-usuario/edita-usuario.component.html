@@ -1,0 +1,39 @@
+<div class="container w-50">
+    <div class="text-center principal">
+
+        <h1>Editar Usuário</h1>
+        <div class="d-flex align-items-center justify-content-center p-2">
+          <mat-progress-bar *ngIf="loading" mode="indeterminate" class="tamanhoLoading"></mat-progress-bar>
+        </div>
+        <mat-form-field appearance="fill" color="primary" class="comp-75">
+            <input [(ngModel)]="usuario.nome" matInput placeholder="Informe o nome completo" required>
+            <mat-label>Nome Completo</mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="primary" class="comp-75">
+            <input [(ngModel)]="usuario.email" matInput placeholder="Informe o e-mail" required>
+            <mat-label>E-mail</mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="primary" class="comp-75">
+            <input [type]="mostrarSenha ? 'text' : 'password'" [(ngModel)]="usuario.senha" matInput placeholder="Informe a senha" required>
+            <button type="button" mat-icon-button matSuffix (click)="mudaVisibilidadeSenha()"><mat-icon>{{mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon></button>
+            <mat-label>Password</mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" color="primary" class="comp-75">
+            <mat-label>Regra Usuário</mat-label>
+            <mat-select [(ngModel)]="usuario.roles![0].id" id="roles" matNativeControl required>
+                <mat-option *ngFor="let r of roles" [value]="r.id" (selected)="usuario.roles![0].id == r.id">
+                    {{r.authority.replace("ROLE_","")}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="botoes">
+            <a routerLink="../.."><button mat-raised-button color="warn"><i class="fa fa-ban" aria-hidden="true"></i>
+                    Cancelar</button></a>
+            <button mat-raised-button color="primary" (click)="alterar()" [disabled]="enviando"><i class="fas fa-save"></i>
+              <mat-spinner *ngIf="enviando" [diameter]="20"></mat-spinner>
+              <span *ngIf="!enviando">Salvar</span></button>
+        </div>
+    </div>

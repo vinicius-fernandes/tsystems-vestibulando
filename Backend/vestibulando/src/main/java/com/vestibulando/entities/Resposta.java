@@ -1,8 +1,6 @@
 package com.vestibulando.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -12,9 +10,11 @@ public class Resposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "Informe descrição")
     @Size(message = "O campo deve ter entre 3 e 2500 caracteres", max = 2500, min = 1)
     private String descricao;
+
     private Boolean correta;
 
     @ManyToOne

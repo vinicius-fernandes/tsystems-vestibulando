@@ -3,7 +3,12 @@ INSERT INTO materia (nome) VALUES ('Português'), ('Matemática'), ('Geografia')
 INSERT INTO banca(nome, sigla) VALUES ('Fundação Universitária para o Vestibular', 'FUVEST');
 INSERT INTO banca(nome, sigla) VALUES ('Exame Nacional do Ensino Médio', 'Enem');
 INSERT INTO banca(nome, sigla) VALUES ('Universidade Estadual Paulista', 'Unesp');
+INSERT INTO banca(nome, sigla) VALUES ('Universidade Federal Minas Gerais', 'UFMG');
+INSERT INTO banca(nome, sigla) VALUES ('Fundação Getulio Vargas', 'FGV');
+INSERT INTO banca(nome, sigla) VALUES ('Universidade Estadual de Campinas', 'UNICAMP');
+INSERT INTO banca(nome, sigla) VALUES ('Universidade Federal Bahia', 'UFBA');
 INSERT INTO banca(nome, sigla) VALUES ('Universidade Federal de Santa Catarina', 'UFSC');
+INSERT INTO banca(nome, sigla) VALUES ('Pontifícia Universidade Catolica', 'PUC');
 
 -- Sim, eu adicionei 250 perguntas
 

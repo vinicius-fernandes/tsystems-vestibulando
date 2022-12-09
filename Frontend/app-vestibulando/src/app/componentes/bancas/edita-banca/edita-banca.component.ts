@@ -11,8 +11,9 @@ import { BancasService } from 'src/app/services/bancas.service';
 })
 export class EditaBancaComponent implements OnInit {
 
-  banca: IBanca = {nome: '', sigla: '', id: 0}
-
+  banca: IBanca = { nome: '', sigla: '', id: 0 }
+  loading:boolean=true;
+  editando:boolean=false
   constructor(private serviceBanca: BancasService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,25 +25,26 @@ export class EditaBancaComponent implements OnInit {
         this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modbancas'])
       }
-    })
+    }).add(()=>this.loading=false)
   }
 
   editarBanca() {
     let teveErro = false;
 
-    if ( this.banca.nome == null || this.banca.nome.length < 2 || this.banca.nome.length > 250 ) {
+    if (this.banca.nome == null || this.banca.nome.length < 2 || this.banca.nome.length > 250) {
       teveErro = true
       this.toastr.error('O nome da banca deve conter de 2 a 250 caracteres.', 'Erro')
     }
 
-    if ( this.banca.sigla == null || this.banca.sigla.length < 2 || this.banca.sigla.length > 50 ) {
+    if (this.banca.sigla == null || this.banca.sigla.length < 2 || this.banca.sigla.length > 50) {
       teveErro = true
       this.toastr.error('A sigla da banca deve conter de 2 a 250 caracteres.', 'Erro')
     }
 
-    if ( teveErro ) {
+    if (teveErro) {
       return
     }
+    this.editando=true
 
     this.serviceBanca.editar(this.banca).subscribe({
       next: () => {
@@ -53,7 +55,6 @@ export class EditaBancaComponent implements OnInit {
         this.toastr.error(erro.error.message, 'Erro')
         this.router.navigate(['app', 'modbancas'])
       }
-    })
+    }).add(()=>this.editando=false)
   }
-  
 }
