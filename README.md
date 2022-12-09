@@ -26,7 +26,7 @@ Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.moge
     </div>
   <div align="center">
 
-    Ou acesse localmente {apiUrl}/swagger-ui/index.html
+    Clique na imagem ou acesse localmente {apiUrl}/swagger-ui/index.html
 </div>
 
 
