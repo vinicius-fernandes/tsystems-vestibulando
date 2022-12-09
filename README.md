@@ -46,4 +46,4 @@ Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.moge
 
 - [Rafael](https://github.com/RafaGrassi)
 
-[Vinicius](https://github.com/vinicius-fernandes)
+- [Vinicius](https://github.com/vinicius-fernandes)
