@@ -1,6 +1,6 @@
 
 <div align="center">
-<img style="heigth:200px;width:200px" src="https://github.com/vinicius-fernandes/tsystems-vestibulando/blob/main/Frontend/app-vestibulando/src/assets/images/Logo%20Azul%20Alta%20Res.png?raw=true"/>
+<img style="heigth:300px;width:300px" src="https://github.com/vinicius-fernandes/tsystems-vestibulando/blob/main/Frontend/app-vestibulando/src/assets/images/Logo%20Azul%20Alta%20Res.png?raw=true"/>
 </div>
 
 # Nossa missão é 
