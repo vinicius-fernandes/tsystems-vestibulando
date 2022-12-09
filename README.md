@@ -9,16 +9,16 @@ Auxiliar estudantes que pretendem prestar vestibular a obter a aprovação por m
 
 # Principais funcionalidades
 
-- Gere simulados automaticamente com base em bancas de vestibular e áreas de conhecimento
-- Realize simulados para pontuar no ranking, quanto mais perguntas corretas maior sua posição no ranking
-- Realize simulados gerados por outros usuários
+- [X] Gere simulados automaticamente com base em bancas de vestibular e áreas de conhecimento
+- [X] Realize simulados para pontuar no ranking, quanto mais perguntas corretas maior sua posição no ranking
+- [X] Realize simulados gerados por outros usuários
 
 # Demonstração
 Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.mogenius.io/
 
 
 # Documentação API
-/swagger-ui/index.html
+{apiUrl}/swagger-ui/index.html
 
 # Tecnologias utilizadas
 
