@@ -9,6 +9,19 @@ Aplicação com o objetivo de gerar simulados para os principais vestibulares do
 # Demonstração
 Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.mogenius.io/
 
+# Tecnologias utilizadas
+
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white) 
+
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white) 
+
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) 
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) 
+
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white) 
+
+![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) 
 # Execução local
 
 - Para a execução local você pode utilizar o docker, há o arquivo Dockerfile tanto para o front end quanto para o backend.
