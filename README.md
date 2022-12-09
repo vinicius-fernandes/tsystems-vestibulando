@@ -36,9 +36,14 @@ Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.moge
 
 # Criadores:
 
-[Brena](https://github.com/brenalaurindo)
-[Gustavo](https://github.com/Gustavo-Guerreiro)
-[Teshi](https://github.com/TeshiKTB)
-[Thomas](https://github.com/tcarballo)
-[Rafael](https://github.com/RafaGrassi)
+- [Brena](https://github.com/brenalaurindo)
+
+- [Gustavo](https://github.com/Gustavo-Guerreiro)
+
+- [Teshi](https://github.com/TeshiKTB)
+
+- [Thomas](https://github.com/tcarballo)
+
+- [Rafael](https://github.com/RafaGrassi)
+
 [Vinicius](https://github.com/vinicius-fernandes)
