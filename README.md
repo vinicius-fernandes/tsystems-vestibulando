@@ -1,6 +1,8 @@
 # Vestibulando
 
-Aplicação com o objetivo de gerar simulados para os principais vestibulares do Brasil
+Nossa missão é :
+
+Auxiliar estudantes que pretendem prestar vestibular a obter a aprovação por meio de uma plataforma gamificada, aprimorando o desempenho do estudante de forma intuitiva e fácil.
 
 - Gere simulados automaticamente com base em bancas de vestibular e áreas de conhecimento
 - Realize simulados para pontuar no ranking, quanto mais perguntas corretas maior sua posição no ranking
