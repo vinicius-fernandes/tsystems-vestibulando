@@ -30,7 +30,7 @@ Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.moge
 
 - Para a execução local você pode utilizar o docker, há o arquivo Dockerfile tanto para o front end quanto para o backend.
 
-- Lembre-se de alterar o arquivo .env no backend com suas credencias e também o arquivo enviorment.ts no front end.
+- Lembre-se de alterar o arquivo .env no backend com suas credencias e também o arquivo environment.ts no front end.
 
 - No backend é possível utilizar o perfil de teste e o perfil de desenvolvimento alternando o arquivo application.properties, por padrão a api é executada no perfil de desenvolvimento que conta com o MySql como base de dados
 
