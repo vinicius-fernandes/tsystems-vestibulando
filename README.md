@@ -26,6 +26,8 @@ Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.moge
 
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) 
 
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+
 # Execução local
 
 - Para a execução local você pode utilizar o docker, há o arquivo Dockerfile tanto para o front end quanto para o backend.
