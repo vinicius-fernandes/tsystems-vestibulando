@@ -18,7 +18,17 @@ Experimente a demo em : https://tsystems-ve001-prod-vestibulando-ffanlh.mo2.moge
 
 
 # Documentação API
-{apiUrl}/swagger-ui/index.html
+  <div align="center">
+
+<a href="https://tsystems-vesti-prod-vestibulando-ffanlh.mo2.mogenius.io/swagger-ui/index.html">
+<img style="heigth:200px;width:200px" src="https://static-00.iconduck.com/assets.00/swagger-icon-512x512-halz44im.png"/>
+  </a>
+    </div>
+  <div align="center">
+
+    Ou acesse localmente {apiUrl}/swagger-ui/index.html
+</div>
+
 
 # Tecnologias utilizadas
 
